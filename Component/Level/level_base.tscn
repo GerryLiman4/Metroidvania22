@@ -13,8 +13,8 @@ size = Vector2(128, 123)
 [node name="Player" parent="." instance=ExtResource("1_pufy1")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-5, 159)
-scale = Vector2(6.36719, 1)
+position = Vector2(-81, 159)
+scale = Vector2(11.8125, 1)
 texture = ExtResource("2_h2tp4")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D"]
