@@ -4,7 +4,6 @@ extends CharacterBody2D
 
 @export var character_state : StateChart
 @export var current_state : CharacterStateId.Id
-@export var character_sprite : Sprite2D
 
 const GRAVITY : float = 600.0
 const WALK_SPEED : float = 360.0
@@ -16,7 +15,7 @@ const DOUBLE_JUMP_VELOCITY : float = -350.0
 
 enum FACING{RIGHT,LEFT}
 
-var face_direction : FACING
+@export var face_direction : FACING
 var dash_timer : float = 0.25
 var dash_cooldown_timestamp : float = -1.0
 var object_timer : float = 0.0
@@ -24,9 +23,25 @@ var is_crawling : bool = false
 
 var can_double_jump : bool = true 
 
+@export_category("Animation")
+@export var animation_player : AnimatedSprite2D
+@export var body_sprite : Sprite2D
+@export var arm_model : Sprite2D
+@export var arm_sprite : Sprite2D
+@export var head_model : Sprite2D
+@export var head_sprite : Sprite2D
+
+@export var bullet_pref : PackedScene
+@export var shooter : Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
+
+func add_child_deferred(child_to_add) -> void :
+	get_tree().root.add_child(child_to_add)
+
+func call_add_child(child_to_add) -> void :
+	call_deferred("add_child_deferred",child_to_add)
 
 func switch_state(new_state : CharacterStateId.Id) :
 	if current_state != null && current_state == new_state:
@@ -57,15 +72,18 @@ func get_move_input() :
 			velocity.x = -WALK_SPEED
 		else :
 			velocity.x = -CRAWL_SPEED
-		character_sprite.flip_h = true
 		face_direction = FACING.LEFT
+		animation_player.scale.x = (abs(animation_player.scale.x))
+		
 	elif Input.is_action_pressed("right") == true :
 		if is_crawling == false :
 			velocity.x = WALK_SPEED
 		else :
 			velocity.x = CRAWL_SPEED
-		character_sprite.flip_h = false
+		
 		face_direction = FACING.RIGHT
+		animation_player.scale.x = -(abs(animation_player.scale.x))
+
 
 func get_jump_input() :
 	if Input.is_action_pressed("jump") == true and is_on_floor() == true :
@@ -125,12 +143,30 @@ func check_crawl() -> bool :
 	
 #end region
 
+#region hand 
+func take_aim():
+	var aim_position = -get_global_mouse_position()
+#	if face_direction == FACING.LEFT :
+#		aim_position = -(aim_position)
+#
+#	var aim_angle = (aim_position - arm_model.global_position).angle()
+#	arm_model.rotation = aim_angle
+	arm_model.look_at(aim_position)
+	
+	var bullet : Bullet = bullet_pref.instantiate()
+	bullet.global_position = shooter.global_position
+	bullet.launch(shooter.global_position - aim_position )
+	call_add_child(bullet)
+
+#endregion
+
 #region state
 func _on_idle_state_entered():
 	can_double_jump = true
+	animation_player.play("Idle")
 
 func _on_idle_state_exited():
-	pass # Replace with function body.
+	animation_player.stop()
 
 func _on_idle_state_physics_processing(delta):
 	if check_walk() == true:
@@ -151,15 +187,18 @@ func _on_idle_state_physics_processing(delta):
 	if check_dash() == true :
 		switch_state(CharacterStateId.Id.DASH)
 		return
+	
+	take_aim()
 
 func _on_idle_state_input(event):
 	pass
 
 func _on_walk_state_entered():
 	can_double_jump = true
+	animation_player.play("Walk")
 
 func _on_walk_state_exited():
-	pass # Replace with function body.
+	animation_player.stop()
 
 func _on_walk_state_input(event):
 	pass
@@ -183,6 +222,8 @@ func _on_walk_state_physics_processing(delta):
 	if check_dash() == true :
 		switch_state(CharacterStateId.Id.DASH)
 		return
+	
+	take_aim()
 
 func _on_jump_state_entered():
 	pass # Replace with function body.
@@ -204,6 +245,8 @@ func _on_jump_state_physics_processing(delta):
 	if check_fall() == true :
 		switch_state(CharacterStateId.Id.FALL)
 		return
+	
+	take_aim()
 
 func _on_fall_state_entered():
 	pass # Replace with function body.
@@ -226,6 +269,8 @@ func _on_fall_state_physics_processing(delta):
 	if get_dash_input() == true && object_timer >= dash_cooldown_timestamp + 1.0 :
 		switch_state(CharacterStateId.Id.DASH)
 		return
+	
+	take_aim()
 
 func _on_double_jump_state_entered():
 	can_double_jump = false
