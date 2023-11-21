@@ -24,25 +24,17 @@ character_state = NodePath("StateChart")
 animation_player = NodePath("AnimatedSprite2D")
 body_sprite = NodePath("Model/Body")
 arm_model = NodePath("ArmModel")
-arm_sprite = NodePath("ArmModel/Arm")
+arm_sprite = NodePath("AnimatedSprite2D/Arm")
 head_model = NodePath("AnimatedSprite2D/HeadModel")
 head_sprite = NodePath("AnimatedSprite2D/HeadModel/Head")
 bullet_pref = ExtResource("2_d5m6g")
-shooter = NodePath("ArmModel/Arm/Shooter")
+shooter = NodePath("ArmModel/Shooter")
 
 [node name="ArmModel" type="Sprite2D" parent="."]
+position = Vector2(18, -4)
 
-[node name="Arm" type="Sprite2D" parent="ArmModel"]
-z_index = 15
-position = Vector2(8, -4)
-texture = ExtResource("3_wcq8k")
-offset = Vector2(-12, 5)
-
-[node name="Shooter" type="Node2D" parent="ArmModel/Arm"]
-position = Vector2(-57, 8)
-
-[node name="Marker2D" type="Marker2D" parent="ArmModel/Arm"]
-position = Vector2(5, 6)
+[node name="Shooter" type="Node2D" parent="ArmModel"]
+position = Vector2(-49, 4)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("5_13q23")
@@ -56,6 +48,15 @@ position = Vector2(16, 0)
 z_index = 10
 position = Vector2(-16, 0.1)
 texture = ExtResource("4_bqkva")
+
+[node name="Arm" type="Sprite2D" parent="AnimatedSprite2D"]
+z_index = 15
+position = Vector2(18, -5)
+texture = ExtResource("3_wcq8k")
+offset = Vector2(-20, 5)
+
+[node name="Marker2D" type="Marker2D" parent="AnimatedSprite2D/Arm"]
+position = Vector2(0, 4)
 
 [node name="Model" type="Node2D" parent="."]
 visible = false

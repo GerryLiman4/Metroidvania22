@@ -58,10 +58,12 @@ func _process(delta):
 	if mouse_direction.x > 0:
 		face_direction = FACING.RIGHT
 		animation_player.scale.x = -(abs(animation_player.scale.x))
+		$ArmModel.flip_h = true
 	#elif mouse_direction.x < 0 and not animated_sprite.flip_h:
 	elif mouse_direction.x < 0:
 		face_direction = FACING.LEFT
 		animation_player.scale.x = (abs(animation_player.scale.x))
+		$ArmModel.flip_h = false
 		
 	take_aim(mouse_direction)
 
@@ -155,19 +157,16 @@ func check_crawl() -> bool :
 
 #region hand 
 func take_aim(aim_position):
-	aim_position = -(get_global_mouse_position() - global_position).normalized()
-	if face_direction == FACING.RIGHT :
-		$ArmModel/Arm.flip_v = true
-	else:
-		$ArmModel/Arm.flip_v = false
-#	
-#	var aim_angle = (aim_position - arm_model.global_position).angle()
+	aim_position = -aim_position
 	arm_model.rotation = aim_position.angle()
-	#arm_model.look_at(aim_position)
-	
+	if face_direction == FACING.RIGHT :
+		$AnimatedSprite2D/Arm.rotation_degrees = -(arm_model.rotation_degrees - PI * 180)
+	else:
+		$AnimatedSprite2D/Arm.rotation_degrees = arm_model.rotation_degrees
+
 	var bullet : Bullet = bullet_pref.instantiate()
 	bullet.global_position = shooter.global_position
-	bullet.launch(global_position, Vector2.LEFT.rotated(deg_to_rad(arm_model.rotation_degrees)), 2000)
+	bullet.launch($AnimatedSprite2D/Arm/Marker2D.global_position, Vector2.LEFT.rotated(deg_to_rad(arm_model.rotation_degrees)), 2000)
 	call_add_child(bullet)
 
 #endregion
