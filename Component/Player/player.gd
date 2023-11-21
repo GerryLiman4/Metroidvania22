@@ -52,6 +52,18 @@ func switch_state(new_state : CharacterStateId.Id) :
 
 func _process(delta):
 	object_timer += delta
+	var mouse_direction : Vector2 = (get_global_mouse_position() - global_position).normalized()
+	
+	# Handle Player sprite orientation
+	if mouse_direction.x > 0:
+		face_direction = FACING.RIGHT
+		animation_player.scale.x = -(abs(animation_player.scale.x))
+	#elif mouse_direction.x < 0 and not animated_sprite.flip_h:
+	elif mouse_direction.x < 0:
+		face_direction = FACING.LEFT
+		animation_player.scale.x = (abs(animation_player.scale.x))
+		
+	take_aim(mouse_direction)
 
 func _physics_process(delta):
 	if is_on_floor() == false :
@@ -72,8 +84,7 @@ func get_move_input() :
 			velocity.x = -WALK_SPEED
 		else :
 			velocity.x = -CRAWL_SPEED
-		face_direction = FACING.LEFT
-		animation_player.scale.x = (abs(animation_player.scale.x))
+		
 		
 	elif Input.is_action_pressed("right") == true :
 		if is_crawling == false :
@@ -81,8 +92,7 @@ func get_move_input() :
 		else :
 			velocity.x = CRAWL_SPEED
 		
-		face_direction = FACING.RIGHT
-		animation_player.scale.x = -(abs(animation_player.scale.x))
+		
 
 
 func get_jump_input() :
@@ -144,18 +154,20 @@ func check_crawl() -> bool :
 #end region
 
 #region hand 
-func take_aim():
-	var aim_position = -get_global_mouse_position()
-#	if face_direction == FACING.LEFT :
-#		aim_position = -(aim_position)
-#
+func take_aim(aim_position):
+	aim_position = -(get_global_mouse_position() - global_position).normalized()
+	if face_direction == FACING.RIGHT :
+		$ArmModel/Arm.flip_v = true
+	else:
+		$ArmModel/Arm.flip_v = false
+#	
 #	var aim_angle = (aim_position - arm_model.global_position).angle()
-#	arm_model.rotation = aim_angle
-	arm_model.look_at(aim_position)
+	arm_model.rotation = aim_position.angle()
+	#arm_model.look_at(aim_position)
 	
 	var bullet : Bullet = bullet_pref.instantiate()
 	bullet.global_position = shooter.global_position
-	bullet.launch(shooter.global_position - aim_position )
+	bullet.launch(global_position, Vector2.LEFT.rotated(deg_to_rad(arm_model.rotation_degrees)), 2000)
 	call_add_child(bullet)
 
 #endregion
@@ -188,7 +200,6 @@ func _on_idle_state_physics_processing(delta):
 		switch_state(CharacterStateId.Id.DASH)
 		return
 	
-	take_aim()
 
 func _on_idle_state_input(event):
 	pass
@@ -222,8 +233,6 @@ func _on_walk_state_physics_processing(delta):
 	if check_dash() == true :
 		switch_state(CharacterStateId.Id.DASH)
 		return
-	
-	take_aim()
 
 func _on_jump_state_entered():
 	pass # Replace with function body.
@@ -245,8 +254,6 @@ func _on_jump_state_physics_processing(delta):
 	if check_fall() == true :
 		switch_state(CharacterStateId.Id.FALL)
 		return
-	
-	take_aim()
 
 func _on_fall_state_entered():
 	pass # Replace with function body.
@@ -269,8 +276,6 @@ func _on_fall_state_physics_processing(delta):
 	if get_dash_input() == true && object_timer >= dash_cooldown_timestamp + 1.0 :
 		switch_state(CharacterStateId.Id.DASH)
 		return
-	
-	take_aim()
 
 func _on_double_jump_state_entered():
 	can_double_jump = false

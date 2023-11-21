@@ -21,6 +21,8 @@ height = 126.0
 script = ExtResource("1_x2mr2")
 audio_player = NodePath("SoundPlayer")
 character_state = NodePath("StateChart")
+current_state = null
+face_direction = null
 animation_player = NodePath("AnimatedSprite2D")
 body_sprite = NodePath("Model/Body")
 arm_model = NodePath("ArmModel")
@@ -34,15 +36,10 @@ shooter = NodePath("ArmModel/Arm/Shooter")
 
 [node name="Arm" type="Sprite2D" parent="ArmModel"]
 z_index = 15
-position = Vector2(8, -4)
 texture = ExtResource("3_wcq8k")
-offset = Vector2(-12, 5)
 
 [node name="Shooter" type="Node2D" parent="ArmModel/Arm"]
-position = Vector2(-57, 8)
-
-[node name="Marker2D" type="Marker2D" parent="ArmModel/Arm"]
-position = Vector2(5, 6)
+position = Vector2(-36, -2)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("5_13q23")
