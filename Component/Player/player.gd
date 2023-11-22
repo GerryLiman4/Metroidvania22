@@ -160,7 +160,7 @@ func take_aim(aim_position):
 	aim_position = -aim_position
 	arm_model.rotation = aim_position.angle()
 	if face_direction == FACING.RIGHT :
-		$AnimatedSprite2D/Arm.rotation_degrees = -(arm_model.rotation_degrees - PI * 180)
+		$AnimatedSprite2D/Arm.rotation_degrees = -(arm_model.rotation_degrees - PI * 172)
 	else:
 		$AnimatedSprite2D/Arm.rotation_degrees = arm_model.rotation_degrees
 
