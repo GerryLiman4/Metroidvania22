@@ -212,6 +212,9 @@ func _on_walk_state_exited():
 
 func _on_walk_state_input(event):
 	pass
+	
+func _on_walk_state_processing(delta):
+	pass # Replace with function body.
 
 func _on_walk_state_physics_processing(delta):
 	if check_idle() == true:
@@ -341,12 +344,3 @@ func _on_dash_state_physics_processing(delta):
 		switch_state(CharacterStateId.Id.IDLE) 
 		return
 #endregion
-
-
-
-
-
-
-
-
-

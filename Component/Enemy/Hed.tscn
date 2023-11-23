@@ -1,0 +1,190 @@
+[gd_scene load_steps=23 format=3 uid="uid://eytxpib7qnui"]
+
+[ext_resource type="Texture2D" uid="uid://djo8c537etido" path="res://Resources/Enemy/Hed/hed_idle.png" id="1_cf6ad"]
+[ext_resource type="Script" path="res://Component/Enemy/Hed.gd" id="1_u3xea"]
+[ext_resource type="Texture2D" uid="uid://c2vjw36fwugqo" path="res://Resources/Enemy/Hed/hed_jump.png" id="2_75231"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="4_j7pe7"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_y5d5h"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_aux3u"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_xtiq3"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="8_vshol"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlwpj"]
+atlas = ExtResource("1_cf6ad")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y76aw"]
+atlas = ExtResource("1_cf6ad")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aujv7"]
+atlas = ExtResource("1_cf6ad")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dlthx"]
+atlas = ExtResource("1_cf6ad")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0awpo"]
+atlas = ExtResource("1_cf6ad")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6pu3"]
+atlas = ExtResource("1_cf6ad")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbqfs"]
+atlas = ExtResource("2_75231")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjr65"]
+atlas = ExtResource("2_75231")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3nkh"]
+atlas = ExtResource("2_75231")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rk8yx"]
+atlas = ExtResource("2_75231")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6plhq"]
+atlas = ExtResource("2_75231")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wg3sw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nlwpj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y76aw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aujv7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dlthx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0awpo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6pu3")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bbqfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjr65")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3nkh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rk8yx")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_6plhq")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_75isa"]
+radius = 221.009
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rv4ct"]
+radius = 22.0
+height = 106.0
+
+[node name="Hed" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_u3xea")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wg3sw")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(17, 0)
+shape = SubResource("CircleShape2D_75isa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 9)
+shape = SubResource("CapsuleShape2D_rv4ct")
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("4_j7pe7")
+
+[node name="Root" type="Node" parent="StateChart"]
+script = ExtResource("5_y5d5h")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/Root"]
+script = ExtResource("6_aux3u")
+
+[node name="To Chasing" type="Node" parent="StateChart/Root/Idle"]
+script = ExtResource("7_xtiq3")
+to = NodePath("../../Chasing")
+event = &"player_entered"
+
+[node name="To Patrol" type="Node" parent="StateChart/Root/Idle"]
+script = ExtResource("7_xtiq3")
+to = NodePath("../../Patroling")
+event = &"start_patrol"
+
+[node name="Chasing" type="Node" parent="StateChart/Root"]
+script = ExtResource("6_aux3u")
+
+[node name="To Idle" type="Node" parent="StateChart/Root/Chasing"]
+script = ExtResource("7_xtiq3")
+to = NodePath("../../Idle")
+event = &"player_exited"
+delay_seconds = 3.0
+
+[node name="Patroling" type="Node" parent="StateChart/Root"]
+script = ExtResource("6_aux3u")
+
+[node name="To Chasing" type="Node" parent="StateChart/Root/Patroling"]
+script = ExtResource("7_xtiq3")
+to = NodePath("../../Chasing")
+event = &"enemy_entered"
+
+[node name="To Idle" type="Node" parent="StateChart/Root/Patroling"]
+script = ExtResource("7_xtiq3")
+to = NodePath("../../Idle")
+event = &"stop_patrol"
+
+[node name="StateChartDebugger" parent="." instance=ExtResource("8_vshol")]
+offset_left = -122.0
+offset_top = -228.0
+offset_right = 125.0
+offset_bottom = -42.0
+initial_node_to_watch = NodePath("../StateChart")
+
+[node name="PatrolTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="state_entered" from="StateChart/Root/Idle" to="." method="_on_idle_state_entered"]
+[connection signal="state_entered" from="StateChart/Root/Chasing" to="." method="_on_chasing_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/Root/Chasing" to="." method="_on_chasing_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/Patroling" to="." method="_on_patroling_state_entered"]
+[connection signal="timeout" from="PatrolTimer" to="." method="_on_patrol_timer_timeout"]

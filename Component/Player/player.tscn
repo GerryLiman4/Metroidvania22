@@ -17,7 +17,9 @@
 radius = 32.0
 height = 126.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("audio_player", "character_state", "animation_player", "body_sprite", "arm_model", "arm_sprite", "head_model", "head_sprite", "shooter")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("audio_player", "character_state", "animation_player", "body_sprite", "arm_model", "arm_sprite", "head_model", "head_sprite", "shooter") groups=["Player"]]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_x2mr2")
 audio_player = NodePath("SoundPlayer")
 character_state = NodePath("StateChart")
@@ -39,7 +41,6 @@ position = Vector2(-49, 4)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("5_13q23")
 animation = &"Idle"
-frame_progress = 0.533431
 
 [node name="HeadModel" type="Sprite2D" parent="AnimatedSprite2D"]
 position = Vector2(16, 0)
@@ -223,6 +224,7 @@ initial_node_to_watch = NodePath("../StateChart")
 [connection signal="state_exited" from="StateChart/ParallelState/CharacterState/Walk" to="." method="_on_walk_state_exited"]
 [connection signal="state_input" from="StateChart/ParallelState/CharacterState/Walk" to="." method="_on_walk_state_input"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CharacterState/Walk" to="." method="_on_walk_state_physics_processing"]
+[connection signal="state_processing" from="StateChart/ParallelState/CharacterState/Walk" to="." method="_on_walk_state_processing"]
 [connection signal="state_entered" from="StateChart/ParallelState/CharacterState/Jump" to="." method="_on_jump_state_entered"]
 [connection signal="state_exited" from="StateChart/ParallelState/CharacterState/Jump" to="." method="_on_jump_state_exited"]
 [connection signal="state_input" from="StateChart/ParallelState/CharacterState/Jump" to="." method="_on_jump_state_input"]
