@@ -12,7 +12,7 @@ size = Vector2(128, 123)
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("1_pufy1")]
-face_direction = 1
+position = Vector2(121, 3)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-81, 159)

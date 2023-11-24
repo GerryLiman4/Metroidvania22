@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var actionable_finder = $AnimatedSprite2D/Direction/ActionableFinder
+
 @export var audio_player : AudioStreamPlayer
 
 @export var character_state : StateChart
@@ -40,6 +42,13 @@ var can_double_jump : bool = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
+	
+func _unhandled_input(_event : InputEvent) -> void:
+	if Input.is_action_just_pressed("ui_accept"):
+		var actionables = actionable_finder.get_overlapping_areas()
+		if actionables.size() > 0:
+			actionables[0].action()
+			return
 
 func add_child_deferred(child_to_add) -> void :
 	get_tree().root.add_child(child_to_add)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dh2v1mpv02wq0"]
+[gd_scene load_steps=15 format=3 uid="uid://dh2v1mpv02wq0"]
 
 [ext_resource type="Script" path="res://Component/Player/player.gd" id="1_x2mr2"]
 [ext_resource type="PackedScene" uid="uid://2rt3tjoh6i80" path="res://Component/bullet.tscn" id="2_d5m6g"]
@@ -13,14 +13,20 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_31jtg"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="8_0ixva"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_op8ci"]
+radius = 41.0122
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2ocb"]
 radius = 32.0
 height = 126.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("audio_player", "character_state", "animation_player", "body_sprite", "arm_model", "arm_sprite", "head_model", "head_sprite", "shooter")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("audio_player", "character_state", "animation_player", "body_sprite", "arm_model", "arm_sprite", "head_model", "head_sprite", "shooter") groups=["Player"]]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_x2mr2")
 audio_player = NodePath("SoundPlayer")
 character_state = NodePath("StateChart")
+face_direction = 1
 animation_player = NodePath("AnimatedSprite2D")
 body_sprite = NodePath("Model/Body")
 arm_model = NodePath("ArmModel")
@@ -38,8 +44,7 @@ position = Vector2(-49, 4)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("5_13q23")
-animation = &"WalkBackward"
-frame_progress = 0.621715
+animation = &"Idle"
 
 [node name="HeadModel" type="Sprite2D" parent="AnimatedSprite2D"]
 position = Vector2(16, 0)
@@ -57,6 +62,17 @@ offset = Vector2(-20, 5)
 
 [node name="Marker2D" type="Marker2D" parent="AnimatedSprite2D/Arm"]
 position = Vector2(0, 4)
+
+[node name="Direction" type="Marker2D" parent="AnimatedSprite2D"]
+position = Vector2(-40, 0)
+
+[node name="ActionableFinder" type="Area2D" parent="AnimatedSprite2D/Direction"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Direction/ActionableFinder"]
+shape = SubResource("CircleShape2D_op8ci")
+debug_color = Color(0.819608, 0.396078, 0.2, 0.419608)
 
 [node name="Model" type="Node2D" parent="."]
 visible = false
