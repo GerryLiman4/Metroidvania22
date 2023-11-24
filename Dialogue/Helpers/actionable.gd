@@ -8,8 +8,8 @@ const Balloon = preload("res://Dialogue/Dialogue/portrait_balloon.tscn")
 @export var dialogue_start : String = "start"
 
 func action() -> void:
-	var balloon : Node = Balloon.instantiate()
-	get_tree().current_scene.add_child(balloon)
+	#var balloon : Node = Balloon.instantiate()
+	#get_tree().current_scene.add_child(balloon)
 	#balloon.start(dialogue_resourse, dialogue_start)
 	#DialogueManager.show_dialogue_balloon(dialogue_resourse, dialogue_start)
 	DialogueManager.show_example_dialogue_balloon(dialogue_resourse, dialogue_start)

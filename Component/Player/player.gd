@@ -39,12 +39,12 @@ var can_double_jump : bool = true
 func _ready():
 	pass
 	
-func _unhandled_input(event):
+func _unhandled_input(_event : InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_accept"):
 		var actionables = actionable_finder.get_overlapping_areas()
 		if actionables.size() > 0:
 			actionables[0].action()
-			
+			return
 
 func add_child_deferred(child_to_add) -> void :
 	get_tree().root.add_child(child_to_add)
