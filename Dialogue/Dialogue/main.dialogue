@@ -21,8 +21,8 @@ else:
 
 ~ pick_apple
 
-Coco: It's an apple tree.
-Coco: I''l just take one.
+Coco: It's an apple.
+Coco: I'll just take one.
 set apple_status = "has"
 
 => END

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Component/NPC/NPC.gd" id="1_o1wte"]
 [ext_resource type="Texture2D" uid="uid://fjyi25xvguji" path="res://Resources/MainCharacter/body idle with head left 128-Sheet.png" id="2_5cwjw"]
 [ext_resource type="PackedScene" uid="uid://0xi7fk137lxy" path="res://Dialogue/Helpers/actionable.tscn" id="3_dkgmj"]
-[ext_resource type="Resource" uid="uid://c8rfljvtnn5ce" path="res://Dialogue/Dialogue/main.dialogue" id="4_s8dop"]
+[ext_resource type="Resource" uid="uid://c8rfljvtnn5ce" path="res://Dialogue/Dialogue/main.dialogue" id="4_y78ro"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rv4ct"]
 radius = 22.0
@@ -66,7 +66,7 @@ autoplay = "Idle"
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="Actionable" parent="." instance=ExtResource("3_dkgmj")]
-dialogue_resourse = ExtResource("4_s8dop")
+dialogue_resource = ExtResource("4_y78ro")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable"]
 shape = SubResource("CircleShape2D_6w62o")
