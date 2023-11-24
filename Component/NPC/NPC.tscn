@@ -1,0 +1,73 @@
+[gd_scene load_steps=12 format=3 uid="uid://cjw1jg88nycfd"]
+
+[ext_resource type="Script" path="res://Component/NPC/NPC.gd" id="1_o1wte"]
+[ext_resource type="Texture2D" uid="uid://fjyi25xvguji" path="res://Resources/MainCharacter/body idle with head left 128-Sheet.png" id="2_5cwjw"]
+[ext_resource type="PackedScene" uid="uid://0xi7fk137lxy" path="res://Dialogue/Helpers/actionable.tscn" id="3_dkgmj"]
+[ext_resource type="Resource" uid="uid://c8rfljvtnn5ce" path="res://Dialogue/Dialogue/main.dialogue" id="4_s8dop"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rv4ct"]
+radius = 22.0
+height = 106.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2pjdl"]
+atlas = ExtResource("2_5cwjw")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_murf8"]
+atlas = ExtResource("2_5cwjw")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_peyx1"]
+atlas = ExtResource("2_5cwjw")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6s58"]
+atlas = ExtResource("2_5cwjw")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wg3sw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2pjdl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_murf8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_peyx1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6s58")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6w62o"]
+radius = 112.641
+
+[node name="NPC" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_o1wte")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 9)
+shape = SubResource("CapsuleShape2D_rv4ct")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 0)
+sprite_frames = SubResource("SpriteFrames_wg3sw")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Actionable" parent="." instance=ExtResource("3_dkgmj")]
+dialogue_resourse = ExtResource("4_s8dop")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable"]
+shape = SubResource("CircleShape2D_6w62o")
+debug_color = Color(0.835294, 0.380392, 0.192157, 0.419608)

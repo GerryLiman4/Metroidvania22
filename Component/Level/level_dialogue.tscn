@@ -1,0 +1,31 @@
+[gd_scene load_steps=8 format=3 uid="uid://eye0f2p7v7pk"]
+
+[ext_resource type="PackedScene" uid="uid://crxx5jgqm5nmc" path="res://Component/Level/level_base.tscn" id="1_psqkb"]
+[ext_resource type="PackedScene" uid="uid://eytxpib7qnui" path="res://Component/Enemy/Hed.tscn" id="2_4nave"]
+[ext_resource type="PackedScene" uid="uid://cjw1jg88nycfd" path="res://Component/NPC/NPC.tscn" id="3_lcbfx"]
+[ext_resource type="Texture2D" uid="uid://broel8rb5s4xy" path="res://Dialogue/apple.png" id="4_q8i37"]
+[ext_resource type="PackedScene" uid="uid://0xi7fk137lxy" path="res://Dialogue/Helpers/actionable.tscn" id="5_4r5sh"]
+[ext_resource type="Resource" uid="uid://c8rfljvtnn5ce" path="res://Dialogue/Dialogue/main.dialogue" id="6_undyf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_quu4y"]
+radius = 91.022
+
+[node name="LevelDialogue" instance=ExtResource("1_psqkb")]
+
+[node name="Hed" parent="." index="3" instance=ExtResource("2_4nave")]
+position = Vector2(-563, 33)
+
+[node name="NPC" parent="." index="4" instance=ExtResource("3_lcbfx")]
+position = Vector2(360, 32)
+
+[node name="Apple" type="Sprite2D" parent="." index="5"]
+position = Vector2(-186, 81)
+texture = ExtResource("4_q8i37")
+
+[node name="Actionable" parent="Apple" index="0" instance=ExtResource("5_4r5sh")]
+dialogue_resourse = ExtResource("6_undyf")
+dialogue_start = "pick_apple"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Apple/Actionable" index="0"]
+shape = SubResource("CircleShape2D_quu4y")
+debug_color = Color(0.85098, 0.364706, 0.247059, 0.419608)
