@@ -26,6 +26,7 @@ collision_mask = 5
 script = ExtResource("1_x2mr2")
 audio_player = NodePath("SoundPlayer")
 character_state = NodePath("StateChart")
+face_direction = 1
 animation_player = NodePath("AnimatedSprite2D")
 body_sprite = NodePath("Model/Body")
 arm_model = NodePath("ArmModel")

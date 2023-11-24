@@ -14,13 +14,16 @@ const JUMP_VELOCITY : float = -350.0
 const CRAWL_SPEED : float = 180.0
 const DASH_SPEED : float = 1200.0
 const DOUBLE_JUMP_VELOCITY : float = -350.0
-
+const DASH_COOLDOWN : float = 1.0
 enum FACING{RIGHT,LEFT}
 
 @export var face_direction : FACING
+
 var dash_timer : float = 0.25
 var dash_cooldown_timestamp : float = -1.0
+
 var object_timer : float = 0.0
+
 var is_crawling : bool = false
 
 var can_double_jump : bool = true 
@@ -33,6 +36,7 @@ var can_double_jump : bool = true
 @export var head_model : Sprite2D
 @export var head_sprite : Sprite2D
 
+@export_category("Shooter")
 @export var bullet_pref : PackedScene
 @export var shooter : Node2D
 # Called when the node enters the scene tree for the first time.
@@ -151,7 +155,7 @@ func check_fall() -> bool :
 	return false
 
 func check_dash() -> bool :
-	if get_dash_input() == true && object_timer >= dash_cooldown_timestamp + 1.0 :
+	if get_dash_input() == true && object_timer >= dash_cooldown_timestamp + DASH_COOLDOWN :
 		return true
 	
 	return false
@@ -172,11 +176,12 @@ func take_aim(aim_position):
 		$AnimatedSprite2D/Arm.rotation_degrees = -(arm_model.rotation_degrees - PI * 172)
 	else:
 		$AnimatedSprite2D/Arm.rotation_degrees = arm_model.rotation_degrees
-
-	var bullet : Bullet = bullet_pref.instantiate()
-	bullet.global_position = shooter.global_position
-	bullet.launch($AnimatedSprite2D/Arm/Marker2D.global_position, Vector2.LEFT.rotated(deg_to_rad(arm_model.rotation_degrees)), 2000)
-	call_add_child(bullet)
+	
+	if Input.is_action_just_pressed("shoot") == true : 
+		var bullet : Bullet = bullet_pref.instantiate()
+		bullet.global_position = shooter.global_position
+		bullet.launch($AnimatedSprite2D/Arm/Marker2D.global_position, Vector2.LEFT.rotated(deg_to_rad(arm_model.rotation_degrees)), 2000)
+		call_add_child(bullet)
 
 #endregion
 
@@ -221,9 +226,14 @@ func _on_walk_state_exited():
 
 func _on_walk_state_input(event):
 	pass
-	
+
 func _on_walk_state_processing(delta):
-	pass # Replace with function body.
+	if (face_direction == FACING.LEFT && velocity.x > 0 ) or (face_direction == FACING.RIGHT && velocity.x < 0 ): 
+		if animation_player.animation == "Walk" :
+			animation_player.play("WalkBackward")
+	else :
+		if animation_player.animation == "WalkBackward" :
+			animation_player.play("Walk")
 
 func _on_walk_state_physics_processing(delta):
 	if check_idle() == true:
@@ -284,7 +294,7 @@ func _on_fall_state_physics_processing(delta):
 		return
 	
 	get_move_input()
-	if get_dash_input() == true && object_timer >= dash_cooldown_timestamp + 1.0 :
+	if get_dash_input() == true && object_timer >= dash_cooldown_timestamp + DASH_COOLDOWN :
 		switch_state(CharacterStateId.Id.DASH)
 		return
 
@@ -330,12 +340,15 @@ func _on_crawl_state_physics_processing(delta):
 
 
 func _on_dash_state_entered():
+	# set timestamp for cooldown
 	dash_cooldown_timestamp = object_timer
 	
 	if face_direction == FACING.LEFT :
 		velocity.x = -DASH_SPEED
 	else :
 		velocity.x = DASH_SPEED
+	
+	SignalManager.player_dash.emit(DASH_COOLDOWN)
 
 func _on_dash_state_exited():
 	dash_timer = 0.25
@@ -353,3 +366,8 @@ func _on_dash_state_physics_processing(delta):
 		switch_state(CharacterStateId.Id.IDLE) 
 		return
 #endregion
+
+
+
+
+
