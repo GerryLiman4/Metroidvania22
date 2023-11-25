@@ -8,6 +8,9 @@ extends CanvasLayer
 @onready var dialogue_label: DialogueLabel = %DialogueLabel
 @onready var responses_menu: DialogueResponsesMenu = %ResponsesMenu
 
+@onready var talk_sound = $TalkSound
+@onready var indicator = $Indicator
+
 ## The dialogue resource
 var resource: DialogueResource
 
@@ -15,7 +18,12 @@ var resource: DialogueResource
 var temporary_game_states: Array = []
 
 ## See if we are waiting for the player
-var is_waiting_for_input: bool = false
+var is_waiting_for_input: bool = false:
+	set(value):
+		is_waiting_for_input = value
+		indicator.visible = value
+	get:
+		return is_waiting_for_input		
 
 ## See if we are running a long mutation and should hide the balloon
 var will_hide_balloon: bool = false
@@ -38,7 +46,7 @@ var dialogue_line: DialogueLine:
 		# Determine Portratit based on Character name
 		var portrait_path : String = "res://Dialogue/Characters/%s.png" % dialogue_line.character.to_lower()
 		# Check if it exists
-		if FileAccess.file_exists(portrait_path):
+		if ResourceLoader.exists(portrait_path):
 			portrait.texture = load(portrait_path)
 		else:
 			portrait.texture = null
@@ -62,7 +70,7 @@ var dialogue_line: DialogueLine:
 		if dialogue_line.responses.size() > 0:
 			balloon.focus_mode = Control.FOCUS_NONE
 			responses_menu.show()
-		elif dialogue_line.time != null:
+		elif dialogue_line.time != "":
 			var time = dialogue_line.text.length() * 0.02 if dialogue_line.time == "auto" else dialogue_line.time.to_float()
 			await get_tree().create_timer(time).timeout
 			next(dialogue_line.next_id)
@@ -76,6 +84,7 @@ var dialogue_line: DialogueLine:
 
 func _ready() -> void:
 	balloon.hide()
+	indicator.hide()
 	Engine.get_singleton("DialogueManager").mutated.connect(_on_mutated)
 
 
@@ -131,3 +140,11 @@ func _on_balloon_gui_input(event: InputEvent) -> void:
 
 func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
 	next(response.next_id)
+
+
+func _on_dialogue_label_spoke(letter, letter_index, speed):
+	# If letter isn't a space or period
+	if not letter in [".", " "]:
+		# Add pitch variation & play sound
+		talk_sound.pitch_scale = randf_range(0.9, 1.1)
+		talk_sound.play()

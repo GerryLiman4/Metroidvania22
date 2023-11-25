@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ca18gp72isya6"]
+[gd_scene load_steps=7 format=3 uid="uid://b5uxjmvoij6of"]
 
 [ext_resource type="Script" path="res://Script/Enemy/EnemyBase.gd" id="1_c86ma"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="1_pg6fy"]

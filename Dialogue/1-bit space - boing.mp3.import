@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c8v6ukw8hp58y"
+path="res://.godot/imported/1-bit space - boing.mp3-c95aae02d485165ea0b3cae8c69a177f.mp3str"
+
+[deps]
+
+source_file="res://Dialogue/1-bit space - boing.mp3"
+dest_files=["res://.godot/imported/1-bit space - boing.mp3-c95aae02d485165ea0b3cae8c69a177f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

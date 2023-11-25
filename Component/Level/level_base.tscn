@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://di2a5josdqki3" path="res://icon.svg" id="2_h2tp4"]
 [ext_resource type="PackedScene" uid="uid://d00kq2aoxk1s5" path="res://Component/UI/hud.tscn" id="3_dmqsi"]
 [ext_resource type="PackedScene" uid="uid://cpux7bf7hhc2q" path="res://Component/Breakable/box.tscn" id="4_cwani"]
-[ext_resource type="PackedScene" uid="uid://bf4mgiatqwjki" path="res://Component/test_rb.tscn" id="5_xsvly"]
-[ext_resource type="PackedScene" uid="uid://bxxnhjc3rivqn" path="res://Component/Enemy/enemy_hed.tscn" id="6_njgau"]
+[ext_resource type="PackedScene" uid="uid://dne21hkdmgn4p" path="res://Component/test_rb.tscn" id="5_xsvly"]
+[ext_resource type="PackedScene" uid="uid://c30kcj6x7ah0g" path="res://Component/Enemy/enemy_hed.tscn" id="6_njgau"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7o3ok"]
 size = Vector2(128, 123)
