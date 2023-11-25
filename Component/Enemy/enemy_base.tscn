@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=3 uid="uid://ca18gp72isya6"]
+
+[ext_resource type="Script" path="res://Script/Enemy/EnemyBase.gd" id="1_c86ma"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="1_pg6fy"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="2_k3h2f"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="3_nqev7"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="4_h6u5q"]
+[ext_resource type="Script" path="res://Script/Health/health.gd" id="6_xaoot"]
+
+[node name="EnemyBase" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "health", "enemy_state")]
+script = ExtResource("1_c86ma")
+animated_sprite = NodePath("AnimatedSprite2D")
+health = NodePath("Hitbox")
+enemy_state = NodePath("StateChart")
+face_direction = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("1_pg6fy")
+
+[node name="Root" type="Node" parent="StateChart"]
+script = ExtResource("2_k3h2f")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/Root"]
+script = ExtResource("3_nqev7")
+
+[node name="To Chasing" type="Node" parent="StateChart/Root/Idle"]
+script = ExtResource("4_h6u5q")
+to = NodePath("../../Chasing")
+event = &"player_entered"
+
+[node name="To Patrol" type="Node" parent="StateChart/Root/Idle"]
+script = ExtResource("4_h6u5q")
+to = NodePath("../../Patroling")
+event = &"start_patrol"
+
+[node name="Chasing" type="Node" parent="StateChart/Root"]
+script = ExtResource("3_nqev7")
+
+[node name="To Idle" type="Node" parent="StateChart/Root/Chasing"]
+script = ExtResource("4_h6u5q")
+to = NodePath("../../Idle")
+event = &"player_exited"
+delay_seconds = 3.0
+
+[node name="Patroling" type="Node" parent="StateChart/Root"]
+script = ExtResource("3_nqev7")
+
+[node name="To Chasing" type="Node" parent="StateChart/Root/Patroling"]
+script = ExtResource("4_h6u5q")
+to = NodePath("../../Chasing")
+event = &"enemy_entered"
+
+[node name="To Idle" type="Node" parent="StateChart/Root/Patroling"]
+script = ExtResource("4_h6u5q")
+to = NodePath("../../Idle")
+event = &"stop_patrol"
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("6_xaoot")
+
+[connection signal="state_entered" from="StateChart/Root/Idle" to="." method="_on_idle_state_entered"]
+[connection signal="state_exited" from="StateChart/Root/Idle" to="." method="_on_idle_state_exited"]
+[connection signal="state_physics_processing" from="StateChart/Root/Idle" to="." method="_on_idle_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/Chasing" to="." method="_on_chasing_state_entered"]
+[connection signal="state_exited" from="StateChart/Root/Chasing" to="." method="_on_chasing_state_exited"]
+[connection signal="state_physics_processing" from="StateChart/Root/Chasing" to="." method="_on_chasing_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/Patroling" to="." method="_on_patroling_state_entered"]
+[connection signal="state_exited" from="StateChart/Root/Patroling" to="." method="_on_patroling_state_exited"]
+[connection signal="state_physics_processing" from="StateChart/Root/Patroling" to="." method="_on_patroling_state_physics_processing"]

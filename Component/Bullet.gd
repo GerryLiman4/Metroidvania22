@@ -23,11 +23,9 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 
 func _on_area_entered(area):
-	print("Masuk : area ")
-	if area.is_in_group("damageable") :
+	if area.is_in_group("health") :
 		area.get_damaged(bullet_damage , faction_id, global_position)
 		self.queue_free()
 
 func _on_body_entered(body):
-	print("Masuk : body ")
 	pass # Replace with function body.

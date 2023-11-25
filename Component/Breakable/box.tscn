@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Component/Breakable/box.gd" id="1_7k0q7"]
 [ext_resource type="Texture2D" uid="uid://di2a5josdqki3" path="res://icon.svg" id="1_lsaqn"]
-[ext_resource type="Script" path="res://Script/Breakable/breakable.gd" id="2_d4ere"]
+[ext_resource type="Script" path="res://Script/Health/Breakable/breakable.gd" id="3_phien"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kuqe8"]
 size = Vector2(64, 64)
@@ -13,6 +13,7 @@ size = Vector2(64, 64)
 [node name="Box" type="RigidBody2D" node_paths=PackedStringArray("hitbox")]
 collision_layer = 32
 collision_mask = 35
+lock_rotation = true
 script = ExtResource("1_7k0q7")
 hitbox = NodePath("HitBox")
 
@@ -23,10 +24,10 @@ texture = ExtResource("1_lsaqn")
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_kuqe8")
 
-[node name="HitBox" type="Area2D" parent="." groups=["damageable"]]
+[node name="HitBox" type="Area2D" parent="." groups=["health"]]
 collision_layer = 32
 collision_mask = 0
-script = ExtResource("2_d4ere")
+script = ExtResource("3_phien")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource("RectangleShape2D_1p4vj")

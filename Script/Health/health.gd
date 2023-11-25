@@ -1,12 +1,12 @@
 extends Area2D
 
-class_name Breakable
+class_name Health
 
 @export var faction_id : FactionId.Id
 @export var health_point : int = 3
 
 signal on_get_damaged(direction : Vector2)
-signal dead
+signal on_dead
 
 func get_damaged(damage : int, faction : FactionId.Id , direction : Vector2) :
 	if faction == faction_id :
@@ -16,4 +16,4 @@ func get_damaged(damage : int, faction : FactionId.Id , direction : Vector2) :
 	on_get_damaged.emit(direction)
 	
 	if health_point <= 0 :
-		dead.emit()
+		on_dead.emit()
