@@ -1,95 +1,25 @@
-[gd_scene load_steps=15 format=3 uid="uid://13s5spsk34qu"]
+[gd_scene load_steps=10 format=3 uid="uid://13s5spsk34qu"]
 
 [ext_resource type="Script" path="res://Dialogue/Dialogue/portrait_balloon.gd" id="1_44v86"]
+[ext_resource type="Theme" uid="uid://deptssgy3yxq" path="res://Dialogue/dialogue_theme.tres" id="2_e5lqx"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_ffwen"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_reponses_menu.gd" id="3_n5xx7"]
 [ext_resource type="AudioStream" uid="uid://c8v6ukw8hp58y" path="res://Dialogue/1-bit space - boing.mp3" id="4_akygk"]
 [ext_resource type="Texture2D" uid="uid://b8jnevugkxmfy" path="res://Dialogue/arrow.png" id="4_al4vb"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_235ry"]
-content_margin_left = 6.0
-content_margin_top = 3.0
-content_margin_right = 6.0
-content_margin_bottom = 3.0
-bg_color = Color(0.0666667, 0.0666667, 0.0666667, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.345098, 0.345098, 0.345098, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ufjut"]
-content_margin_left = 6.0
-content_margin_top = 3.0
-content_margin_right = 6.0
-content_margin_bottom = 3.0
-bg_color = Color(0.227451, 0.227451, 0.905882, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fcbqo"]
-content_margin_left = 6.0
-content_margin_top = 3.0
-content_margin_right = 6.0
-content_margin_bottom = 3.0
-bg_color = Color(0.0666667, 0.0666667, 0.0666667, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t6i7a"]
-content_margin_left = 6.0
-content_margin_top = 3.0
-content_margin_right = 6.0
-content_margin_bottom = 3.0
-bg_color = Color(0.0666667, 0.0666667, 0.439216, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uy0d5"]
-bg_color = Color(0, 0, 0.298039, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-
-[sub_resource type="Theme" id="Theme_qq3yp"]
-default_font_size = 9
-Button/styles/disabled = SubResource("StyleBoxFlat_235ry")
-Button/styles/focus = SubResource("StyleBoxFlat_ufjut")
-Button/styles/hover = SubResource("StyleBoxFlat_fcbqo")
-Button/styles/normal = SubResource("StyleBoxFlat_t6i7a")
-MarginContainer/constants/margin_bottom = 8
-MarginContainer/constants/margin_left = 8
-MarginContainer/constants/margin_right = 8
-MarginContainer/constants/margin_top = 8
-Panel/styles/panel = SubResource("StyleBoxFlat_uy0d5")
+[sub_resource type="Animation" id="Animation_u1j48"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(718, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="Animation" id="Animation_sdlto"]
 resource_name = "indicate"
@@ -104,20 +34,6 @@ tracks/0/keys = {
 "handle_modes": PackedInt32Array(0, 0, 0),
 "points": PackedFloat32Array(718, -0.25, 0, 0.25, 0, 707, -0.25, 0, 0.25, 0, 718, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.5, 1)
-}
-
-[sub_resource type="Animation" id="Animation_u1j48"]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(718, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_niv0d"]
@@ -142,7 +58,7 @@ offset_right = -4.0
 offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 0
-theme = SubResource("Theme_qq3yp")
+theme = ExtResource("2_e5lqx")
 
 [node name="Dialogue" type="MarginContainer" parent="Balloon"]
 layout_mode = 1
