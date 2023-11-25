@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://crxx5jgqm5nmc"]
+[gd_scene load_steps=7 format=3 uid="uid://crxx5jgqm5nmc"]
 
 [ext_resource type="PackedScene" uid="uid://dh2v1mpv02wq0" path="res://Component/Player/player.tscn" id="1_pufy1"]
 [ext_resource type="Texture2D" uid="uid://di2a5josdqki3" path="res://icon.svg" id="2_h2tp4"]
 [ext_resource type="PackedScene" uid="uid://d00kq2aoxk1s5" path="res://Component/UI/hud.tscn" id="3_dmqsi"]
+[ext_resource type="PackedScene" uid="uid://cpux7bf7hhc2q" path="res://Component/Breakable/box.tscn" id="4_cwani"]
+[ext_resource type="PackedScene" uid="uid://bf4mgiatqwjki" path="res://Component/test_rb.tscn" id="5_xsvly"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7o3ok"]
 size = Vector2(128, 123)
@@ -28,3 +30,9 @@ shape = SubResource("RectangleShape2D_7o3ok")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("3_dmqsi")]
+
+[node name="RigidBody2D" parent="." instance=ExtResource("5_xsvly")]
+position = Vector2(-214, 0)
+
+[node name="Box" parent="." instance=ExtResource("4_cwani")]
+position = Vector2(-388, -20)

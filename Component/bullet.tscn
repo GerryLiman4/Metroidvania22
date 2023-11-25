@@ -5,8 +5,12 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_li3an"]
 
-[node name="Bullet" type="Node2D"]
+[node name="Bullet" type="Area2D"]
+collision_layer = 8
+collision_mask = 32
 script = ExtResource("1_ahxal")
+bullet_speed = 0.25
+faction_id = 1
 
 [node name="Model" type="Sprite2D" parent="."]
 scale = Vector2(0.15, 0.15)
@@ -14,11 +18,9 @@ texture = ExtResource("2_ofxd0")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
-[node name="HitboxArea" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 0
-
-[node name="Hitbox" type="CollisionShape2D" parent="HitboxArea"]
+[node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_li3an")
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

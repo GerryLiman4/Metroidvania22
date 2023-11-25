@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bg46nokxotaf8"]
+
+[ext_resource type="Script" path="res://Script/Breakable/breakable.gd" id="1_1ciiq"]
+
+[node name="Breakable" type="Area2D" groups=["damageable"]]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_1ciiq")
