@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfaecsrx168ci"]
+
+[ext_resource type="Script" path="res://Dialogue/Dialogue/dialogue_balloon.gd" id="1_d611f"]
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_label.gd" id="1_jyq8i"]
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_reponses_menu.gd" id="3_76eux"]
+
+[sub_resource type="Animation" id="Animation_spdmn"]
+resource_name = "Disappear"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ye1hv"]
+_data = {
+"Disappear": SubResource("Animation_spdmn")
+}
+
+[node name="DialogueBalloon" type="Node2D"]
+script = ExtResource("1_d611f")
+
+[node name="Balloon" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Balloon"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Balloon"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DialogueLabel" type="RichTextLabel" parent="Balloon"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_jyq8i")
+
+[node name="DialogueResponsesMenu" type="VBoxContainer" parent="Balloon"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_76eux")
+
+[node name="Pointer" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ye1hv")
+}
+
+[node name="PinUp" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PinDown" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SmallTest" type="RichTextLabel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MediumTest" type="RichTextLabel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LargeTest" type="RichTextLabel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ResponseTemplate" type="RichTextLabel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
