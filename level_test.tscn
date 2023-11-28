@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cms4lrtgyhktg"]
+
+[ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/Level/tile_map_base.tscn" id="1_qeugb"]
+[ext_resource type="PackedScene" uid="uid://dh2v1mpv02wq0" path="res://Component/Player/player.tscn" id="2_v0ftt"]
+
+[node name="LevelTest" type="Node2D"]
+
+[node name="TileMapBase" parent="." instance=ExtResource("1_qeugb")]
+layer_0/tile_data = PackedInt32Array(0, 4, 0, 1, 65540, 0, 2, 65540, 0, 3, 131076, 0, 131071, 4, 0, 65536, 393220, 2, 65537, 65540, 1, 65538, 65540, 1, 65539, 327684, 2, 65540, 65540, 0, 65541, 65540, 0, 65542, 65540, 0, 65543, 131076, 0, 196606, 65540, 0, 196607, 393220, 2, 131072, 65540, 1, 131073, 65540, 1, 131074, 65540, 1, 131075, 65540, 1, 131076, 65540, 1, 131077, 65540, 1, 131078, 65540, 1, 131079, 327684, 2, 131080, 131076, 0, 196605, 4, 0, 262141, 4, 2, 262142, 65540, 2, 262143, 65540, 2, 196608, 65540, 2, 196609, 65540, 2, 196610, 65540, 2, 196611, 65540, 2, 196612, 65540, 2, 196613, 65540, 2, 196614, 65540, 2, 196615, 65540, 2, 196616, 131076, 2)
+
+[node name="Player" parent="." instance=ExtResource("2_v0ftt")]
+position = Vector2(96, -32)
+scale = Vector2(0.5, 0.5)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]

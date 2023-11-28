@@ -7,7 +7,7 @@ extends Node
 
 func _ready():
 	#music_player.stream = main_menu_loop
-	music_player.playing = true
+	music_player.playing = false
 	
 func handle_music_change():
 	music_player.stop()
