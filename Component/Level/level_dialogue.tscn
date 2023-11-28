@@ -29,3 +29,6 @@ debug_color = Color(0.85098, 0.364706, 0.247059, 0.419608)
 
 [node name="NPC" parent="." index="5" instance=ExtResource("3_lcbfx")]
 position = Vector2(296, 28)
+
+[node name="EnemyHed" parent="." index="10"]
+WALK_SPEED = 360.0

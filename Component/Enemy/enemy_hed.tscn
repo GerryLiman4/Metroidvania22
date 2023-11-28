@@ -112,12 +112,14 @@ animation = &"Jump"
 position = Vector2(1, 10.5)
 shape = SubResource("RectangleShape2D_w5sl2")
 
-[node name="Hitbox" parent="." index="3" groups=["health"]]
-collision_layer = 32
-collision_mask = 0
-faction_id = 2
-
 [node name="hitbox" type="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(-2, 10.5)
 shape = SubResource("RectangleShape2D_ffitc")
 debug_color = Color(0.717647, 0.290196, 0.32549, 0.419608)
+
+[node name="GroundChecker" parent="." index="4"]
+position = Vector2(-46, 0)
+target_position = Vector2(0, 100)
+
+[node name="PlayerChecker" parent="." index="5"]
+target_position = Vector2(250, 0)

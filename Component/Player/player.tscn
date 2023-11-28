@@ -1,8 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://dh2v1mpv02wq0"]
+[gd_scene load_steps=16 format=3 uid="uid://dh2v1mpv02wq0"]
 
 [ext_resource type="Script" path="res://Component/Player/player.gd" id="1_x2mr2"]
 [ext_resource type="PackedScene" uid="uid://2rt3tjoh6i80" path="res://Component/bullet.tscn" id="2_d5m6g"]
-[ext_resource type="Texture2D" uid="uid://fjyi25xvguji" path="res://Resources/MainCharacter/body idle with head left 128-Sheet.png" id="2_qbesp"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="3_51okl"]
 [ext_resource type="Texture2D" uid="uid://dx7ciwflmpexa" path="res://Resources/MainCharacter/arm pistol front.png" id="3_wcq8k"]
 [ext_resource type="Texture2D" uid="uid://b7nlnr3m1ynt3" path="res://Resources/MainCharacter/head 128.png" id="4_bqkva"]
@@ -10,6 +9,7 @@
 [ext_resource type="SpriteFrames" uid="uid://ds7usjx5jo8u" path="res://Component/Player/main_character_animation.tres" id="5_13q23"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_hfc4i"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_8dtlr"]
+[ext_resource type="Script" path="res://Component/Player/player_health.gd" id="6_o0leh"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_31jtg"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="8_0ixva"]
 
@@ -20,21 +20,24 @@ radius = 41.0122
 radius = 32.0
 height = 126.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("audio_player", "character_state", "animation_player", "body_sprite", "arm_model", "arm_sprite", "head_model", "head_sprite", "shooter") groups=["Player"]]
-collision_layer = 2
-collision_mask = 5
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_psl57"]
+radius = 32.0
+height = 126.0
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("audio_player", "character_state", "animation_player", "arm_model", "arm_sprite", "head_model", "head_sprite", "shooter", "player_health") groups=["Player"]]
+collision_layer = 34
 script = ExtResource("1_x2mr2")
 audio_player = NodePath("SoundPlayer")
 character_state = NodePath("StateChart")
 face_direction = 1
 animation_player = NodePath("AnimatedSprite2D")
-body_sprite = NodePath("Model/Body")
 arm_model = NodePath("ArmModel")
 arm_sprite = NodePath("AnimatedSprite2D/Arm")
 head_model = NodePath("AnimatedSprite2D/HeadModel")
 head_sprite = NodePath("AnimatedSprite2D/HeadModel/Head")
 bullet_pref = ExtResource("2_d5m6g")
 shooter = NodePath("ArmModel/Shooter")
+player_health = NodePath("Hitbox")
 
 [node name="ArmModel" type="Sprite2D" parent="."]
 position = Vector2(18, -4)
@@ -74,17 +77,17 @@ collision_mask = 16
 shape = SubResource("CircleShape2D_op8ci")
 debug_color = Color(0.819608, 0.396078, 0.2, 0.419608)
 
-[node name="Model" type="Node2D" parent="."]
-visible = false
-
-[node name="Body" type="Sprite2D" parent="Model"]
-visible = false
-position = Vector2(-15, 0)
-texture = ExtResource("2_qbesp")
-hframes = 4
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_g2ocb")
+
+[node name="Hitbox" type="Area2D" parent="." groups=["health", "player"]]
+collision_layer = 34
+collision_mask = 4
+script = ExtResource("6_o0leh")
+faction_id = 1
+
+[node name="hitbox" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CapsuleShape2D_psl57")
 
 [node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
 

@@ -5,14 +5,18 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="2_k3h2f"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="3_nqev7"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="4_h6u5q"]
-[ext_resource type="Script" path="res://Script/Health/health.gd" id="6_xaoot"]
+[ext_resource type="Script" path="res://Component/Enemy/enemy_health.gd" id="6_i1ll3"]
 
-[node name="EnemyBase" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "health", "enemy_state")]
+[node name="EnemyBase" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite", "health", "enemy_state", "timer_to_patrol", "ground_checker", "player_checker")]
+collision_layer = 4
 script = ExtResource("1_c86ma")
 animated_sprite = NodePath("AnimatedSprite2D")
 health = NodePath("Hitbox")
 enemy_state = NodePath("StateChart")
 face_direction = 1
+timer_to_patrol = NodePath("StateChart/Root/Idle/TimerToPatrol")
+ground_checker = NodePath("GroundChecker")
+player_checker = NodePath("PlayerChecker")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 
@@ -36,6 +40,9 @@ script = ExtResource("4_h6u5q")
 to = NodePath("../../Patroling")
 event = &"start_patrol"
 
+[node name="TimerToPatrol" type="Timer" parent="StateChart/Root/Idle"]
+wait_time = 1.5
+
 [node name="Chasing" type="Node" parent="StateChart/Root"]
 script = ExtResource("3_nqev7")
 
@@ -51,19 +58,30 @@ script = ExtResource("3_nqev7")
 [node name="To Chasing" type="Node" parent="StateChart/Root/Patroling"]
 script = ExtResource("4_h6u5q")
 to = NodePath("../../Chasing")
-event = &"enemy_entered"
+event = &"player_entered"
 
 [node name="To Idle" type="Node" parent="StateChart/Root/Patroling"]
 script = ExtResource("4_h6u5q")
 to = NodePath("../../Idle")
 event = &"stop_patrol"
 
-[node name="Hitbox" type="Area2D" parent="."]
-script = ExtResource("6_xaoot")
+[node name="Hitbox" type="Area2D" parent="." groups=["enemy", "health"]]
+collision_layer = 36
+collision_mask = 0
+script = ExtResource("6_i1ll3")
+faction_id = 2
+
+[node name="GroundChecker" type="RayCast2D" parent="."]
+collide_with_areas = true
+
+[node name="PlayerChecker" type="RayCast2D" parent="."]
+target_position = Vector2(50, 0)
+collision_mask = 2
 
 [connection signal="state_entered" from="StateChart/Root/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_exited" from="StateChart/Root/Idle" to="." method="_on_idle_state_exited"]
 [connection signal="state_physics_processing" from="StateChart/Root/Idle" to="." method="_on_idle_state_physics_processing"]
+[connection signal="timeout" from="StateChart/Root/Idle/TimerToPatrol" to="." method="_on_timer_to_patrol_timeout"]
 [connection signal="state_entered" from="StateChart/Root/Chasing" to="." method="_on_chasing_state_entered"]
 [connection signal="state_exited" from="StateChart/Root/Chasing" to="." method="_on_chasing_state_exited"]
 [connection signal="state_physics_processing" from="StateChart/Root/Chasing" to="." method="_on_chasing_state_physics_processing"]

@@ -18,13 +18,25 @@ size = Vector2(128, 123)
 position = Vector2(121, 3)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-81, 159)
-scale = Vector2(11.8125, 1)
+position = Vector2(-307.5, 159)
+scale = Vector2(8.27344, 1)
 texture = ExtResource("2_h2tp4")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
+position = Vector2(1, -0.5)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_7o3ok")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-555, 2.50001)
+scale = Vector2(0.871094, 1.44531)
+texture = ExtResource("2_h2tp4")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D2/StaticBody2D"]
 position = Vector2(1, -0.5)
 shape = SubResource("RectangleShape2D_7o3ok")
 
@@ -39,4 +51,4 @@ position = Vector2(-214, 0)
 position = Vector2(-388, -20)
 
 [node name="EnemyHed" parent="." instance=ExtResource("6_njgau")]
-position = Vector2(-299, 4)
+position = Vector2(-90, -8)

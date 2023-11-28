@@ -17,3 +17,4 @@ func get_damaged(damage : int, faction : FactionId.Id , direction : Vector2) :
 	
 	if health_point <= 0 :
 		on_dead.emit()
+

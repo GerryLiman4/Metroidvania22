@@ -1,9 +1,5 @@
 extends BaseEnemy
 
-const GRAVITY : float = 700.0
-const MAX_FALL : float = 400.0
-const JUMP_VELOCITY : float = -350.0
-
 func _ready():
 	health.on_get_damaged.connect(on_get_damaged)
 	health.on_dead.connect(on_dead)
@@ -18,17 +14,13 @@ func calculate_gravity() :
 	velocity.y = clampf(velocity.y, JUMP_VELOCITY, MAX_FALL)
 
 func _on_idle_state_entered():
-	animated_sprite.play("Idle")
+	super._on_idle_state_entered()
 
 func _on_idle_state_exited():
-	animated_sprite.stop()
+	super._on_idle_state_exited()
 
 func _on_idle_state_physics_processing(delta):
-	if is_on_floor() == false :
-		velocity.y += GRAVITY * delta
-	
-	move_and_slide()
-	calculate_gravity()
+	super._on_idle_state_physics_processing(delta)
 
 func _on_chasing_state_entered():
 	pass # Replace with function body.
@@ -47,4 +39,4 @@ func _on_patroling_state_exited():
 	pass # Replace with function body.
 
 func _on_patroling_state_physics_processing(delta):
-	pass # Replace with function body.
+	super._on_patroling_state_physics_processing(delta)

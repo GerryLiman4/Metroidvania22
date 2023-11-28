@@ -15,6 +15,7 @@ const CRAWL_SPEED : float = 180.0
 const DASH_SPEED : float = 1200.0
 const DOUBLE_JUMP_VELOCITY : float = -350.0
 const DASH_COOLDOWN : float = 1.0
+
 enum FACING{RIGHT,LEFT}
 
 @export var face_direction : FACING
@@ -39,10 +40,15 @@ var can_double_jump : bool = true
 @export_category("Shooter")
 @export var bullet_pref : PackedScene
 @export var shooter : Node2D
+
+@export_category("Health")
+@export var player_health : Health
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
-	
+	player_health.on_get_damaged.connect(on_get_damaged)
+	player_health.on_dead.connect(on_dead)
+
 func _unhandled_input(_event : InputEvent) -> void:
 	if Input.is_action_just_pressed("interact"):
 		var actionables = actionable_finder.get_overlapping_areas()
@@ -109,7 +115,6 @@ func get_move_input() :
 		
 		
 
-
 func get_jump_input() :
 	if Input.is_action_pressed("jump") == true and is_on_floor() == true :
 		velocity.y = JUMP_VELOCITY
@@ -127,6 +132,12 @@ func get_crawl_input() -> bool:
 	else : 
 		return false
 #endregion
+
+func on_get_damaged(direction : Vector2) :
+	pass
+
+func on_dead():
+	pass
 
 #region check state
 
