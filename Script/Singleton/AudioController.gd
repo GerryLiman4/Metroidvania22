@@ -7,7 +7,11 @@ extends Node
 
 func _ready():
 	#music_player.stream = main_menu_loop
-	music_player.playing = false
+	music_player.playing = true
+	
+	# figure out how to determine the scenes root nodes name
+	#if get_tree().is_class("MainMenu"):
+	#	music_player.playing = true
 	
 func handle_music_change():
 	music_player.stop()

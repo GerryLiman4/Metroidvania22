@@ -33,15 +33,15 @@ selector = NodePath("../Selector")
 
 [node name="Label" type="Label" parent="Menu"]
 layout_mode = 2
-text = "1st element"
+text = "Play"
 
 [node name="Label2" type="Label" parent="Menu"]
 layout_mode = 2
-text = "2nd element"
+text = "TileMap Test"
 
 [node name="Label3" type="Label" parent="Menu"]
 layout_mode = 2
-text = "3rd element"
+text = "LevelBase Test"
 
 [node name="Label4" type="Label" parent="Menu"]
 layout_mode = 2
