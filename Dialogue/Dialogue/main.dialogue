@@ -26,3 +26,11 @@ Coco: I'll just take one.
 set apple_status = "has"
 
 => END
+
+~ intro_cutscene
+
+Narrator: You are a vagrant bounty hunter.
+Narrator: You happen upon a mining village in dire straits.
+Narrator: This is your story...
+
+=> END

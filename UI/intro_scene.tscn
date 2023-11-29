@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://plp5688c0gsw"]
+
+[ext_resource type="Texture2D" uid="uid://dcsis7540ucan" path="res://UI/MVArtwork.PNG" id="1_886da"]
+[ext_resource type="Script" path="res://UI/intro_scene.gd" id="1_cay41"]
+[ext_resource type="PackedScene" uid="uid://0xi7fk137lxy" path="res://Dialogue/Helpers/actionable.tscn" id="3_oh4v7"]
+[ext_resource type="Resource" uid="uid://c8rfljvtnn5ce" path="res://Dialogue/Dialogue/main.dialogue" id="4_xpcn6"]
+
+[sub_resource type="Animation" id="Animation_bsbs8"]
+resource_name = "scene_1"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wbphp"]
+_data = {
+"scene_1": SubResource("Animation_bsbs8")
+}
+
+[node name="IntroScene" type="Node2D"]
+script = ExtResource("1_cay41")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wbphp")
+}
+
+[node name="Scene1" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Scene1"]
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("1_886da")
+centered = false
+
+[node name="Actionable" parent="Scene1" instance=ExtResource("3_oh4v7")]
+dialogue_resource = ExtResource("4_xpcn6")
+dialogue_start = "intro_cutscene"
+
+[node name="Scene2" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Scene2"]
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("1_886da")
+centered = false
+
+[node name="Scene3" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Scene3"]
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("1_886da")
+centered = false
+
+[node name="InputDelayTimer" type="Timer" parent="."]
