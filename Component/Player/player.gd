@@ -55,6 +55,8 @@ func _unhandled_input(_event : InputEvent) -> void:
 		if actionables.size() > 0:
 			actionables[0].action()
 			return
+	if Input.is_action_just_pressed("ui_cancel"):
+		SceneTransition.start_transition_to("menu", true, "res://UI/main.tscn")
 
 func add_child_deferred(child_to_add) -> void :
 	get_tree().root.add_child(child_to_add)
