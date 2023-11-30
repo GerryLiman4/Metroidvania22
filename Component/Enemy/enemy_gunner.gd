@@ -1,8 +1,7 @@
 extends BaseEnemy
 
-@export var jump_velocity : Vector2 = Vector2(100,-150)
-@export var jump_timer : Timer
-var _jump : bool = false
+@export var timer_to_shoot : Timer
+var _shoot : bool = false
 
 func _ready():
 	health.on_get_damaged.connect(on_get_damaged)
@@ -13,32 +12,12 @@ func on_get_damaged(direction : Vector2):
 
 func on_dead():
 	self.queue_free()
-
-func jump():
-	if is_on_floor() == false :
-		return
 	
-	if  _jump == false : 
-		return
-	
-	if target == null :
-		return
-	
-	velocity = jump_velocity
-	
-	if face_direction == FACING.LEFT :
-		velocity.x = velocity.x * -1
-	
-	_jump = false
-	
-	animated_sprite.play("Jump")
-	start_timer()
-
 func calculate_gravity() :
 	velocity.y = clampf(velocity.y, JUMP_VELOCITY, MAX_FALL)
 
 func _on_idle_state_entered():
-	animated_sprite.play("Idle")
+	super._on_idle_state_entered()
 
 func _on_idle_state_exited():
 	pass
@@ -47,10 +26,10 @@ func _on_idle_state_physics_processing(delta):
 	super._on_idle_state_physics_processing(delta)
 
 func _on_chasing_state_entered():
-	start_timer()
+	animated_sprite.play("Walk")
 
 func _on_chasing_state_exited():
-	super._on_chasing_state_exited()
+	pass
 
 func _on_chasing_state_physics_processing(delta):
 	if target == null :
@@ -59,33 +38,35 @@ func _on_chasing_state_physics_processing(delta):
 	if ((target.global_position.x >= global_position.x && face_direction == FACING.LEFT ) or (target.global_position.x < global_position.x && face_direction == FACING.RIGHT)) && abs(global_position.x - target.global_position.x) > 10.0 :
 		flip()
 	
+	# behaviour pattern
+	chase()
 	check_target_distance()
 	
 	# physics
 	fall(delta)
-	
-	if is_on_floor() == true :
-		velocity.x = 0
-		if animated_sprite.animation != "Idle" :
-			animated_sprite.play("Idle")
-	
-	jump()
-	
 	move_and_slide()
 	calculate_gravity()
 
 
 func _on_patroling_state_entered():
-	pass # Replace with function body.
+	animated_sprite.play("Walk")
 
 func _on_patroling_state_exited():
 	pass # Replace with function body.
 
 func _on_patroling_state_physics_processing(delta):
-	super._on_patroling_state_physics_processing(delta)
+	if is_on_wall() == true or ground_checker.is_colliding() == false:
+		flip()
+	
+	# behaviour pattern
+	walk()
+	check_player()
+	
+	# physics
+	fall(delta)
+	move_and_slide()
+	calculate_gravity()
 
-func start_timer() :
-	jump_timer.start(jump_timer.wait_time)
 
-func _on_jump_timer_timeout():
-	_jump = true
+func _on_timer_to_shoot_timeout():
+	_shoot = true

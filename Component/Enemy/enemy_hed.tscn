@@ -103,7 +103,7 @@ size = Vector2(66, 107)
 
 [node name="EnemyHed" node_paths=PackedStringArray("jump_timer") instance=ExtResource("1_jgicj")]
 script = ExtResource("2_4wq1v")
-jump_velocity = Vector2(100, -150)
+jump_velocity = Vector2(150, -250)
 jump_timer = NodePath("JumpTimer")
 max_chase_distance = 200.0
 
@@ -128,5 +128,6 @@ target_position = Vector2(0, 100)
 target_position = Vector2(-250, 0)
 
 [node name="JumpTimer" type="Timer" parent="." index="7"]
+wait_time = 1.5
 
 [connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
