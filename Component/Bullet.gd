@@ -27,5 +27,9 @@ func _on_area_entered(area):
 			area.get_damaged(bullet_damage , faction_id, global_position)
 			self.queue_free()
 
+
 func _on_body_entered(body):
-	pass # Replace with function body.
+	if !body.is_in_group("Player"):
+		queue_free()
+		
+	
