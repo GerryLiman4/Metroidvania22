@@ -101,8 +101,11 @@ size = Vector2(90, 107)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ffitc"]
 size = Vector2(66, 107)
 
-[node name="EnemyHed" instance=ExtResource("1_jgicj")]
+[node name="EnemyHed" node_paths=PackedStringArray("jump_timer") instance=ExtResource("1_jgicj")]
 script = ExtResource("2_4wq1v")
+jump_velocity = Vector2(100, -150)
+jump_timer = NodePath("JumpTimer")
+max_chase_distance = 200.0
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_jjlbe")
@@ -117,9 +120,13 @@ position = Vector2(-2, 10.5)
 shape = SubResource("RectangleShape2D_ffitc")
 debug_color = Color(0.717647, 0.290196, 0.32549, 0.419608)
 
-[node name="GroundChecker" parent="." index="4"]
+[node name="GroundChecker" parent="." index="5"]
 position = Vector2(-46, 0)
 target_position = Vector2(0, 100)
 
-[node name="PlayerChecker" parent="." index="5"]
-target_position = Vector2(250, 0)
+[node name="PlayerChecker" parent="." index="6"]
+target_position = Vector2(-250, 0)
+
+[node name="JumpTimer" type="Timer" parent="." index="7"]
+
+[connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]

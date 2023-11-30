@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Player
+
 @onready var actionable_finder = $AnimatedSprite2D/Direction/ActionableFinder
 
 @export var audio_player : AudioStreamPlayer
@@ -275,7 +277,7 @@ func _on_jump_state_exited():
 	pass # Replace with function body.
 
 func _on_jump_state_input(event):
-	if can_double_jump == true and Input.is_action_pressed("jump") == true :
+	if can_double_jump == true and Input.is_action_just_pressed("jump") == true :
 		switch_state(CharacterStateId.Id.DOUBLEJUMP)
 		return
 
@@ -297,7 +299,7 @@ func _on_fall_state_exited():
 
 func _on_fall_state_input(event):
 	# later if there is double jump
-	if can_double_jump == true and Input.is_action_pressed("jump") == true :
+	if can_double_jump == true and Input.is_action_just_pressed("jump") == true :
 		switch_state(CharacterStateId.Id.DOUBLEJUMP)
 		return[]
 
@@ -380,7 +382,8 @@ func _on_dash_state_physics_processing(delta):
 		return
 #endregion
 
-
+func say_hi():
+	print("Hi")
 
 
 

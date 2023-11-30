@@ -14,11 +14,14 @@ animated_sprite = NodePath("AnimatedSprite2D")
 health = NodePath("Hitbox")
 enemy_state = NodePath("StateChart")
 face_direction = 1
-timer_to_patrol = NodePath("StateChart/Root/Idle/TimerToPatrol")
+timer_to_patrol = NodePath("TimerToPatrol")
 ground_checker = NodePath("GroundChecker")
 player_checker = NodePath("PlayerChecker")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="TimerToPatrol" type="Timer" parent="."]
+wait_time = 1.5
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("1_pg6fy")
@@ -39,9 +42,6 @@ event = &"player_entered"
 script = ExtResource("4_h6u5q")
 to = NodePath("../../Patroling")
 event = &"start_patrol"
-
-[node name="TimerToPatrol" type="Timer" parent="StateChart/Root/Idle"]
-wait_time = 1.5
 
 [node name="Chasing" type="Node" parent="StateChart/Root"]
 script = ExtResource("3_nqev7")
@@ -78,10 +78,10 @@ collide_with_areas = true
 target_position = Vector2(50, 0)
 collision_mask = 2
 
+[connection signal="timeout" from="TimerToPatrol" to="." method="_on_timer_to_patrol_timeout"]
 [connection signal="state_entered" from="StateChart/Root/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_exited" from="StateChart/Root/Idle" to="." method="_on_idle_state_exited"]
 [connection signal="state_physics_processing" from="StateChart/Root/Idle" to="." method="_on_idle_state_physics_processing"]
-[connection signal="timeout" from="StateChart/Root/Idle/TimerToPatrol" to="." method="_on_timer_to_patrol_timeout"]
 [connection signal="state_entered" from="StateChart/Root/Chasing" to="." method="_on_chasing_state_entered"]
 [connection signal="state_exited" from="StateChart/Root/Chasing" to="." method="_on_chasing_state_exited"]
 [connection signal="state_physics_processing" from="StateChart/Root/Chasing" to="." method="_on_chasing_state_physics_processing"]
