@@ -165,8 +165,10 @@ height = 62.0
 radius = 25.5
 height = 60.0
 
-[node name="EnemyBat" instance=ExtResource("1_yno6s")]
+[node name="EnemyBat" node_paths=PackedStringArray("navigation_agent") instance=ExtResource("1_yno6s")]
 script = ExtResource("2_ms0dd")
+navigation_agent = NodePath("NavigationAgent2D")
+accel_speed = 10
 GRAVITY = 0.0
 MAX_FALL = 0.0
 JUMP_VELOCITY = 0.0
@@ -184,3 +186,10 @@ shape = SubResource("CapsuleShape2D_j3msg")
 position = Vector2(0, 4)
 shape = SubResource("CapsuleShape2D_ds2ba")
 debug_color = Color(0.972549, 0.117647, 0.313726, 0.419608)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="7"]
+path_max_distance = 1000.0
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." index="8"]
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
