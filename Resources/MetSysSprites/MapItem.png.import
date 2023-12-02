@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfjtblf8h62lv"
-path="res://.godot/imported/MirageTiles.png-976948b7e63a8dcbf61ae84e8e7be75b.ctex"
+uid="uid://l42te86waali"
+path="res://.godot/imported/MapItem.png-bce3e43f11e3dd3f1393acdbd24d6458.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SampleProject/Sprites/MirageTiles.png"
-dest_files=["res://.godot/imported/MirageTiles.png-976948b7e63a8dcbf61ae84e8e7be75b.ctex"]
+source_file="res://Resources/MetSysSprites/MapItem.png"
+dest_files=["res://.godot/imported/MapItem.png-bce3e43f11e3dd3f1393acdbd24d6458.ctex"]
 
 [params]
 

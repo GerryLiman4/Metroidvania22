@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dav4phd4q7vv3"
-path="res://.godot/imported/PipeWater.png-0452341306020640d9021f8498921583.ctex"
+uid="uid://bfjtblf8h62lv"
+path="res://.godot/imported/MirageTiles.png-845083ea8b2fd60bf9d34792e09c7e95.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SampleProject/Sprites/PipeWater.png"
-dest_files=["res://.godot/imported/PipeWater.png-0452341306020640d9021f8498921583.ctex"]
+source_file="res://Resources/MetSysSprites/MirageTiles.png"
+dest_files=["res://.godot/imported/MirageTiles.png-845083ea8b2fd60bf9d34792e09c7e95.ctex"]
 
 [params]
 

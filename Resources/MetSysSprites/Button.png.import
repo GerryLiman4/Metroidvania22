@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2pmbr0eamtud"
-path="res://.godot/imported/Lava.png-0b59095508deb157194f73de61e0ebbb.ctex"
+uid="uid://dagy3gny0c0cg"
+path="res://.godot/imported/Button.png-b33f799d6d7732a79f9ecdee1a2ac64f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SampleProject/Sprites/Lava.png"
-dest_files=["res://.godot/imported/Lava.png-0b59095508deb157194f73de61e0ebbb.ctex"]
+source_file="res://Resources/MetSysSprites/Button.png"
+dest_files=["res://.godot/imported/Button.png-b33f799d6d7732a79f9ecdee1a2ac64f.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://droyrt0ybqgm7"
-path="res://.godot/imported/Tiles.png-02a30c03156c14c6bcabde866ac86066.ctex"
+uid="uid://cki7wjbeux672"
+path="res://.godot/imported/DarkTiles.png-68c1b69e6c70caf1673da64be196d48c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SampleProject/Sprites/Tiles.png"
-dest_files=["res://.godot/imported/Tiles.png-02a30c03156c14c6bcabde866ac86066.ctex"]
+source_file="res://Resources/MetSysSprites/DarkTiles.png"
+dest_files=["res://.godot/imported/DarkTiles.png-68c1b69e6c70caf1673da64be196d48c.ctex"]
 
 [params]
 

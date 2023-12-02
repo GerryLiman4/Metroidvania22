@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c00he1hprcray"
-path="res://.godot/imported/Pipe.png-8e0e531bada1713e3ca67e15a0a4a97c.ctex"
+uid="uid://c2b8sodh13n7m"
+path="res://.godot/imported/ElevatorSprite.png-1901c7458fbae003151624459f1a07af.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SampleProject/Sprites/Pipe.png"
-dest_files=["res://.godot/imported/Pipe.png-8e0e531bada1713e3ca67e15a0a4a97c.ctex"]
+source_file="res://Resources/MetSysSprites/ElevatorSprite.png"
+dest_files=["res://.godot/imported/ElevatorSprite.png-1901c7458fbae003151624459f1a07af.ctex"]
 
 [params]
 

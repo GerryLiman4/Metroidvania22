@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7ssfmhvfv2mv"
-path="res://.godot/imported/Elevator.png-971757eca6596d6eaa059e2cfa4fed47.ctex"
+uid="uid://droyrt0ybqgm7"
+path="res://.godot/imported/Tiles.png-92bf2be1ae9451a688ee9eee57e001f2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SampleProject/Sprites/Elevator.png"
-dest_files=["res://.godot/imported/Elevator.png-971757eca6596d6eaa059e2cfa4fed47.ctex"]
+source_file="res://Resources/MetSysSprites/Tiles.png"
+dest_files=["res://.godot/imported/Tiles.png-92bf2be1ae9451a688ee9eee57e001f2.ctex"]
 
 [params]
 
