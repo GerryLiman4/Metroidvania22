@@ -220,6 +220,11 @@ script = ExtResource("7_31jtg")
 to = NodePath("../../Idle")
 event = &"IDLE"
 
+[node name="ToDash" type="Node" parent="StateChart/ParallelState/CharacterState/WallLatch"]
+script = ExtResource("7_31jtg")
+to = NodePath("../../Dash")
+event = &"DASH"
+
 [node name="WallJump" type="Node" parent="StateChart/ParallelState/CharacterState"]
 script = ExtResource("6_8dtlr")
 

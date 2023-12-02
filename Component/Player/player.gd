@@ -427,12 +427,18 @@ func _on_wall_latch_state_exited():
 
 
 func _on_wall_latch_state_input(event):
-	if wall_latch == FACING.LEFT :
-		if Input.is_action_pressed("left") == false or Input.is_action_pressed("right"):
-			switch_state(CharacterStateId.Id.IDLE)
-	elif wall_latch == FACING.RIGHT :
-		if Input.is_action_pressed("right") == false or Input.is_action_pressed("left") :
-			switch_state(CharacterStateId.Id.IDLE)
+	#if wall_latch == FACING.LEFT :
+		#if Input.is_action_pressed("left") == false or Input.is_action_pressed("right"):
+			#switch_state(CharacterStateId.Id.IDLE)
+	#elif wall_latch == FACING.RIGHT :
+		#if Input.is_action_pressed("right") == false or Input.is_action_pressed("left") :
+			#switch_state(CharacterStateId.Id.IDLE)
+	
+	if Input.is_action_just_pressed("crawl") :
+		switch_state(CharacterStateId.Id.IDLE)
+	
+	if Input.is_action_just_pressed("dash") :
+		switch_state(CharacterStateId.Id.DASH)
 	
 	if Input.is_action_just_pressed("jump") :
 		switch_state(CharacterStateId.Id.WALLJUMP)
