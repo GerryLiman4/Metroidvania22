@@ -52,7 +52,7 @@ func _ready():
 	player_health.on_dead.connect(on_dead)
 
 func _unhandled_input(_event : InputEvent) -> void:
-	if Input.is_action_just_pressed("interact"):
+	if Input.is_action_just_pressed("y"):
 		var actionables = actionable_finder.get_overlapping_areas()
 		if actionables.size() > 0:
 			actionables[0].action()
