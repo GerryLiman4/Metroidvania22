@@ -57,7 +57,7 @@ func _unhandled_input(_event : InputEvent) -> void:
 		if actionables.size() > 0:
 			actionables[0].action()
 			return
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("start"):
 		SceneTransition.start_transition_to("menu", true, "res://UI/main.tscn")
 
 func add_child_deferred(child_to_add) -> void :
@@ -104,14 +104,14 @@ func calculate_gravity() :
 func get_move_input() :
 	velocity.x = 0
 	
-	if Input.is_action_pressed("left") == true:
+	if Input.is_action_pressed("move_left") == true:
 		if is_crawling == false :
 			velocity.x = -WALK_SPEED
 		else :
 			velocity.x = -CRAWL_SPEED
 		
 		
-	elif Input.is_action_pressed("right") == true :
+	elif Input.is_action_pressed("move_right") == true :
 		if is_crawling == false :
 			velocity.x = WALK_SPEED
 		else :
@@ -120,18 +120,18 @@ func get_move_input() :
 		
 
 func get_jump_input() :
-	if Input.is_action_pressed("jump") == true and is_on_floor() == true :
+	if Input.is_action_pressed("a") == true and is_on_floor() == true :
 		velocity.y = JUMP_VELOCITY
 		#SoundManager.play_clip(sound_player,SoundManager.SOUND_JUMP)
 
 func get_dash_input() -> bool :
-	if Input.is_action_pressed("dash") == true :
+	if Input.is_action_pressed("x") == true :
 		return true
 	else :
 		return false
 
 func get_crawl_input() -> bool:
-	if Input.is_action_pressed("crawl") == true :
+	if Input.is_action_pressed("b") == true :
 		return true
 	else : 
 		return false
@@ -192,7 +192,7 @@ func take_aim(aim_position):
 	else:
 		$AnimatedSprite2D/Arm.rotation_degrees = arm_model.rotation_degrees
 	
-	if Input.is_action_just_pressed("shoot") == true : 
+	if Input.is_action_just_pressed("right_trigger") == true : 
 		var bullet : Bullet = bullet_pref.instantiate()
 		bullet.global_position = shooter.global_position
 		bullet.launch($AnimatedSprite2D/Arm/Marker2D.global_position, Vector2.LEFT.rotated(deg_to_rad(arm_model.rotation_degrees)), 2000)
@@ -277,7 +277,7 @@ func _on_jump_state_exited():
 	pass # Replace with function body.
 
 func _on_jump_state_input(event):
-	if can_double_jump == true and Input.is_action_just_pressed("jump") == true :
+	if can_double_jump == true and Input.is_action_just_pressed("a") == true :
 		switch_state(CharacterStateId.Id.DOUBLEJUMP)
 		return
 
@@ -299,7 +299,7 @@ func _on_fall_state_exited():
 
 func _on_fall_state_input(event):
 	# later if there is double jump
-	if can_double_jump == true and Input.is_action_just_pressed("jump") == true :
+	if can_double_jump == true and Input.is_action_just_pressed("a") == true :
 		switch_state(CharacterStateId.Id.DOUBLEJUMP)
 		return[]
 
