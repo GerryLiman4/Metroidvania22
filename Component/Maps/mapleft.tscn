@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/Level/tile_map_base.tscn" id="1_rauwd"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_1srn2"]
-[ext_resource type="Script" path="res://SampleProject/Scripts/SavePoint.gd" id="3_wdism"]
-[ext_resource type="PackedScene" uid="uid://c8j6i3fx8p758" path="res://SampleProject/Objects/Collectible.tscn" id="4_acc86"]
+[ext_resource type="Script" path="res://Script/MetSys/SavePoint.gd" id="3_exekh"]
+[ext_resource type="PackedScene" uid="uid://dte0qfyj28hme" path="res://Component/Objects/Collectible.tscn" id="4_acc86"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4rbcf"]
 radius = 32.0
@@ -18,7 +18,9 @@ layer_1/tile_data = PackedInt32Array(1245184, 0, 1, 1507367, 131072, 2, 1441831,
 
 [node name="SavePoint" type="Area2D" parent="."]
 position = Vector2(192, 576)
-script = ExtResource("3_wdism")
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_exekh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SavePoint"]
 shape = SubResource("CircleShape2D_4rbcf")
@@ -41,4 +43,4 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Collectible" parent="." instance=ExtResource("4_acc86")]
-position = Vector2(640, 560)
+position = Vector2(448, 576)

@@ -99,8 +99,8 @@ func get_save_data() -> Dictionary:
 		"collectible_count": collectibles,
 		"generated_rooms": generated_rooms,
 		"events": events,
-		"current_room": MetSys.get_current_room_name(),
-		"abilities": player.abilities,
+		"current_room": MetSys.get_current_room_name()
+		#"abilities": player.abilities,
 	}
 
 func reset_map_starting_coords():
