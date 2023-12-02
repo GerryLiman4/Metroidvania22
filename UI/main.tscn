@@ -33,26 +33,28 @@ selector = NodePath("../Selector")
 
 [node name="Label" type="Label" parent="Menu"]
 layout_mode = 2
-text = "Play"
+text = "Game"
 
 [node name="Label2" type="Label" parent="Menu"]
 layout_mode = 2
-text = "TileMap Test"
+text = "Level Test
+"
 
 [node name="Label3" type="Label" parent="Menu"]
 layout_mode = 2
-text = "LevelBase Test"
+text = "Tilemap Test"
 
 [node name="Label4" type="Label" parent="Menu"]
 layout_mode = 2
-text = "4th element"
+text = "Intro
+"
 
 [node name="Label5" type="Label" parent="Menu"]
 layout_mode = 2
-text = "5th element"
+text = "N/A"
 
 [node name="Selector" type="Sprite2D" parent="."]
-position = Vector2(346, 389)
+position = Vector2(491, 327)
 scale = Vector2(0.4, 0.1)
 texture = ExtResource("2_iunsy")
 

@@ -8,6 +8,10 @@
 
 config_version=5
 
+[addons]
+
+metroidvania_system/settings_file="res://MetSysSettings.tres"
+
 [application]
 
 config/name="Metroidvania22"
@@ -18,10 +22,11 @@ config/icon="res://icon.svg"
 [autoload]
 
 SignalManager="*res://Script/Singleton/SignalManager.gd"
-DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 DialogueState="*res://Dialogue/Helpers/state.gd"
 AudioController="*res://Script/Singleton/audio_controller.tscn"
 SceneTransition="*res://Script/Singleton/scene_transition.tscn"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+MetSys="*res://addons/MetroidvaniaSystem/Nodes/Singleton.tscn"
 
 [dialogue_manager]
 
@@ -40,7 +45,7 @@ project/assembly_name="Metroidvania22"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg")
+enabled=PackedStringArray("res://addons/MetroidvaniaSystem/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg")
 
 [input]
 

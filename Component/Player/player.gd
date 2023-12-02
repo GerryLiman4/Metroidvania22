@@ -31,6 +31,8 @@ var is_crawling : bool = false
 
 var can_double_jump : bool = true 
 
+var reset_position : Vector2
+
 @export_category("Animation")
 @export var animation_player : AnimatedSprite2D
 @export var body_sprite : Sprite2D
@@ -59,6 +61,10 @@ func _unhandled_input(_event : InputEvent) -> void:
 			return
 	if Input.is_action_just_pressed("start"):
 		SceneTransition.start_transition_to("menu", true, "res://UI/main.tscn")
+
+func on_enter():
+	# Position for kill system. Assigned when entering new room (see Game.gd).
+	reset_position = position
 
 func add_child_deferred(child_to_add) -> void :
 	get_tree().root.add_child(child_to_add)
