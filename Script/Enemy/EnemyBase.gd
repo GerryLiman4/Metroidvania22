@@ -113,6 +113,7 @@ func _on_idle_state_entered():
 
 func _on_idle_state_exited():
 	animated_sprite.stop()
+	timer_to_patrol.stop()
 
 func _on_idle_state_physics_processing(delta):
 	# behaviour pattern

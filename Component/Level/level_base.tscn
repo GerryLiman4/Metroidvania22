@@ -63,6 +63,17 @@ texture = ExtResource("2_h2tp4")
 position = Vector2(1, -0.5)
 shape = SubResource("RectangleShape2D_7o3ok")
 
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+position = Vector2(173, -226)
+scale = Vector2(0.871094, 1.44531)
+texture = ExtResource("2_h2tp4")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D5/StaticBody2D"]
+position = Vector2(1, -0.5)
+shape = SubResource("RectangleShape2D_7o3ok")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("3_dmqsi")]

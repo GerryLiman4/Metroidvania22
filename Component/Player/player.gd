@@ -17,10 +17,13 @@ const CRAWL_SPEED : float = 180.0
 const DASH_SPEED : float = 1200.0
 const DOUBLE_JUMP_VELOCITY : float = -350.0
 const DASH_COOLDOWN : float = 1.0
+const WALL_JUMP_VELOCITY : Vector2 = Vector2(550.0,-250.0)
 
 enum FACING{RIGHT,LEFT}
 
 @export var face_direction : FACING
+@export var wall_latch : FACING
+@export var wall_jump_timer : Timer
 
 var dash_timer : float = 0.25
 var dash_cooldown_timestamp : float = -1.0
@@ -30,7 +33,6 @@ var object_timer : float = 0.0
 var is_crawling : bool = false
 
 var can_double_jump : bool = true 
-var can_move : bool = true
 
 @export_category("Animation")
 @export var animation_player : AnimatedSprite2D
@@ -190,14 +192,13 @@ func check_latch() -> bool :
 		match get_which_wall_collided() :
 			"left" :
 				if Input.is_action_pressed("left") :
-					print("left")
+					wall_latch = FACING.LEFT
 					return true
 			"right" :
 				if Input.is_action_pressed("right")  :
-					print("right")
+					wall_latch = FACING.RIGHT
 					return true
 			"none" :
-				print("none")
 				return false
 	
 	return false
@@ -417,32 +418,42 @@ func _on_dash_state_physics_processing(delta):
 
 func _on_wall_latch_state_entered():
 	velocity = Vector2.ZERO
+	set_physics_process(false)
 
 func _on_wall_latch_state_exited():
 	# should flip 
+	set_physics_process(true)
 	pass
 
 
 func _on_wall_latch_state_input(event):
-	if face_direction == FACING.LEFT :
-		if Input.is_action_just_released("left") or Input.is_action_just_pressed("right") :
+	if wall_latch == FACING.LEFT :
+		if Input.is_action_pressed("left") == false or Input.is_action_pressed("right"):
 			switch_state(CharacterStateId.Id.IDLE)
-	elif face_direction == FACING.RIGHT :
-		if Input.is_action_just_released("right") or Input.is_action_just_pressed("left") :
+	elif wall_latch == FACING.RIGHT :
+		if Input.is_action_pressed("right") == false or Input.is_action_pressed("left") :
 			switch_state(CharacterStateId.Id.IDLE)
 	
 	if Input.is_action_just_pressed("jump") :
 		switch_state(CharacterStateId.Id.WALLJUMP)
 
 func _on_wall_latch_state_physics_processing(delta):
-	velocity = Vector2.ZERO
+	#velocity = Vector2.ZERO
+	move_and_slide()
 
 
 func _on_wall_jump_state_entered():
-	pass # Replace with function body.
+	var true_velocity = WALL_JUMP_VELOCITY
+	
+	if wall_latch == FACING.RIGHT:
+		true_velocity.x *= -1 
+	
+	velocity = true_velocity
+	wall_jump_timer.start(wall_jump_timer.wait_time)
 
 func _on_wall_jump_state_exited():
-	pass # Replace with function body.
+	velocity = Vector2.ZERO
+	wall_jump_timer.stop()
 
 func _on_wall_jump_state_input(event):
 	pass # Replace with function body.
@@ -450,8 +461,11 @@ func _on_wall_jump_state_input(event):
 func _on_wall_jump_state_physics_processing(delta):
 	pass # Replace with function body.
 
-
 #endregion
+
+func _on_wall_jump_timer_timeout():
+	switch_state(CharacterStateId.Id.IDLE)
+
 
 
 
