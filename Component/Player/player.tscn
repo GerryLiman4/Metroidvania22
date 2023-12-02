@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://dh2v1mpv02wq0"]
 
 [ext_resource type="Script" path="res://Component/Player/player.gd" id="1_x2mr2"]
-[ext_resource type="PackedScene" uid="uid://2rt3tjoh6i80" path="res://Component/bullet.tscn" id="2_d5m6g"]
+[ext_resource type="PackedScene" uid="uid://3jirgrp83pq" path="res://Component/player_bullet.tscn" id="2_1l3hs"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="3_51okl"]
 [ext_resource type="Texture2D" uid="uid://dx7ciwflmpexa" path="res://Resources/MainCharacter/arm pistol front.png" id="3_wcq8k"]
 [ext_resource type="Texture2D" uid="uid://b7nlnr3m1ynt3" path="res://Resources/MainCharacter/head 128.png" id="4_bqkva"]
@@ -35,7 +35,7 @@ arm_model = NodePath("ArmModel")
 arm_sprite = NodePath("AnimatedSprite2D/Arm")
 head_model = NodePath("AnimatedSprite2D/HeadModel")
 head_sprite = NodePath("AnimatedSprite2D/HeadModel/Head")
-bullet_pref = ExtResource("2_d5m6g")
+bullet_pref = ExtResource("2_1l3hs")
 shooter = NodePath("ArmModel/Shooter")
 player_health = NodePath("Hitbox")
 
@@ -193,6 +193,11 @@ script = ExtResource("7_31jtg")
 to = NodePath("../../Dash")
 event = &"DASH"
 
+[node name="ToWallLatch" type="Node" parent="StateChart/ParallelState/CharacterState/Fall"]
+script = ExtResource("7_31jtg")
+to = NodePath("../../WallLatch")
+event = &"WALLLATCH"
+
 [node name="DoubleJump" type="Node" parent="StateChart/ParallelState/CharacterState"]
 script = ExtResource("6_8dtlr")
 
@@ -200,6 +205,32 @@ script = ExtResource("6_8dtlr")
 script = ExtResource("7_31jtg")
 to = NodePath("../../Fall")
 event = &"FALL"
+
+[node name="WallLatch" type="Node" parent="StateChart/ParallelState/CharacterState"]
+script = ExtResource("6_8dtlr")
+
+[node name="ToWallJump" type="Node" parent="StateChart/ParallelState/CharacterState/WallLatch"]
+script = ExtResource("7_31jtg")
+to = NodePath("../../WallJump")
+event = &"WALLJUMP"
+
+[node name="ToIdle" type="Node" parent="StateChart/ParallelState/CharacterState/WallLatch"]
+script = ExtResource("7_31jtg")
+to = NodePath("../../Idle")
+event = &"IDLE"
+
+[node name="WallJump" type="Node" parent="StateChart/ParallelState/CharacterState"]
+script = ExtResource("6_8dtlr")
+
+[node name="ToFall" type="Node" parent="StateChart/ParallelState/CharacterState/WallJump"]
+script = ExtResource("7_31jtg")
+to = NodePath("../../Fall")
+event = &"FALL"
+
+[node name="ToIdle" type="Node" parent="StateChart/ParallelState/CharacterState/WallJump"]
+script = ExtResource("7_31jtg")
+to = NodePath("../../Idle")
+event = &"IDLE"
 
 [node name="Crawl" type="Node" parent="StateChart/ParallelState/CharacterState"]
 script = ExtResource("6_8dtlr")
@@ -255,6 +286,14 @@ initial_node_to_watch = NodePath("../StateChart")
 [connection signal="state_exited" from="StateChart/ParallelState/CharacterState/DoubleJump" to="." method="_on_double_jump_state_exited"]
 [connection signal="state_input" from="StateChart/ParallelState/CharacterState/DoubleJump" to="." method="_on_double_jump_state_input"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CharacterState/DoubleJump" to="." method="_on_double_jump_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/ParallelState/CharacterState/WallLatch" to="." method="_on_wall_latch_state_entered"]
+[connection signal="state_exited" from="StateChart/ParallelState/CharacterState/WallLatch" to="." method="_on_wall_latch_state_exited"]
+[connection signal="state_input" from="StateChart/ParallelState/CharacterState/WallLatch" to="." method="_on_wall_latch_state_input"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CharacterState/WallLatch" to="." method="_on_wall_latch_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/ParallelState/CharacterState/WallJump" to="." method="_on_wall_jump_state_entered"]
+[connection signal="state_exited" from="StateChart/ParallelState/CharacterState/WallJump" to="." method="_on_wall_jump_state_exited"]
+[connection signal="state_input" from="StateChart/ParallelState/CharacterState/WallJump" to="." method="_on_wall_jump_state_input"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/CharacterState/WallJump" to="." method="_on_wall_jump_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/ParallelState/CharacterState/Crawl" to="." method="_on_crawl_state_entered"]
 [connection signal="state_exited" from="StateChart/ParallelState/CharacterState/Crawl" to="." method="_on_crawl_state_exited"]
 [connection signal="state_input" from="StateChart/ParallelState/CharacterState/Crawl" to="." method="_on_crawl_state_input"]

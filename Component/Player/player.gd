@@ -30,6 +30,7 @@ var object_timer : float = 0.0
 var is_crawling : bool = false
 
 var can_double_jump : bool = true 
+var can_move : bool = true
 
 @export_category("Animation")
 @export var animation_player : AnimatedSprite2D
@@ -93,6 +94,9 @@ func _process(delta):
 func _physics_process(delta):
 	if is_on_floor() == false :
 		velocity.y += GRAVITY * delta
+	
+	if is_on_floor() == true :
+		can_double_jump = true
 	
 	move_and_slide()
 	calculate_gravity()
@@ -180,8 +184,33 @@ func check_crawl() -> bool :
 		return true 
 	
 	return false
+
+func check_latch() -> bool :
+	if is_on_wall_only() == true:
+		match get_which_wall_collided() :
+			"left" :
+				if Input.is_action_pressed("left") :
+					print("left")
+					return true
+			"right" :
+				if Input.is_action_pressed("right")  :
+					print("right")
+					return true
+			"none" :
+				print("none")
+				return false
 	
-#end region
+	return false
+
+func get_which_wall_collided() -> String:
+	for i in range(get_slide_collision_count()):
+		var collision = get_slide_collision(i)
+		if collision.get_normal().x > 0:
+			return "left"
+		elif collision.get_normal().x < 0:
+			return "right"
+	return "none"
+#endregion
 
 #region hand 
 func take_aim(aim_position):
@@ -202,7 +231,6 @@ func take_aim(aim_position):
 
 #region state
 func _on_idle_state_entered():
-	can_double_jump = true
 	animation_player.play("Idle")
 
 func _on_idle_state_exited():
@@ -312,6 +340,10 @@ func _on_fall_state_physics_processing(delta):
 	if get_dash_input() == true && object_timer >= dash_cooldown_timestamp + DASH_COOLDOWN :
 		switch_state(CharacterStateId.Id.DASH)
 		return
+	
+	# check wall latch
+	if check_latch() == true :
+		switch_state(CharacterStateId.Id.WALLLATCH)
 
 func _on_double_jump_state_entered():
 	can_double_jump = false
@@ -380,10 +412,48 @@ func _on_dash_state_physics_processing(delta):
 		velocity.x = 0
 		switch_state(CharacterStateId.Id.IDLE) 
 		return
+
+
+
+func _on_wall_latch_state_entered():
+	velocity = Vector2.ZERO
+
+func _on_wall_latch_state_exited():
+	# should flip 
+	pass
+
+
+func _on_wall_latch_state_input(event):
+	if face_direction == FACING.LEFT :
+		if Input.is_action_just_released("left") or Input.is_action_just_pressed("right") :
+			switch_state(CharacterStateId.Id.IDLE)
+	elif face_direction == FACING.RIGHT :
+		if Input.is_action_just_released("right") or Input.is_action_just_pressed("left") :
+			switch_state(CharacterStateId.Id.IDLE)
+	
+	if Input.is_action_just_pressed("jump") :
+		switch_state(CharacterStateId.Id.WALLJUMP)
+
+func _on_wall_latch_state_physics_processing(delta):
+	velocity = Vector2.ZERO
+
+
+func _on_wall_jump_state_entered():
+	pass # Replace with function body.
+
+func _on_wall_jump_state_exited():
+	pass # Replace with function body.
+
+func _on_wall_jump_state_input(event):
+	pass # Replace with function body.
+
+func _on_wall_jump_state_physics_processing(delta):
+	pass # Replace with function body.
+
+
 #endregion
 
-func say_hi():
-	print("Hi")
+
 
 
 

@@ -21,14 +21,16 @@ const STATE_EVENT = {
 	"PLAYER_ENTERED" : "player_entered",
 	"START_PATROL" : "start_patrol",
 	"PLAYER_EXITED" : "player_exited",
-	"STOP_PATROL" : "stop_patrol"
+	"STOP_PATROL" : "stop_patrol",
+	"SHOOT" : "shoot"
 }
 
 const STATE_CONTROL = {
 	"NONE" : "NONE",
 	"IDLE" : "IDLE",
 	"CHASING" : "CHASING",
-	"PATROLLING" : "PATROLLING"
+	"PATROLLING" : "PATROLLING",
+	"SHOOTING" : "SHOOTING"
 }
 
 var current_state : String 
@@ -99,6 +101,8 @@ func check_target_distance():
 	if global_position.distance_to(target.global_position) > max_chase_distance :
 		switch_state(STATE_CONTROL.IDLE ,STATE_EVENT.PLAYER_EXITED)
 
+func brake():
+	velocity.x = 0
 
 #region state
 func _on_idle_state_entered():

@@ -8,6 +8,8 @@ enum Id{
 	JUMP,
 	FALL,
 	DOUBLEJUMP,
+	WALLLATCH,
+	WALLJUMP,
 	CRAWL,
 	DASH
 }

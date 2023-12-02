@@ -10,7 +10,6 @@ collision_layer = 8
 collision_mask = 33
 script = ExtResource("1_ahxal")
 bullet_speed = 0.25
-faction_id = 1
 
 [node name="Model" type="Sprite2D" parent="."]
 scale = Vector2(0.15, 0.15)
