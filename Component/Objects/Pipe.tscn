@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cuo3rbw43trj4"]
 
-[ext_resource type="Texture2D" uid="uid://c00he1hprcray" path="res://SampleProject/Sprites/Pipe.png" id="1_a8g7e"]
-[ext_resource type="Texture2D" uid="uid://dav4phd4q7vv3" path="res://SampleProject/Sprites/PipeWater.png" id="2_dls1c"]
+[ext_resource type="Texture2D" uid="uid://c00he1hprcray" path="res://Resources/MetSysSprites/Pipe.png" id="1_a8g7e"]
+[ext_resource type="Texture2D" uid="uid://dav4phd4q7vv3" path="res://Resources/MetSysSprites/PipeWater.png" id="2_dls1c"]
 
 [sub_resource type="GDScript" id="GDScript_366bh"]
 resource_name = "Water"

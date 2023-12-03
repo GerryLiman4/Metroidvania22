@@ -40,7 +40,7 @@ func _ready() -> void:
 	else:
 		# If no data exists, set empty one.
 		
-'''
+	'''
 	MetSys.set_save_data()
 	# Go to the starting point.
 	goto_map(MetSys.get_full_room_path(starting_map))

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://d165fnekqr5ex"]
 
-[ext_resource type="Texture2D" uid="uid://dagy3gny0c0cg" path="res://SampleProject/Sprites/Button.png" id="1_umy0p"]
+[ext_resource type="Texture2D" uid="uid://dagy3gny0c0cg" path="res://Resources/MetSysSprites/Button.png" id="1_umy0p"]
 
 [sub_resource type="GDScript" id="GDScript_4b230"]
 script/source = "# Code for the button that opens the gate.

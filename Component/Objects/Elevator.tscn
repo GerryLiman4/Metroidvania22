@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bex32x8t30k4n"]
 
-[ext_resource type="Texture2D" uid="uid://c2b8sodh13n7m" path="res://SampleProject/Sprites/ElevatorSprite.png" id="1_16218"]
+[ext_resource type="Texture2D" uid="uid://c2b8sodh13n7m" path="res://Resources/MetSysSprites/ElevatorSprite.png" id="1_16218"]
 
 [sub_resource type="GDScript" id="GDScript_bxd4l"]
 script/source = "# Simple elevator script. This scene exists in ElevatorRoom.tscn and UpperElevatorRoom.tscn.
