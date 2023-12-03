@@ -25,7 +25,7 @@ func _ready() -> void:
 	# Make sure MetSys is in initial state.
 	# Does not matter in this project, but normally this ensures that the game works correctly when you exit to menu and start again.
 	MetSys.reset_state()
-	
+	'''
 	if FileAccess.file_exists("user://save_data.sav"):
 		# If save data exists, load it.
 		var save_data: Dictionary = FileAccess.open("user://save_data.sav", FileAccess.READ).get_var()
@@ -39,8 +39,9 @@ func _ready() -> void:
 		#player.abilities.assign(save_data.abilities)
 	else:
 		# If no data exists, set empty one.
-		MetSys.set_save_data()
-	
+		
+'''
+	MetSys.set_save_data()
 	# Go to the starting point.
 	goto_map(MetSys.get_full_room_path(starting_map))
 	# Find the save point and teleport the player to it, to start at the save point.
