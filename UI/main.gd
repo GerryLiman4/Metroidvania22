@@ -10,9 +10,11 @@ func _on_menu_activated(element) -> void:
 		"Game":
 			SceneTransition.start_transition_to("game", true, "res://Game.tscn")
 		"Level Test":
-			SceneTransition.start_transition_to("game", true, "res://Component/Level/level_base.tscn")
-		"TileMap Test":
-			SceneTransition.start_transition_to("game", true, "res://Component/Level/level_base.tscn")
+			SceneTransition.start_transition_to("game", true, "res://Component/TestLevels/level_base.tscn")
+		"Dialogue Test":
+			SceneTransition.start_transition_to("game", true, "res://Component/TestLevels/level_dialogue.tscn")
+		"Tilemap Test":
+			SceneTransition.start_transition_to("game", true, "res://level_test.tscn")
 		"Reset Save":
 			reset_save()
 			

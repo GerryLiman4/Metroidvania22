@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://1pap35vl5nom"]
 
-[ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/Level/tile_map_base.tscn" id="1_3kv76"]
+[ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_3kv76"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_q7x6m"]
 [ext_resource type="PackedScene" uid="uid://c5d0f770ww2gg" path="res://Component/Objects/Collectible.tscn" id="4_5rm4h"]
 [ext_resource type="PackedScene" uid="uid://bq6ll2apombgy" path="res://Component/Objects/save_point.tscn" id="4_6pu7g"]

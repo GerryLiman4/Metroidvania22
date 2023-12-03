@@ -1,12 +1,12 @@
 [gd_scene load_steps=10 format=3 uid="uid://b6iawbubwwq8n"]
 
-[ext_resource type="PackedScene" uid="uid://crxx5jgqm5nmc" path="res://Component/Level/level_base.tscn" id="1_psqkb"]
+[ext_resource type="PackedScene" uid="uid://crxx5jgqm5nmc" path="res://Component/TestLevels/level_base.tscn" id="1_psqkb"]
 [ext_resource type="PackedScene" uid="uid://eytxpib7qnui" path="res://Component/Enemy/Hed.tscn" id="2_4nave"]
 [ext_resource type="Texture2D" uid="uid://broel8rb5s4xy" path="res://Dialogue/apple.png" id="4_q8i37"]
 [ext_resource type="PackedScene" uid="uid://0xi7fk137lxy" path="res://Dialogue/Helpers/actionable.tscn" id="5_4r5sh"]
 [ext_resource type="Resource" uid="uid://c8rfljvtnn5ce" path="res://Dialogue/Dialogue/main.dialogue" id="5_8os6u"]
-[ext_resource type="PackedScene" path="res://Component/NPC/NPCSprite.tscn" id="6_wcjy7"]
-[ext_resource type="Texture2D" path="res://Dialogue/Characters/NPC1.png" id="7_372uj"]
+[ext_resource type="PackedScene" uid="uid://2ll1y82jd68q" path="res://Component/NPC/NPCSprite.tscn" id="6_wcjy7"]
+[ext_resource type="Texture2D" uid="uid://b87u0teo7x2nc" path="res://Dialogue/Characters/NPC1.png" id="7_372uj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_quu4y"]
 radius = 91.022

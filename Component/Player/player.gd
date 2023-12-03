@@ -57,7 +57,7 @@ func _ready():
 	player_health.on_dead.connect(on_dead)
 
 func _unhandled_input(_event : InputEvent) -> void:
-	if Input.is_action_just_pressed("y"):
+	if Input.is_action_just_pressed("Interact"):
 		var actionables = actionable_finder.get_overlapping_areas()
 		if actionables.size() > 0:
 			actionables[0].action()
@@ -132,18 +132,18 @@ func get_move_input() :
 		
 
 func get_jump_input() :
-	if Input.is_action_pressed("a") == true and is_on_floor() == true :
+	if Input.is_action_pressed("Jump") == true and is_on_floor() == true :
 		velocity.y = JUMP_VELOCITY
 		#SoundManager.play_clip(sound_player,SoundManager.SOUND_JUMP)
 
 func get_dash_input() -> bool :
-	if Input.is_action_pressed("x") == true :
+	if Input.is_action_pressed("Dash") == true :
 		return true
 	else :
 		return false
 
 func get_crawl_input() -> bool:
-	if Input.is_action_pressed("b") == true :
+	if Input.is_action_pressed("Crawl") == true :
 		return true
 	else : 
 		return false
@@ -228,7 +228,7 @@ func take_aim(aim_position):
 	else:
 		$AnimatedSprite2D/Arm.rotation_degrees = arm_model.rotation_degrees
 	
-	if Input.is_action_just_pressed("right_trigger") == true : 
+	if Input.is_action_just_pressed("Shoot") == true : 
 		var bullet : Bullet = bullet_pref.instantiate()
 		bullet.global_position = shooter.global_position
 		bullet.launch($AnimatedSprite2D/Arm/Marker2D.global_position, Vector2.LEFT.rotated(deg_to_rad(arm_model.rotation_degrees)), 2000)
@@ -440,13 +440,13 @@ func _on_wall_latch_state_input(event):
 		#if Input.is_action_pressed("right") == false or Input.is_action_pressed("left") :
 			#switch_state(CharacterStateId.Id.IDLE)
 	
-	if Input.is_action_just_pressed("crawl") :
+	if Input.is_action_just_pressed("Crawl") :
 		switch_state(CharacterStateId.Id.IDLE)
 	
-	if Input.is_action_just_pressed("dash") :
+	if Input.is_action_just_pressed("Dash") :
 		switch_state(CharacterStateId.Id.DASH)
 	
-	if Input.is_action_just_pressed("jump") :
+	if Input.is_action_just_pressed("Jump") :
 		switch_state(CharacterStateId.Id.WALLJUMP)
 
 func _on_wall_latch_state_physics_processing(delta):

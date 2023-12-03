@@ -33,23 +33,27 @@ selector = NodePath("../Selector")
 
 [node name="Label" type="Label" parent="Menu"]
 layout_mode = 2
-text = "Game"
+text = "Intro"
 
 [node name="Label2" type="Label" parent="Menu"]
 layout_mode = 2
-text = "Level Test"
+text = "Game"
 
 [node name="Label3" type="Label" parent="Menu"]
 layout_mode = 2
-text = "Tilemap Test"
+text = "Reset Save"
 
 [node name="Label4" type="Label" parent="Menu"]
 layout_mode = 2
-text = "Intro"
+text = "Level Test"
 
 [node name="Label5" type="Label" parent="Menu"]
 layout_mode = 2
-text = "Reset Save"
+text = "Tilemap Test"
+
+[node name="Label6" type="Label" parent="Menu"]
+layout_mode = 2
+text = "Dialogue Test"
 
 [node name="Selector" type="Sprite2D" parent="."]
 position = Vector2(491, 327)
