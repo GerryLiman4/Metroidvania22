@@ -27,19 +27,21 @@ func _ready() -> void:
 	MetSys.reset_state()
 	
 	if FileAccess.file_exists("user://save_data.sav"):
+		
 		# If save data exists, load it.
 		var save_data: Dictionary = FileAccess.open("user://save_data.sav", FileAccess.READ).get_var()
-		# Send the data to MetSys (it has extra keys, but it doesn't matter).
-		MetSys.set_save_data(save_data)
-		# Load various data stored in the dictionary.
-		collectibles = save_data.collectible_count
-		generated_rooms.assign(save_data.generated_rooms)
-		events.assign(save_data.events)
-		starting_map = save_data.current_room
-		#player.abilities.assign(save_data.abilities)
-	else:
-		# If no data exists, set empty one.
-		MetSys.set_save_data()
+		if !save_data.is_empty():
+			# Send the data to MetSys (it has extra keys, but it doesn't matter).
+			MetSys.set_save_data(save_data)
+			# Load various data stored in the dictionary.
+			collectibles = save_data.collectible_count
+			generated_rooms.assign(save_data.generated_rooms)
+			events.assign(save_data.events)
+			starting_map = save_data.current_room
+			#player.abilities.assign(save_data.abilities)
+		else:
+			# If no data exists, set empty one.
+			MetSys.set_save_data()
 	
 	
 	# Go to the starting point.
