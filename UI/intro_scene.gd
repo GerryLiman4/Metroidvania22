@@ -56,7 +56,7 @@ func play_scene_3():
 	
 	
 func _proceed_to_game():
-	SceneTransition.start_transition_to("game", true, "res://Component/Level/level_dialogue.tscn")
+	SceneTransition.start_transition_to("game", true, "res://Game.tscn")
 
 
 func _on_input_delay_timer_timeout():

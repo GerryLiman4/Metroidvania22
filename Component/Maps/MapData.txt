@@ -1,0 +1,6 @@
+[0,0,0]
+1,0,1,0|||StartingPoint.tscn
+[-1,0,0]
+1,0,0,0|||mapleft.tscn
+[1,0,0]
+0,0,1,0|||mapright.tscn

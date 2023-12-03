@@ -1212,6 +1212,7 @@ sources/0 = SubResource("TileSetAtlasSource_swwst")
 tile_set = SubResource("TileSet_srl21")
 format = 2
 layer_0/name = "BG"
+layer_0/z_index = -1
 layer_1/name = "FG"
 layer_1/tile_data = PackedInt32Array()
 layer_2/name = "Slopes"
