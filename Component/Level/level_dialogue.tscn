@@ -1,14 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://b6iawbubwwq8n"]
+[gd_scene load_steps=10 format=3 uid="uid://b6iawbubwwq8n"]
 
 [ext_resource type="PackedScene" uid="uid://crxx5jgqm5nmc" path="res://Component/Level/level_base.tscn" id="1_psqkb"]
 [ext_resource type="PackedScene" uid="uid://eytxpib7qnui" path="res://Component/Enemy/Hed.tscn" id="2_4nave"]
-[ext_resource type="PackedScene" uid="uid://cjw1jg88nycfd" path="res://Component/NPC/NPC.tscn" id="3_lcbfx"]
 [ext_resource type="Texture2D" uid="uid://broel8rb5s4xy" path="res://Dialogue/apple.png" id="4_q8i37"]
 [ext_resource type="PackedScene" uid="uid://0xi7fk137lxy" path="res://Dialogue/Helpers/actionable.tscn" id="5_4r5sh"]
 [ext_resource type="Resource" uid="uid://c8rfljvtnn5ce" path="res://Dialogue/Dialogue/main.dialogue" id="5_8os6u"]
+[ext_resource type="PackedScene" path="res://Component/NPC/NPCSprite.tscn" id="6_wcjy7"]
+[ext_resource type="Texture2D" path="res://Dialogue/Characters/NPC1.png" id="7_372uj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_quu4y"]
 radius = 91.022
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ltdw1"]
+radius = 173.807
 
 [node name="LevelDialogue" instance=ExtResource("1_psqkb")]
 
@@ -27,8 +31,15 @@ dialogue_start = "pick_apple"
 shape = SubResource("CircleShape2D_quu4y")
 debug_color = Color(0.85098, 0.364706, 0.247059, 0.419608)
 
-[node name="NPC" parent="." index="5" instance=ExtResource("3_lcbfx")]
-position = Vector2(296, 28)
-
 [node name="EnemyHed" parent="." index="12"]
 WALK_SPEED = 360.0
+
+[node name="NPCSprite" parent="." index="15" instance=ExtResource("6_wcjy7")]
+position = Vector2(162, 71)
+image = ExtResource("7_372uj")
+
+[node name="Actionable" parent="NPCSprite" index="3" instance=ExtResource("5_4r5sh")]
+dialogue_resource = ExtResource("5_8os6u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCSprite/Actionable" index="0"]
+shape = SubResource("CircleShape2D_ltdw1")

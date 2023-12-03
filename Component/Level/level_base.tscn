@@ -89,11 +89,6 @@ position = Vector2(-285, -270)
 
 [node name="EnemyBat" parent="." instance=ExtResource("7_miiwv")]
 position = Vector2(0, -199)
-accel_speed = 10
-WALK_SPEED = 120.0
-CHASE_SPEED = 200.0
-contact_damage = 1
-max_chase_distance = 1000.0
 
 [node name="EnemyGunner2" parent="." instance=ExtResource("8_pceov")]
 position = Vector2(-166, 61)
