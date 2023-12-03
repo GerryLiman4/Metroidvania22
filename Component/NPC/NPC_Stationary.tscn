@@ -1,0 +1,113 @@
+[gd_scene load_steps=9 format=3 uid="uid://48bg0gaq07sk"]
+
+[ext_resource type="Texture2D" uid="uid://fjyi25xvguji" path="res://Resources/MainCharacter/body idle with head left 128-Sheet.png" id="2_hkjgo"]
+
+[sub_resource type="GDScript" id="GDScript_7g837"]
+script/source = "extends Area2D
+
+@onready var player : CharacterBody2D
+@onready var sprite_2d = $Sprite2D
+#@onready var animated_sprite = $AnimatedSprite2D
+
+@export var npc_name : String
+@export var texture : CompressedTexture2D
+
+enum FACING{RIGHT,LEFT}
+var face_direction
+var player_position : Vector2
+
+func _ready():
+	# TODO apply texture to AnimatedSprite2D
+	sprite_2d.texture = texture
+	
+	sprite_2d.scale = Vector2(0.2, 0.2)
+	var sprite_rect : Rect2 = sprite_2d.get_rect()
+	sprite_2d.position.y -= sprite_rect.size.y / 2.3
+	
+	# TODO Pass Dialogue Resource and Start to Actionable via export?
+
+func _process(delta):
+	if !player:		
+		return
+		
+	player_position = (player.global_position - global_position).normalized()
+	
+	# Handle Player sprite orientation
+	if player_position.x > 0:
+		face_direction = FACING.RIGHT
+		sprite_2d.flip_h = true
+	#elif mouse_direction.x < 0 and not animated_sprite.flip_h:
+	elif player_position.x < 0:
+		face_direction = FACING.LEFT
+		sprite_2d.flip_h = false
+
+func _on_body_entered(body):
+	if (body.is_in_group(\"Player\")):
+		player = body
+
+func _on_body_exited(body):
+	if (body.is_in_group(\"Player\")):
+		player = null
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_thvg4"]
+radius = 143.422
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2pjdl"]
+atlas = ExtResource("2_hkjgo")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_murf8"]
+atlas = ExtResource("2_hkjgo")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_peyx1"]
+atlas = ExtResource("2_hkjgo")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6s58"]
+atlas = ExtResource("2_hkjgo")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wg3sw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2pjdl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_murf8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_peyx1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6s58")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}]
+
+[node name="StationaryNPC" type="Area2D"]
+position = Vector2(0, -2)
+collision_layer = 4
+collision_mask = 3
+script = SubResource("GDScript_7g837")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 9)
+shape = SubResource("CircleShape2D_thvg4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(1, 0)
+sprite_frames = SubResource("SpriteFrames_wg3sw")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

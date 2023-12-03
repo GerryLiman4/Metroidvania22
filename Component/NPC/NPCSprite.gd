@@ -1,12 +1,11 @@
-extends CharacterBody2D
+extends Sprite2D
 
 @onready var player : CharacterBody2D
 @onready var actionable : Area2D
-@onready var sprite_2d = $Sprite2D
-#@onready var animated_sprite = $AnimatedSprite2D
+@onready var sprite = $Sprite2D
 
 @export var npc_name : String
-@export var texture : CompressedTexture2D
+@export var image : CompressedTexture2D
 
 enum FACING{RIGHT,LEFT}
 var face_direction
@@ -14,15 +13,27 @@ var player_position : Vector2
 
 func _ready():
 	# TODO apply texture to AnimatedSprite2D
-	sprite_2d.texture = texture
+	sprite.texture = image
 	
-	var sprite_rect : Rect2 = sprite_2d.get_rect()
-	sprite_2d.position.y -= sprite_rect.size.y / 2.3
+	sprite.scale = Vector2(0.1, 0.1)
+	var sprite_rect : Rect2 = sprite.get_rect()
+	sprite.position.y -= sprite_rect.size.y / 50
 	
 	# TODO Pass Dialogue Resource and Start to Actionable via export?
-	
+	var actionable_child : Area2D = get_node("Actionable")
+	if actionable_child != null:
+		actionable = actionable_child
+		actionable_child.connect("body_entered", Callable(self, "_on_area_2d_body_entered"))
+		actionable_child.connect("body_exited", Callable(self, "_on_area_2d_body_exited"))
+			
+func _unhandled_input(event):
+	if !(player && actionable):
+		return
 		
-
+	if Input.is_action_just_pressed("ui_accept"):
+		actionable.action()
+		
+	
 func _process(delta):
 	#global_position = get_global_mouse_position()
 	if !player:		
@@ -33,15 +44,11 @@ func _process(delta):
 	# Handle Player sprite orientation
 	if player_position.x > 0:
 		face_direction = FACING.RIGHT
-		sprite_2d.flip_h = true
+		self.flip_h = true
 	#elif mouse_direction.x < 0 and not animated_sprite.flip_h:
 	elif player_position.x < 0:
 		face_direction = FACING.LEFT
-		sprite_2d.flip_h = false
-
-func _on_area_2d_area_entered(area):
-	pass
-
+		self.flip_h = false
 
 func _on_area_2d_body_entered(body):
 	if (body.is_in_group("Player")):

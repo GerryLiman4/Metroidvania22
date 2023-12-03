@@ -19,6 +19,26 @@ else:
 
 => END
 
+~ NPC1
+NPC1: Hi
+=> END
+
+~ NPC3
+NPC3: Hi
+=> END
+
+~ NPC4
+NPC4: Hi
+=> END
+
+~ NPC5
+NPC5: Hi
+=> END
+
+~ NPC6
+NPC6: Hi
+=> END
+
 ~ pick_apple
 
 Coco: It's an apple.

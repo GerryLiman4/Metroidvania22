@@ -1,28 +1,26 @@
-[gd_scene load_steps=11 format=3 uid="uid://cjw1jg88nycfd"]
+[gd_scene load_steps=9 format=3 uid="uid://2ll1y82jd68q"]
 
-[ext_resource type="Script" path="res://Component/NPC/NPC.gd" id="1_o1wte"]
-[ext_resource type="Texture2D" uid="uid://fjyi25xvguji" path="res://Resources/MainCharacter/body idle with head left 128-Sheet.png" id="2_5cwjw"]
-[ext_resource type="Texture2D" uid="uid://b87u0teo7x2nc" path="res://Dialogue/Characters/NPC1.png" id="3_83yxk"]
-[ext_resource type="PackedScene" uid="uid://0xi7fk137lxy" path="res://Dialogue/Helpers/actionable.tscn" id="3_dkgmj"]
+[ext_resource type="Script" path="res://Component/NPC/NPCSprite.gd" id="1_37mhf"]
+[ext_resource type="Texture2D" uid="uid://fjyi25xvguji" path="res://Resources/MainCharacter/body idle with head left 128-Sheet.png" id="2_wnvc2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rv4ct"]
 radius = 22.0
 height = 106.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2pjdl"]
-atlas = ExtResource("2_5cwjw")
+atlas = ExtResource("2_wnvc2")
 region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_murf8"]
-atlas = ExtResource("2_5cwjw")
+atlas = ExtResource("2_wnvc2")
 region = Rect2(128, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_peyx1"]
-atlas = ExtResource("2_5cwjw")
+atlas = ExtResource("2_wnvc2")
 region = Rect2(256, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m6s58"]
-atlas = ExtResource("2_5cwjw")
+atlas = ExtResource("2_wnvc2")
 region = Rect2(384, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wg3sw"]
@@ -45,11 +43,8 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="NPC" type="CharacterBody2D"]
-position = Vector2(0, -2)
-collision_layer = 4
-collision_mask = 3
-script = ExtResource("1_o1wte")
+[node name="NPCSprite" type="Sprite2D"]
+script = ExtResource("1_37mhf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9)
@@ -63,6 +58,3 @@ animation = &"Idle"
 autoplay = "Idle"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_83yxk")
-
-[node name="Actionable" parent="." instance=ExtResource("3_dkgmj")]

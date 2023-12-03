@@ -1212,9 +1212,9 @@ sources/0 = SubResource("TileSetAtlasSource_swwst")
 [node name="TileMapBase" type="TileMap" groups=["environment"]]
 tile_set = SubResource("TileSet_srl21")
 format = 2
-layer_0/name = "BG"
-layer_0/z_index = -1
-layer_1/name = "FG"
+layer_0/name = "FG"
+layer_1/name = "BG"
+layer_1/z_index = -1
 layer_1/tile_data = PackedInt32Array()
 layer_2/name = "Slopes"
 layer_2/tile_data = PackedInt32Array()
