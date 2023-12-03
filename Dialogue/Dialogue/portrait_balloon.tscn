@@ -139,10 +139,10 @@ grow_vertical = 0
 texture = ExtResource("4_al4vb")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Indicator"]
-autoplay = "indicate"
 libraries = {
 "": SubResource("AnimationLibrary_niv0d")
 }
+autoplay = "indicate"
 
 [node name="TalkSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_akygk")

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Component/NPC/NPC.gd" id="1_o1wte"]
 [ext_resource type="Texture2D" uid="uid://fjyi25xvguji" path="res://Resources/MainCharacter/body idle with head left 128-Sheet.png" id="2_5cwjw"]
-[ext_resource type="Texture2D" uid="uid://b87u0teo7x2nc" path="res://Dialogue/Characters/NPC1.png" id="3_83yxk"]
+[ext_resource type="Texture2D" uid="uid://b87u0teo7x2nc" path="res://Dialogue/Characters/npc1.png" id="3_83yxk"]
 [ext_resource type="PackedScene" uid="uid://0xi7fk137lxy" path="res://Dialogue/Helpers/actionable.tscn" id="3_dkgmj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rv4ct"]

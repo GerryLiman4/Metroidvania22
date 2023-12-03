@@ -6,13 +6,13 @@
 [ext_resource type="Script" path="res://Script/MetSys/SavePoint.gd" id="3_ou7f6"]
 [ext_resource type="PackedScene" uid="uid://c5d0f770ww2gg" path="res://Component/Objects/Collectible.tscn" id="4_ljvb3"]
 [ext_resource type="PackedScene" uid="uid://2ll1y82jd68q" path="res://Component/NPC/NPCSprite.tscn" id="5_0miqh"]
-[ext_resource type="Texture2D" uid="uid://b87u0teo7x2nc" path="res://Dialogue/Characters/NPC1.png" id="6_13gr0"]
+[ext_resource type="Texture2D" uid="uid://copcg2xewdtet" path="res://Dialogue/Characters/npc1.png" id="6_13gr0"]
 [ext_resource type="PackedScene" uid="uid://0xi7fk137lxy" path="res://Dialogue/Helpers/actionable.tscn" id="7_n01up"]
 [ext_resource type="Resource" uid="uid://c8rfljvtnn5ce" path="res://Dialogue/Dialogue/main.dialogue" id="8_my7k8"]
-[ext_resource type="Texture2D" uid="uid://fjjrt2718lbd" path="res://Dialogue/Characters/NPC5.png" id="9_hcrlf"]
-[ext_resource type="Texture2D" uid="uid://b66fk1r407rp" path="res://Dialogue/Characters/NPC3.png" id="11_nioqo"]
-[ext_resource type="Texture2D" uid="uid://bxapikj8sr3u0" path="res://Dialogue/Characters/NPC4.png" id="12_pxx1y"]
-[ext_resource type="Texture2D" uid="uid://c1qbies0emu6k" path="res://Dialogue/Characters/NPC6.png" id="13_vkwc1"]
+[ext_resource type="Texture2D" uid="uid://dho8uh0yqhgtk" path="res://Dialogue/Characters/npc5.png" id="9_hcrlf"]
+[ext_resource type="Texture2D" uid="uid://bb4wubkvaivf5" path="res://Dialogue/Characters/npc3.png" id="11_nioqo"]
+[ext_resource type="Texture2D" uid="uid://j5qpetfoyrv5" path="res://Dialogue/Characters/npc4.png" id="12_pxx1y"]
+[ext_resource type="Texture2D" uid="uid://c6ec1xu873u4h" path="res://Dialogue/Characters/npc6.png" id="13_vkwc1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4rbcf"]
 radius = 32.0
