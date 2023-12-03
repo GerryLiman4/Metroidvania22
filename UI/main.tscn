@@ -37,8 +37,7 @@ text = "Game"
 
 [node name="Label2" type="Label" parent="Menu"]
 layout_mode = 2
-text = "Level Test
-"
+text = "Level Test"
 
 [node name="Label3" type="Label" parent="Menu"]
 layout_mode = 2
@@ -46,8 +45,7 @@ text = "Tilemap Test"
 
 [node name="Label4" type="Label" parent="Menu"]
 layout_mode = 2
-text = "Intro
-"
+text = "Intro"
 
 [node name="Label5" type="Label" parent="Menu"]
 layout_mode = 2
