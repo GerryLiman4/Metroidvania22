@@ -2,7 +2,7 @@ extends Node
 
 @onready var music_player = $AudioStreamPlayer
 
-@onready var main_menu_loop : AudioStreamOggVorbis = preload("res://UI/cowboy.ogg")
+@onready var main_menu_loop : AudioStreamOggVorbis = preload("res://Resources/Audio/Music/intro_cowboy.ogg")
 
 
 func _ready():

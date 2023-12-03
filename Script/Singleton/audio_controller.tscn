@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bpja1pjqdfudi"]
 
 [ext_resource type="Script" path="res://Script/Singleton/AudioController.gd" id="1_41b0e"]
-[ext_resource type="AudioStream" uid="uid://dse2e1toba5dr" path="res://UI/cowboy.ogg" id="2_mvdj0"]
+[ext_resource type="AudioStream" uid="uid://dse2e1toba5dr" path="res://Resources/Audio/Music/intro_cowboy.ogg" id="2_mvdj0"]
 
 [node name="AudioController" type="Node"]
 script = ExtResource("1_41b0e")
