@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmrsogoa8w6o"]
+[gd_scene load_steps=4 format=3 uid="uid://dmrsogoa8w6o"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_0i14d"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_biwdb"]
 [ext_resource type="PackedScene" uid="uid://c5d0f770ww2gg" path="res://Component/Objects/Collectible.tscn" id="3_0hvcf"]
-[ext_resource type="PackedScene" uid="uid://bq6ll2apombgy" path="res://Component/Objects/save_point.tscn" id="4_xjktb"]
 
 [node name="Map" type="Node2D"]
 
@@ -15,6 +14,3 @@ layer_1/tile_data = PackedInt32Array(1572864, 393216, 11, 1638400, 131072, 14, 1
 
 [node name="Collectible" parent="." instance=ExtResource("3_0hvcf")]
 position = Vector2(55, 441)
-
-[node name="SavePoint" parent="." instance=ExtResource("4_xjktb")]
-position = Vector2(762, 244)
