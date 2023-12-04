@@ -246,8 +246,8 @@ func take_aim(aim_position):
 		call_add_child(bullet)
 		
 		var shootSFX := ["shoot1", "shoot2", "shoot3"]
-		var randomKey = shootSFX[randi() % shootSFX.size()]
-	
+		var randomKey = shootSFX[randi() % shootSFX.size() - 1]
+		print(audioScenes[randomKey])
 		if randomKey in audioScenes:
 			audio_stream_player.stream = audioScenes[randomKey]
 			audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
