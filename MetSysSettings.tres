@@ -7,5 +7,5 @@
 script = ExtResource("1_ppqvh")
 theme = ExtResource("2_ikdtr")
 map_root_folder = "res://Component/Maps/"
-in_game_cell_size = Vector2(640, 480)
+in_game_cell_size = Vector2(1280, 960)
 collectible_list = Array[Dictionary]([])
