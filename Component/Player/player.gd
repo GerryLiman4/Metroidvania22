@@ -2,12 +2,20 @@ extends CharacterBody2D
 
 class_name Player
 
-@onready var actionable_finder = $AnimatedSprite2D/Direction/ActionableFinder
-
 @export var audio_player : AudioStreamPlayer
 
 @export var character_state : StateChart
 @export var current_state : CharacterStateId.Id
+
+@onready var audio_stream_player = $AudioStreamPlayer
+@onready var actionable_finder = $AnimatedSprite2D/Direction/ActionableFinder
+
+var audioScenes := {
+	"jump" : preload("res://Resources/Audio/SFX/jump.ogg"),
+	"shoot1" : preload("res://Resources/Audio/SFX/Player/bullet1.ogg"),
+	"shoot2" : preload("res://Resources/Audio/SFX/Player/bullet2.ogg"),
+	"shoot3" : preload("res://Resources/Audio/SFX/Player/bullet3.ogg")
+}
 
 const GRAVITY : float = 600.0
 const WALK_SPEED : float = 360.0
@@ -135,6 +143,9 @@ func get_jump_input() :
 	if Input.is_action_pressed("Jump") == true and is_on_floor() == true :
 		velocity.y = JUMP_VELOCITY
 		#SoundManager.play_clip(sound_player,SoundManager.SOUND_JUMP)
+		audio_stream_player.stream = audioScenes["jump"]
+		audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
+		audio_stream_player.play()
 
 func get_dash_input() -> bool :
 	if Input.is_action_pressed("Dash") == true :
@@ -233,6 +244,16 @@ func take_aim(aim_position):
 		bullet.global_position = shooter.global_position
 		bullet.launch($AnimatedSprite2D/Arm/Marker2D.global_position, Vector2.LEFT.rotated(deg_to_rad(arm_model.rotation_degrees)), 2000)
 		call_add_child(bullet)
+		
+		var shootSFX := ["shoot1", "shoot2", "shoot3"]
+		var randomKey = shootSFX[randi() % shootSFX.size()]
+	
+		if randomKey in audioScenes:
+			audio_stream_player.stream = audioScenes[randomKey]
+			audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
+			audio_stream_player.play()
+		else:
+			print(randomKey + " not found in audioScenes")
 
 #endregion
 

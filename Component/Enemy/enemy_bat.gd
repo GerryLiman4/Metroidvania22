@@ -3,15 +3,45 @@ extends BaseEnemy
 @export var navigation_agent : NavigationAgent2D
 @export var accel_speed : int = 10
 
+@onready var audio_stream_player = $AudioStreamPlayer
+
+var audioScenes := {
+	"bat_screech1" : preload("res://Resources/Audio/SFX/Enemy/Bat/Batnoise-001.ogg"),
+	"bat_screech2" : preload("res://Resources/Audio/SFX/Enemy/Bat/Batnoise-001.ogg"),
+	"bat_dead1" : preload("res://Resources/Audio/SFX/Enemy/Enemy-001.ogg"),
+	"bat_dead2" : preload("res://Resources/Audio/SFX/Enemy/Enemy-001.ogg")
+}
+
+
 func _ready():
 	health.on_get_damaged.connect(on_get_damaged)
 	health.on_dead.connect(on_dead)
 
 func on_get_damaged(direction : Vector2):
-	return
+	var enemyHurtSFXKeys := ["bat_screech1", "bat_screech2"]
+	var randomKey = enemyHurtSFXKeys[randi() % enemyHurtSFXKeys.size()]
+	
+	if randomKey in audioScenes && audio_stream_player.playing == false:
+		audio_stream_player.stream = audioScenes[randomKey]
+		audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
+		audio_stream_player.play()
+		await audio_stream_player.finished
+	else:
+		print(randomKey + " not found in audioScenes, or SFX already playing")
 
 func on_dead():
+	var enemyDeadSFXKeys := ["bat_dead1", "bat_dead2"]
+	var randomKey = enemyDeadSFXKeys[randi() % enemyDeadSFXKeys.size()]
+	
+	if randomKey in audioScenes:
+		audio_stream_player.stream = audioScenes[randomKey]
+		audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
+		audio_stream_player.play()
+		await audio_stream_player.finished
+	else:
+		print(randomKey + " not found in audioScenes")
 	self.queue_free()
+		
 	
 func calculate_gravity() :
 	velocity.y = clampf(velocity.y, JUMP_VELOCITY, MAX_FALL)

@@ -130,4 +130,6 @@ target_position = Vector2(-250, 0)
 [node name="JumpTimer" type="Timer" parent="." index="7"]
 wait_time = 1.5
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="8"]
+
 [connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]

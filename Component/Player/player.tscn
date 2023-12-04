@@ -274,6 +274,9 @@ initial_node_to_watch = NodePath("../StateChart")
 [node name="WallJumpTimer" type="Timer" parent="."]
 wait_time = 0.35
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
 [connection signal="state_entered" from="StateChart/ParallelState/CharacterState/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_exited" from="StateChart/ParallelState/CharacterState/Idle" to="." method="_on_idle_state_exited"]
 [connection signal="state_input" from="StateChart/ParallelState/CharacterState/Idle" to="." method="_on_idle_state_input"]
