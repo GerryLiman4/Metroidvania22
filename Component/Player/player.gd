@@ -333,7 +333,7 @@ func _on_jump_state_exited():
 	pass # Replace with function body.
 
 func _on_jump_state_input(event):
-	if can_double_jump == true and Input.is_action_just_pressed("a") == true :
+	if can_double_jump == true and Input.is_action_just_pressed("Jump") == true :
 		switch_state(CharacterStateId.Id.DOUBLEJUMP)
 		return
 
@@ -355,7 +355,7 @@ func _on_fall_state_exited():
 
 func _on_fall_state_input(event):
 	# later if there is double jump
-	if can_double_jump == true and Input.is_action_just_pressed("a") == true :
+	if can_double_jump == true and Input.is_action_just_pressed("Jump") == true :
 		switch_state(CharacterStateId.Id.DOUBLEJUMP)
 		return[]
 
