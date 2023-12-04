@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://dh2v1mpv02wq0"]
+[gd_scene load_steps=18 format=3 uid="uid://dh2v1mpv02wq0"]
 
 [ext_resource type="Script" path="res://Component/Player/player.gd" id="1_x2mr2"]
 [ext_resource type="PackedScene" uid="uid://3jirgrp83pq" path="res://Component/player_bullet.tscn" id="2_1l3hs"]
+[ext_resource type="PackedScene" uid="uid://cmuds76iodbtf" path="res://Component/upgraded_player_bullet.tscn" id="3_5k2n6"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="3_51okl"]
 [ext_resource type="Texture2D" uid="uid://dx7ciwflmpexa" path="res://Resources/MainCharacter/arm pistol front.png" id="3_wcq8k"]
 [ext_resource type="Texture2D" uid="uid://b7nlnr3m1ynt3" path="res://Resources/MainCharacter/head 128.png" id="4_bqkva"]
@@ -20,17 +21,20 @@ radius = 41.0122
 radius = 32.0
 height = 126.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mqoqd"]
+size = Vector2(108, 132)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_psl57"]
 radius = 32.0
 height = 126.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("audio_player", "character_state", "wall_jump_timer", "animation_player", "arm_model", "arm_sprite", "head_model", "head_sprite", "shooter", "player_health") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("audio_player", "character_state", "wall_jump_timer", "animation_player", "arm_model", "arm_sprite", "head_model", "head_sprite", "shooter", "player_health", "charge_hitbox") groups=["Player"]]
 collision_layer = 34
 script = ExtResource("1_x2mr2")
 audio_player = NodePath("SoundPlayer")
 character_state = NodePath("StateChart")
 face_direction = 1
-wall_jump_timer = NodePath("WallJumpTimer")
+wall_jump_timer = NodePath("Timers/WallJumpTimer")
 animation_player = NodePath("AnimatedSprite2D")
 arm_model = NodePath("ArmModel")
 arm_sprite = NodePath("AnimatedSprite2D/Arm")
@@ -39,6 +43,10 @@ head_sprite = NodePath("AnimatedSprite2D/HeadModel/Head")
 bullet_pref = ExtResource("2_1l3hs")
 shooter = NodePath("ArmModel/Shooter")
 player_health = NodePath("Hitbox")
+charge_hitbox = NodePath("ChargeHitbox")
+has_unlocked_charge = true
+upgraded_bullet_pref = ExtResource("3_5k2n6")
+has_unlocked_upgraded_gun = true
 
 [node name="ArmModel" type="Sprite2D" parent="."]
 position = Vector2(18, -4)
@@ -81,10 +89,21 @@ debug_color = Color(0.819608, 0.396078, 0.2, 0.419608)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_g2ocb")
 
-[node name="Hitbox" type="Area2D" parent="." groups=["health", "player"]]
+[node name="ChargeHitbox" type="Area2D" parent="."]
+visible = false
+position = Vector2(0, -1)
+collision_layer = 64
+collision_mask = 32
+
+[node name="Hitbox" type="CollisionShape2D" parent="ChargeHitbox"]
+shape = SubResource("RectangleShape2D_mqoqd")
+debug_color = Color(0.85098, 0, 0.894118, 0.419608)
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("invincible_timer") groups=["health", "player"]]
 collision_layer = 34
 collision_mask = 4
 script = ExtResource("6_o0leh")
+invincible_timer = NodePath("../Timers/InvincibleTimer")
 faction_id = 1
 
 [node name="hitbox" type="CollisionShape2D" parent="Hitbox"]
@@ -271,12 +290,18 @@ offset_right = 236.0
 offset_bottom = -81.0
 initial_node_to_watch = NodePath("../StateChart")
 
-[node name="WallJumpTimer" type="Timer" parent="."]
-wait_time = 0.35
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"SFX"
 
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="WallJumpTimer" type="Timer" parent="Timers"]
+wait_time = 0.35
+
+[node name="InvincibleTimer" type="Timer" parent="Timers"]
+wait_time = 2.25
+
+[connection signal="area_entered" from="ChargeHitbox" to="." method="_on_charge_hitbox_area_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/CharacterState/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_exited" from="StateChart/ParallelState/CharacterState/Idle" to="." method="_on_idle_state_exited"]
 [connection signal="state_input" from="StateChart/ParallelState/CharacterState/Idle" to="." method="_on_idle_state_input"]
@@ -314,4 +339,5 @@ bus = &"SFX"
 [connection signal="state_exited" from="StateChart/ParallelState/CharacterState/Dash" to="." method="_on_dash_state_exited"]
 [connection signal="state_input" from="StateChart/ParallelState/CharacterState/Dash" to="." method="_on_dash_state_input"]
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CharacterState/Dash" to="." method="_on_dash_state_physics_processing"]
-[connection signal="timeout" from="WallJumpTimer" to="." method="_on_wall_jump_timer_timeout"]
+[connection signal="timeout" from="Timers/WallJumpTimer" to="." method="_on_wall_jump_timer_timeout"]
+[connection signal="timeout" from="Timers/InvincibleTimer" to="Hitbox" method="_on_invincible_timer_timeout"]

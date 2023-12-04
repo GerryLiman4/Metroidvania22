@@ -59,6 +59,15 @@ var reset_position : Vector2
 @export_category("Health")
 @export var player_health : Health
 
+@export_category("Charge Ability")
+@export var charge_hitbox : Area2D
+@export var has_unlocked_charge : bool = false
+@export var charge_damage : int = 1
+
+@export_category("Upgraded Gun")
+@export var upgraded_bullet_pref : PackedScene
+@export var has_unlocked_upgraded_gun : bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player_health.on_get_damaged.connect(on_get_damaged)
@@ -240,7 +249,13 @@ func take_aim(aim_position):
 		$AnimatedSprite2D/Arm.rotation_degrees = arm_model.rotation_degrees
 	
 	if Input.is_action_just_pressed("Shoot") == true : 
-		var bullet : Bullet = bullet_pref.instantiate()
+		var bullet : Bullet 
+		
+		if has_unlocked_upgraded_gun == true :
+			bullet = upgraded_bullet_pref.instantiate()
+		else :
+			bullet = bullet_pref.instantiate()
+		
 		bullet.global_position = shooter.global_position
 		bullet.launch($AnimatedSprite2D/Arm/Marker2D.global_position, Vector2.LEFT.rotated(deg_to_rad(arm_model.rotation_degrees)), 2000)
 		call_add_child(bullet)
@@ -418,6 +433,9 @@ func _on_dash_state_entered():
 	# set timestamp for cooldown
 	dash_cooldown_timestamp = object_timer
 	
+	# check charge ability
+	set_charge(true)
+	
 	if face_direction == FACING.LEFT :
 		velocity.x = -DASH_SPEED
 	else :
@@ -427,6 +445,9 @@ func _on_dash_state_entered():
 
 func _on_dash_state_exited():
 	dash_timer = 0.25
+	
+	set_charge(false)
+	
 	pass # Replace with function body.
 
 func _on_dash_state_input(event):
@@ -440,8 +461,6 @@ func _on_dash_state_physics_processing(delta):
 		velocity.x = 0
 		switch_state(CharacterStateId.Id.IDLE) 
 		return
-
-
 
 func _on_wall_latch_state_entered():
 	velocity = Vector2.ZERO
@@ -499,8 +518,18 @@ func _on_wall_jump_state_physics_processing(delta):
 func _on_wall_jump_timer_timeout():
 	switch_state(CharacterStateId.Id.IDLE)
 
+func _on_charge_hitbox_area_entered(area):
+	
+	if area.is_in_group("health") == true :
+		var damage : int = charge_damage
+		
+		area.get_damaged(damage,player_health.faction_id, global_position)
 
-
-
-
-
+#region special ability / unlocked skill 
+func set_charge(is_active : bool) :
+	if has_unlocked_charge == is_active :
+		return
+	
+	charge_hitbox.hide()
+	player_health.is_invincible = is_active
+#endregion

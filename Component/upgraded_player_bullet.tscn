@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmuds76iodbtf"]
+
+[ext_resource type="PackedScene" uid="uid://3jirgrp83pq" path="res://Component/player_bullet.tscn" id="1_0sbv6"]
+[ext_resource type="Script" path="res://Component/upgraded_player_bullet.gd" id="2_oyr31"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5ew"]
+size = Vector2(36, 20)
+
+[node name="UpgradedPlayerBullet" instance=ExtResource("1_0sbv6")]
+script = ExtResource("2_oyr31")
+bullet_speed = 5.0
+bullet_damage = 2
+
+[node name="Model" parent="." index="0"]
+scale = Vector2(0.3, 0.156)
+
+[node name="Hitbox" parent="." index="2"]
+shape = SubResource("RectangleShape2D_jh5ew")
+
+[node name="Line2D" type="Line2D" parent="." index="3"]
+default_color = Color(0.513726, 1, 1, 1)
