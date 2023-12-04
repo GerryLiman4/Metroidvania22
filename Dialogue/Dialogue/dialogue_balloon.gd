@@ -44,11 +44,16 @@ var dialogue_line: DialogueLine:
 			await animation_player.animation_finished
 
 		# The dialogue has finished so close the balloon
+		'''
 		if not next_dialogue_line:
 			queue_free()
 			return
-
+		'''
 		dialogue_line = next_dialogue_line
+		
+		# Manage Balloon Size & position of next line
+		var balloon_size = Vector2.ZERO
+		var next_position = Vector2(30, 20)
 
 		character_label.visible = not dialogue_line.character.is_empty()
 		character_label.text = tr(dialogue_line.character, "dialogue")
