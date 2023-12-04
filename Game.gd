@@ -22,6 +22,7 @@ var generated_rooms: Array[Vector3i]
 var events: Array[String]
 
 func _ready() -> void:
+	randomize()
 	# Make sure MetSys is in initial state.
 	# Does not matter in this project, but normally this ensures that the game works correctly when you exit to menu and start again.
 	MetSys.reset_state()

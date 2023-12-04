@@ -36,7 +36,7 @@ general/balloon_path="res://Dialogue/Dialogue/balloon.tscn"
 [display]
 
 window/size/viewport_width=1280
-window/size/viewport_height=760
+window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 
 [dotnet]

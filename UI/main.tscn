@@ -75,6 +75,7 @@ grow_horizontal = 2
 text = "Save Reset"
 
 [node name="MessageTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="activated" from="Menu" to="." method="_on_menu_activated"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
