@@ -23,16 +23,8 @@ scale = Vector2(0.5, 0.5)
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(640, 384)
 
-[node name="EnemyBat" parent="." node_paths=PackedStringArray("navigation_agent", "animated_sprite", "health", "enemy_state", "timer_to_patrol", "ground_checker", "player_checker", "target") instance=ExtResource("3_wvudd")]
+[node name="EnemyBat" parent="." instance=ExtResource("3_wvudd")]
 position = Vector2(768, 521)
-navigation_agent = NodePath("")
-animated_sprite = NodePath("")
-health = NodePath("")
-enemy_state = NodePath("")
-timer_to_patrol = NodePath("")
-ground_checker = NodePath("")
-player_checker = NodePath("")
-target = NodePath("")
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
 vertices = PackedVector2Array(344, 256, 347, 354, 407, 356, 409, 384, 520, 390, 517, 365, 549, 352, 558, 277, 457, 194, 347, 221)
