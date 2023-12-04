@@ -111,6 +111,7 @@ func set_save_data(data := {}):
 	save_data.set_data(data)
 
 func visit_cell(coords: Vector3i):
+
 	save_data.explore_cell(coords)
 	
 	var previous_map := map_data.get_assigned_scene_at(Vector3i(last_player_position.x, last_player_position.y, current_layer))
