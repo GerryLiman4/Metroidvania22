@@ -18,17 +18,17 @@
 radius = 41.0122
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2ocb"]
-radius = 32.0
+radius = 29.0
 height = 126.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mqoqd"]
 size = Vector2(108, 132)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_psl57"]
-radius = 32.0
+radius = 29.0
 height = 126.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("audio_player", "character_state", "wall_jump_timer", "animation_player", "arm_model", "arm_sprite", "head_model", "head_sprite", "shooter", "player_health", "charge_hitbox") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("audio_player", "character_state", "wall_jump_timer", "animation_player", "arm_model", "arm_sprite", "head_model", "head_sprite", "shooter", "player_health", "charge_area", "charge_hitbox", "collision_box", "hit_box", "leg_raycast_left", "leg_raycast_right") groups=["Player"]]
 collision_layer = 34
 script = ExtResource("1_x2mr2")
 audio_player = NodePath("SoundPlayer")
@@ -43,10 +43,15 @@ head_sprite = NodePath("AnimatedSprite2D/HeadModel/Head")
 bullet_pref = ExtResource("2_1l3hs")
 shooter = NodePath("ArmModel/Shooter")
 player_health = NodePath("Hitbox")
-charge_hitbox = NodePath("ChargeHitbox")
+charge_area = NodePath("ChargeHitbox")
+charge_hitbox = NodePath("ChargeHitbox/Hitbox")
 has_unlocked_charge = true
 upgraded_bullet_pref = ExtResource("3_5k2n6")
 has_unlocked_upgraded_gun = true
+collision_box = NodePath("CollisionShape2D")
+hit_box = NodePath("Hitbox/hitbox")
+leg_raycast_left = NodePath("LegCastLeft")
+leg_raycast_right = NodePath("LegCastRight")
 
 [node name="ArmModel" type="Sprite2D" parent="."]
 position = Vector2(18, -4)
@@ -97,6 +102,7 @@ collision_mask = 32
 
 [node name="Hitbox" type="CollisionShape2D" parent="ChargeHitbox"]
 shape = SubResource("RectangleShape2D_mqoqd")
+disabled = true
 debug_color = Color(0.85098, 0, 0.894118, 0.419608)
 
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("invincible_timer") groups=["health", "player"]]
@@ -300,6 +306,14 @@ wait_time = 0.35
 
 [node name="InvincibleTimer" type="Timer" parent="Timers"]
 wait_time = 2.25
+
+[node name="LegCastLeft" type="RayCast2D" parent="."]
+position = Vector2(0, 56)
+target_position = Vector2(-35, 0)
+
+[node name="LegCastRight" type="RayCast2D" parent="."]
+position = Vector2(0, 56)
+target_position = Vector2(35, 0)
 
 [connection signal="area_entered" from="ChargeHitbox" to="." method="_on_charge_hitbox_area_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/CharacterState/Idle" to="." method="_on_idle_state_entered"]

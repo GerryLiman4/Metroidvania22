@@ -95,4 +95,8 @@ func _on_patroling_state_physics_processing(delta):
 	move_and_slide()
 
 func _on_visible_on_screen_notifier_2d_screen_entered():
+	var targets = get_tree().get_nodes_in_group("Player")
+	if targets.size() > 0 :
+		target = targets[0]
+		
 	switch_state(STATE_CONTROL.CHASING,STATE_EVENT.PLAYER_ENTERED)

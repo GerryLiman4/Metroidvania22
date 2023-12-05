@@ -18,9 +18,9 @@ var audioScenes := {
 }
 
 const GRAVITY : float = 600.0
-const WALK_SPEED : float = 360.0
-const MAX_FALL : float = 400.0
-const JUMP_VELOCITY : float = -350.0
+@export var WALK_SPEED : float = 360.0
+const MAX_FALL : float = 450.0
+@export var JUMP_VELOCITY : float = -350.0
 const CRAWL_SPEED : float = 180.0
 const DASH_SPEED : float = 1200.0
 const DOUBLE_JUMP_VELOCITY : float = -350.0
@@ -60,13 +60,24 @@ var reset_position : Vector2
 @export var player_health : Health
 
 @export_category("Charge Ability")
-@export var charge_hitbox : Area2D
+@export var charge_area : Area2D
+@export var charge_hitbox : CollisionShape2D
 @export var has_unlocked_charge : bool = false
 @export var charge_damage : int = 1
 
 @export_category("Upgraded Gun")
 @export var upgraded_bullet_pref : PackedScene
 @export var has_unlocked_upgraded_gun : bool = false
+
+@export_category("Crawl Ability")
+@export var crawl_hitbox_scale : float = 0.5
+@export var original_crawl_hitbox_scale : float = 1
+@export var collision_box : CollisionShape2D
+@export var hit_box : CollisionShape2D
+
+@export_category("Latch Ability")
+@export var leg_raycast_left : RayCast2D
+@export var leg_raycast_right : RayCast2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -214,13 +225,22 @@ func check_crawl() -> bool :
 	return false
 
 func check_latch() -> bool :
+	if leg_raycast_left.is_colliding() == true && leg_raycast_right.is_colliding() == true :
+		return false
+	
 	if is_on_wall_only() == true:
 		match get_which_wall_collided() :
 			"left" :
+				if leg_raycast_left.is_colliding() == false :
+					return false
+					
 				if Input.is_action_pressed("move_left") :
 					wall_latch = FACING.LEFT
 					return true
 			"right" :
+				if leg_raycast_right.is_colliding() == false :
+					return false
+					
 				if Input.is_action_pressed("move_right")  :
 					wall_latch = FACING.RIGHT
 					return true
@@ -410,12 +430,21 @@ func _on_double_jump_state_physics_processing(delta):
 
 
 func _on_crawl_state_entered():
+	velocity.x = 0
 	is_crawling = true
+	collision_box.scale.y = crawl_hitbox_scale 
+	hit_box.scale.y = crawl_hitbox_scale 
+	collision_box.position.y = 30
+	hit_box.position.y = 30
 	pass # Replace with function body.
 
 func _on_crawl_state_exited():
 	# on exit return collider to normal size
 	is_crawling = false
+	collision_box.scale.y = original_crawl_hitbox_scale
+	hit_box.scale.y = original_crawl_hitbox_scale
+	collision_box.position.y = 0
+	hit_box.position.y = 0
 	pass # Replace with function body.
 
 func _on_crawl_state_input(event):
@@ -483,6 +512,9 @@ func _on_wall_latch_state_input(event):
 	if Input.is_action_just_pressed("Crawl") :
 		switch_state(CharacterStateId.Id.IDLE)
 	
+	if Input.is_action_just_pressed("move_down") :
+		switch_state(CharacterStateId.Id.IDLE)
+	
 	if Input.is_action_just_pressed("Dash") :
 		switch_state(CharacterStateId.Id.DASH)
 	
@@ -501,17 +533,18 @@ func _on_wall_jump_state_entered():
 		true_velocity.x *= -1 
 	
 	velocity = true_velocity
-	wall_jump_timer.start(wall_jump_timer.wait_time)
+	#wall_jump_timer.start(wall_jump_timer.wait_time)
 
 func _on_wall_jump_state_exited():
 	velocity = Vector2.ZERO
-	wall_jump_timer.stop()
+	#wall_jump_timer.stop()
 
 func _on_wall_jump_state_input(event):
 	pass # Replace with function body.
 
 func _on_wall_jump_state_physics_processing(delta):
-	pass # Replace with function body.
+	if is_on_floor() == true or is_on_wall_only() == true :
+		switch_state(CharacterStateId.Id.IDLE)
 
 #endregion
 
@@ -519,7 +552,6 @@ func _on_wall_jump_timer_timeout():
 	switch_state(CharacterStateId.Id.IDLE)
 
 func _on_charge_hitbox_area_entered(area):
-	
 	if area.is_in_group("health") == true :
 		var damage : int = charge_damage
 		
@@ -527,9 +559,15 @@ func _on_charge_hitbox_area_entered(area):
 
 #region special ability / unlocked skill 
 func set_charge(is_active : bool) :
-	if has_unlocked_charge == is_active :
+	if has_unlocked_charge == false :
 		return
 	
-	charge_hitbox.hide()
+	if is_active == true :
+		charge_area.show()
+		charge_hitbox.disabled = false
+	else :
+		charge_area.hide()
+		charge_hitbox.disabled = true
+	
 	player_health.is_invincible = is_active
 #endregion
