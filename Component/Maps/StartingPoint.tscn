@@ -155,7 +155,4 @@ dialogue_start = "NPC6"
 shape = SubResource("CircleShape2D_vlp1k")
 
 [node name="SavePoint" parent="." instance=ExtResource("12_l2mrd")]
-position = Vector2(631, 603)
-
-[node name="SavePoint2" parent="." instance=ExtResource("12_l2mrd")]
-position = Vector2(3991, 603)
+position = Vector2(2914, 608)
