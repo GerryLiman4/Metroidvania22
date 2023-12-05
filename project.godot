@@ -48,17 +48,6 @@ project/assembly_name="Metroidvania22"
 
 enabled=PackedStringArray("res://addons/MetroidvaniaSystem/plugin.cfg", "res://addons/dialogue_manager/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg")
 
-[file_customization]
-
-folder_colors={
-"res://Component/": "red",
-"res://Dialogue/": "purple",
-"res://Resources/": "green",
-"res://Script/": "orange",
-"res://UI/": "blue",
-"res://godot_state_charts_examples/": "purple"
-}
-
 [input]
 
 ui_accept={
