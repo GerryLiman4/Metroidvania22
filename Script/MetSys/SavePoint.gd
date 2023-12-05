@@ -14,8 +14,13 @@ func on_body_entered(body: Node2D) -> void:
 	var save_data := Game.get_singleton().get_save_data()
 	# Merge it with the Dicionary from MetSys.
 	save_data.merge(MetSys.get_save_data())
-	# Save the file.
-	FileAccess.open("user://save_data.sav", FileAccess.WRITE).store_var(save_data)
+	
+	print(save_data)
+	print(MetSys.get_save_data())
+	
+	if FileAccess.file_exists("user://save_data.sav"):
+		# Save the file.
+		FileAccess.open("user://save_data.sav", FileAccess.WRITE).store_var(save_data)
 	# Starting coords for the delta vector feature.
 	Game.get_singleton().reset_map_starting_coords()
 	
