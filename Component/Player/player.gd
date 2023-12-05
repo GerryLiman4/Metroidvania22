@@ -217,11 +217,11 @@ func check_latch() -> bool :
 	if is_on_wall_only() == true:
 		match get_which_wall_collided() :
 			"left" :
-				if Input.is_action_pressed("left") :
+				if Input.is_action_pressed("move_left") :
 					wall_latch = FACING.LEFT
 					return true
 			"right" :
-				if Input.is_action_pressed("right")  :
+				if Input.is_action_pressed("move_right")  :
 					wall_latch = FACING.RIGHT
 					return true
 			"none" :
