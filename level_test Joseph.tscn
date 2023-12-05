@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_nhhln"]
 [ext_resource type="PackedScene" uid="uid://dh2v1mpv02wq0" path="res://Component/Player/player.tscn" id="2_6yt74"]
-[ext_resource type="PackedScene" uid="uid://bpxfe7un24met" path="res://Component/Enemy/enemy_bat.tscn" id="3_wvudd"]
+[ext_resource type="PackedScene" path="res://Component/Enemy/enemy_bat.tscn" id="3_wvudd"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hcrdx"]
 vertices = PackedVector2Array(150, 308, 49, 299, 59, 265, 146, 289, 177, 389, 264, 280, 246, 387, 65, 102, 60, 59, 1220, 59, 219, 109, 327, 245, 1231, 295, 1078, 376, 967, 470, 523, 695, 57, 710, 58, 502, 246, 498, 612, 585, 734, 576, 1134, 628, 1202, 664, 1218, 680, 1212, 702, 1120, 703, 871, 597, 965, 573)

@@ -19,7 +19,7 @@ func _ready():
 
 func on_get_damaged(direction : Vector2):
 	var enemyHurtSFXKeys := ["bat_screech1", "bat_screech2"]
-	var randomKey = enemyHurtSFXKeys[randi() % enemyHurtSFXKeys.size() - 1]
+	var randomKey = enemyHurtSFXKeys[randi() % enemyHurtSFXKeys.size()]
 	
 	if randomKey in audioScenes && audio_stream_player.playing == false:
 		audio_stream_player.stream = audioScenes[randomKey]
