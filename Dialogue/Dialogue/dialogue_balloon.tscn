@@ -5,9 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://0025337icgsg" path="res://Dialogue/9patchrect.png" id="2_06chx"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_reponses_menu.gd" id="3_76eux"]
 
-[sub_resource type="Animation" id="Animation_spdmn"]
-resource_name = "Disappear"
-
 [sub_resource type="Animation" id="Animation_dsvsk"]
 resource_name = "Appear"
 tracks/0/type = "value"
@@ -34,6 +31,9 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
 }
+
+[sub_resource type="Animation" id="Animation_spdmn"]
+resource_name = "Disappear"
 
 [sub_resource type="Animation" id="Animation_d0xcn"]
 length = 0.001
