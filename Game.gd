@@ -40,9 +40,13 @@ func _ready() -> void:
 			events.assign(save_data.events)
 			starting_map = save_data.current_room
 			#player.abilities.assign(save_data.abilities)
+		else:
+			MetSys.set_save_data()
 	else:
 		# If no data exists, set empty one.
 		MetSys.set_save_data()
+		var file_path = "user://save_data.sav"
+		FileAccess.open("user://save_data.sav", FileAccess.WRITE).store_var({})
 	
 	
 	# Go to the starting point.

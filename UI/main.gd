@@ -17,6 +17,8 @@ func _on_menu_activated(element) -> void:
 			SceneTransition.start_transition_to("game", true, "res://level_test.tscn")
 		"Reset Save":
 			reset_save()
+		"Toggle Music":
+			AudioController.toggle_music()
 			
 func reset_save():
 	var file_path = "user://save_data.sav"
