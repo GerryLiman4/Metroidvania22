@@ -89,7 +89,7 @@ texture = ExtResource("4_o4b5e")
 z_index = -3
 position = Vector2(-429, 333)
 scale = Vector2(0.888106, 1.12604)
-texture = ExtResource("2_l6adq")
+texture = ExtResource("4_o4b5e")
 
 [node name="TileMapBase" parent="." instance=ExtResource("1_42t0r")]
 layer_0/navigation_enabled = false
