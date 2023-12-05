@@ -5,11 +5,11 @@ extends Node
 @onready var music_menu : AudioStreamOggVorbis = preload("res://Resources/Audio/Music/intro_cowboy.ogg")
 @onready var music_town : AudioStreamOggVorbis = preload("res://Resources/Audio/Music/townsong_demo.ogg")
 
-var music_on : bool = false
+@export var music_on : bool = false
 
 func _ready():
 	#music_player.stream = main_menu_loop
-	music_player.playing = false
+	music_player.playing = music_on
 	
 	# figure out how to determine the scenes root nodes name
 	#if get_tree().is_class("MainMenu"):
