@@ -13,4 +13,4 @@ layer_1/tile_data = PackedInt32Array(1572864, 393216, 11, 1638400, 131072, 14, 1
 [node name="RoomInstance" parent="." instance=ExtResource("2_biwdb")]
 
 [node name="Collectible" parent="." instance=ExtResource("3_ga48x")]
-position = Vector2(80, 655)
+position = Vector2(96, 686)
