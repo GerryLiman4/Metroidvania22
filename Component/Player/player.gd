@@ -414,6 +414,11 @@ func _on_double_jump_state_entered():
 		velocity.y = DOUBLE_JUMP_VELOCITY
 	else :
 		velocity.y += DOUBLE_JUMP_VELOCITY
+	#region SFX
+	audio_stream_player.stream = audioScenes["jump"]
+	audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
+	audio_stream_player.play()
+	#endregion
 
 func _on_double_jump_state_exited():
 	pass
@@ -534,6 +539,11 @@ func _on_wall_jump_state_entered():
 	
 	velocity = true_velocity
 	#wall_jump_timer.start(wall_jump_timer.wait_time)
+	#region SFX
+	audio_stream_player.stream = audioScenes["jump"]
+	audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
+	audio_stream_player.play()
+	#endregion
 
 func _on_wall_jump_state_exited():
 	velocity = Vector2.ZERO
