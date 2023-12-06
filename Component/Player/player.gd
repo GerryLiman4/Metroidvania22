@@ -70,14 +70,21 @@ var reset_position : Vector2
 @export var has_unlocked_upgraded_gun : bool = false
 
 @export_category("Crawl Ability")
-@export var crawl_hitbox_scale : float = 0.5
-@export var original_crawl_hitbox_scale : float = 1
+#@export var crawl_hitbox_scale : float = 0.5
+#@export var original_crawl_hitbox_scale : float = 1
 @export var collision_box : CollisionShape2D
 @export var hit_box : CollisionShape2D
+@export var head_raycast_up_left : RayCast2D
+@export var head_raycast_up_right : RayCast2D
+@export var crawl_collision : CollisionShape2D
+@export var crawl_hitbox :CollisionShape2D
 
 @export_category("Latch Ability")
 @export var leg_raycast_left : RayCast2D
 @export var leg_raycast_right : RayCast2D
+@export var head_raycast_left : RayCast2D
+@export var head_raycast_right : RayCast2D
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -231,14 +238,14 @@ func check_latch() -> bool :
 	if is_on_wall_only() == true:
 		match get_which_wall_collided() :
 			"left" :
-				if leg_raycast_left.is_colliding() == false :
+				if leg_raycast_left.is_colliding() == false or head_raycast_left.is_colliding() == false:
 					return false
 					
 				if Input.is_action_pressed("move_left") :
 					wall_latch = FACING.LEFT
 					return true
 			"right" :
-				if leg_raycast_right.is_colliding() == false :
+				if leg_raycast_right.is_colliding() == false or head_raycast_right.is_colliding() == false:
 					return false
 					
 				if Input.is_action_pressed("move_right")  :
@@ -437,19 +444,27 @@ func _on_double_jump_state_physics_processing(delta):
 func _on_crawl_state_entered():
 	velocity.x = 0
 	is_crawling = true
-	collision_box.scale.y = crawl_hitbox_scale 
-	hit_box.scale.y = crawl_hitbox_scale 
-	collision_box.position.y = 30
-	hit_box.position.y = 30
+	crawl_collision.disabled = false
+	collision_box.disabled = true
+	hit_box.disabled = true
+	crawl_hitbox.disabled = false
+	#collision_box.scale.y = crawl_hitbox_scale 
+	#hit_box.scale.y = crawl_hitbox_scale 
+	#collision_box.position.y = 32
+	#hit_box.position.y = 32
 	pass # Replace with function body.
 
 func _on_crawl_state_exited():
 	# on exit return collider to normal size
 	is_crawling = false
-	collision_box.scale.y = original_crawl_hitbox_scale
-	hit_box.scale.y = original_crawl_hitbox_scale
-	collision_box.position.y = 0
-	hit_box.position.y = 0
+	crawl_collision.disabled = true
+	collision_box.disabled = false
+	hit_box.disabled = false
+	crawl_hitbox.disabled = true
+	#collision_box.scale.y = original_crawl_hitbox_scale
+	#hit_box.scale.y = original_crawl_hitbox_scale
+	#collision_box.position.y = 0
+	#hit_box.position.y = 0
 	pass # Replace with function body.
 
 func _on_crawl_state_input(event):
@@ -457,8 +472,10 @@ func _on_crawl_state_input(event):
 
 func _on_crawl_state_physics_processing(delta):
 	if check_crawl() == false :
-		switch_state(CharacterStateId.Id.IDLE)
-		return
+		print("left ", head_raycast_up_left.is_colliding() , "right ",head_raycast_up_right.is_colliding())
+		if head_raycast_up_left.is_colliding() != true && head_raycast_up_right.is_colliding() != true : 
+			switch_state(CharacterStateId.Id.IDLE)
+			return
 	
 	get_move_input()
 

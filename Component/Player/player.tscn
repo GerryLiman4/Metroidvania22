@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dh2v1mpv02wq0"]
+[gd_scene load_steps=20 format=3 uid="uid://dh2v1mpv02wq0"]
 
 [ext_resource type="Script" path="res://Component/Player/player.gd" id="1_x2mr2"]
 [ext_resource type="PackedScene" uid="uid://3jirgrp83pq" path="res://Component/player_bullet.tscn" id="2_1l3hs"]
@@ -21,6 +21,9 @@ radius = 41.0122
 radius = 29.0
 height = 126.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ljq2t"]
+size = Vector2(58, 62)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mqoqd"]
 size = Vector2(108, 132)
 
@@ -28,7 +31,10 @@ size = Vector2(108, 132)
 radius = 29.0
 height = 126.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("audio_player", "character_state", "wall_jump_timer", "animation_player", "arm_model", "arm_sprite", "head_model", "head_sprite", "shooter", "player_health", "charge_area", "charge_hitbox", "collision_box", "hit_box", "leg_raycast_left", "leg_raycast_right") groups=["Player"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3aknh"]
+size = Vector2(58, 62)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("audio_player", "character_state", "wall_jump_timer", "animation_player", "arm_model", "arm_sprite", "head_model", "head_sprite", "shooter", "player_health", "charge_area", "charge_hitbox", "collision_box", "hit_box", "head_raycast_up_left", "head_raycast_up_right", "crawl_collision", "crawl_hitbox", "leg_raycast_left", "leg_raycast_right", "head_raycast_left", "head_raycast_right") groups=["Player"]]
 collision_layer = 34
 script = ExtResource("1_x2mr2")
 audio_player = NodePath("SoundPlayer")
@@ -50,8 +56,14 @@ upgraded_bullet_pref = ExtResource("3_5k2n6")
 has_unlocked_upgraded_gun = true
 collision_box = NodePath("CollisionShape2D")
 hit_box = NodePath("Hitbox/hitbox")
+head_raycast_up_left = NodePath("HeadCastUpLeft")
+head_raycast_up_right = NodePath("HeadCastUpRight")
+crawl_collision = NodePath("CrawlCollision")
+crawl_hitbox = NodePath("Hitbox/crawlhitbox")
 leg_raycast_left = NodePath("LegCastLeft")
 leg_raycast_right = NodePath("LegCastRight")
+head_raycast_left = NodePath("HeadCastLeft")
+head_raycast_right = NodePath("HeadCastRight")
 
 [node name="ArmModel" type="Sprite2D" parent="."]
 position = Vector2(18, -4)
@@ -94,6 +106,11 @@ debug_color = Color(0.819608, 0.396078, 0.2, 0.419608)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_g2ocb")
 
+[node name="CrawlCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 32)
+shape = SubResource("RectangleShape2D_ljq2t")
+disabled = true
+
 [node name="ChargeHitbox" type="Area2D" parent="."]
 visible = false
 position = Vector2(0, -1)
@@ -114,6 +131,12 @@ faction_id = 1
 
 [node name="hitbox" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CapsuleShape2D_psl57")
+
+[node name="crawlhitbox" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 32)
+shape = SubResource("RectangleShape2D_3aknh")
+disabled = true
+debug_color = Color(0.815686, 0.392157, 0.301961, 0.419608)
 
 [node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
 
@@ -314,6 +337,27 @@ target_position = Vector2(-35, 0)
 [node name="LegCastRight" type="RayCast2D" parent="."]
 position = Vector2(0, 56)
 target_position = Vector2(35, 0)
+
+[node name="HeadCastLeft" type="RayCast2D" parent="."]
+position = Vector2(0, -60)
+target_position = Vector2(-35, 0)
+
+[node name="HeadCastRight" type="RayCast2D" parent="."]
+modulate = Color(1, 0.596078, 0.431373, 1)
+position = Vector2(0, -60)
+target_position = Vector2(35, 0)
+
+[node name="HeadCastUpLeft" type="RayCast2D" parent="."]
+modulate = Color(1, 0.596078, 0.431373, 1)
+position = Vector2(-22, -38)
+target_position = Vector2(0, -25)
+hit_from_inside = true
+
+[node name="HeadCastUpRight" type="RayCast2D" parent="."]
+modulate = Color(1, 0.596078, 0.431373, 1)
+position = Vector2(24, -38)
+target_position = Vector2(0, -25)
+hit_from_inside = true
 
 [connection signal="area_entered" from="ChargeHitbox" to="." method="_on_charge_hitbox_area_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/CharacterState/Idle" to="." method="_on_idle_state_entered"]
