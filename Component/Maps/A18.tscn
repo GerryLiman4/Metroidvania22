@@ -17,7 +17,4 @@ position = Vector2(154.203, 1555.78)
 [node name="Collectible2" parent="TileMapBase" instance=ExtResource("3_rdlm2")]
 position = Vector2(606.536, 1084.14)
 
-[node name="Collectible3" parent="TileMapBase" instance=ExtResource("3_rdlm2")]
-position = Vector2(909.363, 255.713)
-
 [node name="RoomInstance" parent="." instance=ExtResource("2_dnydf")]
