@@ -23,7 +23,7 @@ const MAX_FALL : float = 450.0
 @export var JUMP_VELOCITY : float = -350.0
 const CRAWL_SPEED : float = 180.0
 const DASH_SPEED : float = 1200.0
-const DOUBLE_JUMP_VELOCITY : float = -350.0
+@export var DOUBLE_JUMP_VELOCITY : float = -220.0
 const DASH_COOLDOWN : float = 1.0
 const WALL_JUMP_VELOCITY : Vector2 = Vector2(550.0,-250.0)
 
