@@ -107,6 +107,21 @@ func travelto_map(map_path: String):
 		player.position -= MetSys.get_current_room_instance().get_room_position_offset(prev_map)
 		player.on_enter()
 
+	var map_name = map.get_name().left(1).to_lower()
+	var prev_map_name = prev_map.get_name().left(1).to_lower()
+
+	var music : String
+	
+	if map_name != prev_map_name:
+		
+		match map_name:
+			"s":
+				music = "town"
+			"m":
+				music = "abyss"
+
+		AudioController.change_music(music)
+
 	# Find the save point and teleport the player to it, to start at the save point.
 	var start := map.get_node_or_null(^"SavePoint")
 	if start:

@@ -160,5 +160,4 @@ position = Vector2(2914, 608)
 
 [node name="Portal" parent="." instance=ExtResource("16_8jr2g")]
 position = Vector2(2580, 557)
-collision_mask = 2
 target_map = "A2.tscn"
