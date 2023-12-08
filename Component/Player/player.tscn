@@ -42,12 +42,12 @@ character_state = NodePath("StateChart")
 face_direction = 1
 wall_jump_timer = NodePath("Timers/WallJumpTimer")
 animation_player = NodePath("AnimatedSprite2D")
-arm_model = NodePath("ArmModel")
+arm_model = NodePath("")
 arm_sprite = NodePath("AnimatedSprite2D/Arm")
 head_model = NodePath("AnimatedSprite2D/HeadModel")
 head_sprite = NodePath("AnimatedSprite2D/HeadModel/Head")
 bullet_pref = ExtResource("2_1l3hs")
-shooter = NodePath("ArmModel/Shooter")
+shooter = NodePath("AnimatedSprite2D/Arm/Shooter")
 player_health = NodePath("Hitbox")
 charge_area = NodePath("ChargeHitbox")
 charge_hitbox = NodePath("ChargeHitbox/Hitbox")
@@ -64,12 +64,6 @@ leg_raycast_left = NodePath("LegCastLeft")
 leg_raycast_right = NodePath("LegCastRight")
 head_raycast_left = NodePath("HeadCastLeft")
 head_raycast_right = NodePath("HeadCastRight")
-
-[node name="ArmModel" type="Sprite2D" parent="."]
-position = Vector2(18, -4)
-
-[node name="Shooter" type="Node2D" parent="ArmModel"]
-position = Vector2(-49, 4)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("5_13q23")
@@ -91,6 +85,9 @@ offset = Vector2(-20, 5)
 
 [node name="Marker2D" type="Marker2D" parent="AnimatedSprite2D/Arm"]
 position = Vector2(0, 4)
+
+[node name="Shooter" type="Node2D" parent="AnimatedSprite2D/Arm"]
+position = Vector2(-49, 5)
 
 [node name="Direction" type="Marker2D" parent="AnimatedSprite2D"]
 position = Vector2(-40, 0)
