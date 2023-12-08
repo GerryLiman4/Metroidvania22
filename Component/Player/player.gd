@@ -44,6 +44,8 @@ var can_double_jump : bool = true
 
 var reset_position : Vector2
 
+@export var player_movement_input : Vector2
+
 @export_category("Animation")
 @export var animation_player : AnimatedSprite2D
 @export var body_sprite : Sprite2D
@@ -70,8 +72,6 @@ var reset_position : Vector2
 @export var has_unlocked_upgraded_gun : bool = false
 
 @export_category("Crawl Ability")
-#@export var crawl_hitbox_scale : float = 0.5
-#@export var original_crawl_hitbox_scale : float = 1
 @export var collision_box : CollisionShape2D
 @export var hit_box : CollisionShape2D
 @export var head_raycast_up_left : RayCast2D
@@ -122,16 +122,16 @@ func _process(delta):
 	var mouse_direction : Vector2 = (get_global_mouse_position() - global_position).normalized()
 	
 	# Handle Player sprite orientation
-	if mouse_direction.x > 0:
+	if velocity.x > 0:
 		face_direction = FACING.RIGHT
 		animation_player.scale.x = -(abs(animation_player.scale.x))
-		$ArmModel.flip_h = true
+		#$ArmModel.scale.x = -(abs(animation_player.scale.x))
 	#elif mouse_direction.x < 0 and not animated_sprite.flip_h:
-	elif mouse_direction.x < 0:
+	elif velocity.x < 0:
 		face_direction = FACING.LEFT
 		animation_player.scale.x = (abs(animation_player.scale.x))
-		$ArmModel.flip_h = false
-		
+		#$ArmModel.scale.x = (abs(animation_player.scale.x))
+	
 	take_aim(mouse_direction)
 
 func _physics_process(delta):
@@ -268,12 +268,22 @@ func get_which_wall_collided() -> String:
 
 #region hand 
 func take_aim(aim_position):
-	aim_position = -aim_position
-	arm_model.rotation = aim_position.angle()
-	if face_direction == FACING.RIGHT :
-		$AnimatedSprite2D/Arm.rotation_degrees = -(arm_model.rotation_degrees - PI * 172)
-	else:
-		$AnimatedSprite2D/Arm.rotation_degrees = arm_model.rotation_degrees
+	#aim_position = -aim_position
+	#arm_model.rotation = aim_position.angle()
+	#if face_direction == FACING.RIGHT :
+		#$AnimatedSprite2D/Arm.rotation_degrees = -(arm_model.rotation_degrees - PI * 172)
+	#else:
+		#$AnimatedSprite2D/Arm.rotation_degrees = arm_model.rotation_degrees
+	player_movement_input = Vector2.ZERO
+	
+	if Input.is_action_pressed("move_left") :
+		player_movement_input.x = -1
+	if Input.is_action_pressed("move_right") :
+		player_movement_input.x = 1
+	if Input.is_action_pressed("move_up") :
+		player_movement_input.y = -1
+	if Input.is_action_pressed("move_down") :
+		player_movement_input.y = 1
 	
 	if Input.is_action_just_pressed("Shoot") == true : 
 		var bullet : Bullet 
@@ -284,7 +294,32 @@ func take_aim(aim_position):
 			bullet = bullet_pref.instantiate()
 		
 		bullet.global_position = shooter.global_position
-		bullet.launch($AnimatedSprite2D/Arm/Marker2D.global_position, Vector2.LEFT.rotated(deg_to_rad(arm_model.rotation_degrees)), 2000)
+		
+		var direction : Vector2 
+		direction = player_movement_input
+		
+		if direction.x != 0 :
+			direction.y = direction.y/2 
+		
+		if (direction.x == 0 && direction.y != -1 ) or current_state == CharacterStateId.Id.WALLLATCH:
+			if face_direction == FACING.LEFT :
+				direction.x = -1
+			elif face_direction == FACING.RIGHT :
+				direction.x = 1
+		
+		if direction.x != 0 && direction.y > 0  :
+			arm_sprite.rotation = -45.0
+		
+		if direction.x != 0 && direction.y < 0  :
+			arm_sprite.rotation = 45.0
+		
+		if direction.x != 0 && direction.y == 0 :
+			arm_sprite.rotation = 0
+		
+		if direction.x == 0 && direction.y == -1 :
+			arm_sprite.rotation = 90.0
+		
+		bullet.launch(shooter.global_position, direction, 2000)
 		call_add_child(bullet)
 		
 		var shootSFX := ["shoot1", "shoot2", "shoot3"]
@@ -341,12 +376,13 @@ func _on_walk_state_input(event):
 	pass
 
 func _on_walk_state_processing(delta):
-	if (face_direction == FACING.LEFT && velocity.x > 0 ) or (face_direction == FACING.RIGHT && velocity.x < 0 ): 
-		if animation_player.animation == "Walk" :
-			animation_player.play("WalkBackward")
-	else :
-		if animation_player.animation == "WalkBackward" :
-			animation_player.play("Walk")
+	pass
+	#if (face_direction == FACING.LEFT && velocity.x > 0 ) or (face_direction == FACING.RIGHT && velocity.x < 0 ): 
+		#if animation_player.animation == "Walk" :
+			#animation_player.play("WalkBackward")
+	#else :
+		#if animation_player.animation == "WalkBackward" :
+			#animation_player.play("Walk")
 
 func _on_walk_state_physics_processing(delta):
 	if check_idle() == true:
@@ -514,6 +550,14 @@ func _on_dash_state_physics_processing(delta):
 		return
 
 func _on_wall_latch_state_entered():
+	
+	if face_direction == FACING.LEFT:
+		face_direction = FACING.RIGHT
+		animation_player.scale.x = -(abs(animation_player.scale.x))
+	elif face_direction == FACING.RIGHT:
+		face_direction = FACING.LEFT
+		animation_player.scale.x = (abs(animation_player.scale.x))
+	
 	velocity = Vector2.ZERO
 	set_physics_process(false)
 
