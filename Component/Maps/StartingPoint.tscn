@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cv55nv1c2sbiq"]
+[gd_scene load_steps=18 format=3 uid="uid://cv55nv1c2sbiq"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_42t0r"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="1_45cto"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bq6ll2apombgy" path="res://Component/Objects/save_point.tscn" id="12_l2mrd"]
 [ext_resource type="Texture2D" uid="uid://j5qpetfoyrv5" path="res://Dialogue/Characters/NPC4.png" id="12_pxx1y"]
 [ext_resource type="Texture2D" uid="uid://c6ec1xu873u4h" path="res://Dialogue/Characters/NPC6.png" id="13_vkwc1"]
+[ext_resource type="PackedScene" uid="uid://cwrf84g5mlucd" path="res://Component/Objects/Portal.tscn" id="16_8jr2g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vlp1k"]
 radius = 162.049
@@ -156,3 +157,8 @@ shape = SubResource("CircleShape2D_vlp1k")
 
 [node name="SavePoint" parent="." instance=ExtResource("12_l2mrd")]
 position = Vector2(2914, 608)
+
+[node name="Portal" parent="." instance=ExtResource("16_8jr2g")]
+position = Vector2(2580, 557)
+collision_mask = 2
+target_map = "A2.tscn"

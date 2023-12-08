@@ -84,6 +84,33 @@ func goto_map(map_path: String):
 	if prev_map:
 		player.position -= MetSys.get_current_room_instance().get_room_position_offset(prev_map)
 		player.on_enter()
+		
+# Loads a room scene and removes the current one if exists.
+func travelto_map(map_path: String):
+	var prev_map: Node2D
+	if map:
+		# If some map is already loaded (which is true anytime other than the beginning), keep a reference to the old instance and queue free it.
+		prev_map = MetSys.get_current_room_instance()
+		map.queue_free()
+		map = null
+	
+	# Load the new map scene.
+	map = load(map_path).instantiate()
+	add_child(map)
+	# Adjust the camera.
+	MetSys.get_current_room_instance().adjust_camera_limits($Player/Camera2D)
+	# Set the current layer to the room's layer.
+	MetSys.current_layer = MetSys.get_current_room_instance().get_layer()
+	
+	# If previous map has existed, teleport the player based on map position difference.
+	if prev_map:
+		player.position -= MetSys.get_current_room_instance().get_room_position_offset(prev_map)
+		player.on_enter()
+
+	# Find the save point and teleport the player to it, to start at the save point.
+	var start := map.get_node_or_null(^"SavePoint")
+	if start:
+		player.position = start.position
 
 func _physics_process(delta: float) -> void:
 	# Notify MetSys about the player's current position.
