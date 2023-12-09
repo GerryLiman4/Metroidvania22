@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c5d0f770ww2gg" path="res://Component/Objects/Collectible.tscn" id="3_lcebk"]
 [ext_resource type="PackedScene" uid="uid://bq6ll2apombgy" path="res://Component/Objects/save_point.tscn" id="4_o3674"]
 
-[node name="Map" type="Node2D"]
+[node name="Map" type="Node2D" groups=["Abyss"]]
 
 [node name="TileMapBase" parent="." instance=ExtResource("1_he41m")]
 rotation = 0.00141585
