@@ -20,7 +20,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_vlp1k"]
 radius = 162.049
 
-[node name="StartingPoint" type="Node2D"]
+[node name="StartingPoint" type="Node2D" groups=["Town"]]
 
 [node name="BG2" type="Node2D" parent="."]
 

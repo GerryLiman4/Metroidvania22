@@ -21,7 +21,7 @@ func action() -> void:
 		tween.tween_property(player, ^"position", position, 0.5).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
 		await tween.finished
 		# After tween finished, change the map.
-		Game.get_singleton().travelto_map(MetSys.get_full_room_path(target_map))
+		Game.get_singleton().goto_map(MetSys.get_full_room_path(target_map), true)
 		# A trick to reset player's event variable when it's safe to do so (i.e. after some frames).
 		get_tree().create_timer(0.05).timeout.connect(player.set.bind(&"event", false))
 		# Delta vector feature again.

@@ -52,7 +52,7 @@ func _ready() -> void:
 	# Go to the starting point.
 	goto_map(MetSys.get_full_room_path(starting_map))
 	# Find the save point and teleport the player to it, to start at the save point.
-	travel_to_save_point()
+	travel_to_point("SavePoint")
 	
 	# Connect the room_changed signal to handle room transitions.
 	MetSys.room_changed.connect(on_room_changed, CONNECT_DEFERRED)
@@ -62,11 +62,13 @@ func _ready() -> void:
 	get_script().set_meta(&"singleton", self)
 
 # Loads a room scene and removes the current one if exists.
-func goto_map(map_path: String):
+func goto_map(map_path: String, fast_travel : bool = false):
 	var prev_map: Node2D
+	var prev_map_groups : Array
 	if map:
 		# If some map is already loaded (which is true anytime other than the beginning), keep a reference to the old instance and queue free it.
 		prev_map = MetSys.get_current_room_instance()
+		prev_map_groups = map.get_groups()
 		map.queue_free()
 		map = null
 	
@@ -79,57 +81,27 @@ func goto_map(map_path: String):
 	MetSys.current_layer = MetSys.get_current_room_instance().get_layer()
 	
 	# If previous map has existed, teleport the player based on map position difference.
-	if prev_map:
+	if fast_travel == true:
+		travel_to_point("Portal")
+	elif prev_map:
 		player.position -= MetSys.get_current_room_instance().get_room_position_offset(prev_map)
 		player.on_enter()
 		
-	change_music(map, prev_map)
-		
-# Loads a room scene and removes the current one if exists.
-func travelto_map(map_path: String):
-	var prev_map: Node2D
-	if map:
-		# If some map is already loaded (which is true anytime other than the beginning), keep a reference to the old instance and queue free it.
-		prev_map = MetSys.get_current_room_instance()
-		map.queue_free()
-		map = null
-	
-	# Load the new map scene.
-	map = load(map_path).instantiate()
-	add_child(map)
-	# Adjust the camera.
-	MetSys.get_current_room_instance().adjust_camera_limits($Player/Camera2D)
-	# Set the current layer to the room's layer.
-	MetSys.current_layer = MetSys.get_current_room_instance().get_layer()
-	
-	# If previous map has existed, teleport the player based on map position difference.
-	if prev_map:
-		player.position -= MetSys.get_current_room_instance().get_room_position_offset(prev_map)
-		player.on_enter()
-
-	change_music(map, prev_map)
-	travel_to_point("Portal")
+	change_music(map, prev_map_groups)
 	
 
-func change_music(map, prev_map):
-	var map_name = map.get_name().left(1).to_lower()
-	var prev_map_name
-	if prev_map:
-		prev_map_name = prev_map.get_name().left(1).to_lower()
-	else:
-		prev_map_name = ""
-
-	var music : String
+func change_music(map, prev_map_groups):
+	var map_groups : Array = map.get_groups()
 	
-	if map_name != prev_map_name:
-		
-		match map_name:
-			"s":
-				music = "town"
-			"m":
-				music = "abyss"
+	if map_groups.is_empty():
+		return
 
-		AudioController.change_music(music)
+	if prev_map_groups.is_empty():
+		AudioController.change_music(map_groups[0])
+		return
+	
+	if map_groups.size() > 0 && map_groups[0] != prev_map_groups[0]:
+		AudioController.change_music(map_groups[0])
 
 func travel_to_save_point():
 	# Find the save point and teleport the player to it, to start at the save point.
