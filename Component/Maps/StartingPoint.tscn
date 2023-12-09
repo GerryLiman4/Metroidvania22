@@ -32,9 +32,9 @@ color = Color(0.701961, 1, 1, 1)
 
 [node name="Sky2" type="ColorRect" parent="BG2"]
 z_index = -3
-offset_left = 4054.0
+offset_left = 3478.0
 offset_top = 643.0
-offset_right = 4885.0
+offset_right = 5319.0
 offset_bottom = 1070.0
 color = Color(0.109804, 0.0823529, 0.113725, 1)
 
@@ -159,5 +159,5 @@ shape = SubResource("CircleShape2D_vlp1k")
 position = Vector2(2914, 608)
 
 [node name="Portal" parent="." instance=ExtResource("16_8jr2g")]
-position = Vector2(2580, 557)
+position = Vector2(3138, 544)
 target_map = "A2.tscn"

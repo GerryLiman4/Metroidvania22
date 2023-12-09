@@ -52,9 +52,7 @@ func _ready() -> void:
 	# Go to the starting point.
 	goto_map(MetSys.get_full_room_path(starting_map))
 	# Find the save point and teleport the player to it, to start at the save point.
-	var start := map.get_node_or_null(^"SavePoint")
-	if start:
-		player.position = start.position
+	travel_to_save_point()
 	
 	# Connect the room_changed signal to handle room transitions.
 	MetSys.room_changed.connect(on_room_changed, CONNECT_DEFERRED)
@@ -85,6 +83,8 @@ func goto_map(map_path: String):
 		player.position -= MetSys.get_current_room_instance().get_room_position_offset(prev_map)
 		player.on_enter()
 		
+	change_music(map, prev_map)
+		
 # Loads a room scene and removes the current one if exists.
 func travelto_map(map_path: String):
 	var prev_map: Node2D
@@ -107,8 +107,17 @@ func travelto_map(map_path: String):
 		player.position -= MetSys.get_current_room_instance().get_room_position_offset(prev_map)
 		player.on_enter()
 
+	change_music(map, prev_map)
+	travel_to_point("Portal")
+	
+
+func change_music(map, prev_map):
 	var map_name = map.get_name().left(1).to_lower()
-	var prev_map_name = prev_map.get_name().left(1).to_lower()
+	var prev_map_name
+	if prev_map:
+		prev_map_name = prev_map.get_name().left(1).to_lower()
+	else:
+		prev_map_name = ""
 
 	var music : String
 	
@@ -122,8 +131,15 @@ func travelto_map(map_path: String):
 
 		AudioController.change_music(music)
 
+func travel_to_save_point():
 	# Find the save point and teleport the player to it, to start at the save point.
 	var start := map.get_node_or_null(^"SavePoint")
+	if start:
+		player.position = start.position
+		
+func travel_to_point(node_name):
+	# Find the save point and teleport the player to it, to start at the save point.
+	var start := map.get_node_or_null(node_name)
 	if start:
 		player.position = start.position
 
