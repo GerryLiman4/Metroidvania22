@@ -8,7 +8,7 @@ func _on_menu_activated(element) -> void:
 		"Intro":
 			SceneTransition.start_transition_to("cutscene", false, "res://UI/intro_scene.tscn")
 		"Game":
-			SceneTransition.start_transition_to("game", true, "res://Game.tscn")
+			SceneTransition.start_transition_to("game", false, "res://Game.tscn")
 		"Level Test":
 			SceneTransition.start_transition_to("game", true, "res://Component/TestLevels/level_base.tscn")
 		"Dialogue Test":
