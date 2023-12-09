@@ -4,7 +4,8 @@ extends Node
 
 @onready var music_menu : AudioStreamOggVorbis = preload("res://Resources/Audio/Music/intro_cowboy.ogg")
 @onready var music_town : AudioStreamOggVorbis = preload("res://Resources/Audio/Music/townsong_demo.ogg")
-@onready var music_abyss : AudioStreamOggVorbis = preload("res://Resources/Audio/Music/abyss_demo.ogg")
+@onready var music_abyss1 : AudioStreamOggVorbis = preload("res://Resources/Audio/Music/abyss_demo.ogg")
+@onready var music_abyss2 : AudioStreamOggVorbis = preload("res://Resources/Audio/Music/abyss_2.ogg")
 
 @export var music_on : bool = false
 
@@ -41,7 +42,9 @@ func change_music(music_name : String):
 			"town":
 				music_player.stream = music_town
 			"abyss":
-				music_player.stream = music_abyss
+				music_player.stream = music_abyss1
+			"abyss2":
+				music_player.stream = music_abyss2
 				
 	if music_on:
 		music_player.playing = true
