@@ -90,6 +90,8 @@ var reset_position : Vector2
 func _ready():
 	player_health.on_get_damaged.connect(on_get_damaged)
 	player_health.on_dead.connect(on_dead)
+	SignalManager.dialogue_start.connect(on_dialogue_start)
+	SignalManager.dialogue_end.connect(on_dialogue_end)
 
 func _unhandled_input(_event : InputEvent) -> void:
 	if Input.is_action_just_pressed("Interact"):
@@ -642,3 +644,14 @@ func set_charge(is_active : bool) :
 	
 	player_health.is_invincible = is_active
 #endregion
+
+func on_dialogue_start() :
+	set_process(false)
+	set_physics_process(false)
+	set_process_unhandled_input(false)
+
+func on_dialogue_end() :
+	print("dialogue end")
+	set_process(true)
+	set_physics_process(true)
+	set_process_unhandled_input(true)
