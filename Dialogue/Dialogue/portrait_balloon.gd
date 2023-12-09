@@ -35,6 +35,7 @@ var dialogue_line: DialogueLine:
 
 		# The dialogue has finished so close the balloon
 		if not next_dialogue_line:
+			SignalManager.dialogue_end.emit()
 			queue_free()
 			return
 

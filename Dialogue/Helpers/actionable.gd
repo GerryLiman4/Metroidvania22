@@ -19,3 +19,5 @@ func action() -> void:
 		get_tree().current_scene.add_child(balloon)
 		balloon.start(dialogue_resource, dialogue_start)
 	
+	SignalManager.dialogue_start.emit()
+	
