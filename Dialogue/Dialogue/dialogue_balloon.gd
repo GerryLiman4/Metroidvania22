@@ -30,6 +30,7 @@ var dialogue_line: DialogueLine:
 			animation_player.play("Disappear")
 			await animation_player.animation_finished
 			#Camera.get_current().return_to_target()
+			SignalManager.dialogue_end.emit()
 			queue_free()
 			return
 			
@@ -46,6 +47,7 @@ var dialogue_line: DialogueLine:
 		# The dialogue has finished so close the balloon
 		'''
 		if not next_dialogue_line:
+			SignalManager.dialogue_end.emit()
 			queue_free()
 			return
 		'''
