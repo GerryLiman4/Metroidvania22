@@ -6,7 +6,9 @@
 [node name="AudioController" type="Node"]
 script = ExtResource("1_41b0e")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_mvdj0")
 volume_db = -5.0
 bus = &"Music"
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]

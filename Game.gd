@@ -14,7 +14,7 @@ var map: Node2D
 var collectibles: int:
 	set(count):
 		collectibles = count
-		%CollectibleCount.text = "%d/6" % count
+		%CollectibleCount.text = "%d/20" % count
 
 # The coordinates of generated rooms. MetSys does not keep this list, so it needs to be done manually.
 var generated_rooms: Array[Vector3i]
@@ -42,11 +42,25 @@ func _ready() -> void:
 			#player.abilities.assign(save_data.abilities)
 		else:
 			MetSys.set_save_data()
+			var file_path = "user://save_data.sav"
+			FileAccess.open("user://save_data.sav", FileAccess.WRITE).store_var({})
+			var initial_save_data := get_init_save_data()
+			# Merge it with the Dicionary from MetSys.
+			initial_save_data.merge(MetSys.get_save_data())
+			
+			if FileAccess.file_exists("user://save_data.sav"):
+			# Save the file.
+				FileAccess.open("user://save_data.sav", FileAccess.WRITE).store_var(initial_save_data)
 	else:
-		# If no data exists, set empty one.
 		MetSys.set_save_data()
 		var file_path = "user://save_data.sav"
 		FileAccess.open("user://save_data.sav", FileAccess.WRITE).store_var({})
+		var initial_save_data := get_init_save_data()
+		# Merge it with the Dicionary from MetSys.
+		initial_save_data.merge(MetSys.get_save_data())
+		if FileAccess.file_exists("user://save_data.sav"):
+		# Save the file.
+			FileAccess.open("user://save_data.sav", FileAccess.WRITE).store_var(initial_save_data)
 	
 	
 	# Go to the starting point.
@@ -60,6 +74,8 @@ func _ready() -> void:
 	reset_map_starting_coords.call_deferred()
 	# A trick for static object reference (before static vars were a thing).
 	get_script().set_meta(&"singleton", self)
+	
+	
 
 # Loads a room scene and removes the current one if exists.
 func goto_map(map_path: String, fast_travel : bool = false):
@@ -139,7 +155,16 @@ func get_save_data() -> Dictionary:
 		"events": events,
 		"current_room": MetSys.get_current_room_name()
 		#"abilities": player.abilities,
-	}
+}
+
+func get_init_save_data() -> Dictionary:
+	return {
+		"collectible_count": collectibles,
+		"generated_rooms": generated_rooms,
+		"events": events,
+		"current_room": "StartingPoint.tscn"
+		#"abilities": player.abilities,
+}
 
 func reset_map_starting_coords():
 	$UI/MapWindow.reset_starting_coords()

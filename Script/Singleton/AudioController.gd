@@ -1,11 +1,21 @@
 extends Node
 
-@onready var music_player = $AudioStreamPlayer
+@onready var music_player = $Music
+@onready var sfx_player = $SFX
+
 
 @onready var music_menu : AudioStreamOggVorbis = preload("res://Resources/Audio/Music/intro_cowboy.ogg")
-@onready var music_town : AudioStreamOggVorbis = preload("res://Resources/Audio/Music/townsong_demo.ogg")
+@onready var music_town : AudioStreamOggVorbis = preload("res://Resources/Audio/Music/town_song.ogg")
 @onready var music_abyss1 : AudioStreamOggVorbis = preload("res://Resources/Audio/Music/abyss_demo.ogg")
-@onready var music_abyss2 : AudioStreamOggVorbis = preload("res://Resources/Audio/Music/abyss_2.ogg")
+@onready var music_abyss2 : AudioStreamOggVorbis = preload("res://Resources/Audio/Music/abyss_2faster.ogg")
+
+var audioScenes := {
+	"collect0" : preload("res://Resources/Audio/SFX/shard_collect-001.ogg"),
+	"collect1" : preload("res://Resources/Audio/SFX/shard_collect-002.ogg"),
+	"collect2" : preload("res://Resources/Audio/SFX/shard_collect-003.ogg"),
+	"collect3" : preload("res://Resources/Audio/SFX/shard_collect-004.ogg"),
+	"collect4" : preload("res://Resources/Audio/SFX/shard_collect-005.ogg")
+}
 
 @export var music_on : bool = false
 
@@ -48,3 +58,26 @@ func change_music(music_name : String):
 				
 	if music_on:
 		music_player.playing = true
+
+
+func play_random_sfx():
+	var collectSFXKeys := ["collect0", "collect1", "collect2", "collect3", "collect4"]
+	var randomKey = collectSFXKeys[randi() % collectSFXKeys.size() - 1]
+	
+	if randomKey in audioScenes && sfx_player.playing == false:
+		sfx_player.stream = audioScenes[randomKey]
+		sfx_player.pitch_scale = randf_range(0.9, 1.1)
+		sfx_player.play()
+		await sfx_player.finished
+	else:
+		print(randomKey + " not found in audioScenes, or SFX already playing")
+		
+func play_sfx(sfx_name : String):
+	var sfx_key = audioScenes[sfx_name]
+	
+	if sfx_key in audioScenes && sfx_player.playing == false:
+		sfx_player.stream = audioScenes[sfx_key]
+		sfx_player.pitch_scale = randf_range(0.9, 1.1)
+		sfx_player.play()
+		await sfx_player.finished
+	
