@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/abyss_demo.ogg-2f51f6deb9ec52f8a98c537e4fc685
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

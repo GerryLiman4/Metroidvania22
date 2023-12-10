@@ -32,7 +32,7 @@ func on_get_damaged(direction : Vector2):
 
 func on_dead():
 	var enemyDeadSFXKeys := ["spider_hurt1", "spider_hurt2"]
-	var randomKey = enemyDeadSFXKeys[randi() % enemyDeadSFXKeys.size()]
+	var randomKey = enemyDeadSFXKeys[randi() % enemyDeadSFXKeys.size() - 1]
 	
 	if randomKey in audioScenes:
 		audio_stream_player.stream = audioScenes[randomKey]
@@ -41,6 +41,9 @@ func on_dead():
 		await audio_stream_player.finished
 	else:
 		print(randomKey + " not found in audioScenes")
+		
+	animated_sprite.play("Dead")
+	await animated_sprite.animation_finished
 	self.queue_free()
 
 func jump():
