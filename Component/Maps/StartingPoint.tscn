@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://cv55nv1c2sbiq"]
+[gd_scene load_steps=19 format=3 uid="uid://cv55nv1c2sbiq"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_42t0r"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="1_45cto"]
 [ext_resource type="Texture2D" uid="uid://b8flegry3eusd" path="res://Resources/Level/TownBuilding-001.png" id="1_vuywh"]
+[ext_resource type="Texture2D" uid="uid://djs5e5jlhnih0" path="res://Resources/Level/Overworld_Sky.png" id="2_jypq8"]
 [ext_resource type="Texture2D" uid="uid://bfp64gkeqabbn" path="res://Resources/Level/Overworld_BG.png" id="2_l6adq"]
 [ext_resource type="Texture2D" uid="uid://0ar858cg5xou" path="res://Resources/Level/Overworld_BG2.png" id="3_mgf54"]
 [ext_resource type="Texture2D" uid="uid://cw8bi5d0vwvc5" path="res://Resources/Level/Overworld_BG3.png" id="4_o4b5e"]
@@ -22,75 +23,71 @@ radius = 162.049
 
 [node name="StartingPoint" type="Node2D" groups=["Town"]]
 
-[node name="BG2" type="Node2D" parent="."]
+[node name="FG" type="Node2D" parent="."]
+z_index = -1
 
-[node name="Sky" type="ColorRect" parent="BG2"]
-z_index = -3
-offset_right = 5230.0
-offset_bottom = 1014.0
-color = Color(0.701961, 1, 1, 1)
-
-[node name="Sky2" type="ColorRect" parent="BG2"]
-z_index = -3
-offset_left = 3478.0
-offset_top = 643.0
-offset_right = 5319.0
-offset_bottom = 1070.0
-color = Color(0.109804, 0.0823529, 0.113725, 1)
-
-[node name="Building" type="Sprite2D" parent="BG2"]
-z_index = -2
+[node name="Building" type="Sprite2D" parent="FG"]
 position = Vector2(635, 488)
 scale = Vector2(0.416076, 0.416076)
 texture = ExtResource("1_vuywh")
 
-[node name="Building2" type="Sprite2D" parent="BG2"]
-z_index = -2
+[node name="Building2" type="Sprite2D" parent="FG"]
 position = Vector2(1631, 488)
 scale = Vector2(0.416076, 0.416076)
 texture = ExtResource("1_vuywh")
 
-[node name="Building3" type="Sprite2D" parent="BG2"]
-z_index = -2
+[node name="Building3" type="Sprite2D" parent="FG"]
 position = Vector2(2243, 488)
 scale = Vector2(0.416076, 0.416076)
 texture = ExtResource("1_vuywh")
 
-[node name="Building4" type="Sprite2D" parent="BG2"]
-z_index = -2
+[node name="Building4" type="Sprite2D" parent="FG"]
 position = Vector2(2911, 488)
 scale = Vector2(0.416076, 0.416076)
 texture = ExtResource("1_vuywh")
 
-[node name="Building5" type="Sprite2D" parent="BG2"]
-z_index = -2
+[node name="Building5" type="Sprite2D" parent="FG"]
 position = Vector2(3523, 509)
 scale = Vector2(0.416076, 0.416076)
 texture = ExtResource("1_vuywh")
 
+[node name="BG2" type="Node2D" parent="."]
+z_index = -2
+
+[node name="SkyRegion" type="Sprite2D" parent="BG2"]
+texture_repeat = 2
+scale = Vector2(1, 1.09534)
+texture = ExtResource("2_jypq8")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 5240, 944)
+
 [node name="BG" type="Sprite2D" parent="BG2"]
-z_index = -3
 position = Vector2(4424, 344)
 scale = Vector2(0.888106, 1.12604)
 texture = ExtResource("2_l6adq")
 
 [node name="BG2" type="Sprite2D" parent="BG2"]
-z_index = -3
 position = Vector2(2767, 338)
 scale = Vector2(0.888106, 1.12604)
 texture = ExtResource("3_mgf54")
 
 [node name="BG3" type="Sprite2D" parent="BG2"]
-z_index = -3
 position = Vector2(1161, 341)
 scale = Vector2(0.888106, 1.12604)
 texture = ExtResource("4_o4b5e")
 
 [node name="BG4" type="Sprite2D" parent="BG2"]
-z_index = -3
 position = Vector2(-429, 333)
 scale = Vector2(0.888106, 1.12604)
 texture = ExtResource("4_o4b5e")
+
+[node name="ColorRect" type="ColorRect" parent="BG2"]
+offset_left = 3704.0
+offset_top = 673.0
+offset_right = 5274.0
+offset_bottom = 1009.0
+color = Color(0.109804, 0.0823529, 0.113725, 1)
 
 [node name="TileMapBase" parent="." instance=ExtResource("1_42t0r")]
 layer_0/navigation_enabled = false
