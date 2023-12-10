@@ -21,6 +21,7 @@ func action() -> void:
 		player.velocity = Vector2()
 		# Play animation
 		animation_player.play("Open")
+		SceneTransition.transition()
 		
 func goto_map() -> void:
 	# After tween finished, change the map.

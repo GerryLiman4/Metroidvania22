@@ -44,9 +44,10 @@ func _ready() -> void:
 			MetSys.set_save_data()
 			var file_path = "user://save_data.sav"
 			FileAccess.open("user://save_data.sav", FileAccess.WRITE).store_var({})
-			var initial_save_data := get_save_data()
+			var initial_save_data := get_init_save_data()
 			# Merge it with the Dicionary from MetSys.
 			initial_save_data.merge(MetSys.get_save_data())
+			
 			if FileAccess.file_exists("user://save_data.sav"):
 			# Save the file.
 				FileAccess.open("user://save_data.sav", FileAccess.WRITE).store_var(initial_save_data)
@@ -54,7 +55,7 @@ func _ready() -> void:
 		MetSys.set_save_data()
 		var file_path = "user://save_data.sav"
 		FileAccess.open("user://save_data.sav", FileAccess.WRITE).store_var({})
-		var initial_save_data := get_save_data()
+		var initial_save_data := get_init_save_data()
 		# Merge it with the Dicionary from MetSys.
 		initial_save_data.merge(MetSys.get_save_data())
 		if FileAccess.file_exists("user://save_data.sav"):
@@ -154,7 +155,16 @@ func get_save_data() -> Dictionary:
 		"events": events,
 		"current_room": MetSys.get_current_room_name()
 		#"abilities": player.abilities,
-	}
+}
+
+func get_init_save_data() -> Dictionary:
+	return {
+		"collectible_count": collectibles,
+		"generated_rooms": generated_rooms,
+		"events": events,
+		"current_room": "StartingPoint.tscn"
+		#"abilities": player.abilities,
+}
 
 func reset_map_starting_coords():
 	$UI/MapWindow.reset_starting_coords()
