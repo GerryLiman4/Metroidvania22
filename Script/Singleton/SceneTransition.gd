@@ -32,3 +32,7 @@ func change_scene_to_file() -> void:
 	# Make sure path is correct with assert
 	var __ = get_tree().change_scene_to_file(new_scene) == OK
 	assert(__)
+	
+func transition() -> void:
+	animation_player.play("transition")
+
