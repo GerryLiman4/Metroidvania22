@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bq6ll2apombgy" path="res://Component/Objects/save_point.tscn" id="12_l2mrd"]
 [ext_resource type="Texture2D" uid="uid://j5qpetfoyrv5" path="res://Dialogue/Characters/NPC4.png" id="12_pxx1y"]
 [ext_resource type="Texture2D" uid="uid://c6ec1xu873u4h" path="res://Dialogue/Characters/NPC6.png" id="13_vkwc1"]
-[ext_resource type="PackedScene" uid="uid://dhquseqrg6jr2" path="res://Component/Objects/FastTravel.tscn" id="18_r0l2g"]
+[ext_resource type="PackedScene" path="res://Component/Objects/FastTravel.tscn" id="18_r0l2g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vlp1k"]
 radius = 162.049
@@ -156,5 +156,5 @@ shape = SubResource("CircleShape2D_vlp1k")
 position = Vector2(2914, 608)
 
 [node name="FastTravel" parent="." instance=ExtResource("18_r0l2g")]
-position = Vector2(3786, 550)
-target_map = "A2.tscn"
+position = Vector2(3157, 548)
+target_map = "ASB.tscn"
