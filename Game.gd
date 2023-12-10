@@ -82,7 +82,7 @@ func goto_map(map_path: String, fast_travel : bool = false):
 	
 	# If previous map has existed, teleport the player based on map position difference.
 	if fast_travel == true:
-		travel_to_point("Portal")
+		travel_to_point("FastTravel")
 	elif prev_map:
 		player.position -= MetSys.get_current_room_instance().get_room_position_offset(prev_map)
 		player.on_enter()

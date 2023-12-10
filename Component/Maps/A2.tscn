@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_0i14d"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_biwdb"]
 [ext_resource type="PackedScene" uid="uid://c5d0f770ww2gg" path="res://Component/Objects/Collectible.tscn" id="3_ga48x"]
-[ext_resource type="PackedScene" uid="uid://cwrf84g5mlucd" path="res://Component/Objects/Portal.tscn" id="5_chqkf"]
+[ext_resource type="PackedScene" uid="uid://dhquseqrg6jr2" path="res://Component/Objects/FastTravel.tscn" id="5_kuh12"]
 
 [node name="A2" type="Node2D" groups=["Abyss"]]
 
@@ -16,6 +16,6 @@ layer_1/tile_data = PackedInt32Array(1572864, 393216, 11, 1638400, 131072, 14, 1
 [node name="Collectible" parent="." instance=ExtResource("3_ga48x")]
 position = Vector2(96, 686)
 
-[node name="Portal" parent="." instance=ExtResource("5_chqkf")]
-position = Vector2(818, 757)
+[node name="FastTravel" parent="." instance=ExtResource("5_kuh12")]
+position = Vector2(581, 708)
 target_map = "StartingPoint.tscn"

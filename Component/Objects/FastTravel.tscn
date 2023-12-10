@@ -1,0 +1,101 @@
+[gd_scene load_steps=7 format=3 uid="uid://dhquseqrg6jr2"]
+
+[ext_resource type="Script" path="res://Component/Objects/FastTravel.gd" id="1_qhisn"]
+[ext_resource type="Texture2D" uid="uid://crukrem6ygt1r" path="res://Resources/Level/elevator_1.png" id="2_yd024"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vq33u"]
+radius = 100.0
+
+[sub_resource type="Animation" id="Animation_bkyt7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_kj1eh"]
+resource_name = "Open"
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"goto_map"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0plid"]
+_data = {
+"Open": SubResource("Animation_kj1eh"),
+"RESET": SubResource("Animation_bkyt7")
+}
+
+[node name="FastTravel" type="Area2D"]
+z_index = -1
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_qhisn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vq33u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -32)
+texture = ExtResource("2_yd024")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_0plid")
+}
+
+[node name="Label" type="Label" parent="."]
+self_modulate = Color(0, 0, 1, 1)
+offset_left = -72.0
+offset_top = -192.0
+offset_right = 73.0
+offset_bottom = -169.0
+text = "Press Interact"
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
