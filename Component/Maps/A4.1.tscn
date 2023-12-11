@@ -20,6 +20,9 @@ position = Vector2(622, 532)
 rotation = 0.00141585
 
 [node name="EnemySpawn" parent="." instance=ExtResource("4_gh3ou")]
+max_bat_count = 1
+max_spider_count = 1
+max_enemy_count = 2
 
 [node name="Marker2D1" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
 position = Vector2(384, 832)

@@ -18,6 +18,8 @@ layer_3/tile_data = PackedInt32Array(8323074, 655361, 7, 8323075, 720897, 7, 845
 position = Vector2(1065, 2837)
 
 [node name="EnemySpawn" parent="." instance=ExtResource("4_rni1h")]
+max_bat_count = 1
+max_enemy_count = 1
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
 position = Vector2(257, 666)

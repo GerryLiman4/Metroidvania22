@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0slggtj3oo3c"]
+[gd_scene load_steps=4 format=3 uid="uid://b0slggtj3oo3c"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_a50ap"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_y1nnk"]
 [ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://enemy_spawn.tscn" id="3_t2ahx"]
-[ext_resource type="Script" path="res://enemy_spawn.gd" id="4_t6pqt"]
 
 [node name="A3" type="Node2D" groups=["Abyss"]]
 
@@ -16,7 +15,8 @@ layer_3/tile_data = PackedInt32Array(1376272, 655361, 6, 1376273, 720897, 6, 137
 [node name="RoomInstance" parent="." instance=ExtResource("2_y1nnk")]
 
 [node name="EnemySpawn" parent="." instance=ExtResource("3_t2ahx")]
-script = ExtResource("4_t6pqt")
+max_spider_count = 1
+max_enemy_count = 1
 
 [node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
 position = Vector2(784, 480)
