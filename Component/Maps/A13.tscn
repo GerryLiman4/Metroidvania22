@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnn4v52jw6wnm"]
+[gd_scene load_steps=6 format=3 uid="uid://dnn4v52jw6wnm"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_he41m"]
+[ext_resource type="PackedScene" path="res://Component/Objects/ability.tscn" id="2_f4p1g"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_kcjmp"]
 [ext_resource type="PackedScene" uid="uid://c5d0f770ww2gg" path="res://Component/Objects/Collectible.tscn" id="3_lcebk"]
 [ext_resource type="PackedScene" uid="uid://bq6ll2apombgy" path="res://Component/Objects/save_point.tscn" id="4_o3674"]
@@ -20,4 +21,8 @@ position = Vector2(1104, 573)
 
 [node name="SavePoint" parent="." instance=ExtResource("4_o3674")]
 position = Vector2(690, 237)
+rotation = 0.00141585
+
+[node name="Ability" parent="." instance=ExtResource("2_f4p1g")]
+position = Vector2(335, 1822)
 rotation = 0.00141585
