@@ -21,4 +21,28 @@ rotation = 0.00141585
 
 [node name="EnemySpawn" parent="." instance=ExtResource("4_7nao7")]
 
+[node name="Marker2D1" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
+position = Vector2(435.388, 712.801)
+
+[node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Bat" index="1"]
+position = Vector2(2281.5, 2016.5)
+
+[node name="Marker2D3" type="Marker2D" parent="EnemySpawn/Bat" index="2"]
+position = Vector2(2308.5, 1109.5)
+
+[node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
+position = Vector2(932.555, 284.363)
+
+[node name="Marker2D2_2" type="Marker2D" parent="EnemySpawn/Spider" index="1"]
+position = Vector2(998.265, 1424.17)
+
+[node name="Marker2D2_3" type="Marker2D" parent="EnemySpawn/Spider" index="2"]
+position = Vector2(512, 1560)
+
+[node name="Marker2D2_4" type="Marker2D" parent="EnemySpawn/Spider" index="3"]
+position = Vector2(846.5, 1666.5)
+
+[node name="Marker2D2_5" type="Marker2D" parent="EnemySpawn/Spider" index="4"]
+position = Vector2(956.648, 2698.15)
+
 [editable path="EnemySpawn"]
