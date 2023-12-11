@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dob07x2fxoatr"]
+[gd_scene load_steps=6 format=3 uid="uid://dob07x2fxoatr"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_cdy6i"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_a88de"]
 [ext_resource type="PackedScene" uid="uid://c5d0f770ww2gg" path="res://Component/Objects/Collectible.tscn" id="3_w8ks8"]
 [ext_resource type="PackedScene" uid="uid://bq6ll2apombgy" path="res://Component/Objects/save_point.tscn" id="4_tme8u"]
+[ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://enemy_spawn.tscn" id="5_4c8i2"]
 
 [node name="Map" type="Node2D" groups=["Abyss"]]
 
@@ -24,3 +25,7 @@ position = Vector2(2378, 653)
 [node name="SavePoint" parent="." instance=ExtResource("4_tme8u")]
 position = Vector2(138, 779)
 rotation = 0.00141585
+
+[node name="EnemySpawn" parent="." instance=ExtResource("5_4c8i2")]
+
+[editable path="EnemySpawn"]

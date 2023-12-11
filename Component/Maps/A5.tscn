@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1fbjpas0xejd"]
+[gd_scene load_steps=7 format=3 uid="uid://b1fbjpas0xejd"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_kt1ol"]
 [ext_resource type="PackedScene" path="res://Component/Objects/ability.tscn" id="2_h5wqw"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_qhjpj"]
 [ext_resource type="PackedScene" uid="uid://c5d0f770ww2gg" path="res://Component/Objects/Collectible.tscn" id="3_3u5u1"]
 [ext_resource type="PackedScene" uid="uid://bq6ll2apombgy" path="res://Component/Objects/save_point.tscn" id="4_q67w6"]
+[ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://enemy_spawn.tscn" id="6_81qvd"]
 
 [node name="Map" type="Node2D" groups=["Abyss"]]
 
@@ -29,3 +30,24 @@ rotation = 0.00141585
 [node name="Ability" parent="." instance=ExtResource("2_h5wqw")]
 position = Vector2(117, 876)
 rotation = 0.00141585
+
+[node name="EnemySpawn" parent="." instance=ExtResource("6_81qvd")]
+position = Vector2(117, 876)
+rotation = 0.00141585
+scale = Vector2(0.5, 0.5)
+
+[node name="Marker2D1" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
+position = Vector2(3622.81, -1434.82)
+
+[node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
+position = Vector2(992.43, -666.649)
+
+[node name="Marker2D2_2" type="Marker2D" parent="EnemySpawn/Spider" index="1"]
+position = Vector2(1043.06, -79.4215)
+rotation = -0.00141585
+scale = Vector2(2, 2)
+
+[node name="Marker2D2_3" type="Marker2D" parent="EnemySpawn/Spider" index="2"]
+position = Vector2(2970.52, -475.905)
+
+[editable path="EnemySpawn"]

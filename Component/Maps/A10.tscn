@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnk1ni608dksy"]
+[gd_scene load_steps=5 format=3 uid="uid://cnk1ni608dksy"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_4roa8"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_8x4la"]
 [ext_resource type="PackedScene" path="res://Component/Objects/ability.tscn" id="3_3f4ii"]
+[ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://enemy_spawn.tscn" id="4_m5v35"]
 
 [node name="Map" type="Node2D" groups=["Abyss"]]
 
@@ -16,3 +17,9 @@ layer_3/tile_data = PackedInt32Array(1441794, 262145, 2, 1376258, 262145, 2, 131
 
 [node name="Ability" parent="." instance=ExtResource("3_3f4ii")]
 position = Vector2(1122, 441)
+
+[node name="EnemySpawn" parent="." instance=ExtResource("4_m5v35")]
+position = Vector2(1122, 441)
+scale = Vector2(0.5, 0.5)
+
+[editable path="EnemySpawn"]
