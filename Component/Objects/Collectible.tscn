@@ -16,6 +16,17 @@ func collect(body: Node2D) -> void:
 		return
 	# Increase collectible counter.
 	Game.get_singleton().collectibles += 1
+	
+	# Load dialogue for first collectable
+	if Game.get_singleton().collectibles == 1:
+		var balloon_load = load(\"res://Dialogue/Dialogue/cutscene_balloon.tscn\")
+		var dialogue_resource : DialogueResource = load(\"res://Dialogue/Dialogue/event.dialogue\")
+		
+		var balloon : Node = balloon_load.instantiate()
+		get_tree().current_scene.add_child(balloon)	
+		balloon.start(dialogue_resource, \"first_shard\")
+		SignalManager.dialogue_start.emit()
+	
 	# Store the orb. This will automatically assign the collected marker.
 	MetSys.store_object(self)
 	# Storing object does not free it automatically.
