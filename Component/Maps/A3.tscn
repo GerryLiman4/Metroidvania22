@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b0slggtj3oo3c"]
+[gd_scene load_steps=5 format=3 uid="uid://b0slggtj3oo3c"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_a50ap"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_y1nnk"]
+[ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://enemy_spawn.tscn" id="3_t2ahx"]
+[ext_resource type="Script" path="res://enemy_spawn.gd" id="4_t6pqt"]
 
 [node name="A3" type="Node2D" groups=["Abyss"]]
 
@@ -12,3 +14,17 @@ layer_1/tile_data = PackedInt32Array(0, 0, 11, 65536, 131072, 11, 131072, 131072
 layer_3/tile_data = PackedInt32Array(1376272, 655361, 6, 1376273, 720897, 6, 1376274, 786433, 6, 1376275, 851969, 6, 1507345, 655361, 4, 1507346, 720897, 4, 1507347, 786433, 4, 1507348, 851969, 4, 1507344, 851969, 4, 1507343, 655361, 7, 1114122, 196609, 1)
 
 [node name="RoomInstance" parent="." instance=ExtResource("2_y1nnk")]
+
+[node name="EnemySpawn" parent="." instance=ExtResource("3_t2ahx")]
+script = ExtResource("4_t6pqt")
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
+position = Vector2(288, 544)
+
+[node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
+position = Vector2(600, 504)
+
+[node name="Marker2D3" type="Marker2D" parent="EnemySpawn/Random" index="0"]
+position = Vector2(1088, 592)
+
+[editable path="EnemySpawn"]
