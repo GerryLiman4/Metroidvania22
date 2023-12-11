@@ -17,9 +17,9 @@
 [ext_resource type="Texture2D" uid="uid://j5qpetfoyrv5" path="res://Dialogue/Characters/Mayor.png" id="12_pxx1y"]
 [ext_resource type="Texture2D" uid="uid://c6ec1xu873u4h" path="res://Dialogue/Characters/Sheriff.png" id="13_vkwc1"]
 [ext_resource type="Resource" uid="uid://bhy84am8vom66" path="res://Dialogue/Dialogue/dialogue.dialogue" id="16_odj8s"]
-[ext_resource type="PackedScene" uid="uid://dhquseqrg6jr2" path="res://Component/Objects/FastTravel.tscn" id="18_r0l2g"]
+[ext_resource type="PackedScene" path="res://Component/Objects/FastTravel.tscn" id="18_r0l2g"]
 [ext_resource type="PackedScene" uid="uid://c5d0f770ww2gg" path="res://Component/Objects/Collectible.tscn" id="18_vmppq"]
-[ext_resource type="PackedScene" uid="uid://oh4kdaw8kf7p" path="res://Dialogue/Helpers/event.tscn" id="19_vpd4g"]
+[ext_resource type="PackedScene" path="res://Dialogue/Helpers/event.tscn" id="19_vpd4g"]
 [ext_resource type="Resource" uid="uid://dl30w8ay6wogl" path="res://Dialogue/Dialogue/event.dialogue" id="20_v3ps8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vlp1k"]
