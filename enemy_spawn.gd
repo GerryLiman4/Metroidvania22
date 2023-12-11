@@ -61,4 +61,3 @@ func spawn_bat():
 
 func _on_timer_timeout():
 	spawn_bat()
->>>>>>> Stashed changes
