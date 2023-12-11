@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://ca0eyh0f0n6qr"]
+
+[node name="EnemySpawn" type="Node2D"]
+
+[node name="Bat" type="Node2D" parent="."]
+
+[node name="Spider" type="Node2D" parent="."]
+
+[node name="Random" type="Node2D" parent="."]
