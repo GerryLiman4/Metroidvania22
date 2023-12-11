@@ -20,4 +20,10 @@ position = Vector2(225, 183)
 
 [node name="EnemySpawn" parent="." instance=ExtResource("4_u7722")]
 
+[node name="Marker2D1" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
+position = Vector2(567.232, 225.253)
+
+[node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
+position = Vector2(508.716, 864.995)
+
 [editable path="EnemySpawn"]

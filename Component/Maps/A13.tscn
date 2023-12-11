@@ -30,4 +30,7 @@ rotation = 0.00141585
 
 [node name="EnemySpawn" parent="." instance=ExtResource("6_cjdxe")]
 
+[node name="Marker2D1" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
+position = Vector2(792.604, 597.753)
+
 [editable path="EnemySpawn"]

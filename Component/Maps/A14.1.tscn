@@ -24,7 +24,7 @@ position = Vector2(544, 1808)
 
 [node name="EnemySpawn" parent="." instance=ExtResource("5_woc27")]
 
-[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
+[node name="Marker2D1" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
 position = Vector2(580.836, 1047.37)
 
 [node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Spider" index="0"]

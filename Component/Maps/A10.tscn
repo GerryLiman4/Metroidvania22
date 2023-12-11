@@ -22,4 +22,7 @@ position = Vector2(1122, 441)
 position = Vector2(1122, 441)
 scale = Vector2(0.5, 0.5)
 
+[node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
+position = Vector2(-1281.78, 806.72)
+
 [editable path="EnemySpawn"]

@@ -33,4 +33,10 @@ position = Vector2(682, 1774)
 rotation = 0.00141585
 scale = Vector2(0.5, 0.5)
 
+[node name="Marker2D1" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
+position = Vector2(-810.75, -2899.28)
+
+[node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
+position = Vector2(-243.962, -2169.06)
+
 [editable path="EnemySpawn"]
