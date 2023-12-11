@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dcsis7540ucan" path="res://UI/MVArtwork.PNG" id="1_886da"]
 [ext_resource type="Script" path="res://UI/intro_scene.gd" id="1_cay41"]
 [ext_resource type="PackedScene" uid="uid://0xi7fk137lxy" path="res://Dialogue/Helpers/actionable.tscn" id="3_oh4v7"]
-[ext_resource type="Resource" uid="uid://c8rfljvtnn5ce" path="res://Dialogue/Dialogue/main.dialogue" id="4_xpcn6"]
+[ext_resource type="Resource" uid="uid://bhy84am8vom66" path="res://Dialogue/Dialogue/dialogue.dialogue" id="4_uxwdy"]
 
 [sub_resource type="Animation" id="Animation_bsbs8"]
 resource_name = "scene_1"
@@ -40,7 +40,7 @@ texture = ExtResource("1_886da")
 centered = false
 
 [node name="Actionable" parent="Scene1" instance=ExtResource("3_oh4v7")]
-dialogue_resource = ExtResource("4_xpcn6")
+dialogue_resource = ExtResource("4_uxwdy")
 dialogue_start = "intro_cutscene"
 
 [node name="Scene2" type="Node2D" parent="."]

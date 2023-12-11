@@ -44,6 +44,8 @@ var can_double_jump : bool = true
 
 var reset_position : Vector2
 
+var event : bool = false
+
 @export var player_movement_input : Vector2
 
 @export_category("Animation")
@@ -94,7 +96,7 @@ func _ready():
 	SignalManager.dialogue_end.connect(on_dialogue_end)
 
 func _unhandled_input(_event : InputEvent) -> void:
-	if Input.is_action_just_pressed("Interact"):
+	if Input.is_action_just_pressed("Interact") && !event:
 		var actionables = actionable_finder.get_overlapping_areas()
 		if actionables.size() > 0:
 			actionables[0].action()
@@ -646,12 +648,14 @@ func set_charge(is_active : bool) :
 #endregion
 
 func on_dialogue_start() :
+	event = true
 	set_process(false)
 	set_physics_process(false)
-	set_process_unhandled_input(false)
+	#set_process_unhandled_input(false)
 
 func on_dialogue_end() :
+	event = false
 	print("dialogue end")
 	set_process(true)
 	set_physics_process(true)
-	set_process_unhandled_input(true)
+	#set_process_unhandled_input(true)

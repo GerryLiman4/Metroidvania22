@@ -204,7 +204,7 @@ Interact={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://Dialogue/Dialogue/main.dialogue")
+locale/translations_pot_files=PackedStringArray("res://Dialogue/Dialogue/main.dialogue", "res://Dialogue/Dialogue/dialogue.dialogue", "res://Dialogue/Dialogue/event.dialogue")
 
 [layer_names]
 

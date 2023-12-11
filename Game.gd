@@ -28,39 +28,9 @@ func _ready() -> void:
 	MetSys.reset_state()
 	
 	if FileAccess.file_exists("user://save_data.sav"):
-		
-		# If save data exists, load it.
-		var save_data: Dictionary = FileAccess.open("user://save_data.sav", FileAccess.READ).get_var()
-		if !save_data.is_empty():
-			# Send the data to MetSys (it has extra keys, but it doesn't matter).
-			MetSys.set_save_data(save_data)
-			# Load various data stored in the dictionary.
-			collectibles = save_data.collectible_count
-			generated_rooms.assign(save_data.generated_rooms)
-			events.assign(save_data.events)
-			starting_map = save_data.current_room
-			#player.abilities.assign(save_data.abilities)
-		else:
-			MetSys.set_save_data()
-			var file_path = "user://save_data.sav"
-			FileAccess.open("user://save_data.sav", FileAccess.WRITE).store_var({})
-			var initial_save_data := get_init_save_data()
-			# Merge it with the Dicionary from MetSys.
-			initial_save_data.merge(MetSys.get_save_data())
-			
-			if FileAccess.file_exists("user://save_data.sav"):
-			# Save the file.
-				FileAccess.open("user://save_data.sav", FileAccess.WRITE).store_var(initial_save_data)
+		load_save()
 	else:
-		MetSys.set_save_data()
-		var file_path = "user://save_data.sav"
-		FileAccess.open("user://save_data.sav", FileAccess.WRITE).store_var({})
-		var initial_save_data := get_init_save_data()
-		# Merge it with the Dicionary from MetSys.
-		initial_save_data.merge(MetSys.get_save_data())
-		if FileAccess.file_exists("user://save_data.sav"):
-		# Save the file.
-			FileAccess.open("user://save_data.sav", FileAccess.WRITE).store_var(initial_save_data)
+		reset_save()
 	
 	
 	# Go to the starting point.
@@ -75,7 +45,33 @@ func _ready() -> void:
 	# A trick for static object reference (before static vars were a thing).
 	get_script().set_meta(&"singleton", self)
 	
+func load_save():
+	# If save data exists, load it.
+	var save_data: Dictionary = FileAccess.open("user://save_data.sav", FileAccess.READ).get_var()
+	if !save_data.is_empty():
+		# Send the data to MetSys (it has extra keys, but it doesn't matter).
+		MetSys.set_save_data(save_data)
+		# Load various data stored in the dictionary.
+		collectibles = save_data.collectible_count
+		generated_rooms.assign(save_data.generated_rooms)
+		events.assign(save_data.events)
+		starting_map = save_data.current_room
+		#player.abilities.assign(save_data.abilities)
+	else:
+		reset_save()
 	
+func reset_save():
+	MetSys.set_save_data()
+	var file_path = "user://save_data.sav"
+	FileAccess.open("user://save_data.sav", FileAccess.WRITE).store_var({})
+	var initial_save_data := get_init_save_data()
+	# Merge it with the Dicionary from MetSys.
+	initial_save_data.merge(MetSys.get_save_data())
+	
+	if FileAccess.file_exists("user://save_data.sav"):
+		# Save the file.
+		FileAccess.open("user://save_data.sav", FileAccess.WRITE).store_var(initial_save_data)
+
 
 # Loads a room scene and removes the current one if exists.
 func goto_map(map_path: String, fast_travel : bool = false):

@@ -8,6 +8,8 @@ const Cutscene_Balloon = preload("res://Dialogue/Dialogue/cutscene_balloon.tscn"
 @export var dialogue_resource : DialogueResource
 @export var dialogue_start : String = "start"
 
+var player : CharacterBody2D
+
 func action() -> void:
 	if dialogue_start == "intro_cutscene":
 		#DialogueManager.show_dialogue_balloon(dialogue_resourse, dialogue_start)
@@ -20,4 +22,3 @@ func action() -> void:
 		balloon.start(dialogue_resource, dialogue_start)
 	
 	SignalManager.dialogue_start.emit()
-	

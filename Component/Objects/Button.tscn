@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	# Detect when player enters button area.
-	if not body.is_in_group(&\"player\"):
+	if not body.is_in_group(&\"Player\"):
 		return
 	# \"Store\" the button, i.e. remember its persistent state.
 	MetSys.store_object(self)

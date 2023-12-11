@@ -2,26 +2,51 @@ extends Area2D
 # The target map after entering the elevators.
 @export var target_map: String
 @export var texture : Texture
+@export var id : int
 
 @onready var sprite_2d = $Sprite2D
 @onready var animation_player = $Sprite2D/AnimationPlayer
 
-@onready var label = $Label
+@onready var use_label = $UseLabel
+@onready var fix_label = $FixLabel
+@onready var fixed_label = $FixedLabel
+@onready var timer = $Timer
 
 var player
+
+var is_active : bool = false
 
 func _ready():
 	if texture:
 		sprite_2d.texture = texture
 		
 	animation_player.play("RESET")
+	'''
+	if Game.get_singleton().events.has("lift_active"):
+		is_active = true
+		use_label.visible = false
+		fix_label.visible = false
+	'''
 
 func action() -> void:
 	if player:
-		player.velocity = Vector2()
-		# Play animation
-		animation_player.play("Open")
-		SceneTransition.transition()
+		match id:
+			0:
+				if Game.get_singleton().events.has("lift_active"):
+					player.velocity = Vector2()
+					# Play animation
+					animation_player.play("Open")
+					SceneTransition.transition()
+			1:
+				if Game.get_singleton().events.has("lift_active"):
+					player.velocity = Vector2()
+					# Play animation
+					animation_player.play("Open")
+					SceneTransition.transition()
+				else:
+					Game.get_singleton().events.append("lift_active")
+					timer.start(6)
+							
 		
 func goto_map() -> void:
 	# After tween finished, change the map.
@@ -35,10 +60,20 @@ func goto_map() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group(&"Player"):
 		player = body
-		label.visible = true
+		if is_active:
+			use_label.visible = true
+		else:
+			fix_label.visible = true
 
 
-func _on_body_exited(body):
+func _on_body_exited(body : Node2D) -> void:
 	if body.is_in_group(&"Player"):
 		player = null
-		label.visible = false
+		use_label.visible = false
+		fix_label.visible = false
+
+
+func _on_timer_timeout():
+	use_label.visible = false
+	fix_label.visible = false
+	fixed_label.visible = false

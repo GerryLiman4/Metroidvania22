@@ -1,0 +1,56 @@
+~ intro_cutscene
+
+Narrator: You are a wanderer. 
+Narrator: Normally, you would skip a place like this.
+Narrator: A simple mining village has no need for a wandering bounty hunter.
+Narrator: But there’s something here…
+Narrator: A mystery that needs to be solved. Aid that could be offered.
+Narrator: …coin that could be made.
+Narrator: This is your story…
+
+=> END
+
+~ talk_to_mayor
+
+Mayor West: Oh!? Marshall, thank god you made it!
+Gida: Wha-a-a-t part of my wardrobe screams “Marshall” to you?
+Mayor West: Oh, yes, I suppose you are too wethered to be a Marshall
+Gida: EXCUSE ME!?
+Mayor West: *sigh* I fear we will not make it another night without the Marshal and his men! None of our deputies have returned from their last mission into the mine, and those monsters gain more ground by the day!
+Gida: Monsters? You mean that weird green goop in the sky is making monsters in the mine?
+Mayor West: I don’t know what it is doing! All I know is that one day, it appeared, and that day was the worst in the history of our beloved town!
+Mayor West: Please, could you investigate the Mine? A gunslinger such as yourself should have no trouble protecting themselves! 
+Gida: I don’t know…
+Mayor West: PLEASE! You must help us! We will give you whatever you want! Gold? Jewels? Everything in the mine? Just make the monsters stop!
+Gida: Alright, alri-i-i-ight. Keep yer chaps on!
+Gida: I’ll take a look around. 
+Mayor West: You will? I mean, *ahem* thank you, sir. Stop by the pub as long as you’re here. Drinks are on me.
+Mayor West: And if you find anything–anything that can help us win this battle, report back to me! There’s a few Knockers still down there. Call me when if you find anything! You can’t miss em.
+Gida: Very well.
+Mayor West: …
+Gida: …
+Mayor West: Well, what are you waiting for–
+Gida: WHERE’S THE DAMN MINESHAFT!
+Mayor West: Oh, yes, yes. Follow the road, and you’ll find the entrance.
+
+=> END
+
+
+~ talk_to_sheriff
+
+Sheriff Gus: Whoa there, partner. Now just who might you be?
+Gida: Just a wanderer…
+Sheriff Gus: We don’t get very many of those. Ain’t had any since that abyss opened up.
+Gida: So I’ve heard.
+Sheriff Gus: So you know what the hell is goin on here, and yer still goin straight into the Devil’s Maw? Yer either one of the bravest sun’ov’a’guns I ever met or the stupidest.
+Gida: Maybe I am.
+Sheriff Gus: Cute. 
+
+=> END
+
+~ talk_to_sheriff2
+
+Gida: I may be new to how this whole township thing works, but shouldn’t a Sheriff have Deputies?
+Sheriff Gus: If yer really goin down there, keep an eye out for my deputies
+
+=> END

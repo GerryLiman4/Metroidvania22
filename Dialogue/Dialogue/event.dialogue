@@ -1,0 +1,22 @@
+~ first_shard
+
+Narrator: A sharp, jagged piece of metal. It appears to be a small piece of a larger whole. On the end, an inscription.
+Narrator: Dep– 
+Gida: Hmm, looks kinda like the edge of a star. Must be a Deputy’s badge…
+Gida: Let’s see if the Sheriff has anything to say about this. There has to be a Knocker around here somewhere.
+
+=> END
+
+~ wall_jump_upgrade
+
+Narrator: The strange energy rushes you. Swallows you! 
+Narrator: You think this is it. This is the end…
+Narrator: But you’re still alive?
+Narrator: The energy whisks away and up the mine from whence you came! As if it’s seeking freedom beyond these enclosed walls…
+Gida: Whoa-a-a, what was that?
+Gida: My hoofs, they feel…
+Gida: Stronger!
+Gida: I think I can make those jumps now!
+Narrator: You have acquired the Wall Jump Upgrade! Jump toward the wall, then jump off to latch onto another wall and continue jumping!
+
+=> END
