@@ -1,15 +1,15 @@
-[gd_scene load_steps=20 format=3 uid="uid://dh2v1mpv02wq0"]
+[gd_scene load_steps=24 format=3 uid="uid://dh2v1mpv02wq0"]
 
 [ext_resource type="Script" path="res://Component/Player/player.gd" id="1_x2mr2"]
 [ext_resource type="PackedScene" uid="uid://3jirgrp83pq" path="res://Component/player_bullet.tscn" id="2_1l3hs"]
 [ext_resource type="PackedScene" uid="uid://cmuds76iodbtf" path="res://Component/upgraded_player_bullet.tscn" id="3_5k2n6"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="3_51okl"]
-[ext_resource type="Texture2D" uid="uid://dx7ciwflmpexa" path="res://Resources/MainCharacter/arm pistol front.png" id="3_wcq8k"]
 [ext_resource type="Texture2D" uid="uid://b7nlnr3m1ynt3" path="res://Resources/MainCharacter/head 128.png" id="4_bqkva"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="4_oroim"]
 [ext_resource type="SpriteFrames" uid="uid://ds7usjx5jo8u" path="res://Component/Player/main_character_animation.tres" id="5_13q23"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_hfc4i"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_8dtlr"]
+[ext_resource type="Texture2D" uid="uid://b5wefy6xv53l3" path="res://Resources/MainCharacter/gun_arm_right_-Sheet.png" id="6_dvus0"]
 [ext_resource type="Script" path="res://Component/Player/player_health.gd" id="6_o0leh"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_31jtg"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="8_0ixva"]
@@ -33,6 +33,205 @@ height = 126.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3aknh"]
 size = Vector2(58, 62)
+
+[sub_resource type="Animation" id="Animation_1wvee"]
+resource_name = "Reload"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D/Arm:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D/Arm:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, -21)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D/Arm:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -1.5708, -1.5708, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D/Arm:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 3, 4, 3, 2, 1, 0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimatedSprite2D/Arm:offset")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-40, -10)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reload_finished"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_u1nvw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D/Arm:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D/Arm:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(7.99999, -21)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D/Arm:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D/Arm:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimatedSprite2D/Arm:offset")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-40, -10)]
+}
+
+[sub_resource type="Animation" id="Animation_8hpr5"]
+resource_name = "Shoot"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D/Arm:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D/Arm:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, -21)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D/Arm:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D/Arm:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1xlwd"]
+_data = {
+"RESET": SubResource("Animation_u1nvw"),
+"Reload": SubResource("Animation_1wvee"),
+"Shoot": SubResource("Animation_8hpr5")
+}
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("audio_player", "character_state", "wall_jump_timer", "animation_player", "arm_sprite", "head_model", "head_sprite", "shooter", "player_health", "charge_area", "charge_hitbox", "collision_box", "hit_box", "head_raycast_up_left", "head_raycast_up_right", "crawl_collision", "crawl_hitbox", "leg_raycast_left", "leg_raycast_right", "head_raycast_left", "head_raycast_right") groups=["Player"]]
 collision_layer = 34
@@ -66,9 +265,11 @@ head_raycast_right = NodePath("HeadCastRight")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("5_13q23")
-animation = &"Idle"
+animation = &"Walk"
+frame_progress = 0.261903
 
 [node name="HeadModel" type="Sprite2D" parent="AnimatedSprite2D"]
+visible = false
 position = Vector2(16, 0)
 
 [node name="Head" type="Sprite2D" parent="AnimatedSprite2D/HeadModel"]
@@ -78,9 +279,11 @@ texture = ExtResource("4_bqkva")
 
 [node name="Arm" type="Sprite2D" parent="AnimatedSprite2D"]
 z_index = 15
-position = Vector2(18, -5)
-texture = ExtResource("3_wcq8k")
-offset = Vector2(-20, 5)
+position = Vector2(7.99999, -21)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("6_dvus0")
+offset = Vector2(-40, -10)
+hframes = 5
 
 [node name="Marker2D" type="Marker2D" parent="AnimatedSprite2D/Arm"]
 position = Vector2(0, 4)
@@ -89,7 +292,7 @@ position = Vector2(0, 4)
 position = Vector2(-49, 5)
 
 [node name="Direction" type="Marker2D" parent="AnimatedSprite2D"]
-position = Vector2(-40, 0)
+position = Vector2(40, 0)
 
 [node name="ActionableFinder" type="Area2D" parent="AnimatedSprite2D/Direction"]
 collision_layer = 0
@@ -354,6 +557,11 @@ modulate = Color(1, 0.596078, 0.431373, 1)
 position = Vector2(24, -38)
 target_position = Vector2(0, -25)
 hit_from_inside = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1xlwd")
+}
 
 [connection signal="area_entered" from="ChargeHitbox" to="." method="_on_charge_hitbox_area_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/CharacterState/Idle" to="." method="_on_idle_state_entered"]

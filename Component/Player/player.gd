@@ -659,3 +659,7 @@ func on_dialogue_end() :
 	set_process(true)
 	set_physics_process(true)
 	#set_process_unhandled_input(true)
+	
+func reload_finished():
+	# Handle reload
+	pass
