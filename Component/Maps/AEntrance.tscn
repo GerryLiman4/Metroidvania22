@@ -18,16 +18,44 @@ layer_3/tile_data = PackedInt32Array(8323074, 655361, 7, 8323075, 720897, 7, 845
 position = Vector2(1065, 2837)
 
 [node name="EnemySpawn" parent="." instance=ExtResource("4_rni1h")]
-max_bat_count = 1
-max_enemy_count = 1
+enemy_max = 5
+bat_max = 5
+gopher_max = 3
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
 position = Vector2(257, 666)
 
 [node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Bat" index="1"]
-position = Vector2(319, 599)
+position = Vector2(879, 999)
 
 [node name="Marker2D3" type="Marker2D" parent="EnemySpawn/Bat" index="2"]
-position = Vector2(249, 570)
+position = Vector2(415, 1721)
+
+[node name="Marker2D4" type="Marker2D" parent="EnemySpawn/Bat" index="3"]
+position = Vector2(771, 2225)
+
+[node name="Marker2D5" type="Marker2D" parent="EnemySpawn/Bat" index="4"]
+position = Vector2(335, 2581)
+
+[node name="Marker2D6" type="Marker2D" parent="EnemySpawn/Bat" index="5"]
+position = Vector2(755, 3039)
+
+[node name="Marker2D7" type="Marker2D" parent="EnemySpawn/Bat" index="6"]
+position = Vector2(253, 3481)
+
+[node name="Marker2D8" type="Marker2D" parent="EnemySpawn/Bat" index="7"]
+position = Vector2(749, 3819)
+
+[node name="Marker2D9" type="Marker2D" parent="EnemySpawn/Bat" index="8"]
+position = Vector2(315, 4283)
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Gopher" index="0"]
+position = Vector2(1026, 4044)
+
+[node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Gopher" index="1"]
+position = Vector2(952, 4121)
+
+[node name="Marker2D3" type="Marker2D" parent="EnemySpawn/Gopher" index="2"]
+position = Vector2(668, 4452)
 
 [editable path="EnemySpawn"]

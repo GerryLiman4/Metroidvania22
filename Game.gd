@@ -7,6 +7,12 @@ class_name Game
 # Player node, bruh.
 @onready var player: CharacterBody2D =  $Player
 
+@onready var enemy_scenes : Dictionary = {
+	"bat" : preload("res://Component/Enemy/enemy_bat.tscn"),
+	"spider" : preload("res://Component/Enemy/enemy_hed.tscn"),
+	"gopher": preload("res://Component/Enemy/enemy_gunner.tscn")
+}
+
 # The current map scene instance.
 var map: Node2D
 
@@ -44,6 +50,7 @@ func _ready() -> void:
 	reset_map_starting_coords.call_deferred()
 	# A trick for static object reference (before static vars were a thing).
 	get_script().set_meta(&"singleton", self)
+
 	
 func load_save():
 	# If save data exists, load it.
@@ -161,6 +168,13 @@ func get_init_save_data() -> Dictionary:
 		"current_room": "StartingPoint.tscn"
 		#"abilities": player.abilities,
 }
+
+func get_enemy(type : String) -> PackedScene:
+	if enemy_scenes.has(type):
+		return enemy_scenes[type]
+	else:
+		return preload("res://Component/Enemy/enemy_hed.tscn")
+	
 
 func reset_map_starting_coords():
 	$UI/MapWindow.reset_starting_coords()

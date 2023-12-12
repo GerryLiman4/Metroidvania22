@@ -9,7 +9,7 @@ script = ExtResource("1_q3vua")
 
 [node name="Spider" type="Node2D" parent="."]
 
-[node name="Random" type="Node2D" parent="."]
+[node name="Gopher" type="Node2D" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

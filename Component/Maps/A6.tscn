@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c5d0f770ww2gg" path="res://Component/Objects/Collectible.tscn" id="3_j1tcs"]
 [ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://enemy_spawn.tscn" id="4_h4ueh"]
 
-[node name="Map" type="Node2D" groups=["Abyss"]]
+[node name="Map2" type="Node2D" groups=["Abyss"]]
 
 [node name="TileMapBase" parent="." instance=ExtResource("1_wovdh")]
 rotation = 0.00141585
@@ -22,9 +22,6 @@ position = Vector2(954, 2240)
 position = Vector2(724, 1870)
 
 [node name="EnemySpawn" parent="." instance=ExtResource("4_h4ueh")]
-max_bat_count = 2
-max_spider_count = 3
-max_enemy_count = 5
 
 [node name="Marker2D1" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
 position = Vector2(453.278, 705.307)

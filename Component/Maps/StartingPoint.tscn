@@ -157,7 +157,7 @@ dialogue_start = "talk_to_sheriff"
 shape = SubResource("CircleShape2D_vlp1k")
 
 [node name="SavePoint" parent="." instance=ExtResource("12_l2mrd")]
-position = Vector2(2914, 608)
+position = Vector2(3798, 583)
 
 [node name="FastTravel" parent="." instance=ExtResource("18_r0l2g")]
 position = Vector2(3157, 548)
