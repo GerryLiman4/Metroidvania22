@@ -23,6 +23,16 @@ var player : CharacterBody2D
 func _ready():
 	if texture:
 		sprite_2d.texture = texture
+	
+	player = get_parent().get_node_or_null("Player")
+	
+	match event_type:
+		EVENTS.ABILITY:
+			if Player.get_singleton().abilities.has(event_name):
+				self.visible = false
+		EVENTS.OTHER:
+			pass
+				
 
 func action() -> void:
 	if !automatic:
@@ -39,22 +49,22 @@ func action() -> void:
 		
 		SignalManager.dialogue_start.emit()
 
+
 func _on_body_entered(body):
-	if body.is_in_group(&"Player") && body is CharacterBody2D:
+	if body.is_in_group(&"Player"):
 		player = body
 		if (automatic && event_name && event_type != null):
 			match (event_type):
 				EVENTS.ABILITY:
-					if player.has_method("set_charge"):
+					if !Player.get_singleton().abilities.has(event_name):
 						var abilities : Array = player.abilities
-						if !abilities.has(event_name):
-							player.abilities.append(event_name)
-							# Create dialogue balloon
-							var balloon : Node = Cutscene_Balloon.instantiate()
-							get_tree().current_scene.add_child(balloon)
-							balloon.start(dialogue_resource, dialogue_start)
-							SignalManager.dialogue_start.emit()
-							queue_free()
+						player.abilities.append(event_name)
+						# Create dialogue balloon
+						var balloon : Node = Cutscene_Balloon.instantiate()
+						get_tree().current_scene.add_child(balloon)
+						balloon.start(dialogue_resource, dialogue_start)
+						SignalManager.dialogue_start.emit()
+						queue_free()
 				EVENTS.OTHER:
 					pass
 			

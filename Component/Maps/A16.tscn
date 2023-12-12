@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_w6t4u"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="3_th1p7"]
 [ext_resource type="PackedScene" uid="uid://bq6ll2apombgy" path="res://Component/Objects/save_point.tscn" id="3_tlc62"]
-[ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://enemy_spawn.tscn" id="4_7nao7"]
+[ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://Component/Objects/enemy_spawn.tscn" id="4_7nao7"]
 
 [node name="Map" type="Node2D" groups=["Abyss"]]
 

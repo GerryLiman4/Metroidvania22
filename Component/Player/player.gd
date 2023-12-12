@@ -95,6 +95,9 @@ func _ready():
 	player_health.on_dead.connect(on_dead)
 	SignalManager.dialogue_start.connect(on_dialogue_start)
 	SignalManager.dialogue_end.connect(on_dialogue_end)
+	
+	# A trick for static object reference (before static vars were a thing).
+	get_script().set_meta(&"singleton", self)
 
 func _unhandled_input(_event : InputEvent) -> void:
 	if Input.is_action_just_pressed("Interact") && !event:
@@ -102,8 +105,10 @@ func _unhandled_input(_event : InputEvent) -> void:
 		if actionables.size() > 0:
 			actionables[0].action()
 			return
+	'''
 	if Input.is_action_just_pressed("start"):
 		SceneTransition.start_transition_to("menu", true, "res://UI/main.tscn")
+	'''
 	if Input.is_action_just_pressed("print"):
 		print(abilities)
 
@@ -668,5 +673,8 @@ func reload_finished():
 	# Handle reload
 	pass
 
-		
-	
+func get_abilities() -> Array:
+	return abilities
+
+static func get_singleton() -> Player:
+	return (Player as Script).get_meta(&"singleton") as Player		

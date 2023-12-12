@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://tql1y3c6pawq"]
+[gd_scene load_steps=10 format=3 uid="uid://tql1y3c6pawq"]
 
 [ext_resource type="Script" path="res://Game.gd" id="1_0eayi"]
 [ext_resource type="PackedScene" uid="uid://dh2v1mpv02wq0" path="res://Component/Player/player.tscn" id="2_mg4rk"]
+[ext_resource type="PackedScene" uid="uid://sawj2a722cu3" path="res://UI/pause_menu.tscn" id="3_ckei3"]
 
 [sub_resource type="GDScript" id="GDScript_4div8"]
 resource_name = "Minimap"
@@ -280,3 +281,5 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "0"
 vertical_alignment = 1
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("3_ckei3")]

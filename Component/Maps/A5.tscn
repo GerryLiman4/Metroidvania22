@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c5d0f770ww2gg" path="res://Component/Objects/Collectible.tscn" id="3_3u5u1"]
 [ext_resource type="PackedScene" uid="uid://bq6ll2apombgy" path="res://Component/Objects/save_point.tscn" id="4_q67w6"]
 [ext_resource type="PackedScene" uid="uid://oh4kdaw8kf7p" path="res://Dialogue/Helpers/event.tscn" id="6_2t583"]
-[ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://enemy_spawn.tscn" id="6_81qvd"]
+[ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://Component/Objects/enemy_spawn.tscn" id="6_81qvd"]
 [ext_resource type="Resource" uid="uid://dl30w8ay6wogl" path="res://Dialogue/Dialogue/event.dialogue" id="7_lw13n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e0j67"]

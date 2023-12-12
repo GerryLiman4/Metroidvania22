@@ -38,7 +38,6 @@ func _ready() -> void:
 	else:
 		reset_save()
 	
-	
 	# Go to the starting point.
 	goto_map(MetSys.get_full_room_path(starting_map))
 	# Find the save point and teleport the player to it, to start at the save point.
