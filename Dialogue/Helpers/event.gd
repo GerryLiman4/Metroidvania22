@@ -4,14 +4,25 @@ extends Area2D
 const Portrait_Balloon = preload("res://Dialogue/Dialogue/portrait_balloon.tscn")
 const Cutscene_Balloon = preload("res://Dialogue/Dialogue/cutscene_balloon.tscn")
 
+@export var texture : CompressedTexture2D
+
 @export var automatic : bool = false
-@export var event : String
+@export var event_name : String
+@export var event_type : EVENTS
+
+enum EVENTS{ABILITY, OTHER}
 
 # Dialogue file and start positions
 @export var dialogue_resource : DialogueResource
 @export var dialogue_start : String = "start"
 
+@onready var sprite_2d = $Sprite2D
+
 var player : CharacterBody2D
+
+func _ready():
+	if texture:
+		sprite_2d.texture = texture
 
 func action() -> void:
 	if !automatic:
@@ -29,16 +40,24 @@ func action() -> void:
 		SignalManager.dialogue_start.emit()
 
 func _on_body_entered(body):
-	if body.is_in_group(&"Player"):
+	if body.is_in_group(&"Player") && body is CharacterBody2D:
 		player = body
-		if (automatic && event):
-			if !Game.get_singleton().events.has(event):
-				Game.get_singleton().events.append(event)
-				# Create dialogue balloon
-				var balloon : Node = Cutscene_Balloon.instantiate()
-				get_tree().current_scene.add_child(balloon)
-				balloon.start(dialogue_resource, dialogue_start)
-				SignalManager.dialogue_start.emit()
+		if (automatic && event_name && event_type != null):
+			match (event_type):
+				EVENTS.ABILITY:
+					if player.has_method("set_charge"):
+						var abilities : Array = player.abilities
+						if !abilities.has(event_name):
+							player.abilities.append(event_name)
+							# Create dialogue balloon
+							var balloon : Node = Cutscene_Balloon.instantiate()
+							get_tree().current_scene.add_child(balloon)
+							balloon.start(dialogue_resource, dialogue_start)
+							SignalManager.dialogue_start.emit()
+							queue_free()
+				EVENTS.OTHER:
+					pass
+			
 				
 func _on_body_exited(body):
 	if body.is_in_group(&"Player"):

@@ -7,7 +7,7 @@ Gida: Let’s see if the Sheriff has anything to say about this. There has to be
 
 => END
 
-~ wall_jump_upgrade
+~ wall_jump
 
 Narrator: The strange energy rushes you. Swallows you! 
 Narrator: You think this is it. This is the end…
@@ -17,6 +17,43 @@ Gida: Whoa-a-a, what was that?
 Gida: My hoofs, they feel…
 Gida: Stronger!
 Gida: I think I can make those jumps now!
-Narrator: You have acquired the Wall Jump Upgrade! Jump toward the wall, then jump off to latch onto another wall and continue jumping!
+Narrator: You have acquired the Wall Jump Upgrade! 
+Narrator: Jump toward the wall, then jump off to latch onto another wall and continue jumping!
+
+=> END
+
+~ charge
+
+Narrator: The strange energy rushes you. Swallows you! 
+Gida: Whoa-a-a, what was that?
+Narrator: You have acquired the Dash Upgrade!
+Narrator:  Dash while on the ground for a powerful attack
+
+=> END
+
+~ double_jump
+
+Narrator: The strange energy rushes you. Swallows you! 
+Gida: Whoa-a-a, what was that?
+Narrator: You have acquired the Double Jump Upgrade!
+Narrator: Jump while airborne to reach greater heights!
+
+=> END
+
+~ gun_upgrade
+
+Narrator: The strange energy rushes you. Swallows you! 
+Gida: Whoa-a-a, what was that?
+Narrator: You have acquired the Gun Upgrade!
+Narrator: Hold the fire button to charge a powerful shot!
+
+=> END
+
+~ crawl
+
+Narrator: The strange energy rushes you. Swallows you! 
+Gida: Whoa-a-a, what was that?
+Narrator: You have acquired the Roll Upgrade!
+Narrator: Hit [Input] to start rolling and access tight spots!
 
 => END

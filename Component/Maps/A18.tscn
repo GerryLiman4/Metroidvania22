@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2cjm13aifs7r"]
+[gd_scene load_steps=7 format=3 uid="uid://b2cjm13aifs7r"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_4f54b"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_dnydf"]
 [ext_resource type="PackedScene" uid="uid://c5d0f770ww2gg" path="res://Component/Objects/Collectible.tscn" id="3_rdlm2"]
-[ext_resource type="PackedScene" uid="uid://c0s26flwojlpq" path="res://Component/Objects/ability.tscn" id="4_2mrtc"]
+[ext_resource type="PackedScene" uid="uid://oh4kdaw8kf7p" path="res://Dialogue/Helpers/event.tscn" id="4_txdnc"]
+[ext_resource type="Resource" uid="uid://dl30w8ay6wogl" path="res://Dialogue/Dialogue/event.dialogue" id="5_dykco"]
 [ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://enemy_spawn.tscn" id="5_na5g2"]
 
 [node name="Map" type="Node2D" groups=["Abyss"]]
@@ -24,17 +25,19 @@ rotation = 0.00141585
 position = Vector2(605, 1085)
 rotation = 0.00141585
 
-[node name="Ability" parent="." instance=ExtResource("4_2mrtc")]
+[node name="Event" parent="." instance=ExtResource("4_txdnc")]
 position = Vector2(682, 1774)
 rotation = 0.00141585
+scale = Vector2(0.5, 0.5)
+automatic = true
+event_name = "crawl"
+dialogue_resource = ExtResource("5_dykco")
+dialogue_start = "crawl"
 
 [node name="EnemySpawn" parent="." instance=ExtResource("5_na5g2")]
 position = Vector2(682, 1774)
 rotation = 0.00141585
 scale = Vector2(0.5, 0.5)
-max_bat_count = 1
-max_spider_count = 1
-max_enemy_count = 2
 
 [node name="Marker2D1" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
 position = Vector2(-810.75, -2899.28)

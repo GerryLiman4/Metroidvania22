@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://w6toknfuhd68"]
+[gd_scene load_steps=8 format=3 uid="uid://w6toknfuhd68"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_71o4l"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_bgksq"]
 [ext_resource type="PackedScene" uid="uid://c5d0f770ww2gg" path="res://Component/Objects/Collectible.tscn" id="2_y4pid"]
-[ext_resource type="PackedScene" uid="uid://c0s26flwojlpq" path="res://Component/Objects/ability.tscn" id="4_ku8ef"]
+[ext_resource type="PackedScene" uid="uid://oh4kdaw8kf7p" path="res://Dialogue/Helpers/event.tscn" id="4_efwfo"]
 [ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://enemy_spawn.tscn" id="5_hccjh"]
+[ext_resource type="Resource" uid="uid://dl30w8ay6wogl" path="res://Dialogue/Dialogue/event.dialogue" id="5_ugefq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qh3xw"]
+radius = 102.02
 
 [node name="Map" type="Node2D" groups=["Abyss"]]
 
@@ -20,15 +24,20 @@ layer_3/tile_data = PackedInt32Array(1179653, 655361, 4, 1179654, 720897, 4, 117
 position = Vector2(183, 368)
 rotation = 0.00141585
 
-[node name="Ability" parent="." instance=ExtResource("4_ku8ef")]
+[node name="Event" parent="." instance=ExtResource("4_efwfo")]
 position = Vector2(947, 272)
+scale = Vector2(0.5, 0.5)
+automatic = true
+event_name = "gun_upgrade"
+dialogue_resource = ExtResource("5_ugefq")
+dialogue_start = "gun_upgrade"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Event"]
+shape = SubResource("CircleShape2D_qh3xw")
 
 [node name="EnemySpawn" parent="." instance=ExtResource("5_hccjh")]
 position = Vector2(947, 272)
 scale = Vector2(0.5, 0.5)
-max_bat_count = 1
-max_spider_count = 1
-max_enemy_count = 2
 
 [node name="Marker2D1" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
 position = Vector2(-939.339, 1045.82)

@@ -45,6 +45,7 @@ var can_double_jump : bool = true
 var reset_position : Vector2
 
 var event : bool = false
+var abilities: Array[StringName]
 
 @export var player_movement_input : Vector2
 
@@ -103,6 +104,8 @@ func _unhandled_input(_event : InputEvent) -> void:
 			return
 	if Input.is_action_just_pressed("start"):
 		SceneTransition.start_transition_to("menu", true, "res://UI/main.tscn")
+	if Input.is_action_just_pressed("print"):
+		print(abilities)
 
 func on_enter():
 	# Position for kill system. Assigned when entering new room (see Game.gd).
@@ -664,3 +667,6 @@ func on_dialogue_end() :
 func reload_finished():
 	# Handle reload
 	pass
+
+		
+	

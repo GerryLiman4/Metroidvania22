@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://cnk1ni608dksy"]
+[gd_scene load_steps=7 format=3 uid="uid://cnk1ni608dksy"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_4roa8"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_8x4la"]
-[ext_resource type="PackedScene" uid="uid://c0s26flwojlpq" path="res://Component/Objects/ability.tscn" id="3_3f4ii"]
+[ext_resource type="PackedScene" uid="uid://oh4kdaw8kf7p" path="res://Dialogue/Helpers/event.tscn" id="3_jocyx"]
+[ext_resource type="Resource" uid="uid://dl30w8ay6wogl" path="res://Dialogue/Dialogue/event.dialogue" id="4_0hhvx"]
 [ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://enemy_spawn.tscn" id="4_m5v35"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cl0v1"]
+radius = 86.8332
 
 [node name="Map" type="Node2D" groups=["Abyss"]]
 
@@ -15,14 +19,20 @@ layer_3/tile_data = PackedInt32Array(1441794, 262145, 2, 1376258, 262145, 2, 131
 
 [node name="RoomInstance" parent="." instance=ExtResource("2_8x4la")]
 
-[node name="Ability" parent="." instance=ExtResource("3_3f4ii")]
+[node name="Ability" parent="." instance=ExtResource("3_jocyx")]
 position = Vector2(1122, 441)
+scale = Vector2(0.5, 0.5)
+automatic = true
+event_name = "charge"
+dialogue_resource = ExtResource("4_0hhvx")
+dialogue_start = "charge"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ability"]
+shape = SubResource("CircleShape2D_cl0v1")
 
 [node name="EnemySpawn" parent="." instance=ExtResource("4_m5v35")]
 position = Vector2(1122, 441)
 scale = Vector2(0.5, 0.5)
-max_spider_count = 1
-max_enemy_count = 1
 
 [node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
 position = Vector2(-1281.78, 806.72)

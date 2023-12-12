@@ -1,11 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://dnn4v52jw6wnm"]
+[gd_scene load_steps=9 format=3 uid="uid://dnn4v52jw6wnm"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_he41m"]
-[ext_resource type="PackedScene" uid="uid://c0s26flwojlpq" path="res://Component/Objects/ability.tscn" id="2_f4p1g"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_kcjmp"]
 [ext_resource type="PackedScene" uid="uid://c5d0f770ww2gg" path="res://Component/Objects/Collectible.tscn" id="3_lcebk"]
 [ext_resource type="PackedScene" uid="uid://bq6ll2apombgy" path="res://Component/Objects/save_point.tscn" id="4_o3674"]
+[ext_resource type="PackedScene" uid="uid://oh4kdaw8kf7p" path="res://Dialogue/Helpers/event.tscn" id="5_dv3xx"]
 [ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://enemy_spawn.tscn" id="6_cjdxe"]
+[ext_resource type="Resource" uid="uid://dl30w8ay6wogl" path="res://Dialogue/Dialogue/event.dialogue" id="6_nkbe0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_04imo"]
+radius = 126.016
 
 [node name="Map" type="Node2D" groups=["Abyss"]]
 
@@ -24,12 +28,19 @@ position = Vector2(1104, 573)
 position = Vector2(690, 237)
 rotation = 0.00141585
 
-[node name="Ability" parent="." instance=ExtResource("2_f4p1g")]
+[node name="Ability" parent="." instance=ExtResource("5_dv3xx")]
 position = Vector2(335, 1822)
 rotation = 0.00141585
+scale = Vector2(0.5, 0.5)
+automatic = true
+event_name = "double_jump"
+dialogue_resource = ExtResource("6_nkbe0")
+dialogue_start = "double_jump"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ability"]
+shape = SubResource("CircleShape2D_04imo")
 
 [node name="EnemySpawn" parent="." instance=ExtResource("6_cjdxe")]
-max_bat_count = 1
 
 [node name="Marker2D1" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
 position = Vector2(792.604, 597.753)

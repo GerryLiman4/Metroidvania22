@@ -63,7 +63,7 @@ func load_save():
 		generated_rooms.assign(save_data.generated_rooms)
 		events.assign(save_data.events)
 		starting_map = save_data.current_room
-		#player.abilities.assign(save_data.abilities)
+		player.abilities.assign(save_data.abilities)
 	else:
 		reset_save()
 	
@@ -156,18 +156,18 @@ func get_save_data() -> Dictionary:
 		"collectible_count": collectibles,
 		"generated_rooms": generated_rooms,
 		"events": events,
-		"current_room": MetSys.get_current_room_name()
-		#"abilities": player.abilities,
-}
+		"current_room": MetSys.get_current_room_name(),
+		"abilities": player.abilities
+	}
 
 func get_init_save_data() -> Dictionary:
 	return {
 		"collectible_count": collectibles,
 		"generated_rooms": generated_rooms,
 		"events": events,
-		"current_room": "StartingPoint.tscn"
-		#"abilities": player.abilities,
-}
+		"current_room": "StartingPoint.tscn",
+		"abilities": player.abilities
+	}
 
 func get_enemy(type : String) -> PackedScene:
 	if enemy_scenes.has(type):
