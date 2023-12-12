@@ -18,15 +18,11 @@ layer_3/tile_data = PackedInt32Array(1376272, 655361, 6, 1376273, 720897, 6, 137
 enemy_max = 2
 bat_max = 1
 spider_max = 1
-gopher_max = 1
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
 position = Vector2(1108.42, 348.147)
 
 [node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
 position = Vector2(784, 480)
-
-[node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Gopher" index="0"]
-position = Vector2(618.421, 272.925)
 
 [editable path="EnemySpawn"]
