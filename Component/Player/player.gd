@@ -173,6 +173,7 @@ func get_move_input() :
 func get_jump_input() :
 	if Input.is_action_pressed("Jump") == true and is_on_floor() == true :
 		velocity.y = JUMP_VELOCITY
+		animation_player.play("Jump")
 		#SoundManager.play_clip(sound_player,SoundManager.SOUND_JUMP)
 		audio_stream_player.stream = audioScenes["jump"]
 		audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
@@ -430,7 +431,7 @@ func _on_jump_state_physics_processing(delta):
 		return
 
 func _on_fall_state_entered():
-	pass # Replace with function body.
+	animation_player.play("Jump", 1.0, true)
 
 func _on_fall_state_exited():
 	pass # Replace with function body.
