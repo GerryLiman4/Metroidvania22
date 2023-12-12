@@ -21,12 +21,28 @@ position = Vector2(1166, 670)
 rotation = 0.00141585
 
 [node name="EnemySpawn" parent="." instance=ExtResource("4_tbdgq")]
+enemy_max = 6
+bat_max = 3
+spider_max = 2
+gopher_max = 1
 
 [node name="Marker2D1" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
 position = Vector2(2037.86, 232.794)
 
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Bat" index="1"]
+position = Vector2(1814.44, 288.622)
+
+[node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Bat" index="2"]
+position = Vector2(1427.75, 577.656)
+
 [node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
 position = Vector2(1950.43, 748.042)
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Spider" index="1"]
+position = Vector2(246.359, 463.165)
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Gopher" index="0"]
+position = Vector2(1250.4, 355.97)
 
 [node name="NPCSprite" parent="." instance=ExtResource("5_xbv2y")]
 position = Vector2(152, 96)
