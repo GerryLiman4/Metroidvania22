@@ -36,7 +36,7 @@ position = Vector2(117, 876)
 rotation = 0.00141585
 scale = Vector2(0.5, 0.5)
 automatic = true
-event_name = "wall-jump"
+event_name = "wall_jump"
 dialogue_resource = ExtResource("7_lw13n")
 dialogue_start = "wall-jump"
 
