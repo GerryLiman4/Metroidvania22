@@ -41,8 +41,18 @@ dialogue_start = "double_jump"
 shape = SubResource("CircleShape2D_04imo")
 
 [node name="EnemySpawn" parent="." instance=ExtResource("6_cjdxe")]
+enemy_max = 3
+bat_max = 1
+spider_max = 1
+gopher_max = 1
 
 [node name="Marker2D1" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
 position = Vector2(792.604, 597.753)
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
+position = Vector2(330.386, 1439.54)
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Gopher" index="0"]
+position = Vector2(935.393, 1295.3)
 
 [editable path="EnemySpawn"]
