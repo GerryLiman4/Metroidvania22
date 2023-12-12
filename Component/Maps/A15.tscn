@@ -26,14 +26,20 @@ position = Vector2(947, 272)
 [node name="EnemySpawn" parent="." instance=ExtResource("5_hccjh")]
 position = Vector2(947, 272)
 scale = Vector2(0.5, 0.5)
-max_bat_count = 1
-max_spider_count = 1
-max_enemy_count = 2
+enemy_max = 3
+bat_max = 2
+spider_max = 2
 
 [node name="Marker2D1" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
-position = Vector2(-939.339, 1045.82)
+position = Vector2(-282, 706)
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Bat" index="1"]
+position = Vector2(-1129, 645)
 
 [node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
 position = Vector2(-1634.72, -250.773)
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Spider" index="1"]
+position = Vector2(-867.937, 1058.57)
 
 [editable path="EnemySpawn"]

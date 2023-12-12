@@ -29,9 +29,21 @@ position = Vector2(335, 1822)
 rotation = 0.00141585
 
 [node name="EnemySpawn" parent="." instance=ExtResource("6_cjdxe")]
-max_bat_count = 1
+enemy_max = 4
+bat_max = 2
+spider_max = 1
+gopher_max = 1
 
 [node name="Marker2D1" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
 position = Vector2(792.604, 597.753)
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Bat" index="1"]
+position = Vector2(625.671, 615.498)
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
+position = Vector2(323.343, 1430.47)
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Gopher" index="0"]
+position = Vector2(935.367, 1286.31)
 
 [editable path="EnemySpawn"]

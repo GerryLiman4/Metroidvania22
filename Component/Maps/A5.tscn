@@ -35,9 +35,18 @@ rotation = 0.00141585
 position = Vector2(117, 876)
 rotation = 0.00141585
 scale = Vector2(0.5, 0.5)
+enemy_max = 6
+bat_max = 2
+spider_max = 3
+gopher_max = 3
 
 [node name="Marker2D1" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
 position = Vector2(3622.81, -1434.82)
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Bat" index="1"]
+position = Vector2(3308.68, -1334.44)
+rotation = -0.00141585
+scale = Vector2(2, 2)
 
 [node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
 position = Vector2(992.43, -666.649)
@@ -49,5 +58,20 @@ scale = Vector2(2, 2)
 
 [node name="Marker2D2_3" type="Marker2D" parent="EnemySpawn/Spider" index="2"]
 position = Vector2(2970.52, -475.905)
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Gopher" index="0"]
+position = Vector2(1920.85, -551.851)
+rotation = -0.00141585
+scale = Vector2(2, 2)
+
+[node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Gopher" index="1"]
+position = Vector2(1915.64, -1.96484)
+rotation = -0.00141585
+scale = Vector2(2, 2)
+
+[node name="Marker2D3" type="Marker2D" parent="EnemySpawn/Gopher" index="2"]
+position = Vector2(1999.43, -1142.3)
+rotation = -0.00141585
+scale = Vector2(2, 2)
 
 [editable path="EnemySpawn"]
