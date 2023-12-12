@@ -38,11 +38,18 @@ shape = SubResource("CircleShape2D_qh3xw")
 [node name="EnemySpawn" parent="." instance=ExtResource("5_hccjh")]
 position = Vector2(947, 272)
 scale = Vector2(0.5, 0.5)
+enemy_max = 3
+bat_max = 1
+spider_max = 1
+gopher_max = 1
 
 [node name="Marker2D1" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
 position = Vector2(-939.339, 1045.82)
 
 [node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
 position = Vector2(-1634.72, -250.773)
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Gopher" index="0"]
+position = Vector2(-1196.79, -199.925)
 
 [editable path="EnemySpawn"]
