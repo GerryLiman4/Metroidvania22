@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkq8wu6tndrwu"]
+[gd_scene load_steps=4 format=3 uid="uid://bkq8wu6tndrwu"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_k6glr"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_rk2sc"]
 [ext_resource type="PackedScene" uid="uid://c5d0f770ww2gg" path="res://Component/Objects/Collectible.tscn" id="3_ee1s8"]
-[ext_resource type="PackedScene" uid="uid://c0s26flwojlpq" path="res://Component/Objects/ability.tscn" id="4_2l2kc"]
 
 [node name="Map" type="Node2D" groups=["Abyss"]]
 
@@ -21,8 +20,4 @@ rotation = 0.00141585
 
 [node name="Collectible2" parent="." instance=ExtResource("3_ee1s8")]
 position = Vector2(605, 1085)
-rotation = 0.00141585
-
-[node name="Ability" parent="." instance=ExtResource("4_2l2kc")]
-position = Vector2(682, 1774)
 rotation = 0.00141585
