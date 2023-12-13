@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bjp40h456oo5q"]
+[gd_scene load_steps=9 format=3 uid="uid://bjp40h456oo5q"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_j70rw"]
 [ext_resource type="PackedScene" path="res://Component/Breakable/breakable_wall.tscn" id="2_hajd6"]
@@ -7,6 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://bq6ll2apombgy" path="res://Component/Objects/save_point.tscn" id="4_ls6yc"]
 [ext_resource type="PackedScene" path="res://Component/Breakable/breakable_box.tscn" id="5_6tyd3"]
 [ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://Component/Objects/enemy_spawn.tscn" id="5_woc27"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_vls2a"]
+vertices = PackedVector2Array(528, 990, 98, 1018, 517, 586, 648, 697, 19, -104, 141, -71, 53, 57, -54, -42, -25, 394, 70, 295, 476, 350, 755, 482, 755, 675)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 7, 6, 9), PackedInt32Array(2, 8, 9, 10, 11), PackedInt32Array(3, 2, 11, 12)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-63.676, -41.953, -34.676, 401.047, 499.324, 590.047, 73.324, 1030.05, 535.324, 1000.05, 655.324, 706.047, 765.324, 684.047, 765.324, 476.047, 479.324, 341.047, 79.324, 286.047, 63.324, 60.047, 158.324, -77.953, 18.324, -115.953, -72.676, -39.953)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="Map" type="Node2D" groups=["Abyss"]]
 position = Vector2(4, 0)
@@ -36,6 +42,10 @@ position = Vector2(685, 1777)
 [node name="BreakableWall" parent="." instance=ExtResource("2_hajd6")]
 position = Vector2(1072, 209)
 rotation = 0.00141585
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(149.676, 181.953)
+navigation_polygon = SubResource("NavigationPolygon_vls2a")
 
 [node name="SavePoint" parent="." instance=ExtResource("4_ls6yc")]
 position = Vector2(539, 1841)

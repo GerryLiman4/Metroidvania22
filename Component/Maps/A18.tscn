@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b2cjm13aifs7r"]
+[gd_scene load_steps=10 format=3 uid="uid://b2cjm13aifs7r"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_4f54b"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_dnydf"]
@@ -7,6 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://oh4kdaw8kf7p" path="res://Dialogue/Helpers/event.tscn" id="4_txdnc"]
 [ext_resource type="Resource" uid="uid://dl30w8ay6wogl" path="res://Dialogue/Dialogue/event.dialogue" id="5_dykco"]
 [ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://Component/Objects/enemy_spawn.tscn" id="5_na5g2"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_lkgiq"]
+vertices = PackedVector2Array(-159, 679, -291, 654, -213, -235, 16, -77, 38, 335, 544, -73, 371, 251, 275, -331, 595, -324)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 4, 3, 7, 8)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-221.715, -253.261, 14.5175, -89.5956, 272.16, -341.961, 608.171, -334.436, 552.548, -68.3574, 379.013, 259.889, 45.1319, 344.362, -154.378, 690.644, -302.418, 662.854)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y1lut"]
 radius = 110.073
@@ -36,11 +42,16 @@ rotation = 0.00141585
 position = Vector2(605, 1085)
 rotation = 0.00141585
 
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(278.678, 323.787)
+rotation = 0.00141585
+scale = Vector2(0.5, 0.5)
+navigation_polygon = SubResource("NavigationPolygon_lkgiq")
+
 [node name="Event" parent="." instance=ExtResource("4_txdnc")]
 position = Vector2(682, 1774)
 rotation = 0.00141585
 scale = Vector2(0.5, 0.5)
-automatic = true
 event_name = "crawl"
 dialogue_resource = ExtResource("5_dykco")
 dialogue_start = "crawl"

@@ -1,11 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://cnk1ni608dksy"]
+[gd_scene load_steps=9 format=3 uid="uid://cnk1ni608dksy"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_4roa8"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_8x4la"]
 [ext_resource type="PackedScene" uid="uid://oh4kdaw8kf7p" path="res://Dialogue/Helpers/event.tscn" id="3_jocyx"]
 [ext_resource type="Resource" uid="uid://dl30w8ay6wogl" path="res://Dialogue/Dialogue/event.dialogue" id="4_0hhvx"]
 [ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://Component/Objects/enemy_spawn.tscn" id="4_m5v35"]
-[ext_resource type="PackedScene" uid="uid://d3bcuxyaj64yf" path="res://Component/Breakable/breakable_box.tscn" id="6_b38fr"]
+[ext_resource type="PackedScene" path="res://Component/Breakable/breakable_box.tscn" id="6_b38fr"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_r2cgp"]
+vertices = PackedVector2Array(134, -34, 208, 40, 96, 100, -465, -24, -323, 459, -532, 91)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-472, -33.5, 138, -44.5, 225, 42.5, 102, 107.5, -326, 475.5, -544, 90.5)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cl0v1"]
 radius = 86.8332
@@ -30,10 +36,13 @@ position = Vector2(79, 656)
 position = Vector2(79, 720)
 hitbox = NodePath("../BreakableBox/Breakable")
 
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(812, 101.5)
+navigation_polygon = SubResource("NavigationPolygon_r2cgp")
+
 [node name="Event" parent="." instance=ExtResource("3_jocyx")]
 position = Vector2(1122, 441)
 scale = Vector2(0.5, 0.5)
-automatic = true
 event_name = "charge"
 dialogue_resource = ExtResource("4_0hhvx")
 dialogue_start = "charge"

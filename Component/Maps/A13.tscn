@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dnn4v52jw6wnm"]
+[gd_scene load_steps=11 format=3 uid="uid://dnn4v52jw6wnm"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_he41m"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_kcjmp"]
@@ -8,6 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://oh4kdaw8kf7p" path="res://Dialogue/Helpers/event.tscn" id="5_dv3xx"]
 [ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://Component/Objects/enemy_spawn.tscn" id="6_cjdxe"]
 [ext_resource type="Resource" uid="uid://dl30w8ay6wogl" path="res://Dialogue/Dialogue/event.dialogue" id="6_nkbe0"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_reld2"]
+vertices = PackedVector2Array(265, -62, 272, 251, -204, 253, -201, -64)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-210.604, -74.753, -214.604, 264.247, 283.396, 261.247, 275.396, -71.753)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_04imo"]
 radius = 126.016
@@ -43,11 +49,14 @@ rotation = 0.00141585
 position = Vector2(688, 274)
 rotation = 0.00141585
 
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(792.604, 597.753)
+navigation_polygon = SubResource("NavigationPolygon_reld2")
+
 [node name="Event" parent="." instance=ExtResource("5_dv3xx")]
 position = Vector2(335, 1822)
 rotation = 0.00141585
 scale = Vector2(0.5, 0.5)
-automatic = true
 event_name = "double_jump"
 dialogue_resource = ExtResource("6_nkbe0")
 dialogue_start = "double_jump"

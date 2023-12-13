@@ -1,13 +1,19 @@
-[gd_scene load_steps=10 format=3 uid="uid://b1fbjpas0xejd"]
+[gd_scene load_steps=11 format=3 uid="uid://b1fbjpas0xejd"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_kt1ol"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_qhjpj"]
 [ext_resource type="PackedScene" uid="uid://c5d0f770ww2gg" path="res://Component/Objects/Collectible.tscn" id="3_3u5u1"]
-[ext_resource type="PackedScene" uid="uid://ejousxon6tww" path="res://Component/Breakable/breakable_wall.tscn" id="3_ttg20"]
+[ext_resource type="PackedScene" path="res://Component/Breakable/breakable_wall.tscn" id="3_ttg20"]
 [ext_resource type="PackedScene" uid="uid://bq6ll2apombgy" path="res://Component/Objects/save_point.tscn" id="4_q67w6"]
 [ext_resource type="PackedScene" uid="uid://oh4kdaw8kf7p" path="res://Dialogue/Helpers/event.tscn" id="6_2t583"]
 [ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://Component/Objects/enemy_spawn.tscn" id="6_81qvd"]
 [ext_resource type="Resource" uid="uid://dl30w8ay6wogl" path="res://Dialogue/Dialogue/event.dialogue" id="7_lw13n"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_qvonn"]
+vertices = PackedVector2Array(733, 175, -434, 182, -465, -101, 695, -109)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-477.283, -111.123, 703.717, -120.123, 744.717, 184.877, -444.283, 192.877)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e0j67"]
 radius = 100.08
@@ -35,11 +41,14 @@ position = Vector2(2015, 75)
 position = Vector2(242, 241)
 rotation = 0.00141585
 
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(1772.28, 211.123)
+navigation_polygon = SubResource("NavigationPolygon_qvonn")
+
 [node name="Event" parent="." instance=ExtResource("6_2t583")]
 position = Vector2(117, 876)
 rotation = 0.00141585
 scale = Vector2(0.5, 0.5)
-automatic = true
 event_name = "wall_jump"
 dialogue_resource = ExtResource("7_lw13n")
 dialogue_start = "wall_jump"

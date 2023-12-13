@@ -1,12 +1,24 @@
-[gd_scene load_steps=8 format=3 uid="uid://dob07x2fxoatr"]
+[gd_scene load_steps=10 format=3 uid="uid://dob07x2fxoatr"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_cdy6i"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_a88de"]
 [ext_resource type="PackedScene" uid="uid://c5d0f770ww2gg" path="res://Component/Objects/Collectible.tscn" id="3_w8ks8"]
-[ext_resource type="PackedScene" uid="uid://d3bcuxyaj64yf" path="res://Component/Breakable/breakable_box.tscn" id="4_nuvhq"]
+[ext_resource type="PackedScene" path="res://Component/Breakable/breakable_box.tscn" id="4_nuvhq"]
 [ext_resource type="PackedScene" uid="uid://bq6ll2apombgy" path="res://Component/Objects/save_point.tscn" id="4_tme8u"]
 [ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://Component/Objects/enemy_spawn.tscn" id="5_4c8i2"]
-[ext_resource type="PackedScene" uid="uid://ejousxon6tww" path="res://Component/Breakable/breakable_wall.tscn" id="7_kjxdt"]
+[ext_resource type="PackedScene" path="res://Component/Breakable/breakable_wall.tscn" id="7_kjxdt"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_5janw"]
+vertices = PackedVector2Array(-1195, 4, -1202, 321, -2067, 318, -2056, -22)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-2065.97, -32.64, -2077.97, 328.36, -1192.97, 332.36, -1184.97, -4.64)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_41tk2"]
+vertices = PackedVector2Array(-79, 126, -428, 164, -216, -26, 236, -29, 303, 186)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 4, 0)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-457.97, 178.36, -219.97, -35.64, 244.03, -39.64, 318.03, 199.36, -78.97, 136.36)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="Map" type="Node2D" groups=["Abyss"]]
 
@@ -37,6 +49,14 @@ position = Vector2(1903, 851)
 
 [node name="BreakableWall" parent="." instance=ExtResource("7_kjxdt")]
 position = Vector2(2288, 659)
+
+[node name="NavigationRegion2D2" type="NavigationRegion2D" parent="."]
+position = Vector2(2206.97, 110.64)
+navigation_polygon = SubResource("NavigationPolygon_5janw")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(2206.97, 110.64)
+navigation_polygon = SubResource("NavigationPolygon_41tk2")
 
 [node name="SavePoint" parent="." instance=ExtResource("4_tme8u")]
 position = Vector2(144, 817)

@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://dte3mjxgbryk4"]
+[gd_scene load_steps=6 format=3 uid="uid://dte3mjxgbryk4"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_4dv5g"]
 [ext_resource type="PackedScene" uid="uid://bq6ll2apombgy" path="res://Component/Objects/save_point.tscn" id="2_07v3l"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_yl2dt"]
 [ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://Component/Objects/enemy_spawn.tscn" id="4_gh3ou"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_0ntfb"]
+vertices = PackedVector2Array(75, 807, 516, 778, 500, 878, 80, 1189, 592, 1197, 586, 940)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 3, 2, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(65, 798, 71, 1199, 603, 1208, 596, 935, 511, 874, 529, 768)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="Map" type="Node2D" groups=["Abyss"]]
 
@@ -39,5 +45,8 @@ position = Vector2(624.731, 1835.49)
 
 [node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Gopher" index="1"]
 position = Vector2(1033.77, 1389)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_0ntfb")
 
 [editable path="EnemySpawn"]

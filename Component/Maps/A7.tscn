@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dj65nyhmsfbv6"]
+[gd_scene load_steps=9 format=3 uid="uid://dj65nyhmsfbv6"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_2dhjx"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_sughm"]
@@ -6,6 +6,18 @@
 [ext_resource type="PackedScene" path="res://Component/Breakable/breakable_box.tscn" id="3_sbjvv"]
 [ext_resource type="PackedScene" uid="uid://bq6ll2apombgy" path="res://Component/Objects/save_point.tscn" id="4_g2l0d"]
 [ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://Component/Objects/enemy_spawn.tscn" id="5_aljdh"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_eqml1"]
+vertices = PackedVector2Array(486, -8, -174, 242, -178, -1, 76, -120, 472, -129)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-187.72, -7.263, -183.72, 256.737, 497.28, -2.263, 481.28, -140.263, 75.28, -130.263)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_erxpa"]
+vertices = PackedVector2Array(-1672, 211, -1671, 211, -1892, 303, -1075, -126, -1055, -22, -1190, -33, -2243, -113, -2073, -14, -2245, -14, -2076, 180)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5), PackedInt32Array(6, 3, 5, 0, 7), PackedInt32Array(7, 8, 6), PackedInt32Array(7, 0, 2, 9)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-2252.72, -123.263, -2254.72, -4.263, -2082.72, -4.263, -2086.72, 185.737, -1893.72, 314.737, -1666.72, 219.737, -1187.72, -23.263, -1042.72, -11.263, -1066.72, -137.263)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="Map" type="Node2D" groups=["Abyss"]]
 
@@ -44,6 +56,14 @@ rotation = 0.00141585
 [node name="SavePoint" parent="." instance=ExtResource("4_g2l0d")]
 position = Vector2(3213, 597)
 rotation = 0.00141585
+
+[node name="NavigationRegion2D2" type="NavigationRegion2D" parent="."]
+position = Vector2(2492.72, 185.263)
+navigation_polygon = SubResource("NavigationPolygon_eqml1")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(2492.72, 185.263)
+navigation_polygon = SubResource("NavigationPolygon_erxpa")
 
 [node name="EnemySpawn" parent="." instance=ExtResource("5_aljdh")]
 enemy_max = 8

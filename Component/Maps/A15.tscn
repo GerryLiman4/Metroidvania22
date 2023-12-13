@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://w6toknfuhd68"]
+[gd_scene load_steps=11 format=3 uid="uid://w6toknfuhd68"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_71o4l"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_bgksq"]
@@ -8,6 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://oh4kdaw8kf7p" path="res://Dialogue/Helpers/event.tscn" id="4_efwfo"]
 [ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://Component/Objects/enemy_spawn.tscn" id="5_hccjh"]
 [ext_resource type="Resource" uid="uid://dl30w8ay6wogl" path="res://Dialogue/Dialogue/event.dialogue" id="5_ugefq"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ejt7o"]
+vertices = PackedVector2Array(-345, -930, 88, -937, 45, -101, -358, 108, 596, 119, 613, -33)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 3, 2, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(605.339, 130.18, 625.339, -41.8199, 55.339, -109.82, 99.339, -947.82, -354.661, -939.82, -368.661, 118.18)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qh3xw"]
 radius = 102.02
@@ -49,10 +55,14 @@ hitbox = NodePath("../BreakableBox2/Breakable")
 position = Vector2(131, 387)
 rotation = 0.00141585
 
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(477.331, 794.91)
+scale = Vector2(0.5, 0.5)
+navigation_polygon = SubResource("NavigationPolygon_ejt7o")
+
 [node name="Event" parent="." instance=ExtResource("4_efwfo")]
 position = Vector2(947, 272)
 scale = Vector2(0.5, 0.5)
-automatic = true
 event_name = "gun_upgrade"
 dialogue_resource = ExtResource("5_ugefq")
 dialogue_start = "gun_upgrade"
