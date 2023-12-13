@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bkq8wu6tndrwu"]
+[gd_scene load_steps=3 format=3 uid="uid://bkq8wu6tndrwu"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_k6glr"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_rk2sc"]
-[ext_resource type="PackedScene" uid="uid://c5d0f770ww2gg" path="res://Component/Objects/Collectible.tscn" id="3_ee1s8"]
 
 [node name="Map" type="Node2D" groups=["Abyss"]]
 
@@ -13,11 +12,3 @@ layer_1/tile_data = PackedInt32Array(0, 0, 11, 65536, 131072, 11, 131072, 131072
 layer_3/tile_data = PackedInt32Array(3604508, 655361, 4, 3604509, 720897, 4, 3604510, 786433, 4, 3604511, 851969, 4, 3735582, 655361, 6, 3735583, 720897, 6, 3735584, 786433, 6, 3735585, 851969, 6, 3735578, 655361, 6, 3735579, 720897, 6, 3735580, 786433, 6, 3735581, 851969, 6, 3735564, 655361, 6, 3735565, 720897, 6, 3735566, 786433, 6, 3735567, 851969, 6, 3735557, 655361, 6, 3735558, 720897, 6, 3735559, 786433, 6, 3735560, 851969, 6, 2621463, 655361, 6, 2621464, 720897, 6, 2621465, 786433, 6, 2621466, 851969, 6, 2621451, 655361, 6, 2621452, 720897, 6, 2621453, 786433, 6, 2621454, 851969, 6, 655378, 655361, 6, 655379, 720897, 6, 655380, 786433, 6, 655381, 851969, 6, 3604493, 655361, 7, 3604494, 720897, 7, 2490380, 655361, 7, 2490381, 720897, 7, 2490392, 655361, 7, 2490393, 720897, 7, 524307, 655361, 7, 524308, 720897, 7, 3604512, 720897, 7, 3604485, 655361, 7, 3604486, 851969, 2, 3604487, 720897, 7, 524309, 196609, 1, 524310, 196609, 1, 458773, 196609, 1, 524306, 196609, 1)
 
 [node name="RoomInstance" parent="." instance=ExtResource("2_rk2sc")]
-
-[node name="Collectible" parent="." instance=ExtResource("3_ee1s8")]
-position = Vector2(152, 1556)
-rotation = 0.00141585
-
-[node name="Collectible2" parent="." instance=ExtResource("3_ee1s8")]
-position = Vector2(605, 1085)
-rotation = 0.00141585

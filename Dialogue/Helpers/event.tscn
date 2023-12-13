@@ -1,14 +1,85 @@
-[gd_scene load_steps=3 format=3 uid="uid://oh4kdaw8kf7p"]
+[gd_scene load_steps=13 format=3 uid="uid://oh4kdaw8kf7p"]
 
 [ext_resource type="Script" path="res://Dialogue/Helpers/event.gd" id="1_6xxl4"]
 [ext_resource type="Texture2D" uid="uid://di2a5josdqki3" path="res://icon.svg" id="2_nhtec"]
+[ext_resource type="Texture2D" uid="uid://da1mnlwyogtbw" path="res://Resources/Level/upgrade-Sheet.png" id="2_onl56"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bx7r"]
+atlas = ExtResource("2_onl56")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nglob"]
+atlas = ExtResource("2_onl56")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73erk"]
+atlas = ExtResource("2_onl56")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekxgx"]
+atlas = ExtResource("2_onl56")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pf6qh"]
+atlas = ExtResource("2_onl56")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whc02"]
+atlas = ExtResource("2_onl56")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfov7"]
+atlas = ExtResource("2_onl56")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vctvy"]
+atlas = ExtResource("2_onl56")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c7bav"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bx7r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nglob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73erk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekxgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pf6qh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_whc02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfov7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vctvy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Event" type="Area2D"]
 collision_layer = 16
 collision_mask = 2
 script = ExtResource("1_6xxl4")
 
+[node name="AbilitySprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_c7bav")
+frame_progress = 0.920152
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("2_nhtec")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

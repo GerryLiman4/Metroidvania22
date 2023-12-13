@@ -28,7 +28,7 @@ position = Vector2(864, 81)
 position = Vector2(2015, 75)
 
 [node name="SavePoint" parent="." instance=ExtResource("4_q67w6")]
-position = Vector2(240, 212)
+position = Vector2(240, 240)
 rotation = 0.00141585
 
 [node name="Event" parent="." instance=ExtResource("6_2t583")]
@@ -38,7 +38,7 @@ scale = Vector2(0.5, 0.5)
 automatic = true
 event_name = "wall_jump"
 dialogue_resource = ExtResource("7_lw13n")
-dialogue_start = "wall-jump"
+dialogue_start = "wall_jump"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Event"]
 shape = SubResource("CircleShape2D_e0j67")

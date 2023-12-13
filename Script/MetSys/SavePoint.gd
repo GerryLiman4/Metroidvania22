@@ -3,8 +3,17 @@ extends Area2D
 
 @onready var start_time := Time.get_ticks_msec()
 
+@onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var timer = $Timer
+@onready var label = $Label
+
+var message_display : bool
+
 func _ready() -> void:
 	body_entered.connect(on_body_entered)
+	animated_sprite_2d.play("default")
+	label.hide()
+	message_display = false
 
 # Player enter save point. Note that in a legit code this should check whether body is really a player.
 func on_body_entered(body: Node2D) -> void:
@@ -24,6 +33,12 @@ func on_body_entered(body: Node2D) -> void:
 	# Starting coords for the delta vector feature.
 	Game.get_singleton().reset_map_starting_coords()
 	
-func _draw() -> void:
-	# Draws the circle.
-	$CollisionShape2D.shape.draw(get_canvas_item(), Color.BLUE)
+	if !message_display:
+		message_display = true
+		label.show()
+		timer.start()
+
+
+func _on_timer_timeout():
+	message_display = false
+	label.hide()
