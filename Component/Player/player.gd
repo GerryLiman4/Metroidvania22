@@ -11,7 +11,7 @@ class_name Player
 
 @onready var audio_stream_player = $AudioStreamPlayer
 @onready var actionable_finder = $AnimatedSprite2D/Direction/ActionableFinder
-
+@onready var gun_animation = $GunAnimation
 
 var audioScenes := {
 	"jump" : preload("res://Resources/Audio/SFX/jump.ogg"),
@@ -322,6 +322,8 @@ func take_aim(aim_position):
 			elif face_direction == FACING.RIGHT :
 				direction.x = 1
 		
+		gun_animation.play("RESET")
+		
 		if direction.x != 0 && direction.y > 0  :
 			arm_sprite.rotation = -45.0
 		
@@ -332,7 +334,9 @@ func take_aim(aim_position):
 			arm_sprite.rotation = 0
 		
 		if direction.x == 0 && direction.y == -1 :
-			arm_sprite.rotation = 90.0
+			arm_sprite.rotation = 120.0
+		
+		gun_animation.play("Shoot")
 		
 		bullet.launch(shooter.global_position, direction, 2000)
 		call_add_child(bullet)
@@ -346,6 +350,10 @@ func take_aim(aim_position):
 			audio_stream_player.play()
 		else:
 			print(randomKey + " not found in audioScenes")
+			
+		$AnimatedSprite2D/Arm/MuzzleFlash
+			
+		
 
 #endregion
 

@@ -6,6 +6,8 @@ class_name Bullet
 @export var bullet_damage : int = 1
 @export var faction_id : FactionId.Id
 
+@onready var animated_sprite_2d = $AnimatedSprite2D
+
 var _direction : Vector2 = Vector2.RIGHT
 
 func _physics_process(delta):
@@ -16,7 +18,7 @@ func launch(initial_pos : Vector2, dir : Vector2, speed) :
 	_direction = dir
 	bullet_speed = speed
 	# rotaition = dir angle angle plus a quart er of pi
-	rotation += dir.angle() + PI/4
+	rotation += dir.angle()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	self.queue_free()

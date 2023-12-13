@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dh2v1mpv02wq0"]
+[gd_scene load_steps=26 format=3 uid="uid://dh2v1mpv02wq0"]
 
 [ext_resource type="Script" path="res://Component/Player/player.gd" id="1_x2mr2"]
 [ext_resource type="PackedScene" uid="uid://3jirgrp83pq" path="res://Component/player_bullet.tscn" id="2_1l3hs"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://b5wefy6xv53l3" path="res://Resources/MainCharacter/gun_arm_right_-Sheet.png" id="6_dvus0"]
 [ext_resource type="Script" path="res://Component/Player/player_health.gd" id="6_o0leh"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_31jtg"]
+[ext_resource type="Texture2D" uid="uid://dono02ibrqycv" path="res://Resources/muzzle_flash-Sheet.png" id="7_q4qu8"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="8_0ixva"]
 [ext_resource type="Script" path="res://Script/Utility/CameraShake.gd" id="14_4ga28"]
 
@@ -97,6 +98,54 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(-40, -10)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimatedSprite2D/Arm/MuzzleFlash:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-113.75, -15)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AnimatedSprite2D/Arm/MuzzleFlash:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AnimatedSprite2D/Arm/MuzzleFlash:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AnimatedSprite2D/Arm/MuzzleFlash:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_1wvee"]
 resource_name = "Reload"
@@ -174,6 +223,18 @@ tracks/5/keys = {
 "method": &"reload_finished"
 }]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AnimatedSprite2D/Arm/MuzzleFlash:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_8hpr5"]
 resource_name = "Shoot"
@@ -205,26 +266,62 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D/Arm:rotation")
+tracks/2/path = NodePath("AnimatedSprite2D/Arm:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("AnimatedSprite2D/Arm:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [1, 2, 3, 4, 0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D/Arm/MuzzleFlash:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-91.25, -57.5), Vector2(-70, -80), Vector2(-57.5, -86.25)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimatedSprite2D/Arm/MuzzleFlash:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [3, 1, 0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimatedSprite2D/Arm/MuzzleFlash:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.523599, 0.872665, 1.0472]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AnimatedSprite2D/Arm/MuzzleFlash:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1xlwd"]
@@ -291,6 +388,13 @@ position = Vector2(0, 4)
 
 [node name="Shooter" type="Node2D" parent="AnimatedSprite2D/Arm"]
 position = Vector2(-49, 5)
+
+[node name="MuzzleFlash" type="Sprite2D" parent="AnimatedSprite2D/Arm"]
+visible = false
+position = Vector2(-113.75, -15)
+texture = ExtResource("7_q4qu8")
+hframes = 7
+frame = 3
 
 [node name="Direction" type="Marker2D" parent="AnimatedSprite2D"]
 position = Vector2(40, 0)
@@ -559,7 +663,7 @@ position = Vector2(24, -38)
 target_position = Vector2(0, -25)
 hit_from_inside = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="GunAnimation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_1xlwd")
 }
