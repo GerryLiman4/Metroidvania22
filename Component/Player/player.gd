@@ -607,42 +607,62 @@ func _on_wall_latch_state_input(event):
 		switch_state(CharacterStateId.Id.DASH)
 	
 	if Input.is_action_just_pressed("Jump") :
-		switch_state(CharacterStateId.Id.JUMP)
+		velocity.y = JUMP_VELOCITY
+		if face_direction == FACING.RIGHT:
+			velocity.x = 1000
+		elif face_direction == FACING.LEFT:
+			velocity.x = -1000
 		can_double_jump = false
+		switch_state(CharacterStateId.Id.WALLJUMP)
+		
+		
 
 func _on_wall_latch_state_physics_processing(delta):
 	#velocity = Vector2.ZERO
 	move_and_slide()
 
 '''
+func _on_jump_state_entered():
+	
+
+func _on_jump_state_exited():
+	pass # Replace with function body.
+
+func _on_jump_state_input(event):
+	
+
+func _on_jump_state_physics_processing(delta):
+	
+'''
 func _on_wall_jump_state_entered():
-	var true_velocity = WALL_JUMP_VELOCITY
-	
-	if wall_latch == FACING.RIGHT:
-		true_velocity.x *= -1 
-	
-	velocity = true_velocity
-	#wall_jump_timer.start(wall_jump_timer.wait_time)
-	#region SFX
+	animation_player.play("Jump")
 	audio_stream_player.stream = audioScenes["jump"]
 	audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
 	audio_stream_player.play()
-	#endregion
 	
 func _on_wall_jump_state_exited():
-	velocity = Vector2.ZERO
+	pass
+	#velocity = Vector2.ZERO
 	#wall_jump_timer.stop()
 
 func _on_wall_jump_state_input(event):
-	pass # Replace with function body.
+	if can_double_jump == true and Input.is_action_just_pressed("Jump") == true && &"double_jump" in abilities:
+		switch_state(CharacterStateId.Id.DOUBLEJUMP)
+		return
 
 func _on_wall_jump_state_physics_processing(delta):
-	if is_on_floor() == true or is_on_wall_only() == true :
-		switch_state(CharacterStateId.Id.IDLE)
+	get_move_input()
+	if check_dash() == true :
+		switch_state(CharacterStateId.Id.DASH)
+		return
+	
+	if check_fall() == true :
+		switch_state(CharacterStateId.Id.FALL)
+		return
 
 func _on_wall_jump_timer_timeout():
 	switch_state(CharacterStateId.Id.IDLE)
-'''
+
 #endregion
 
 
