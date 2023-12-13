@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://jx054u5d5pvw"
-path="res://.godot/imported/bat_fly.png-ef26fee1916f5939ce4894bad36795d4.ctex"
+path="res://.godot/imported/bat_fly.png-8b858e88fd4a01793d54eef2ba523655.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Enemy/bat_fly.png"
-dest_files=["res://.godot/imported/bat_fly.png-ef26fee1916f5939ce4894bad36795d4.ctex"]
+source_file="res://Resources/Enemy/Bat/bat_fly.png"
+dest_files=["res://.godot/imported/bat_fly.png-8b858e88fd4a01793d54eef2ba523655.ctex"]
 
 [params]
 

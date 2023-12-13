@@ -186,11 +186,8 @@ func get_move_input() :
 func get_jump_input() :
 	if Input.is_action_pressed("Jump") == true and is_on_floor() == true :
 		velocity.y = JUMP_VELOCITY
-		animation_player.play("Jump")
 		#SoundManager.play_clip(sound_player,SoundManager.SOUND_JUMP)
-		audio_stream_player.stream = audioScenes["jump"]
-		audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
-		audio_stream_player.play()
+		
 
 func get_dash_input() -> bool :
 	if Input.is_action_pressed("Dash") == true :
@@ -423,7 +420,10 @@ func _on_walk_state_physics_processing(delta):
 		return
 
 func _on_jump_state_entered():
-	pass # Replace with function body.
+	animation_player.play("Jump")
+	audio_stream_player.stream = audioScenes["jump"]
+	audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
+	audio_stream_player.play()
 
 func _on_jump_state_exited():
 	pass # Replace with function body.
@@ -538,6 +538,10 @@ func _on_dash_state_entered():
 	# set timestamp for cooldown
 	dash_cooldown_timestamp = object_timer
 	
+	audio_stream_player.stream = audioScenes["jump"]
+	audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
+	audio_stream_player.play()
+	
 	# check charge ability
 	set_charge(true)
 	
@@ -603,13 +607,14 @@ func _on_wall_latch_state_input(event):
 		switch_state(CharacterStateId.Id.DASH)
 	
 	if Input.is_action_just_pressed("Jump") :
-		switch_state(CharacterStateId.Id.WALLJUMP)
+		switch_state(CharacterStateId.Id.JUMP)
+		can_double_jump = false
 
 func _on_wall_latch_state_physics_processing(delta):
 	#velocity = Vector2.ZERO
 	move_and_slide()
 
-
+'''
 func _on_wall_jump_state_entered():
 	var true_velocity = WALL_JUMP_VELOCITY
 	
@@ -623,7 +628,7 @@ func _on_wall_jump_state_entered():
 	audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
 	audio_stream_player.play()
 	#endregion
-
+	
 func _on_wall_jump_state_exited():
 	velocity = Vector2.ZERO
 	#wall_jump_timer.stop()
@@ -635,10 +640,12 @@ func _on_wall_jump_state_physics_processing(delta):
 	if is_on_floor() == true or is_on_wall_only() == true :
 		switch_state(CharacterStateId.Id.IDLE)
 
-#endregion
-
 func _on_wall_jump_timer_timeout():
 	switch_state(CharacterStateId.Id.IDLE)
+'''
+#endregion
+
+
 
 func _on_charge_hitbox_area_entered(area):
 	if area.is_in_group("health") == true :
