@@ -41,7 +41,9 @@ func _ready():
 			if Player.get_singleton().abilities.has(event_name):
 				self.visible = false
 		EVENTS.OTHER:
-			pass
+			if event_name == "end_cutscene":
+				sprite_2d.hide()
+				ability_sprite.hide()
 				
 
 func action() -> void:
@@ -76,7 +78,10 @@ func _on_body_entered(body):
 						SignalManager.dialogue_start.emit()
 						queue_free()
 				EVENTS.OTHER:
-					pass
+					if event_name == "end_cutscene":
+						Game.get_singleton().end_escape()
+						SceneTransition.start_transition_to("cutscene", true, "res://UI/end_scene.tscn")
+						
 			
 				
 func _on_body_exited(body):

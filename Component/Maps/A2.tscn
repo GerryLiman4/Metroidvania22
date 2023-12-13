@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmrsogoa8w6o"]
+[gd_scene load_steps=6 format=3 uid="uid://dmrsogoa8w6o"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_0i14d"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_biwdb"]
 [ext_resource type="PackedScene" uid="uid://c5d0f770ww2gg" path="res://Component/Objects/Collectible.tscn" id="3_ga48x"]
 [ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://Component/Objects/enemy_spawn.tscn" id="4_51sjg"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_laobh"]
+vertices = PackedVector2Array(2360, 1131, 2547, 1123, 2535, 1454, 1915, 1421, 1884, 741, 1633, 1269, 997, 941, 1884, 740, 177, 707, 176, 16, 584, 10, 584, 259, 498, 719, 996, 941)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 10, 11, 12), PackedInt32Array(13, 12, 11, 7, 6)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(166, 7, 166.172, 68.1905, 168, 717, 496, 729, 992, 950, 1628, 1278, 1912, 1431, 2545, 1465, 2558, 1113, 2363, 1121, 1890, 733, 594, 252, 594, 0)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="A2" type="Node2D" groups=["Abyss"]]
 
@@ -19,7 +25,23 @@ position = Vector2(90, 687)
 
 [node name="EnemySpawn" parent="." instance=ExtResource("4_51sjg")]
 enemy_max = 5
-gopher_max = 5
+bat_max = 5
+gopher_max = 10
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
+position = Vector2(660, 446)
+
+[node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Bat" index="1"]
+position = Vector2(968, 567)
+
+[node name="Marker2D3" type="Marker2D" parent="EnemySpawn/Bat" index="2"]
+position = Vector2(1368, 688)
+
+[node name="Marker2D4" type="Marker2D" parent="EnemySpawn/Bat" index="3"]
+position = Vector2(1752, 924)
+
+[node name="Marker2D5" type="Marker2D" parent="EnemySpawn/Bat" index="4"]
+position = Vector2(2214, 1106)
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Gopher" index="0"]
 position = Vector2(588, 725)
@@ -56,5 +78,11 @@ position = Vector2(2248, 1324)
 
 [node name="Marker2D9" type="Marker2D" parent="EnemySpawn/Gopher" index="11"]
 position = Vector2(2445, 1400)
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+vertices = PackedVector2Array(1857, 1280, 1981, 1280, 1979, 1308, 1858, 1305)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_laobh")
 
 [editable path="EnemySpawn"]

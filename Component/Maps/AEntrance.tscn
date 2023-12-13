@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgh7vjusux2tc"]
+[gd_scene load_steps=6 format=3 uid="uid://cgh7vjusux2tc"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_5iyim"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_n87e3"]
 [ext_resource type="PackedScene" uid="uid://c5d0f770ww2gg" path="res://Component/Objects/Collectible.tscn" id="3_vdo2p"]
 [ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://Component/Objects/enemy_spawn.tscn" id="4_rni1h"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_5c3p7"]
+vertices = PackedVector2Array(250, 2607, 316, 1799, 316, 1800, 172, 4116, 955, 3787, 1132, 3905, 621, 4455, 192, 4771, 154, 716, 60, 22, 885, 3, 850, 570, 314, 728, 619, 4788, 911, 3605, 145, 3527, 388, 3149, 908, 2592, 329, 3028, 787, 2522, 787, 2393, 970, 2174, 969, 2025, 409, 1252, 1007, 679, 1047, 1505, 1136, 1826)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 4, 5, 6, 7), PackedInt32Array(8, 9, 10, 11, 12), PackedInt32Array(6, 13, 7), PackedInt32Array(14, 4, 3, 15, 16), PackedInt32Array(17, 14, 16, 18, 0, 19), PackedInt32Array(19, 0, 2, 20), PackedInt32Array(21, 20, 2, 22), PackedInt32Array(23, 12, 11, 24, 25), PackedInt32Array(22, 2, 23, 25, 26)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(49, 13, 146, 726, 306, 737, 399, 1252, 306, 1798, 240, 2609, 319, 3030, 377, 3148, 135, 3526, 162, 4116, 183, 4781, 629, 4799, 631, 4459, 1148, 3904, 964, 3781, 921, 3604, 918, 2586, 797, 2516, 797, 2397, 981, 2178, 979, 2029, 1148, 1828, 1057, 1503, 1017, 674, 860, 565, 896, -7)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="Map2" type="Node2D" groups=["Abyss"]]
 
@@ -57,5 +63,8 @@ position = Vector2(952, 4121)
 
 [node name="Marker2D3" type="Marker2D" parent="EnemySpawn/Gopher" index="2"]
 position = Vector2(668, 4452)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_5c3p7")
 
 [editable path="EnemySpawn"]

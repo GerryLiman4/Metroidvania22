@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bv2igcigkvehi"]
+[gd_scene load_steps=22 format=3 uid="uid://bv2igcigkvehi"]
 
 [ext_resource type="Texture2D" uid="uid://b8flegry3eusd" path="res://Resources/Level/TownBuilding-001.png" id="1_urv4x"]
 [ext_resource type="Texture2D" uid="uid://djs5e5jlhnih0" path="res://Resources/Level/Overworld_Sky.png" id="2_hl5nk"]
@@ -18,9 +18,13 @@
 [ext_resource type="Texture2D" uid="uid://c6ec1xu873u4h" path="res://Dialogue/Characters/Sheriff.png" id="16_ssauk"]
 [ext_resource type="PackedScene" uid="uid://bq6ll2apombgy" path="res://Component/Objects/save_point.tscn" id="17_fipao"]
 [ext_resource type="PackedScene" uid="uid://dhquseqrg6jr2" path="res://Component/Objects/FastTravel.tscn" id="18_m8uv6"]
+[ext_resource type="PackedScene" uid="uid://oh4kdaw8kf7p" path="res://Dialogue/Helpers/event.tscn" id="19_4boog"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vlp1k"]
 radius = 162.049
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6gpy1"]
+size = Vector2(200, 388)
 
 [node name="StartingPoint" type="Node2D" groups=["Town"]]
 
@@ -157,8 +161,15 @@ dialogue_start = "talk_to_sheriff"
 shape = SubResource("CircleShape2D_vlp1k")
 
 [node name="SavePoint" parent="." instance=ExtResource("17_fipao")]
-position = Vector2(3798, 625)
+position = Vector2(2448, 623)
 
 [node name="FastTravel" parent="." instance=ExtResource("18_m8uv6")]
 position = Vector2(3157, 548)
 target_map = "ASB.tscn"
+
+[node name="Event" parent="." instance=ExtResource("19_4boog")]
+position = Vector2(3798, 604)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Event"]
+position = Vector2(2, -158)
+shape = SubResource("RectangleShape2D_6gpy1")

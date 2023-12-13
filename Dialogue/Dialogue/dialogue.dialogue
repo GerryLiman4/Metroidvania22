@@ -54,3 +54,13 @@ Gida: I may be new to how this whole township thing works, but shouldn’t a She
 Sheriff Gus: If yer really goin down there, keep an eye out for my deputies
 
 => END
+
+~ end_cutscene
+
+Narrator: You escaped the Abyss
+Narrator: Going in there was a mistake..
+Narrator: But you made it out in one piece
+Gida: Now.. to collect my coin and blow this dusty town
+Narrator: The end...
+
+=> END
