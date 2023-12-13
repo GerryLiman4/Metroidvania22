@@ -18,7 +18,6 @@ enum ShakeType {
 	Sway
 }
 
-@onready var camera = $camera
 '''
 @onready var random_shake = $ui/button_container/random_shake
 @onready var noise_shake = $ui/button_container/noise_shake
