@@ -5,7 +5,6 @@
 
 [node name="AudioController" type="Node"]
 script = ExtResource("1_41b0e")
-music_on = true
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_mvdj0")
