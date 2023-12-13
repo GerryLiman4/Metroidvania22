@@ -34,6 +34,9 @@ hitbox = NodePath("../BreakableWall/Breakable")
 [node name="BreakableWall" parent="." instance=ExtResource("3_2mgq7")]
 position = Vector2(238, 1552)
 
+[node name="Knocker" type="Node2D" parent="."]
+position = Vector2(914.658, 208.514)
+
 [node name="Collectible" parent="." instance=ExtResource("3_rdlm2")]
 position = Vector2(125, 1569)
 rotation = 0.00141585

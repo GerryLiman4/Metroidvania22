@@ -57,6 +57,9 @@ rotation = 0.00141585
 position = Vector2(3213, 597)
 rotation = 0.00141585
 
+[node name="Knocker" type="Node2D" parent="."]
+position = Vector2(3472, 846)
+
 [node name="NavigationRegion2D2" type="NavigationRegion2D" parent="."]
 position = Vector2(2492.72, 185.263)
 navigation_polygon = SubResource("NavigationPolygon_eqml1")
