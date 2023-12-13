@@ -1,14 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5d0f770ww2gg"]
+[gd_scene load_steps=8 format=3 uid="uid://c5d0f770ww2gg"]
 
-[ext_resource type="Texture2D" uid="uid://bcuwpuvv6bpsf" path="res://addons/MetroidvaniaSystem/Themes/Exquisite/Symbols/Collectible.png" id="1_eyq0q"]
+[ext_resource type="Texture2D" uid="uid://bxq6k4eulk04f" path="res://Resources/Level/star-Sheet.png" id="1_rwad1"]
 
 [sub_resource type="GDScript" id="GDScript_5wqrn"]
 script/source = "# Generic orb collectible.
 extends Area2D
 
+@onready var animated_sprite_2d = $AnimatedSprite2D
+
 func _ready() -> void:
 	# Register as storable with a marker. The marker will appear on the map when the orb is first discovered (i.e. get instantiated).
 	MetSys.register_storable_object_with_marker(self)
+	animated_sprite_2d.play(\"default\")
 
 func collect(body: Node2D) -> void:
 	# Check if player collided.
@@ -33,8 +36,37 @@ func collect(body: Node2D) -> void:
 	queue_free()
 "
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5e3t"]
-size = Vector2(32, 32)
+[sub_resource type="CircleShape2D" id="CircleShape2D_0nodw"]
+radius = 32.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_myh3k"]
+atlas = ExtResource("1_rwad1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1o7t"]
+atlas = ExtResource("1_rwad1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35526"]
+atlas = ExtResource("1_rwad1")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h161e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_myh3k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1o7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35526")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Collectible" type="Area2D"]
 collision_layer = 0
@@ -42,9 +74,10 @@ collision_mask = 2
 script = SubResource("GDScript_5wqrn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_v5e3t")
+shape = SubResource("CircleShape2D_0nodw")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_eyq0q")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_h161e")
+frame_progress = 0.630897
 
 [connection signal="body_entered" from="." to="." method="collect"]

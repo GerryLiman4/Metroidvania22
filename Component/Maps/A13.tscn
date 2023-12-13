@@ -28,7 +28,7 @@ position = Vector2(1104, 573)
 position = Vector2(690, 237)
 rotation = 0.00141585
 
-[node name="Ability" parent="." instance=ExtResource("5_dv3xx")]
+[node name="Event" parent="." instance=ExtResource("5_dv3xx")]
 position = Vector2(335, 1822)
 rotation = 0.00141585
 scale = Vector2(0.5, 0.5)
@@ -37,7 +37,7 @@ event_name = "double_jump"
 dialogue_resource = ExtResource("6_nkbe0")
 dialogue_start = "double_jump"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ability"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Event"]
 shape = SubResource("CircleShape2D_04imo")
 
 [node name="EnemySpawn" parent="." instance=ExtResource("6_cjdxe")]

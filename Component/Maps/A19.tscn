@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_h1it1"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_hmhxb"]
 [ext_resource type="PackedScene" uid="uid://bq6ll2apombgy" path="res://Component/Objects/save_point.tscn" id="3_ff1hg"]
-[ext_resource type="PackedScene" uid="uid://ejousxon6tww" path="res://Component/Breakable/end_game_breakable.tscn" id="4_1iq0r"]
+[ext_resource type="PackedScene" uid="uid://ejousxon6tww" path="res://Component/Breakable/breakable_wall.tscn" id="4_1iq0r"]
 
 [node name="Map" type="Node2D" groups=["Abyss"]]
 
@@ -20,3 +20,4 @@ rotation = 0.00141585
 
 [node name="EndGameBreakable" parent="." instance=ExtResource("4_1iq0r")]
 position = Vector2(1168, 240)
+type = 1
