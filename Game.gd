@@ -198,6 +198,7 @@ func _on_escape_timer_timeout():
 	escape_health -= 1
 	if !escape_health <= 0:
 		AudioController.play_explosion_sfx()
+		player.camera_shake()
 		escape_timer.start(10)
 		print("Cave collapsing - " + "Cave health : " + str(escape_health))
 	else:

@@ -71,6 +71,7 @@ func spawn() -> void:
 		var enemy_data = enemies[type]
 		
 		if enemy_data["spawned"] < enemy_data["max_spawns"] && enemy_data["spawn_positions"].size() > 0:
+			enemy_data["spawn_positions"].shuffle()
 			var spawn_data = enemy_data["spawn_positions"].pop_back()
 			print ("Spawning ", type, " at position: ", spawn_data)
 			var enemy_instance = Game.get_singleton().get_enemy(type).instantiate()

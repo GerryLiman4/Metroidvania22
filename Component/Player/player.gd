@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 class_name Player
 
+@export var camera : Camera2D
+
 @export var audio_player : AudioStreamPlayer
 
 @export var character_state : StateChart
@@ -9,6 +11,7 @@ class_name Player
 
 @onready var audio_stream_player = $AudioStreamPlayer
 @onready var actionable_finder = $AnimatedSprite2D/Direction/ActionableFinder
+
 
 var audioScenes := {
 	"jump" : preload("res://Resources/Audio/SFX/jump.ogg"),
@@ -685,6 +688,10 @@ func cheat_abilities():
 	]
 	abilities.clear()
 	abilities.append_array(all_abilities)
+
+func camera_shake():
+	camera.apply_random_shake()
+
 
 static func get_singleton() -> Player:
 	return (Player as Script).get_meta(&"singleton") as Player		
