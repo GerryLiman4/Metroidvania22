@@ -76,6 +76,7 @@ func spawn() -> void:
 			var enemy_instance = Game.get_singleton().get_enemy(type).instantiate()
 			get_parent().add_child.call_deferred(enemy_instance)
 			enemy_instance.position = spawn_data
+			enemy_instance.scale = Vector2(0.5, 0.5)
 			increment_spawned_count(type)
 			increment_total_spawned_count()
 			

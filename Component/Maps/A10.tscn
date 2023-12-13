@@ -19,7 +19,7 @@ layer_3/tile_data = PackedInt32Array(1441794, 262145, 2, 1376258, 262145, 2, 131
 
 [node name="RoomInstance" parent="." instance=ExtResource("2_8x4la")]
 
-[node name="Ability" parent="." instance=ExtResource("3_jocyx")]
+[node name="Event" parent="." instance=ExtResource("3_jocyx")]
 position = Vector2(1122, 441)
 scale = Vector2(0.5, 0.5)
 automatic = true
@@ -27,7 +27,7 @@ event_name = "charge"
 dialogue_resource = ExtResource("4_0hhvx")
 dialogue_start = "charge"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ability"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Event"]
 shape = SubResource("CircleShape2D_cl0v1")
 
 [node name="EnemySpawn" parent="." instance=ExtResource("4_m5v35")]

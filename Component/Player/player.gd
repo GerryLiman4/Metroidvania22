@@ -109,6 +109,8 @@ func _unhandled_input(_event : InputEvent) -> void:
 	if Input.is_action_just_pressed("start"):
 		SceneTransition.start_transition_to("menu", true, "res://UI/main.tscn")
 	'''
+	if Input.is_action_just_pressed("select"):
+		cheat_abilities()
 	if Input.is_action_just_pressed("print"):
 		print(abilities)
 
@@ -233,13 +235,13 @@ func check_fall() -> bool :
 	return false
 
 func check_dash() -> bool :
-	if get_dash_input() == true && object_timer >= dash_cooldown_timestamp + DASH_COOLDOWN :
+	if get_dash_input() == true && object_timer >= dash_cooldown_timestamp + DASH_COOLDOWN:
 		return true
 	
 	return false
 
 func check_crawl() -> bool :
-	if get_crawl_input() == true && is_on_floor() == true:
+	if get_crawl_input() == true && is_on_floor() == true && &"crawl" in abilities:
 		return true 
 	
 	return false
@@ -248,7 +250,7 @@ func check_latch() -> bool :
 	if leg_raycast_left.is_colliding() == true && leg_raycast_right.is_colliding() == true :
 		return false
 	
-	if is_on_wall_only() == true:
+	if is_on_wall_only() == true && &"wall_jump" in abilities:
 		match get_which_wall_collided() :
 			"left" :
 				if leg_raycast_left.is_colliding() == false or head_raycast_left.is_colliding() == false:
@@ -424,7 +426,7 @@ func _on_jump_state_exited():
 	pass # Replace with function body.
 
 func _on_jump_state_input(event):
-	if can_double_jump == true and Input.is_action_just_pressed("Jump") == true :
+	if can_double_jump == true and Input.is_action_just_pressed("Jump") == true && &"double_jump" in abilities:
 		switch_state(CharacterStateId.Id.DOUBLEJUMP)
 		return
 
@@ -446,7 +448,7 @@ func _on_fall_state_exited():
 
 func _on_fall_state_input(event):
 	# later if there is double jump
-	if can_double_jump == true and Input.is_action_just_pressed("Jump") == true :
+	if can_double_jump == true and Input.is_action_just_pressed("Jump") == true && &"double_jump" in abilities :
 		switch_state(CharacterStateId.Id.DOUBLEJUMP)
 		return[]
 
@@ -673,8 +675,18 @@ func reload_finished():
 	# Handle reload
 	pass
 
-func get_abilities() -> Array:
-	return abilities
+func cheat_abilities():
+	var all_abilities : Array = [
+		"wall_jump",
+		"charge",
+		"double_jump",
+		"gun_upgrade",
+		"crawl"
+	]
+	abilities.clear()
+	abilities.append_array(all_abilities)
 
 static func get_singleton() -> Player:
 	return (Player as Script).get_meta(&"singleton") as Player		
+	
+

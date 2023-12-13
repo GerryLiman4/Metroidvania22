@@ -96,7 +96,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_rg82y")
 }],
 "loop": true,
-"name": &"Die",
+"name": &"Dead",
 "speed": 5.0
 }, {
 "frames": [{
@@ -157,7 +157,7 @@ max_chase_distance = 200.0
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_jjlbe")
-animation = &"Die"
+animation = &"Dead"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 position = Vector2(1, 10.5)

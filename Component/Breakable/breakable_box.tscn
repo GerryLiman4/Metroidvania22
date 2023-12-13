@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://d3bcuxyaj64yf"]
+
+[ext_resource type="Script" path="res://Component/Breakable/breakable_box.gd" id="1_mk2p6"]
+[ext_resource type="Texture2D" uid="uid://xr3qau3gbe1s" path="res://Resources/Level/objects_box.png" id="2_s0gyx"]
+[ext_resource type="PackedScene" uid="uid://bg46nokxotaf8" path="res://Component/Breakable/breakable.tscn" id="3_q2fp5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vx25h"]
+atlas = ExtResource("2_s0gyx")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ey7cq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vx25h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cegkk"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8dlr4"]
+size = Vector2(40, 40)
+
+[node name="BreakableBox" type="StaticBody2D" node_paths=PackedStringArray("hitbox")]
+collision_mask = 0
+script = ExtResource("1_mk2p6")
+hitbox = NodePath("Breakable")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ey7cq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cegkk")
+
+[node name="Breakable" parent="." instance=ExtResource("3_q2fp5")]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Breakable"]
+shape = SubResource("RectangleShape2D_8dlr4")

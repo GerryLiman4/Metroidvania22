@@ -12,17 +12,27 @@ const Cutscene_Balloon = preload("res://Dialogue/Dialogue/cutscene_balloon.tscn"
 
 enum EVENTS{ABILITY, OTHER}
 
+@onready var ability_sprite = $AbilitySprite
+@onready var sprite_2d = $Sprite2D
+
 # Dialogue file and start positions
 @export var dialogue_resource : DialogueResource
 @export var dialogue_start : String = "start"
 
-@onready var sprite_2d = $Sprite2D
+
 
 var player : CharacterBody2D
 
 func _ready():
-	if texture:
+	if event_type == EVENTS.ABILITY:
+		ability_sprite.play("default")
+		ability_sprite.show()
+		sprite_2d.hide()
+	elif texture:
 		sprite_2d.texture = texture
+		sprite_2d.show()
+		ability_sprite.hide()
+		ability_sprite.stop()
 	
 	player = get_parent().get_node_or_null("Player")
 	
