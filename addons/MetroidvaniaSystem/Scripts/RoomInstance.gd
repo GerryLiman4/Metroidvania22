@@ -123,3 +123,4 @@ func _draw() -> void:
 					draw_rect(Rect2(coords * MetSys.settings.in_game_cell_size, Vector2(width, MetSys.settings.in_game_cell_size.y)), color)
 				MetroidvaniaSystem.U:
 					draw_rect(Rect2(coords * MetSys.settings.in_game_cell_size, Vector2(MetSys.settings.in_game_cell_size.x, width)), color)
+

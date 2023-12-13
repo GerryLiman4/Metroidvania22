@@ -11,7 +11,7 @@ const Cutscene_Balloon = preload("res://Dialogue/Dialogue/cutscene_balloon.tscn"
 var player : CharacterBody2D
 
 func action() -> void:
-	if dialogue_start == "intro_cutscene":
+	if dialogue_start == "intro_cutscene" || dialogue_start == "end_cutscene":
 		#DialogueManager.show_dialogue_balloon(dialogue_resourse, dialogue_start)
 		var balloon : Node = Cutscene_Balloon.instantiate()
 		get_tree().current_scene.add_child(balloon)

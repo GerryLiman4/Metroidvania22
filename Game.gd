@@ -13,6 +13,10 @@ class_name Game
 	"gopher": preload("res://Component/Enemy/enemy_gunner.tscn")
 }
 
+@onready var escape_timer = $EscapeTimer
+
+var escape_health : int = 20
+
 # The current map scene instance.
 var map: Node2D
 
@@ -26,6 +30,7 @@ var collectibles: int:
 var generated_rooms: Array[Vector3i]
 # The typical array of game events. It's supplementary to the storable objects.
 var events: Array[String]
+
 
 func _ready() -> void:
 	randomize()
@@ -168,6 +173,7 @@ func get_init_save_data() -> Dictionary:
 		"abilities": player.abilities
 	}
 
+
 func get_enemy(type : String) -> PackedScene:
 	if enemy_scenes.has(type):
 		return enemy_scenes[type]
@@ -177,3 +183,23 @@ func get_enemy(type : String) -> PackedScene:
 
 func reset_map_starting_coords():
 	$UI/MapWindow.reset_starting_coords()
+	
+	
+func start_escape():
+	if events.has("escape"):
+		AudioController.start_escape()
+		escape_timer.start(10)
+
+func end_escape():
+	AudioController.end_escape()
+	escape_timer.stop()
+
+func _on_escape_timer_timeout():
+	escape_health -= 1
+	if !escape_health <= 0:
+		AudioController.play_explosion_sfx()
+		escape_timer.start(10)
+		print("Cave collapsing - " + "Cave health : " + str(escape_health))
+	else:
+		#Game over
+		print("Cave collapsed..")

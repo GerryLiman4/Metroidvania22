@@ -7,11 +7,10 @@ enum TYPE{NORMAL, ESCAPE}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if type == TYPE.ESCAPE && Game.get_singleton().events.has("escape"):
-		self.queue_free()
-	
 	hitbox.on_get_damaged.connect(on_get_damaged)
 	hitbox.on_dead.connect(on_dead)
+	
+	MetSys.register_storable_object(self, queue_free)
 
 func on_get_damaged(direction : Vector2) :
 	pass
@@ -35,6 +34,9 @@ func on_dead():
 		override2.apply_to_group(2)
 		override3.apply_to_group(3)
 		# Append "escape" event
-		Game.get_singleton().events.append("escape")
+		var game_ref = Game.get_singleton()
+		game_ref.events.append("escape")
+		game_ref.start_escape()
 	
+	MetSys.store_object(self)
 	self.queue_free()

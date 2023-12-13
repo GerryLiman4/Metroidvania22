@@ -283,3 +283,9 @@ text = "0"
 vertical_alignment = 1
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("3_ckei3")]
+
+[node name="EscapeTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="EscapeTimer" to="." method="_on_escape_timer_timeout"]
