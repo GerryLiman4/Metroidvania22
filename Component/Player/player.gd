@@ -203,10 +203,10 @@ func get_crawl_input() -> bool:
 #endregion
 
 func on_get_damaged(direction : Vector2) :
-	pass
+	print("You took damage")
 
 func on_dead():
-	pass
+	print("You Died")
 
 #region check state
 
@@ -303,7 +303,7 @@ func take_aim(aim_position):
 	if Input.is_action_just_pressed("Shoot") == true : 
 		var bullet : Bullet 
 		
-		if has_unlocked_upgraded_gun == true :
+		if &"gun_upgrade" in abilities:
 			bullet = upgraded_bullet_pref.instantiate()
 		else :
 			bullet = bullet_pref.instantiate()

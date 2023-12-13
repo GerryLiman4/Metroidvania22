@@ -131,3 +131,7 @@ func volume(bus_index, value):
 	
 func _on_toggle_music_toggled(toggled_on):
 	AudioController.toggle_music()
+
+
+func _on_reload_pressed():
+	pass # Replace with function body.
