@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dh2v1mpv02wq0"]
+[gd_scene load_steps=25 format=3 uid="uid://dh2v1mpv02wq0"]
 
 [ext_resource type="Script" path="res://Component/Player/player.gd" id="1_x2mr2"]
 [ext_resource type="PackedScene" uid="uid://3jirgrp83pq" path="res://Component/player_bullet.tscn" id="2_1l3hs"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://Component/Player/player_health.gd" id="6_o0leh"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_31jtg"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="8_0ixva"]
+[ext_resource type="Script" path="res://Script/Utility/CameraShake.gd" id="14_4ga28"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_op8ci"]
 radius = 41.0122
@@ -233,9 +234,10 @@ _data = {
 "Shoot": SubResource("Animation_8hpr5")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("audio_player", "character_state", "wall_jump_timer", "animation_player", "arm_sprite", "head_model", "head_sprite", "shooter", "player_health", "charge_area", "charge_hitbox", "collision_box", "hit_box", "head_raycast_up_left", "head_raycast_up_right", "crawl_collision", "crawl_hitbox", "leg_raycast_left", "leg_raycast_right", "head_raycast_left", "head_raycast_right") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("camera", "audio_player", "character_state", "wall_jump_timer", "animation_player", "arm_sprite", "head_model", "head_sprite", "shooter", "player_health", "charge_area", "charge_hitbox", "collision_box", "hit_box", "head_raycast_up_left", "head_raycast_up_right", "crawl_collision", "crawl_hitbox", "leg_raycast_left", "leg_raycast_right", "head_raycast_left", "head_raycast_right") groups=["Player"]]
 collision_layer = 34
 script = ExtResource("1_x2mr2")
+camera = NodePath("Camera2D")
 audio_player = NodePath("SoundPlayer")
 character_state = NodePath("StateChart")
 face_direction = 1
@@ -561,6 +563,9 @@ hit_from_inside = true
 libraries = {
 "": SubResource("AnimationLibrary_1xlwd")
 }
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("14_4ga28")
 
 [connection signal="area_entered" from="ChargeHitbox" to="." method="_on_charge_hitbox_area_entered"]
 [connection signal="state_entered" from="StateChart/ParallelState/CharacterState/Idle" to="." method="_on_idle_state_entered"]
