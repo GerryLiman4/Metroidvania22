@@ -25,7 +25,7 @@ layer_3/tile_data = PackedInt32Array(1572880, 262145, 2, 1638416, 262145, 2, 170
 position = Vector2(1104, 573)
 
 [node name="SavePoint" parent="." instance=ExtResource("4_o3674")]
-position = Vector2(690, 237)
+position = Vector2(688, 274)
 rotation = 0.00141585
 
 [node name="Event" parent="." instance=ExtResource("5_dv3xx")]

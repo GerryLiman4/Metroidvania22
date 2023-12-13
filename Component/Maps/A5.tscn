@@ -28,7 +28,7 @@ position = Vector2(864, 81)
 position = Vector2(2015, 75)
 
 [node name="SavePoint" parent="." instance=ExtResource("4_q67w6")]
-position = Vector2(240, 240)
+position = Vector2(242, 241)
 rotation = 0.00141585
 
 [node name="Event" parent="." instance=ExtResource("6_2t583")]

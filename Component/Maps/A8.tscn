@@ -23,7 +23,7 @@ position = Vector2(2160, 223)
 position = Vector2(2378, 653)
 
 [node name="SavePoint" parent="." instance=ExtResource("4_tme8u")]
-position = Vector2(138, 779)
+position = Vector2(144, 817)
 rotation = 0.00141585
 
 [node name="EnemySpawn" parent="." instance=ExtResource("5_4c8i2")]

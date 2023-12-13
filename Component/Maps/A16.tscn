@@ -16,7 +16,7 @@ layer_3/tile_data = PackedInt32Array(1638454, 655361, 6, 1638455, 720897, 6, 163
 [node name="RoomInstance" parent="." instance=ExtResource("3_th1p7")]
 
 [node name="SavePoint" parent="." instance=ExtResource("3_tlc62")]
-position = Vector2(1500, 337)
+position = Vector2(1502, 371)
 rotation = 0.00141585
 
 [node name="EnemySpawn" parent="." instance=ExtResource("4_7nao7")]

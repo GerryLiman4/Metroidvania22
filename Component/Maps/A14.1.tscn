@@ -20,7 +20,7 @@ layer_3/tile_data = PackedInt32Array(393226, 655361, 4, 393227, 720897, 4, 39322
 position = Vector2(671, 224)
 
 [node name="SavePoint" parent="." instance=ExtResource("4_ls6yc")]
-position = Vector2(544, 1808)
+position = Vector2(539, 1841)
 
 [node name="EnemySpawn" parent="." instance=ExtResource("5_woc27")]
 enemy_max = 4
