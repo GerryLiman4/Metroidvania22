@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cv55nv1c2sbiq"]
+[gd_scene load_steps=20 format=3 uid="uid://cv55nv1c2sbiq"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_42t0r"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="1_45cto"]
@@ -18,7 +18,6 @@
 [ext_resource type="Texture2D" uid="uid://c6ec1xu873u4h" path="res://Dialogue/Characters/Sheriff.png" id="13_vkwc1"]
 [ext_resource type="Resource" uid="uid://bhy84am8vom66" path="res://Dialogue/Dialogue/dialogue.dialogue" id="16_odj8s"]
 [ext_resource type="PackedScene" uid="uid://dhquseqrg6jr2" path="res://Component/Objects/FastTravel.tscn" id="18_r0l2g"]
-[ext_resource type="PackedScene" uid="uid://d3bcuxyaj64yf" path="res://Component/Breakable/breakable_box.tscn" id="19_lv3uy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vlp1k"]
 radius = 162.049
@@ -160,9 +159,6 @@ shape = SubResource("CircleShape2D_vlp1k")
 [node name="FastTravel" parent="." instance=ExtResource("18_r0l2g")]
 position = Vector2(3157, 548)
 target_map = "ASB.tscn"
-
-[node name="BreakableBox" parent="." instance=ExtResource("19_lv3uy")]
-position = Vector2(3672, 624)
 
 [node name="SavePoint" parent="." instance=ExtResource("12_l2mrd")]
 position = Vector2(3816, 624)

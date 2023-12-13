@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://qku6axefknlu"]
+[gd_scene load_steps=20 format=3 uid="uid://bv2igcigkvehi"]
 
 [ext_resource type="Texture2D" uid="uid://b8flegry3eusd" path="res://Resources/Level/TownBuilding-001.png" id="1_urv4x"]
 [ext_resource type="Texture2D" uid="uid://djs5e5jlhnih0" path="res://Resources/Level/Overworld_Sky.png" id="2_hl5nk"]
@@ -157,7 +157,7 @@ dialogue_start = "talk_to_sheriff"
 shape = SubResource("CircleShape2D_vlp1k")
 
 [node name="SavePoint" parent="." instance=ExtResource("17_fipao")]
-position = Vector2(3798, 583)
+position = Vector2(3798, 625)
 
 [node name="FastTravel" parent="." instance=ExtResource("18_m8uv6")]
 position = Vector2(3157, 548)

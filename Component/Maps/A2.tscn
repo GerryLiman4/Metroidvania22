@@ -15,7 +15,7 @@ layer_3/tile_data = PackedInt32Array(1507331, 655361, 7, 1507332, 851969, 2, 150
 [node name="RoomInstance" parent="." instance=ExtResource("2_biwdb")]
 
 [node name="Collectible" parent="." instance=ExtResource("3_ga48x")]
-position = Vector2(96, 686)
+position = Vector2(90, 687)
 
 [node name="EnemySpawn" parent="." instance=ExtResource("4_51sjg")]
 enemy_max = 5

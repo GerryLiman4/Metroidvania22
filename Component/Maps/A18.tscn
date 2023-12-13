@@ -21,7 +21,7 @@ layer_3/tile_data = PackedInt32Array(3604508, 655361, 4, 3604509, 720897, 4, 360
 [node name="RoomInstance" parent="." instance=ExtResource("2_dnydf")]
 
 [node name="Collectible" parent="." instance=ExtResource("3_rdlm2")]
-position = Vector2(152, 1556)
+position = Vector2(125, 1569)
 rotation = 0.00141585
 
 [node name="Collectible2" parent="." instance=ExtResource("3_rdlm2")]

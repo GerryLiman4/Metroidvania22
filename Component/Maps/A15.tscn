@@ -21,7 +21,7 @@ layer_3/tile_data = PackedInt32Array(1179653, 655361, 4, 1179654, 720897, 4, 117
 [node name="RoomInstance" parent="." instance=ExtResource("2_bgksq")]
 
 [node name="Collectible" parent="." instance=ExtResource("2_y4pid")]
-position = Vector2(183, 368)
+position = Vector2(131, 387)
 rotation = 0.00141585
 
 [node name="Event" parent="." instance=ExtResource("4_efwfo")]
