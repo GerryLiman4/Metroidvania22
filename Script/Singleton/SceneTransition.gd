@@ -12,6 +12,7 @@ var new_scene : String
 
 @onready var animation_player = $AnimationPlayer
 
+var player_data : Dictionary
 
 func start_transition_to(scene_name : String, change_music : bool, path_to_scene : String) -> void:
 	match scene_name:

@@ -45,8 +45,11 @@ func _ready():
 				self.visible = false
 		EVENTS.OTHER:
 			if event_name == "end_cutscene":
+				SceneTransition.player_data = Game.get_singleton().get_save_data()
 				sprite_2d.hide()
 				ability_sprite.hide()
+				SceneTransition.start_transition_to("cutscene", true, "res://UI/end_scene.tscn")
+				
 		EVENTS.KNOCKER: #Start ringing if event is trigger and call answered event was not
 			var game_ref = Game.get_singleton()
 			if game_ref.events.has(event_name) && !game_ref.events.has(event_name + "k"):

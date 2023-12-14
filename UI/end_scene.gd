@@ -10,6 +10,7 @@ var input_ready : bool = false
 func _unhandled_input(_event: InputEvent) -> void:
 	if input_ready == true:
 		if(Input.is_action_just_pressed("ui_accept")):
+			SceneTransition.player_data.clear()
 			_proceed_to_menu()
 			input_ready = false
 		#elif(Input.is_action_just_pressed("escape")):
@@ -24,7 +25,7 @@ func _ready():
 	$Scene1/Actionable.action()
 	for child in get_children():
 		if child.name == "CutsceneBalloon":
-			child.connect("dialog_ended", _proceed_to_menu)
+			child.connect("dialog_ended", play_scene_2)
 			return
 			
 func play_scene_2():	
@@ -45,12 +46,16 @@ func play_scene_2():
 	
 	
 func play_scene_3():
+	#Credits
 	#stop audio from scene_2
 	'
 	if audio_stream.playing:
 		audio_stream.stop()
 	animation_player.play("scene_3")
 	'
+func play_scene_4():
+	# Stats
+	pass
 	
 func _proceed_to_menu():
 	SceneTransition.start_transition_to("menu", true, "res://UI/main.tscn")
