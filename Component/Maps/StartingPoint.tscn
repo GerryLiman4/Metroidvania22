@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bfp64gkeqabbn" path="res://Resources/Level/Overworld_BG.png" id="2_l6adq"]
 [ext_resource type="Texture2D" uid="uid://0ar858cg5xou" path="res://Resources/Level/Overworld_BG2.png" id="3_mgf54"]
 [ext_resource type="Texture2D" uid="uid://cw8bi5d0vwvc5" path="res://Resources/Level/Overworld_BG3.png" id="4_o4b5e"]
-[ext_resource type="PackedScene" uid="uid://cjw1jg88nycfd" path="res://Component/NPC/npc.tscn" id="8_pbpho"]
+[ext_resource type="PackedScene" uid="uid://cjw1jg88nycfd" path="res://Component/NPC/NPC.tscn" id="8_pbpho"]
 [ext_resource type="PackedScene" uid="uid://oh4kdaw8kf7p" path="res://Dialogue/Helpers/event.tscn" id="9_d4jyg"]
 [ext_resource type="Resource" uid="uid://dl30w8ay6wogl" path="res://Dialogue/Dialogue/event.dialogue" id="10_nds8q"]
 [ext_resource type="PackedScene" uid="uid://bq6ll2apombgy" path="res://Component/Objects/save_point.tscn" id="12_l2mrd"]
@@ -68,7 +68,7 @@ scale = Vector2(0.888106, 1.12604)
 texture = ExtResource("2_l6adq")
 
 [node name="BG2" type="Sprite2D" parent="BG2"]
-position = Vector2(2767, 338)
+position = Vector2(2764, 338)
 scale = Vector2(0.888106, 1.12604)
 texture = ExtResource("3_mgf54")
 
@@ -116,6 +116,9 @@ dialogue_start = "mayor_intro"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/Event"]
 shape = SubResource("CircleShape2D_qpnef")
+
+[node name="NPC" parent="NPC" instance=ExtResource("8_pbpho")]
+position = Vector2(2048, 643)
 
 [node name="FastTravel" parent="." instance=ExtResource("18_r0l2g")]
 position = Vector2(1112, 544)

@@ -9,6 +9,8 @@ class_name Player
 @export var character_state : StateChart
 @export var current_state : CharacterStateId.Id
 
+@onready var hitbox = $Hitbox
+
 @onready var audio_stream_player = $AudioStreamPlayer
 @onready var actionable_finder = $AnimatedSprite2D/Direction/ActionableFinder
 @onready var gun_animation = $GunAnimation
@@ -675,7 +677,6 @@ func _on_wall_jump_timer_timeout():
 #endregion
 
 
-
 func _on_charge_hitbox_area_entered(area):
 	if area.is_in_group("health") == true :
 		var damage : int = charge_damage
@@ -728,6 +729,8 @@ func cheat_abilities():
 func camera_shake():
 	camera.apply_random_shake()
 
+func reset_health():
+	player_health.health_point = 3
 
 static func get_singleton() -> Player:
 	return (Player as Script).get_meta(&"singleton") as Player		

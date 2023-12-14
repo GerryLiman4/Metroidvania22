@@ -17,16 +17,14 @@ func _unhandled_input(_event: InputEvent) -> void:
 		
 
 func _ready():
-	
 	#Start input delay timer
 	input_delay_timer.start(3)
 	#Play scene_1
 	animation_player.play("scene_1")
 	$Scene1/Actionable.action()
-	#get_tree("dialog_ended", _proceed_to_game())
 	for child in get_children():
 		if child.name == "CutsceneBalloon":
-			child.connect("dialog_ended", _proceed_to_game)
+			child.connect("dialog_ended", _proceed_to_menu)
 			return
 			
 func play_scene_2():	

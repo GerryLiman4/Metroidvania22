@@ -20,5 +20,6 @@ func get_contact(area : Area2D):
 		is_invincible = true
 		invincible_timer.start(invincible_timer.wait_time)
 
+
 func _on_invincible_timer_timeout():
 	is_invincible = false
