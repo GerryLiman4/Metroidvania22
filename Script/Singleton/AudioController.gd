@@ -27,13 +27,15 @@ var audioScenes := {
 
 var escape_active : bool = false
 
-func _ready():
-	#music_player.stream = main_menu_loop
-	music_player.playing = music_on
-	
+
 	# figure out how to determine the scenes root nodes name
 	#if get_tree().is_class("MainMenu"):
 	#	music_player.playing = true
+	
+func play_menu_music():
+	music_player.stream = music_menu
+	if music_on:
+		music_player.playing = true
 	
 func handle_music_change():
 	music_player.stop()

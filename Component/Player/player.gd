@@ -112,7 +112,7 @@ func _unhandled_input(_event : InputEvent) -> void:
 	if Input.is_action_just_pressed("start"):
 		SceneTransition.start_transition_to("menu", true, "res://UI/main.tscn")
 	'''
-	if Input.is_action_just_pressed("select"):
+	if Input.is_action_just_pressed("cheat"):
 		cheat_abilities()
 	if Input.is_action_just_pressed("print"):
 		print(abilities)
@@ -206,7 +206,8 @@ func on_get_damaged(direction : Vector2) :
 	print("You took damage")
 
 func on_dead():
-	print("You Died")
+	print("You died")
+	SignalManager.player_dead.emit()
 
 #region check state
 

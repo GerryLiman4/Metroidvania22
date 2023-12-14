@@ -105,7 +105,7 @@ offset_left = -72.0
 offset_top = -136.0
 offset_right = 73.0
 offset_bottom = -113.0
-text = "Press Fix"
+text = "Out of Order"
 horizontal_alignment = 1
 
 [node name="FixedLabel" type="Label" parent="."]

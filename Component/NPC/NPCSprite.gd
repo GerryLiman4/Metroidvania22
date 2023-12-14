@@ -2,7 +2,6 @@ extends Sprite2D
 
 @onready var player : CharacterBody2D
 @onready var actionable : Area2D
-@onready var sprite = $Sprite2D
 
 @export var npc_name : String
 @export var image : CompressedTexture2D
@@ -13,11 +12,11 @@ var player_position : Vector2
 
 func _ready():
 	# TODO apply texture to AnimatedSprite2D
-	sprite.texture = image
+	self.texture = image
 	
-	sprite.scale = Vector2(0.1, 0.1)
-	var sprite_rect : Rect2 = sprite.get_rect()
-	sprite.position.y -= sprite_rect.size.y / 50
+	self.scale = Vector2(0.1, 0.1)
+	var sprite_rect : Rect2 = self.get_rect()
+	self.position.y -= sprite_rect.size.y / 50
 	
 	# TODO Pass Dialogue Resource and Start to Actionable via export?
 	var actionable_child : Area2D = get_node("Actionable")

@@ -10,7 +10,7 @@ var input_ready : bool = false
 func _unhandled_input(_event: InputEvent) -> void:
 	if input_ready == true:
 		if(Input.is_action_just_pressed("ui_accept")):
-			_proceed_to_game()
+			_proceed_to_menu()
 			input_ready = false
 		#elif(Input.is_action_just_pressed("escape")):
 		#	SceneTransition.start_transition_to("menu", true, "res://Menu.tscn")
@@ -54,10 +54,8 @@ func play_scene_3():
 	animation_player.play("scene_3")
 	'
 	
-	
-func _proceed_to_game():
-	SceneTransition.start_transition_to("game", true, "res://Game.tscn")
-
+func _proceed_to_menu():
+	SceneTransition.start_transition_to("menu", true, "res://UI/main.tscn")
 
 func _on_input_delay_timer_timeout():
 	input_ready = true

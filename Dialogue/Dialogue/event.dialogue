@@ -1,3 +1,28 @@
+~ mayor_intro
+
+Mayor West: Oh!? Marshall, thank god you made it!
+Gida: Wha-a-a-t part of my wardrobe screams “Marshall” to you?
+Mayor West: Oh, yes, I suppose you are too wethered to be a Marshall
+Gida: EXCUSE ME!?
+Mayor West: *sigh* I fear we will not make it another night without the Marshal and his men! None of our deputies have returned from their last mission into the mine, and those monsters gain more ground by the day!
+Gida: Monsters? You mean that weird green goop in the sky is making monsters in the mine?
+Mayor West: I don’t know what it is doing! All I know is that one day, it appeared, and that day was the worst in the history of our beloved town!
+Mayor West: Please, could you investigate the Mine? A gunslinger such as yourself should have no trouble protecting themselves! 
+Gida: I don’t know…
+Mayor West: PLEASE! You must help us! We will give you whatever you want! Gold? Jewels? Everything in the mine? Just make the monsters stop!
+Gida: Alright, alri-i-i-ight. Keep yer chaps on!
+Gida: I’ll take a look around. 
+Mayor West: You will? I mean, *ahem* thank you, sir. Stop by the pub as long as you’re here. Drinks are on me.
+Mayor West: And if you find anything–anything that can help us win this battle, report back to me! There’s a few Knockers still down there. Call me when if you find anything! You can’t miss em.
+Gida: Very well.
+Mayor West: …
+Gida: …
+Mayor West: Well, what are you waiting for–
+Gida: WHERE’S THE DAMN MINESHAFT!
+Mayor West: Oh, yes, yes. Follow the road, and you’ll find the entrance.
+
+=> END
+
 ~ first_shard
 
 Narrator: A sharp, jagged piece of metal. It appears to be a small piece of a larger whole. On the end, an inscription.
@@ -55,5 +80,11 @@ Narrator: The strange energy rushes you. Swallows you!
 Gida: Whoa-a-a, what was that?
 Narrator: You have acquired the Roll Upgrade!
 Narrator: Hit [Input] to start rolling and access tight spots!
+
+=> END
+
+~ elevator
+
+Gida: The lift is out of order...
 
 => END

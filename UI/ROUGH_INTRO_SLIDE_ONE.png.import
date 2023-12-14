@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkffe7g4g8s0j"
-path="res://.godot/imported/Sheriff.png-426a90c999305bae01400cb3df549a28.ctex"
+uid="uid://nyoboo7qnj7h"
+path="res://.godot/imported/ROUGH_INTRO_SLIDE_ONE.png-ba6ab2ceca7a79b597dc4b12d1b22017.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Dialogue/Characters/Sheriff.png"
-dest_files=["res://.godot/imported/Sheriff.png-426a90c999305bae01400cb3df549a28.ctex"]
+source_file="res://UI/ROUGH_INTRO_SLIDE_ONE.png"
+dest_files=["res://.godot/imported/ROUGH_INTRO_SLIDE_ONE.png-ba6ab2ceca7a79b597dc4b12d1b22017.ctex"]
 
 [params]
 

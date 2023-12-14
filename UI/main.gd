@@ -1,6 +1,9 @@
 extends Control
 class_name MainMenu
 
+func _ready():
+	AudioController.play_menu_music()
+
 func _on_menu_activated(element) -> void:
 	prints("element: ", element.text)
 	

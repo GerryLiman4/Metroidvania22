@@ -397,7 +397,7 @@ hframes = 7
 frame = 3
 
 [node name="Direction" type="Marker2D" parent="AnimatedSprite2D"]
-position = Vector2(40, 0)
+position = Vector2(-40, 0)
 
 [node name="ActionableFinder" type="Area2D" parent="AnimatedSprite2D/Direction"]
 collision_layer = 0
@@ -621,6 +621,7 @@ offset_left = -225.0
 offset_top = -356.0
 offset_right = 236.0
 offset_bottom = -81.0
+enabled = false
 initial_node_to_watch = NodePath("../StateChart")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

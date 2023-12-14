@@ -4,6 +4,10 @@ extends Area2D
 @export var texture : Texture
 @export var id : int
 
+const Cutscene_Balloon = preload("res://Dialogue/Dialogue/cutscene_balloon.tscn")
+
+@export var dialogue_resource : DialogueResource = preload("res://Dialogue/Dialogue/event.dialogue")
+
 @onready var sprite_2d = $Sprite2D
 @onready var animation_player = $Sprite2D/AnimationPlayer
 
@@ -37,6 +41,11 @@ func action() -> void:
 					# Play animation
 					animation_player.play("Open")
 					SceneTransition.transition()
+				else:
+					var balloon : Node = Cutscene_Balloon.instantiate()
+					get_tree().current_scene.add_child(balloon)
+					balloon.start(dialogue_resource, "elevator")
+					SignalManager.dialogue_start.emit()
 			1:
 				if Game.get_singleton().events.has("lift_active"):
 					player.velocity = Vector2()

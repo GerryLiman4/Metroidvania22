@@ -17,8 +17,13 @@ func action() -> void:
 		get_tree().current_scene.add_child(balloon)
 		balloon.start(dialogue_resource, dialogue_start)
 	else:
+		#DialogueManager.show_dialogue_balloon(dialogue_resourse, dialogue_start)
+		var balloon : Node = Cutscene_Balloon.instantiate()
+		get_tree().current_scene.add_child(balloon)
+		balloon.start(dialogue_resource, dialogue_start)
+		'''
 		var balloon : Node = Portrait_Balloon.instantiate()
 		get_tree().current_scene.add_child(balloon)
 		balloon.start(dialogue_resource, dialogue_start)
-	
+		'''
 	SignalManager.dialogue_start.emit()

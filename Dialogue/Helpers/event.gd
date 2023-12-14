@@ -24,6 +24,11 @@ enum EVENTS{ABILITY, OTHER}
 var player : CharacterBody2D
 
 func _ready():
+	MetSys.register_storable_object(self, queue_free)
+	
+	sprite_2d.hidden
+	ability_sprite.hide()
+	ability_sprite.stop()
 	if event_type == EVENTS.ABILITY:
 		ability_sprite.play("default")
 		ability_sprite.show()
@@ -31,9 +36,7 @@ func _ready():
 	elif texture:
 		sprite_2d.texture = texture
 		sprite_2d.show()
-		ability_sprite.hide()
-		ability_sprite.stop()
-	
+		
 	player = get_parent().get_node_or_null("Player")
 	
 	match event_type:
@@ -48,6 +51,14 @@ func _ready():
 
 func action() -> void:
 	if !automatic:
+		if dialogue_start && dialogue_resource:
+			#DialogueManager.show_dialogue_balloon(dialogue_resourse, dialogue_start)
+			var balloon : Node = Cutscene_Balloon.instantiate()
+			get_tree().current_scene.add_child(balloon)
+			balloon.start(dialogue_resource, dialogue_start)
+		
+			SignalManager.dialogue_start.emit()
+		'''
 		# Do event logic
 		if dialogue_start == "intro_cutscene":
 			#DialogueManager.show_dialogue_balloon(dialogue_resourse, dialogue_start)
@@ -58,14 +69,13 @@ func action() -> void:
 			var balloon : Node = Portrait_Balloon.instantiate()
 			get_tree().current_scene.add_child(balloon)
 			balloon.start(dialogue_resource, dialogue_start)
+		'''	
 		
-		SignalManager.dialogue_start.emit()
-
 
 func _on_body_entered(body):
 	if body.is_in_group(&"Player"):
 		player = body
-		if (automatic && event_name && event_type != null):
+		if (automatic && event_name && event_type != null) && (dialogue_resource && dialogue_start):
 			match (event_type):
 				EVENTS.ABILITY:
 					if !Player.get_singleton().abilities.has(event_name):
@@ -76,13 +86,22 @@ func _on_body_entered(body):
 						get_tree().current_scene.add_child(balloon)
 						balloon.start(dialogue_resource, dialogue_start)
 						SignalManager.dialogue_start.emit()
-						queue_free()
-				EVENTS.OTHER:
-					if event_name == "end_cutscene":
-						Game.get_singleton().end_escape()
-						SceneTransition.start_transition_to("cutscene", true, "res://UI/end_scene.tscn")
 						
-			
+				EVENTS.OTHER:
+					var game_ref = Game.get_singleton()
+					if event_name == "end_cutscene":
+						game_ref.end_escape()
+						SceneTransition.start_transition_to("cutscene", true, "res://UI/end_scene.tscn")
+					elif event_name == "mayor_intro" && !game_ref.events.has("mayor_intro"):
+						game_ref.events.append("mayor_intro")
+						# Create dialogue balloon
+						var balloon : Node = Cutscene_Balloon.instantiate()
+						get_tree().current_scene.add_child(balloon)
+						balloon.start(dialogue_resource, dialogue_start)
+						SignalManager.dialogue_start.emit()
+						
+			MetSys.store_object(self)
+			queue_free()
 				
 func _on_body_exited(body):
 	if body.is_in_group(&"Player"):

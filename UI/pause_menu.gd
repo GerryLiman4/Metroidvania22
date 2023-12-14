@@ -1,25 +1,33 @@
 extends Control
 
+class_name PauseMenu
+
 @onready var menu = %Menu
 @onready var options = %Options
 @onready var video = %Video
 @onready var audio = %Audio
 
+@onready var game_over = %GameOver
+
 var is_paused : bool = false
+
+var player_ref : Player
 
 signal pause_toggle(paused_state : bool)
 
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	player_ref = Player.get_singleton()
 	toggle()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if Input.is_action_just_pressed("start"):
+func _unhandled_input(event):
+	if Input.is_action_just_pressed("start") && (player_ref && !player_ref.event):
 		hide_submenus()
 		toggle()
-		
+
 # --------------- Helper Functions ------------------
 	
 func toggle():
@@ -49,6 +57,16 @@ func hide_submenus():
 	options.hide()
 	video.hide()
 	audio.hide()
+	game_over.hide()
+
+func show_game_over():
+	visible = !visible
+	menu.hide()
+	hide_submenus()
+	game_over.show()
+	game_over.get_child(0).grab_focus()
+	get_tree().paused = visible
+	emit_signal("pause_toggle", is_paused)
 
 # --------------- Menu Buttons ------------------
 
@@ -132,6 +150,6 @@ func volume(bus_index, value):
 func _on_toggle_music_toggled(toggled_on):
 	AudioController.toggle_music()
 
-
 func _on_reload_pressed():
-	pass # Replace with function body.
+	Game.get_singleton().reload_save()
+	toggle()

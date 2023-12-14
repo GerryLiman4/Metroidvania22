@@ -6,6 +6,7 @@ class_name Game
 @export var starting_map: String
 # Player node, bruh.
 @onready var player: CharacterBody2D =  $Player
+@onready var pause_menu = $UI/PauseMenu
 
 @onready var enemy_scenes : Dictionary = {
 	"bat" : preload("res://Component/Enemy/enemy_bat.tscn"),
@@ -14,6 +15,8 @@ class_name Game
 }
 
 @onready var escape_timer = $EscapeTimer
+
+
 
 var escape_health : int = 20
 
@@ -34,6 +37,7 @@ var events: Array[String]
 
 func _ready() -> void:
 	randomize()
+	SignalManager.player_dead.connect(on_player_dead)
 	# Make sure MetSys is in initial state.
 	# Does not matter in this project, but normally this ensures that the game works correctly when you exit to menu and start again.
 	MetSys.reset_state()
@@ -43,10 +47,7 @@ func _ready() -> void:
 	else:
 		reset_save()
 	
-	# Go to the starting point.
-	goto_map(MetSys.get_full_room_path(starting_map))
-	# Find the save point and teleport the player to it, to start at the save point.
-	travel_to_point("SavePoint")
+	go_to_starting_map()
 	
 	# Connect the room_changed signal to handle room transitions.
 	MetSys.room_changed.connect(on_room_changed, CONNECT_DEFERRED)
@@ -55,6 +56,11 @@ func _ready() -> void:
 	# A trick for static object reference (before static vars were a thing).
 	get_script().set_meta(&"singleton", self)
 
+func go_to_starting_map():
+	# Go to the starting point.
+	goto_map(MetSys.get_full_room_path(starting_map))
+	# Find the save point and teleport the player to it, to start at the save point.
+	travel_to_point("SavePoint")
 	
 func load_save():
 	# If save data exists, load it.
@@ -70,6 +76,10 @@ func load_save():
 		player.abilities.assign(save_data.abilities)
 	else:
 		reset_save()
+		
+func reload_save():
+	load_save()
+	go_to_starting_map()
 	
 func reset_save():
 	MetSys.set_save_data()
@@ -204,3 +214,6 @@ func _on_escape_timer_timeout():
 	else:
 		#Game over
 		print("Cave collapsed..")
+		
+func on_player_dead():
+	pause_menu.show_game_over()

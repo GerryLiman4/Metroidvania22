@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bkffe7g4g8s0j" path="res://Dialogue/Characters/Sheriff.png" id="2_gnsaw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bgscp"]
-radius = 68.0294
+radius = 64.4981
 
 [node name="NPC" type="CharacterBody2D"]
 collision_layer = 0
@@ -20,7 +20,7 @@ texture = ExtResource("2_gnsaw")
 [node name="Actionable" parent="." instance=ExtResource("2_7ewq5")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Actionable"]
-position = Vector2(0, -42)
+position = Vector2(0, -60)
 shape = SubResource("CircleShape2D_bgscp")
 
 [connection signal="body_entered" from="Actionable" to="." method="_on_actionable_body_entered"]

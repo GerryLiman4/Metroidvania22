@@ -1,60 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://2ll1y82jd68q"]
+[gd_scene load_steps=2 format=3 uid="uid://2ll1y82jd68q"]
 
 [ext_resource type="Script" path="res://Component/NPC/NPCSprite.gd" id="1_37mhf"]
-[ext_resource type="Texture2D" uid="uid://fjyi25xvguji" path="res://Resources/MainCharacter/body idle with head left 128-Sheet.png" id="2_wnvc2"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rv4ct"]
-radius = 22.0
-height = 106.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2pjdl"]
-atlas = ExtResource("2_wnvc2")
-region = Rect2(0, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_murf8"]
-atlas = ExtResource("2_wnvc2")
-region = Rect2(128, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_peyx1"]
-atlas = ExtResource("2_wnvc2")
-region = Rect2(256, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_m6s58"]
-atlas = ExtResource("2_wnvc2")
-region = Rect2(384, 0, 128, 128)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_wg3sw"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2pjdl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_murf8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_peyx1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_m6s58")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 10.0
-}]
 
 [node name="NPCSprite" type="Sprite2D"]
 script = ExtResource("1_37mhf")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 9)
-shape = SubResource("CapsuleShape2D_rv4ct")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(1, 0)
-sprite_frames = SubResource("SpriteFrames_wg3sw")
-animation = &"Idle"
-autoplay = "Idle"
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
