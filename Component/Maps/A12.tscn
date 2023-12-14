@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_m6cwe"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_a6lu6"]
 [ext_resource type="PackedScene" uid="uid://c5d0f770ww2gg" path="res://Component/Objects/Collectible.tscn" id="2_wfoek"]
-[ext_resource type="PackedScene" uid="uid://d3bcuxyaj64yf" path="res://Component/Breakable/breakable_box.tscn" id="3_0fp3j"]
+[ext_resource type="PackedScene" path="res://Component/Breakable/breakable_box.tscn" id="3_0fp3j"]
 [ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://Component/Objects/enemy_spawn.tscn" id="4_tbdgq"]
 [ext_resource type="PackedScene" uid="uid://2ll1y82jd68q" path="res://Component/NPC/NPCSprite.tscn" id="5_xbv2y"]
 

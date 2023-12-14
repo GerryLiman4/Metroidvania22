@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://oh4kdaw8kf7p" path="res://Dialogue/Helpers/event.tscn" id="3_jocyx"]
 [ext_resource type="Resource" uid="uid://dl30w8ay6wogl" path="res://Dialogue/Dialogue/event.dialogue" id="4_0hhvx"]
 [ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://Component/Objects/enemy_spawn.tscn" id="4_m5v35"]
-[ext_resource type="PackedScene" uid="uid://d3bcuxyaj64yf" path="res://Component/Breakable/breakable_box.tscn" id="6_b38fr"]
+[ext_resource type="PackedScene" path="res://Component/Breakable/breakable_box.tscn" id="6_b38fr"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_r2cgp"]
 vertices = PackedVector2Array(134, -34, 208, 40, 96, 100, -465, -24, -323, 459, -532, 91)
