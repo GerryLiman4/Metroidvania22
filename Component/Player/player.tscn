@@ -348,7 +348,6 @@ shooter = NodePath("AnimatedSprite2D/Arm/Shooter")
 player_health = NodePath("Hitbox")
 charge_area = NodePath("ChargeHitbox")
 charge_hitbox = NodePath("ChargeHitbox/Hitbox")
-has_unlocked_charge = true
 upgraded_bullet_pref = ExtResource("3_5k2n6")
 has_unlocked_upgraded_gun = true
 collision_box = NodePath("CollisionShape2D")
@@ -364,7 +363,7 @@ head_raycast_right = NodePath("HeadCastRight")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("5_13q23")
-animation = &"Idle"
+animation = &"Roll"
 
 [node name="HeadModel" type="Sprite2D" parent="AnimatedSprite2D"]
 visible = false
