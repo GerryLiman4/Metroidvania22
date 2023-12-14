@@ -44,6 +44,15 @@ Gida: O-o-o-kay then.
 => END
 
 
+~ talk_to_ross
+
+Miner: …
+Narrator: They appear to be comfortable in their silence
+Gida: How're you doin in the sunlight, Ross?
+
+=> END
+
+
 ~ end_cutscene
 
 Narrator: You escaped the Abyss

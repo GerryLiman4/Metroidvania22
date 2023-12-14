@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cv55nv1c2sbiq"]
+[gd_scene load_steps=19 format=3 uid="uid://cv55nv1c2sbiq"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_42t0r"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="1_45cto"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://cupf281vsfp2h" path="res://Resources/Level/phone.png" id="13_6gwi4"]
 [ext_resource type="Texture2D" uid="uid://bkffe7g4g8s0j" path="res://Dialogue/Characters/Sheriff.png" id="13_rm4m0"]
 [ext_resource type="Resource" uid="uid://bhy84am8vom66" path="res://Dialogue/Dialogue/dialogue.dialogue" id="16_odj8s"]
+[ext_resource type="Texture2D" uid="uid://copcg2xewdtet" path="res://Dialogue/Characters/Miner.png" id="17_j0rvb"]
 [ext_resource type="PackedScene" uid="uid://dhquseqrg6jr2" path="res://Component/Objects/FastTravel.tscn" id="18_r0l2g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qpnef"]
@@ -149,7 +150,18 @@ target_map = "ASB.tscn"
 [node name="SavePoint" parent="." instance=ExtResource("12_l2mrd")]
 position = Vector2(928, 624)
 
+[node name="Miner" parent="." instance=ExtResource("8_pbpho")]
+position = Vector2(1535, 640)
+npc_name = "Criss Cross Ross"
+image = ExtResource("17_j0rvb")
+face_direction = 1
+
+[node name="Actionable" parent="Miner" index="1"]
+dialogue_resource = ExtResource("16_odj8s")
+dialogue_start = "talk_to_ross"
+
 [editable path="NPC/Mayor West"]
 [editable path="NPC/Mayor Event"]
 [editable path="NPC/Sheriff Event"]
 [editable path="NPC/Sheriff Gus"]
+[editable path="Miner"]
