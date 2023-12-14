@@ -13,13 +13,28 @@ class_name Player
 
 @onready var audio_stream_player = $AudioStreamPlayer
 @onready var actionable_finder = $AnimatedSprite2D/Direction/ActionableFinder
+
 @onready var gun_animation = $GunAnimation
+@onready var effects_animation = $EffectsAnimation
 
 var audioScenes := {
-	"jump" : preload("res://Resources/Audio/SFX/jump.ogg"),
-	"shoot1" : preload("res://Resources/Audio/SFX/Player/bullet1.ogg"),
-	"shoot2" : preload("res://Resources/Audio/SFX/Player/bullet2.ogg"),
-	"shoot3" : preload("res://Resources/Audio/SFX/Player/bullet3.ogg")
+	"movement" : {
+		"jump" : preload("res://Resources/Audio/SFX/Player/jump.ogg"),
+		"dash": preload("res://Resources/Audio/SFX/Player/MC_dash.ogg"),
+		"fall" : preload("res://Resources/Audio/SFX/Player/Cloth_Loop.ogg"),
+		"land": preload("res://Resources/Audio/SFX/Player/Mc_Lands_on_ground.ogg"),
+		"latch" : preload("res://Resources/Audio/SFX/Player/Latch_onto_wall.ogg")
+	},
+	"shoot" : {
+		"shoot1" : preload("res://Resources/Audio/SFX/Player/bullet1.ogg"),
+		"shoot2" : preload("res://Resources/Audio/SFX/Player/bullet2.ogg"),
+		"shoot3" : preload("res://Resources/Audio/SFX/Player/bullet3.ogg"),
+		"reload" : preload("res://Resources/Audio/SFX/Player/reload.ogg")
+	},
+	"hit" : {
+		"hit1": preload("res://Resources/Audio/SFX/Player/hit-001.ogg"),
+		"hit2": preload("res://Resources/Audio/SFX/Player/hit-002.ogg")
+	}
 }
 
 const GRAVITY : float = 600.0
@@ -206,9 +221,14 @@ func get_crawl_input() -> bool:
 
 func on_get_damaged(direction : Vector2) :
 	print("You took damage")
+	camera.apply_noise_shake()
+	effects_animation.play("damage")
 
 func on_dead():
 	print("You died")
+	camera.apply_noise_shake()
+	effects_animation.play("dead")
+	await effects_animation.animation_finished
 	SignalManager.player_dead.emit()
 
 #region check state
@@ -344,18 +364,20 @@ func take_aim(aim_position):
 		bullet.launch(shooter.global_position, direction, 2000)
 		call_add_child(bullet)
 		
-		var shootSFX := ["shoot1", "shoot2", "shoot3"]
-		var randomKey = shootSFX[randi() % shootSFX.size() - 1]
-		print(audioScenes[randomKey])
-		if randomKey in audioScenes:
-			audio_stream_player.stream = audioScenes[randomKey]
+		# Get all shoot sounds, minus the reload
+		var shootSFX : Dictionary = audioScenes["shoot"].duplicate()
+		shootSFX.erase("reload")
+		
+		# Get a random key
+		var shootKeys = shootSFX.keys()
+		var randomKey = shootKeys[randi() % shootSFX.size() - 1]
+
+		if randomKey in shootSFX:
+			audio_stream_player.stream = shootSFX[randomKey]
 			audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
-			audio_stream_player.play()
+			audio_stream_player.call_deferred("play")
 		else:
-			print(randomKey + " not found in audioScenes")
-			
-		$AnimatedSprite2D/Arm/MuzzleFlash
-			
+			print(randomKey + " not found in audioScenes")			
 		
 
 #endregion
@@ -432,9 +454,11 @@ func _on_walk_state_physics_processing(delta):
 
 func _on_jump_state_entered():
 	animation_player.play("Jump")
-	audio_stream_player.stream = audioScenes["jump"]
-	audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
-	audio_stream_player.play()
+
+	if audioScenes["movement"]["jump"]:
+		audio_stream_player.stream = audioScenes["movement"]["jump"]
+		audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
+		audio_stream_player.call_deferred("play")
 
 func _on_jump_state_exited():
 	pass # Replace with function body.
@@ -487,9 +511,11 @@ func _on_double_jump_state_entered():
 	else :
 		velocity.y += DOUBLE_JUMP_VELOCITY
 	#region SFX
-	audio_stream_player.stream = audioScenes["jump"]
-	audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
-	audio_stream_player.play()
+	
+	if audioScenes["movement"]["jump"]:
+		audio_stream_player.stream = audioScenes["movement"]["jump"]
+		audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
+		audio_stream_player.call_deferred("play")
 	#endregion
 
 func _on_double_jump_state_exited():
@@ -548,10 +574,11 @@ func _on_crawl_state_physics_processing(delta):
 func _on_dash_state_entered():
 	# set timestamp for cooldown
 	dash_cooldown_timestamp = object_timer
-	
-	audio_stream_player.stream = audioScenes["jump"]
-	audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
-	audio_stream_player.play()
+
+	if audioScenes["movement"]["dash"]:
+		audio_stream_player.stream = audioScenes["movement"]["dash"]
+		audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
+		audio_stream_player.call_deferred("play")
 	
 	# check charge ability
 	set_charge(true)
@@ -647,7 +674,7 @@ func _on_jump_state_physics_processing(delta):
 '''
 func _on_wall_jump_state_entered():
 	animation_player.play("Jump")
-	audio_stream_player.stream = audioScenes["jump"]
+	audio_stream_player.stream = audioScenes["movement"]["jump"]
 	audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
 	audio_stream_player.play()
 	

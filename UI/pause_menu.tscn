@@ -277,6 +277,10 @@ offset_bottom = 50.5
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Label" type="Label" parent="GameOver"]
+layout_mode = 2
+text = "Game Over"
+
 [node name="Reload" type="Button" parent="GameOver"]
 layout_mode = 2
 text = "Reload"
