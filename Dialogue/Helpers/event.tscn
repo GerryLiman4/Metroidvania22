@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://oh4kdaw8kf7p"]
+[gd_scene load_steps=14 format=3 uid="uid://oh4kdaw8kf7p"]
 
 [ext_resource type="Script" path="res://Dialogue/Helpers/event.gd" id="1_6xxl4"]
 [ext_resource type="Texture2D" uid="uid://di2a5josdqki3" path="res://icon.svg" id="2_nhtec"]
 [ext_resource type="Texture2D" uid="uid://da1mnlwyogtbw" path="res://Resources/Level/upgrade-Sheet.png" id="2_onl56"]
+[ext_resource type="AudioStream" uid="uid://cbnblhk14vaqt" path="res://Resources/Audio/SFX/Environment/Phone_ringing.ogg" id="4_5od26"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5bx7r"]
 atlas = ExtResource("2_onl56")
@@ -86,5 +87,14 @@ frame_progress = 0.920152
 visible = false
 texture = ExtResource("2_nhtec")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_5od26")
+max_distance = 1000.0
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

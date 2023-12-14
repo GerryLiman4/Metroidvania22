@@ -23,12 +23,47 @@ Mayor West: Oh, yes, yes. Follow the road, and you’ll find the entrance.
 
 => END
 
+~ sheriff_intro
+
+Sheriff Gus: Whoa there, partner. Now just who might you be?
+Gida: Just a wanderer…
+Sheriff Gus: We don’t get very many of those. Ain’t had any since that energy appeared.
+Gida: So I’ve heard.
+Sheriff Gus: So you know what the hell is goin on here, and yer still goin straight into the Devil’s Maw? 
+Sheriff Gus: Yer either one of the bravest sun’ov’a’guns I ever met or the stupidest.
+Gida: Maybe I am, Sheriff.
+Sheriff Gus: Cute. 
+
+=> END
+
+
 ~ first_shard
 
 Narrator: A sharp, jagged piece of metal. It appears to be a small piece of a larger whole. On the end, an inscription.
 Narrator: Dep– 
 Gida: Hmm, looks kinda like the edge of a star. Must be a Deputy’s badge…
 Gida: Let’s see if the Sheriff has anything to say about this. There has to be a Knocker around here somewhere.
+
+=> END
+
+~ knocker
+
+Narrator: Taps echo up the mine shaft…
+Sheriff Gus: Tommy!? Is that–
+Gida: Sorry, Sheriff. Just the stupidly Bravest Sun’ov’’a’gun you ever met.
+Sheriff Gus: You survived?
+Gida: It’s been known to happen.
+Sheriff Gus: What are you callin me for?
+Gida: I found a shard down here. Looks like one of yer Deputy’s badges.
+Sheriff Gus: Darnnit! I knew it was possible, but I didn’t wanna believe it.
+Gida: Believe what?
+Sheriff Gus: I sent Tommy Two-Hooves into that area of the mine. When I didn’t hear back from him, I just thought he was lookin for the others.
+Sheriff Gus: If his badge is shattered, well…
+Gida: You gonna be okay Sheriff?
+Sheriff Gus: Yeah, yeah…I’ll be fine.
+Sheriff Gus: Just, do me a favor, and try to find the rest of his badge. Gimme a knock or meet me back up in town when you do. 
+Sheriff Gus: He deserves to be remembered for his service to this town.
+Gida: You got it, Sheriff.
 
 => END
 

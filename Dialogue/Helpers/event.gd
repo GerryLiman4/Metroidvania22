@@ -14,6 +14,8 @@ enum EVENTS{ABILITY, OTHER}
 
 @onready var ability_sprite = $AbilitySprite
 @onready var sprite_2d = $Sprite2D
+@onready var timer = $Timer
+@onready var audio = $AudioStreamPlayer2D
 
 # Dialogue file and start positions
 @export var dialogue_resource : DialogueResource
@@ -47,17 +49,25 @@ func _ready():
 			if event_name == "end_cutscene":
 				sprite_2d.hide()
 				ability_sprite.hide()
+			elif event_name == "knocker":
+				timer.start(6)
 				
 
 func action() -> void:
 	if !automatic:
-		if dialogue_start && dialogue_resource:
+		if (dialogue_start && dialogue_resource) && !Player.get_singleton().abilities.has(event_name):
 			#DialogueManager.show_dialogue_balloon(dialogue_resourse, dialogue_start)
 			var balloon : Node = Cutscene_Balloon.instantiate()
 			get_tree().current_scene.add_child(balloon)
 			balloon.start(dialogue_resource, dialogue_start)
-		
+			Game.get_singleton().events.append(event_name)
+			if event_name == "knocker":
+				timer.stop()
+				
 			SignalManager.dialogue_start.emit()
+			
+			MetSys.store_object(self)
+			queue_free()
 		'''
 		# Do event logic
 		if dialogue_start == "intro_cutscene":
@@ -92,8 +102,8 @@ func _on_body_entered(body):
 					if event_name == "end_cutscene":
 						game_ref.end_escape()
 						SceneTransition.start_transition_to("cutscene", true, "res://UI/end_scene.tscn")
-					elif event_name == "mayor_intro" && !game_ref.events.has("mayor_intro"):
-						game_ref.events.append("mayor_intro")
+					elif !game_ref.events.has(event_name):
+						game_ref.events.append(event_name)
 						# Create dialogue balloon
 						var balloon : Node = Cutscene_Balloon.instantiate()
 						get_tree().current_scene.add_child(balloon)
@@ -106,3 +116,8 @@ func _on_body_entered(body):
 func _on_body_exited(body):
 	if body.is_in_group(&"Player"):
 		player = null
+
+
+func _on_timer_timeout():
+	audio.play()
+	timer.start(6)

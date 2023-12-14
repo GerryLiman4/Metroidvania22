@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cv55nv1c2sbiq"]
+[gd_scene load_steps=19 format=3 uid="uid://cv55nv1c2sbiq"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_42t0r"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="1_45cto"]
@@ -12,11 +12,16 @@
 [ext_resource type="Resource" uid="uid://dl30w8ay6wogl" path="res://Dialogue/Dialogue/event.dialogue" id="10_nds8q"]
 [ext_resource type="PackedScene" uid="uid://bq6ll2apombgy" path="res://Component/Objects/save_point.tscn" id="12_l2mrd"]
 [ext_resource type="Texture2D" uid="uid://j5qpetfoyrv5" path="res://Dialogue/Characters/Mayor.png" id="12_pxx1y"]
+[ext_resource type="Texture2D" uid="uid://cupf281vsfp2h" path="res://Resources/Level/phone.png" id="13_6gwi4"]
+[ext_resource type="Texture2D" uid="uid://bkffe7g4g8s0j" path="res://Dialogue/Characters/Sheriff.png" id="13_rm4m0"]
 [ext_resource type="Resource" uid="uid://bhy84am8vom66" path="res://Dialogue/Dialogue/dialogue.dialogue" id="16_odj8s"]
 [ext_resource type="PackedScene" uid="uid://dhquseqrg6jr2" path="res://Component/Objects/FastTravel.tscn" id="18_r0l2g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qpnef"]
 radius = 103.31
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hu24a"]
+radius = 84.2912
 
 [node name="StartingPoint" type="Node2D" groups=["Town"]]
 
@@ -108,17 +113,46 @@ image = ExtResource("12_pxx1y")
 dialogue_resource = ExtResource("16_odj8s")
 dialogue_start = "talk_to_mayor"
 
-[node name="Event" parent="NPC" instance=ExtResource("9_d4jyg")]
+[node name="Mayor Event" parent="NPC" instance=ExtResource("9_d4jyg")]
 position = Vector2(834, 614)
 event_name = "mayor_intro"
 dialogue_resource = ExtResource("10_nds8q")
 dialogue_start = "mayor_intro"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/Event"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/Mayor Event"]
 shape = SubResource("CircleShape2D_qpnef")
 
-[node name="NPC" parent="NPC" instance=ExtResource("8_pbpho")]
+[node name="Sheriff Event" parent="NPC" instance=ExtResource("9_d4jyg")]
+position = Vector2(2048, 596)
+event_name = "sheriff_intro"
+dialogue_resource = ExtResource("10_nds8q")
+dialogue_start = "sheriff_intro"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/Sheriff Event"]
+shape = SubResource("CircleShape2D_qpnef")
+
+[node name="Knocker" type="Sprite2D" parent="NPC"]
+position = Vector2(2634, 594)
+texture = ExtResource("13_6gwi4")
+
+[node name="Event" parent="NPC/Knocker" instance=ExtResource("9_d4jyg")]
+automatic = false
+event_name = "knocker"
+dialogue_resource = ExtResource("10_nds8q")
+dialogue_start = "knocker"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/Knocker/Event"]
+shape = SubResource("CircleShape2D_hu24a")
+
+[node name="Sheriff Gus" parent="NPC" instance=ExtResource("8_pbpho")]
 position = Vector2(2048, 643)
+npc_name = "Sheriff Gus"
+image = ExtResource("13_rm4m0")
+face_direction = 1
+
+[node name="Actionable" parent="NPC/Sheriff Gus" index="1"]
+dialogue_resource = ExtResource("16_odj8s")
+dialogue_start = "talk_to_sheriff"
 
 [node name="FastTravel" parent="." instance=ExtResource("18_r0l2g")]
 position = Vector2(1112, 544)
@@ -128,4 +162,7 @@ target_map = "ASB.tscn"
 position = Vector2(928, 624)
 
 [editable path="NPC/Mayor West"]
-[editable path="NPC/Event"]
+[editable path="NPC/Mayor Event"]
+[editable path="NPC/Sheriff Event"]
+[editable path="NPC/Knocker/Event"]
+[editable path="NPC/Sheriff Gus"]
