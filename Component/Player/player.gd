@@ -71,8 +71,8 @@ var abilities: Array[StringName]
 
 @export_category("Animation")
 @export var animation_player : AnimatedSprite2D
-@export var body_sprite : Sprite2D
-@export var arm_model : Sprite2D
+#@export var body_sprite : Sprite2D
+#@export var arm_model : Sprite2D
 @export var arm_sprite : Sprite2D
 @export var head_model : Sprite2D
 @export var head_sprite : Sprite2D
@@ -80,6 +80,7 @@ var abilities: Array[StringName]
 @export_category("Shooter")
 @export var bullet_pref : PackedScene
 @export var shooter : Node2D
+var can_shoot : bool = true
 
 @export_category("Health")
 @export var player_health : Health
@@ -87,7 +88,7 @@ var abilities: Array[StringName]
 @export_category("Charge Ability")
 @export var charge_area : Area2D
 @export var charge_hitbox : CollisionShape2D
-@export var has_unlocked_charge : bool = false
+#@export var has_unlocked_charge : bool = false
 @export var charge_damage : int = 1
 
 @export_category("Upgraded Gun")
@@ -213,7 +214,7 @@ func get_dash_input() -> bool :
 		return false
 
 func get_crawl_input() -> bool:
-	if Input.is_action_pressed("Crawl") == true :
+	if Input.is_action_just_pressed("Crawl") == true :
 		return true
 	else : 
 		return false
@@ -358,6 +359,8 @@ func take_aim(aim_position):
 		
 		if direction.x == 0 && direction.y == -1 :
 			arm_sprite.rotation = 120.0
+		
+		if can_shoot == false : return
 		
 		gun_animation.play("Shoot")
 		
@@ -543,6 +546,10 @@ func _on_crawl_state_entered():
 	#hit_box.scale.y = crawl_hitbox_scale 
 	#collision_box.position.y = 32
 	#hit_box.position.y = 32
+	animation_player.play("Roll")
+	animation_player.offset.y = 30
+	can_shoot = false
+	arm_sprite.hide()
 	pass # Replace with function body.
 
 func _on_crawl_state_exited():
@@ -556,14 +563,17 @@ func _on_crawl_state_exited():
 	#hit_box.scale.y = original_crawl_hitbox_scale
 	#collision_box.position.y = 0
 	#hit_box.position.y = 0
+	animation_player.offset.y = 0
+	can_shoot = true
+	arm_sprite.show()
 	pass # Replace with function body.
 
 func _on_crawl_state_input(event):
 	pass # Replace with function body.
 
 func _on_crawl_state_physics_processing(delta):
-	if check_crawl() == false :
-		print("left ", head_raycast_up_left.is_colliding() , "right ",head_raycast_up_right.is_colliding())
+	if get_crawl_input() == true || is_on_floor() == false :
+		
 		if head_raycast_up_left.is_colliding() != true && head_raycast_up_right.is_colliding() != true : 
 			switch_state(CharacterStateId.Id.IDLE)
 			return
@@ -712,7 +722,7 @@ func _on_charge_hitbox_area_entered(area):
 
 #region special ability / unlocked skill 
 func set_charge(is_active : bool) :
-	if has_unlocked_charge == false :
+	if !&"charge" in abilities :
 		return
 	
 	if is_active == true :
