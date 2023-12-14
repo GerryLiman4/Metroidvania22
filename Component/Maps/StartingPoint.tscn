@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cv55nv1c2sbiq"]
+[gd_scene load_steps=18 format=3 uid="uid://cv55nv1c2sbiq"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_42t0r"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="1_45cto"]
@@ -19,9 +19,6 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qpnef"]
 radius = 103.31
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_hu24a"]
-radius = 84.2912
 
 [node name="StartingPoint" type="Node2D" groups=["Town"]]
 
@@ -135,15 +132,6 @@ shape = SubResource("CircleShape2D_qpnef")
 position = Vector2(2634, 594)
 texture = ExtResource("13_6gwi4")
 
-[node name="Event" parent="NPC/Knocker" instance=ExtResource("9_d4jyg")]
-automatic = false
-event_name = "knocker"
-dialogue_resource = ExtResource("10_nds8q")
-dialogue_start = "knocker"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/Knocker/Event"]
-shape = SubResource("CircleShape2D_hu24a")
-
 [node name="Sheriff Gus" parent="NPC" instance=ExtResource("8_pbpho")]
 position = Vector2(2048, 643)
 npc_name = "Sheriff Gus"
@@ -164,5 +152,4 @@ position = Vector2(928, 624)
 [editable path="NPC/Mayor West"]
 [editable path="NPC/Mayor Event"]
 [editable path="NPC/Sheriff Event"]
-[editable path="NPC/Knocker/Event"]
 [editable path="NPC/Sheriff Gus"]

@@ -64,7 +64,7 @@ func show_game_over():
 	menu.hide()
 	hide_submenus()
 	game_over.show()
-	game_over.get_child(0).grab_focus()
+	game_over.get_child(1).grab_focus()
 	get_tree().paused = visible
 	emit_signal("pause_toggle", is_paused)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dh2v1mpv02wq0"]
+[gd_scene load_steps=33 format=3 uid="uid://dh2v1mpv02wq0"]
 
 [ext_resource type="Script" path="res://Component/Player/player.gd" id="1_x2mr2"]
 [ext_resource type="PackedScene" uid="uid://3jirgrp83pq" path="res://Component/player_bullet.tscn" id="2_1l3hs"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="3_51okl"]
 [ext_resource type="Texture2D" uid="uid://b7nlnr3m1ynt3" path="res://Resources/MainCharacter/head 128.png" id="4_bqkva"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="4_oroim"]
+[ext_resource type="Shader" path="res://Resources/HitFlash.gdshader" id="4_upuey"]
 [ext_resource type="SpriteFrames" uid="uid://ds7usjx5jo8u" path="res://Component/Player/main_character_animation.tres" id="5_13q23"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_hfc4i"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_8dtlr"]
@@ -15,6 +16,14 @@
 [ext_resource type="Texture2D" uid="uid://dono02ibrqycv" path="res://Resources/muzzle_flash-Sheet.png" id="7_q4qu8"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="8_0ixva"]
 [ext_resource type="Script" path="res://Script/Utility/CameraShake.gd" id="14_4ga28"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nwg0o"]
+shader = ExtResource("4_upuey")
+shader_parameter/active = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hj2pf"]
+shader = ExtResource("4_upuey")
+shader_parameter/active = false
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_op8ci"]
 radius = 41.0122
@@ -331,6 +340,97 @@ _data = {
 "Shoot": SubResource("Animation_8hpr5")
 }
 
+[sub_resource type="Animation" id="Animation_m078x"]
+resource_name = "damage"
+length = 0.6
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D/Arm:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:material:shader_parameter/active")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_cf1rn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D/Arm:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:material:shader_parameter/active")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_yt5mo"]
+resource_name = "dead"
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D/Arm:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:material:shader_parameter/active")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i3arb"]
+_data = {
+"RESET": SubResource("Animation_cf1rn"),
+"damage": SubResource("Animation_m078x"),
+"dead": SubResource("Animation_yt5mo")
+}
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("camera", "audio_player", "character_state", "wall_jump_timer", "animation_player", "arm_sprite", "head_model", "head_sprite", "shooter", "player_health", "charge_area", "charge_hitbox", "collision_box", "hit_box", "head_raycast_up_left", "head_raycast_up_right", "crawl_collision", "crawl_hitbox", "leg_raycast_left", "leg_raycast_right", "head_raycast_left", "head_raycast_right") groups=["Player"]]
 collision_layer = 34
 script = ExtResource("1_x2mr2")
@@ -362,6 +462,7 @@ head_raycast_left = NodePath("HeadCastLeft")
 head_raycast_right = NodePath("HeadCastRight")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_nwg0o")
 sprite_frames = ExtResource("5_13q23")
 animation = &"Roll"
 
@@ -376,6 +477,7 @@ texture = ExtResource("4_bqkva")
 
 [node name="Arm" type="Sprite2D" parent="AnimatedSprite2D"]
 z_index = 15
+material = SubResource("ShaderMaterial_hj2pf")
 position = Vector2(7.99999, -21)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("6_dvus0")
@@ -666,6 +768,11 @@ hit_from_inside = true
 [node name="GunAnimation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_1xlwd")
+}
+
+[node name="EffectsAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i3arb")
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
