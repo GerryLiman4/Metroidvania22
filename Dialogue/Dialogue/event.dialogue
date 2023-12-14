@@ -23,6 +23,7 @@ Mayor West: Oh, yes, yes. Follow the road, and you’ll find the entrance.
 
 => END
 
+
 ~ sheriff_intro
 
 Sheriff Gus: Whoa there, partner. Now just who might you be?
@@ -46,6 +47,7 @@ Gida: Let’s see if the Sheriff has anything to say about this. There has to be
 
 => END
 
+
 ~ knocker
 
 Narrator: Taps echo up the mine shaft…
@@ -67,6 +69,7 @@ Gida: You got it, Sheriff.
 
 => END
 
+
 ~ wall_jump
 
 Narrator: The strange energy rushes you. Swallows you! 
@@ -82,6 +85,7 @@ Narrator: Jump toward the wall, then jump off to latch onto another wall and con
 
 => END
 
+
 ~ charge
 
 Narrator: The strange energy rushes you. Swallows you! 
@@ -90,6 +94,7 @@ Narrator: You have acquired the Dash Upgrade!
 Narrator:  Dash while on the ground for a powerful attack
 
 => END
+
 
 ~ double_jump
 
@@ -100,6 +105,7 @@ Narrator: Jump while airborne to reach greater heights!
 
 => END
 
+
 ~ gun_upgrade
 
 Narrator: The strange energy rushes you. Swallows you! 
@@ -108,6 +114,7 @@ Narrator: You have acquired the Gun Upgrade!
 Narrator: Hold the fire button to charge a powerful shot!
 
 => END
+
 
 ~ crawl
 
@@ -118,8 +125,51 @@ Narrator: Hit [Input] to start rolling and access tight spots!
 
 => END
 
+
 ~ elevator
 
 Gida: The lift is out of order...
+
+=> END
+
+
+~ elevator_fixed
+
+Gida: Now what’s this here contraption?
+Narrator: It’s just a dusty old pile of logs strapped together with a few chains.
+Narrator: But it looks like…does it go all the way back to town?
+Gida: This could be helpful.
+
+=> END
+
+
+~ miner_intro
+
+Miner: No! NO! Stay away from me!
+Gida: Wh-a-a-a-t?
+Miner: Back, I said! I will not go to hell! Back demon!
+Gida: R-u-u-u-de. I had no choice in that matter. I was born with the horns!
+Miner: Come any closer, and I’ll–
+Gida: You’ll what? Stick your tongue out at me?
+Miner:...
+Gida: I’m here to help.
+Miner: No one ever comes to help. No one ever comes to talk. Everyone is gone.
+Gida: There are no other survivors?
+Miner: The Mine has claimed them.
+Gida: Well, I’m here. Mayor West sent me.
+Miner: The Mayor? He sent you…to find me!?
+Gida:...of course he did! He wasn’t about to lose his most important miner.
+Miner: Well, what are you waiting for? Free me! Do you know how long I’ve been under here?
+Gida: Do you?
+Miner:...
+Miner: no…
+Gida: You’ve been here since the beginning, right? Since that energy started?
+Miner: We dug too much! We never should have. Some things should have remained buried! 
+Miner: We tried to contain it, but we could not have been more wrong. 
+Gida: What are you talking—
+Miner: YOU HAVE TO FREE ME! THEN YOU HAVE TO FREE IT! 
+Miner: It hates being contained! It got a taste of freedom, and it craves it!
+Gida: Alright, alr-i-I-i-ght! Keep your tongue in your holster! 
+Gida: I’ve got an idea.
 
 => END

@@ -10,7 +10,7 @@ const Cutscene_Balloon = preload("res://Dialogue/Dialogue/cutscene_balloon.tscn"
 @export var event_name : String
 @export var event_type : EVENTS
 
-enum EVENTS{ABILITY, OTHER}
+enum EVENTS{ABILITY, OTHER, KNOCKER}
 
 @onready var ability_sprite = $AbilitySprite
 @onready var sprite_2d = $Sprite2D
@@ -20,8 +20,6 @@ enum EVENTS{ABILITY, OTHER}
 # Dialogue file and start positions
 @export var dialogue_resource : DialogueResource
 @export var dialogue_start : String = "start"
-
-
 
 var player : CharacterBody2D
 
@@ -49,25 +47,39 @@ func _ready():
 			if event_name == "end_cutscene":
 				sprite_2d.hide()
 				ability_sprite.hide()
-			elif event_name == "knocker":
+		EVENTS.KNOCKER: #Start ringing if event is trigger and call answered event was not
+			var game_ref = Game.get_singleton()
+			if game_ref.events.has(event_name) && !game_ref.events.has(event_name + "k"):
 				timer.start(6)
 				
 
 func action() -> void:
 	if !automatic:
-		if (dialogue_start && dialogue_resource) && !Player.get_singleton().abilities.has(event_name):
-			#DialogueManager.show_dialogue_balloon(dialogue_resourse, dialogue_start)
-			var balloon : Node = Cutscene_Balloon.instantiate()
-			get_tree().current_scene.add_child(balloon)
-			balloon.start(dialogue_resource, dialogue_start)
-			Game.get_singleton().events.append(event_name)
-			if event_name == "knocker":
-				timer.stop()
+		if (dialogue_start && dialogue_resource):
+			match (event_type):
+				EVENTS.OTHER:
+					if !Player.get_singleton().abilities.has(event_name):
+
+						var balloon : Node = Cutscene_Balloon.instantiate()
+						get_tree().current_scene.add_child(balloon)
+						balloon.start(dialogue_resource, dialogue_start)
+						
+						SignalManager.dialogue_start.emit()
+						MetSys.store_object(self)
+						queue_free()
+				EVENTS.KNOCKER:
+					if Game.get_singleton().events.has(event_name):
+						
+						var balloon : Node = Cutscene_Balloon.instantiate()
+						get_tree().current_scene.add_child(balloon)
+						balloon.start(dialogue_resource, dialogue_start)
+						
+						Game.get_singleton().events.append(event_name + "k")
+						SignalManager.dialogue_start.emit()
+						MetSys.store_object(self)
+						queue_free()
 				
-			SignalManager.dialogue_start.emit()
 			
-			MetSys.store_object(self)
-			queue_free()
 		'''
 		# Do event logic
 		if dialogue_start == "intro_cutscene":
@@ -97,6 +109,9 @@ func _on_body_entered(body):
 						balloon.start(dialogue_resource, dialogue_start)
 						SignalManager.dialogue_start.emit()
 						
+						MetSys.store_object(self)
+						queue_free()
+						
 				EVENTS.OTHER:
 					var game_ref = Game.get_singleton()
 					if event_name == "end_cutscene":
@@ -110,8 +125,8 @@ func _on_body_entered(body):
 						balloon.start(dialogue_resource, dialogue_start)
 						SignalManager.dialogue_start.emit()
 						
-			MetSys.store_object(self)
-			queue_free()
+						MetSys.store_object(self)
+						queue_free()
 				
 func _on_body_exited(body):
 	if body.is_in_group(&"Player"):

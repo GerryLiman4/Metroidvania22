@@ -81,7 +81,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [-0.785398]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -340,6 +340,33 @@ _data = {
 "Shoot": SubResource("Animation_8hpr5")
 }
 
+[sub_resource type="Animation" id="Animation_cf1rn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D/Arm:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:material:shader_parameter/active")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_m078x"]
 resource_name = "damage"
 length = 0.6
@@ -367,33 +394,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [true, false, true, false]
-}
-
-[sub_resource type="Animation" id="Animation_cf1rn"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D/Arm:material:shader_parameter/active")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:material:shader_parameter/active")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_yt5mo"]
@@ -431,7 +431,7 @@ _data = {
 "dead": SubResource("Animation_yt5mo")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("camera", "audio_player", "character_state", "wall_jump_timer", "animation_player", "arm_sprite", "head_model", "head_sprite", "shooter", "player_health", "charge_area", "charge_hitbox", "collision_box", "hit_box", "head_raycast_up_left", "head_raycast_up_right", "crawl_collision", "crawl_hitbox", "leg_raycast_left", "leg_raycast_right", "head_raycast_left", "head_raycast_right") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("camera", "audio_player", "character_state", "wall_jump_timer", "arm_timer", "animation_player", "arm_sprite", "head_model", "head_sprite", "shooter", "player_health", "charge_area", "charge_hitbox", "collision_box", "hit_box", "head_raycast_up_left", "head_raycast_up_right", "crawl_collision", "crawl_hitbox", "leg_raycast_left", "leg_raycast_right", "head_raycast_left", "head_raycast_right") groups=["Player"]]
 collision_layer = 34
 script = ExtResource("1_x2mr2")
 camera = NodePath("Camera2D")
@@ -439,6 +439,7 @@ audio_player = NodePath("SoundPlayer")
 character_state = NodePath("StateChart")
 face_direction = 1
 wall_jump_timer = NodePath("Timers/WallJumpTimer")
+arm_timer = NodePath("Timers/ArmTimer")
 animation_player = NodePath("AnimatedSprite2D")
 arm_sprite = NodePath("AnimatedSprite2D/Arm")
 head_model = NodePath("AnimatedSprite2D/HeadModel")
@@ -464,7 +465,7 @@ head_raycast_right = NodePath("HeadCastRight")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_nwg0o")
 sprite_frames = ExtResource("5_13q23")
-animation = &"Roll"
+animation = &"Idle"
 
 [node name="HeadModel" type="Sprite2D" parent="AnimatedSprite2D"]
 visible = false
@@ -479,6 +480,7 @@ texture = ExtResource("4_bqkva")
 z_index = 15
 material = SubResource("ShaderMaterial_hj2pf")
 position = Vector2(7.99999, -21)
+rotation = -0.785398
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("6_dvus0")
 offset = Vector2(-40, -10)
@@ -736,6 +738,10 @@ wait_time = 0.35
 [node name="InvincibleTimer" type="Timer" parent="Timers"]
 wait_time = 2.25
 
+[node name="ArmTimer" type="Timer" parent="Timers"]
+wait_time = 1.5
+one_shot = true
+
 [node name="LegCastLeft" type="RayCast2D" parent="."]
 position = Vector2(0, 56)
 target_position = Vector2(-35, 0)
@@ -818,3 +824,4 @@ script = ExtResource("14_4ga28")
 [connection signal="state_physics_processing" from="StateChart/ParallelState/CharacterState/Dash" to="." method="_on_dash_state_physics_processing"]
 [connection signal="timeout" from="Timers/WallJumpTimer" to="." method="_on_wall_jump_timer_timeout"]
 [connection signal="timeout" from="Timers/InvincibleTimer" to="Hitbox" method="_on_invincible_timer_timeout"]
+[connection signal="timeout" from="Timers/ArmTimer" to="." method="_on_arm_timer_timeout"]

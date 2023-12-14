@@ -26,3 +26,4 @@ rotation = 0.00141585
 [node name="FastTravel" parent="." instance=ExtResource("5_hs8wg")]
 position = Vector2(540, 803)
 target_map = "StartingPoint.tscn"
+id = 1

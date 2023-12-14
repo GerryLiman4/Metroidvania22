@@ -34,12 +34,15 @@ Sheriff Gus: If yer really goin down there, keep an eye out for my deputies
 
 => END
 
-~ talk_to_sheriff2
 
-Gida: I may be new to how this whole township thing works, but shouldn’t a Sheriff have Deputies?
-Sheriff Gus: If yer really goin down there, keep an eye out for my deputies
+~ talk_to_miner
+
+Miner: …
+Narrator: They appear to be comfortable in their silence
+Gida: O-o-o-kay then.
 
 => END
+
 
 ~ end_cutscene
 

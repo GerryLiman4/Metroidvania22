@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://Component/Objects/enemy_spawn.tscn" id="5_aljdh"]
 [ext_resource type="Texture2D" uid="uid://cupf281vsfp2h" path="res://Resources/Level/phone.png" id="6_7i64s"]
 [ext_resource type="PackedScene" uid="uid://oh4kdaw8kf7p" path="res://Dialogue/Helpers/event.tscn" id="7_pqtpq"]
-[ext_resource type="Resource" uid="uid://dl30w8ay6wogl" path="res://Dialogue/Dialogue/event.dialogue" id="8_y0qix"]
+[ext_resource type="Resource" uid="uid://cauuytfo0o333" path="res://Dialogue/Dialogue/knocker.dialogue" id="8_300kb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h8pnt"]
 radius = 74.0068
@@ -69,9 +69,10 @@ texture = ExtResource("6_7i64s")
 
 [node name="Event" parent="Knocker" instance=ExtResource("7_pqtpq")]
 automatic = false
-event_name = "knocker"
-dialogue_resource = ExtResource("8_y0qix")
-dialogue_start = "knocker"
+event_name = "first_shard"
+event_type = 2
+dialogue_resource = ExtResource("8_300kb")
+dialogue_start = "first_shard"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Knocker/Event"]
 shape = SubResource("CircleShape2D_h8pnt")

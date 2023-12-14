@@ -17,11 +17,14 @@ func collect(body: Node2D) -> void:
 	# Check if player collided.
 	if not body.is_in_group(&\"Player\"):
 		return
+	
+	var game = Game.get_singleton()
 	# Increase collectible counter.
-	Game.get_singleton().collectibles += 1
+	game.collectibles += 1
 	
 	# Load dialogue for first collectable
-	if Game.get_singleton().collectibles == 1:
+	if game.collectibles == 1:
+		game.events.append(\"first_shard\")
 		var balloon_load = load(\"res://Dialogue/Dialogue/cutscene_balloon.tscn\")
 		var dialogue_resource : DialogueResource = load(\"res://Dialogue/Dialogue/event.dialogue\")
 		

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dc6acv2d61gt1"]
+[gd_scene load_steps=14 format=3 uid="uid://dc6acv2d61gt1"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_m6cwe"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_a6lu6"]
@@ -6,12 +6,20 @@
 [ext_resource type="PackedScene" uid="uid://d3bcuxyaj64yf" path="res://Component/Breakable/breakable_box.tscn" id="3_0fp3j"]
 [ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://Component/Objects/enemy_spawn.tscn" id="4_tbdgq"]
 [ext_resource type="PackedScene" uid="uid://2ll1y82jd68q" path="res://Component/NPC/NPCSprite.tscn" id="5_xbv2y"]
+[ext_resource type="PackedScene" uid="uid://oh4kdaw8kf7p" path="res://Dialogue/Helpers/event.tscn" id="7_rt2x3"]
+[ext_resource type="Resource" uid="uid://dl30w8ay6wogl" path="res://Dialogue/Dialogue/event.dialogue" id="8_jqkbw"]
+[ext_resource type="PackedScene" uid="uid://cjw1jg88nycfd" path="res://Component/NPC/NPC.tscn" id="9_3vryw"]
+[ext_resource type="Resource" uid="uid://bhy84am8vom66" path="res://Dialogue/Dialogue/dialogue.dialogue" id="10_6ybao"]
+[ext_resource type="Texture2D" uid="uid://dho8uh0yqhgtk" path="res://Dialogue/Characters/Miner.png" id="10_mauud"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_fts2m"]
 vertices = PackedVector2Array(973, -397, 981, -119, 633, -140, -125, -306, 263, 183, -134, 177)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(268.25, 194.344, -144.75, 187.344, -134.75, -315.656, 983.25, -407.656, 992.25, -108.656, 637.25, -129.656)])
 source_geometry_group_name = &"navigation_polygon_source_group"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1x5gk"]
+radius = 92.0489
 
 [node name="Map" type="Node2D" groups=["Abyss"]]
 
@@ -134,4 +142,24 @@ position = Vector2(1250.4, 355.97)
 [node name="NPCSprite" parent="." instance=ExtResource("5_xbv2y")]
 position = Vector2(152, 96)
 
+[node name="Event" parent="." instance=ExtResource("7_rt2x3")]
+position = Vector2(224, 125)
+event_name = "miner_intro"
+dialogue_resource = ExtResource("8_jqkbw")
+dialogue_start = "miner_intro"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Event"]
+shape = SubResource("CircleShape2D_1x5gk")
+
+[node name="NPC" parent="." instance=ExtResource("9_3vryw")]
+position = Vector2(168, 163)
+npc_name = "Tiny"
+image = ExtResource("10_mauud")
+
+[node name="Actionable" parent="NPC" index="1"]
+dialogue_resource = ExtResource("10_6ybao")
+dialogue_start = "talk_to_miner"
+
 [editable path="EnemySpawn"]
+[editable path="Event"]
+[editable path="NPC"]

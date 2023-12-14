@@ -45,7 +45,7 @@ rotation = 0.00141585
 position = Vector2(1772.28, 211.123)
 navigation_polygon = SubResource("NavigationPolygon_qvonn")
 
-[node name="Event" parent="." instance=ExtResource("6_2t583")]
+[node name="WallJumpAbility" parent="." instance=ExtResource("6_2t583")]
 position = Vector2(117, 876)
 rotation = 0.00141585
 scale = Vector2(0.5, 0.5)
@@ -54,7 +54,7 @@ event_type = 0
 dialogue_resource = ExtResource("7_lw13n")
 dialogue_start = "wall_jump"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Event"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallJumpAbility"]
 shape = SubResource("CircleShape2D_e0j67")
 
 [node name="EnemySpawn" parent="." instance=ExtResource("6_81qvd")]

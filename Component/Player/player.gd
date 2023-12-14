@@ -52,6 +52,7 @@ enum FACING{RIGHT,LEFT}
 @export var face_direction : FACING
 @export var wall_latch : FACING
 @export var wall_jump_timer : Timer
+@export var arm_timer : Timer
 
 var dash_timer : float = 0.25
 var dash_cooldown_timestamp : float = -1.0
@@ -334,6 +335,10 @@ func take_aim(aim_position):
 		
 		bullet.global_position = shooter.global_position
 		
+		#Activate arm reset timer
+		arm_timer.start(1.5)
+		
+		
 		var direction : Vector2 
 		direction = player_movement_input
 		
@@ -362,6 +367,7 @@ func take_aim(aim_position):
 		
 		if can_shoot == false : return
 		
+		#region SFX
 		gun_animation.play("Shoot")
 		
 		bullet.launch(shooter.global_position, direction, 2000)
@@ -380,9 +386,8 @@ func take_aim(aim_position):
 			audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
 			audio_stream_player.call_deferred("play")
 		else:
-			print(randomKey + " not found in audioScenes")			
-		
-
+			print(randomKey + " not found in audioScenes")
+		#endregion	 
 #endregion
 
 #region state
@@ -768,8 +773,9 @@ func camera_shake():
 
 func reset_health():
 	player_health.health_point = 3
+	
+func _on_arm_timer_timeout():
+		arm_sprite.rotation = -45
 
 static func get_singleton() -> Player:
 	return (Player as Script).get_meta(&"singleton") as Player		
-	
-

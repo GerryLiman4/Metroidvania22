@@ -40,7 +40,7 @@ hitbox = NodePath("../BreakableBox/Breakable")
 position = Vector2(812, 101.5)
 navigation_polygon = SubResource("NavigationPolygon_r2cgp")
 
-[node name="Event" parent="." instance=ExtResource("3_jocyx")]
+[node name="ChargeAbility" parent="." instance=ExtResource("3_jocyx")]
 position = Vector2(1122, 441)
 scale = Vector2(0.5, 0.5)
 event_name = "charge"
@@ -48,7 +48,7 @@ event_type = 0
 dialogue_resource = ExtResource("4_0hhvx")
 dialogue_start = "charge"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Event"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChargeAbility"]
 shape = SubResource("CircleShape2D_cl0v1")
 
 [node name="EnemySpawn" parent="." instance=ExtResource("4_m5v35")]

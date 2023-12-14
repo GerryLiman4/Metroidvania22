@@ -12,9 +12,6 @@ const Cutscene_Balloon = preload("res://Dialogue/Dialogue/cutscene_balloon.tscn"
 @onready var animation_player = $Sprite2D/AnimationPlayer
 
 @onready var use_label = $UseLabel
-@onready var fix_label = $FixLabel
-@onready var fixed_label = $FixedLabel
-@onready var timer = $Timer
 
 var player
 
@@ -34,27 +31,35 @@ func _ready():
 
 func action() -> void:
 	if player:
+		var player_ref = Player.get_singleton()
+		var game = Game.get_singleton()
 		match id:
 			0:
-				if Game.get_singleton().events.has("lift_active"):
+				if game.events.has("lift_active"):
 					player.velocity = Vector2()
 					# Play animation
 					animation_player.play("Open")
 					SceneTransition.transition()
+					player.event = true
 				else:
 					var balloon : Node = Cutscene_Balloon.instantiate()
 					get_tree().current_scene.add_child(balloon)
 					balloon.start(dialogue_resource, "elevator")
 					SignalManager.dialogue_start.emit()
 			1:
-				if Game.get_singleton().events.has("lift_active"):
+				if game.events.has("lift_active"):
 					player.velocity = Vector2()
 					# Play animation
 					animation_player.play("Open")
 					SceneTransition.transition()
+					player.event = true
 				else:
-					Game.get_singleton().events.append("lift_active")
-					timer.start(6)
+					game.events.append("lift_active")
+					var balloon : Node = Cutscene_Balloon.instantiate()
+					get_tree().current_scene.add_child(balloon)
+					balloon.start(dialogue_resource, "elevator_fixed")
+					SignalManager.dialogue_start.emit()
+					
 							
 		
 func goto_map() -> void:
@@ -69,20 +74,12 @@ func goto_map() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group(&"Player"):
 		player = body
-		if is_active:
-			use_label.visible = true
-		else:
-			fix_label.visible = true
+		
+		use_label.visible = true
+
 
 
 func _on_body_exited(body : Node2D) -> void:
 	if body.is_in_group(&"Player"):
 		player = null
 		use_label.visible = false
-		fix_label.visible = false
-
-
-func _on_timer_timeout():
-	use_label.visible = false
-	fix_label.visible = false
-	fixed_label.visible = false

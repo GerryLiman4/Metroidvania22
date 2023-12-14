@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_11"
+type="Resource"
+uid="uid://cauuytfo0o333"
+path="res://.godot/imported/knocker.dialogue-b1879297c29b02e1e5592f88f268bdc3.tres"
+
+[deps]
+
+source_file="res://Dialogue/Dialogue/knocker.dialogue"
+dest_files=["res://.godot/imported/knocker.dialogue-b1879297c29b02e1e5592f88f268bdc3.tres"]
+
+[params]
+
+defaults=true

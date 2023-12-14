@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_4f54b"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_dnydf"]
-[ext_resource type="PackedScene" path="res://Component/Breakable/breakable_wall.tscn" id="3_2mgq7"]
+[ext_resource type="PackedScene" uid="uid://ejousxon6tww" path="res://Component/Breakable/breakable_wall.tscn" id="3_2mgq7"]
 [ext_resource type="PackedScene" uid="uid://c5d0f770ww2gg" path="res://Component/Objects/Collectible.tscn" id="3_rdlm2"]
 [ext_resource type="PackedScene" uid="uid://oh4kdaw8kf7p" path="res://Dialogue/Helpers/event.tscn" id="4_txdnc"]
 [ext_resource type="Resource" uid="uid://dl30w8ay6wogl" path="res://Dialogue/Dialogue/event.dialogue" id="5_dykco"]
@@ -51,15 +51,16 @@ rotation = 0.00141585
 scale = Vector2(0.5, 0.5)
 navigation_polygon = SubResource("NavigationPolygon_lkgiq")
 
-[node name="Event" parent="." instance=ExtResource("4_txdnc")]
+[node name="CrawlAbility" parent="." instance=ExtResource("4_txdnc")]
 position = Vector2(682, 1774)
 rotation = 0.00141585
 scale = Vector2(0.5, 0.5)
 event_name = "crawl"
+event_type = 0
 dialogue_resource = ExtResource("5_dykco")
 dialogue_start = "crawl"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Event"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CrawlAbility"]
 shape = SubResource("CircleShape2D_y1lut")
 
 [node name="EnemySpawn" parent="." instance=ExtResource("5_na5g2")]

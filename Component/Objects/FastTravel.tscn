@@ -98,28 +98,5 @@ offset_bottom = -112.0
 text = "Press Interact"
 horizontal_alignment = 1
 
-[node name="FixLabel" type="Label" parent="."]
-visible = false
-self_modulate = Color(0, 0, 1, 1)
-offset_left = -72.0
-offset_top = -136.0
-offset_right = 73.0
-offset_bottom = -113.0
-text = "Out of Order"
-horizontal_alignment = 1
-
-[node name="FixedLabel" type="Label" parent="."]
-visible = false
-self_modulate = Color(0, 0, 1, 1)
-offset_left = -85.0
-offset_top = -136.0
-offset_right = 88.0
-offset_bottom = -113.0
-text = "Lift has been Repaired"
-horizontal_alignment = 1
-
-[node name="Timer" type="Timer" parent="."]
-
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
