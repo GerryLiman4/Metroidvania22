@@ -22,6 +22,9 @@ layer_1/tile_data = PackedInt32Array(65536, 131072, 11, 131072, 131072, 12, 1966
 
 [node name="RoomInstance" parent="." instance=ExtResource("2_a6lu6")]
 
+[node name="Knocker" type="Node2D" parent="."]
+position = Vector2(68.0155, 324.323)
+
 [node name="BreakableBox11" parent="." node_paths=PackedStringArray("hitbox") instance=ExtResource("3_0fp3j")]
 position = Vector2(432, 145)
 rotation = 0.00424755
