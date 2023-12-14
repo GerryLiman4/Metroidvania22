@@ -18,6 +18,7 @@ func _ready():
 	health.on_dead.connect(on_dead)
 
 func on_get_damaged(direction : Vector2):
+	print("Hurt")
 	var enemyHurtSFXKeys := ["bat_screech1", "bat_screech2"]
 	var randomKey = enemyHurtSFXKeys[randi() % enemyHurtSFXKeys.size()]
 	
@@ -25,11 +26,14 @@ func on_get_damaged(direction : Vector2):
 		audio_stream_player.stream = audioScenes[randomKey]
 		audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
 		audio_stream_player.play()
-		await audio_stream_player.finished
+		#await audio_stream_player.finished
 	else:
 		print(randomKey + " not found in audioScenes, or SFX already playing")
 
 func on_dead():
+	stop()
+	velocity.y = 0
+	
 	var enemyDeadSFXKeys := ["bat_dead1", "bat_dead2"]
 	var randomKey = enemyDeadSFXKeys[randi() % enemyDeadSFXKeys.size()]
 	
@@ -37,12 +41,13 @@ func on_dead():
 		audio_stream_player.stream = audioScenes[randomKey]
 		audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
 		audio_stream_player.play()
-		await audio_stream_player.finished
+		#await audio_stream_player.finished
 	else:
 		print(randomKey + " not found in audioScenes")
-	self.queue_free()
-		
 	
+	self.queue_free()
+	
+
 func calculate_gravity() :
 	velocity.y = clampf(velocity.y, JUMP_VELOCITY, MAX_FALL)
 

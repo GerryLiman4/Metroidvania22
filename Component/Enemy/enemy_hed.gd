@@ -26,7 +26,7 @@ func on_get_damaged(direction : Vector2):
 		audio_stream_player.stream = audioScenes[randomKey]
 		audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
 		audio_stream_player.play()
-		await audio_stream_player.finished
+		#await audio_stream_player.finished
 	else:
 		print(randomKey + " not found in audioScenes, or SFX already playing")
 
@@ -38,7 +38,7 @@ func on_dead():
 		audio_stream_player.stream = audioScenes[randomKey]
 		audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
 		audio_stream_player.play()
-		await audio_stream_player.finished
+		#await audio_stream_player.finished
 	else:
 		print(randomKey + " not found in audioScenes")
 		
