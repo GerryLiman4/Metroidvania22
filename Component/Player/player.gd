@@ -767,6 +767,9 @@ func cheat_abilities():
 	]
 	abilities.clear()
 	abilities.append_array(all_abilities)
+	
+	Game.get_singleton().events.append("lift_active")
+
 
 func camera_shake():
 	camera.apply_random_shake()

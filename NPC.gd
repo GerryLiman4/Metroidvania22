@@ -18,7 +18,18 @@ func _ready():
 	if image:
 		sprite.texture = image
 	
-	
+	await get_tree().create_timer(.5).timeout
+	# Remove miner from abyss & add to surface if rescued
+	if npc_name == "Miner" || npc_name == "Criss Cross Ross":
+		var game = Game.get_singleton()
+		match npc_name:
+			"Miner":
+				if game.events.has("miner_intro"):
+					queue_free()
+			"Criss Cross Ross":
+				if !game.events.has("miner_intro"):
+					queue_free()
+
 func _unhandled_input(event):
 	if !(player && actionable):
 		return
