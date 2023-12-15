@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_kcjmp"]
 [ext_resource type="PackedScene" uid="uid://c5d0f770ww2gg" path="res://Component/Objects/Collectible.tscn" id="3_lcebk"]
 [ext_resource type="PackedScene" uid="uid://bq6ll2apombgy" path="res://Component/Objects/save_point.tscn" id="4_o3674"]
-[ext_resource type="PackedScene" path="res://Component/Breakable/breakable_box.tscn" id="5_c8f8j"]
+[ext_resource type="PackedScene" uid="uid://d3bcuxyaj64yf" path="res://Component/Breakable/breakable_box.tscn" id="5_c8f8j"]
 [ext_resource type="PackedScene" uid="uid://oh4kdaw8kf7p" path="res://Dialogue/Helpers/event.tscn" id="5_dv3xx"]
 [ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://Component/Objects/enemy_spawn.tscn" id="6_cjdxe"]
 [ext_resource type="Resource" uid="uid://dl30w8ay6wogl" path="res://Dialogue/Dialogue/event.dialogue" id="6_nkbe0"]
@@ -66,10 +66,11 @@ dialogue_start = "double_jump"
 shape = SubResource("CircleShape2D_04imo")
 
 [node name="EnemySpawn" parent="." instance=ExtResource("6_cjdxe")]
-enemy_max = 3
+enemy_max = 4
 bat_max = 1
 spider_max = 1
 gopher_max = 1
+slime_max = 1
 
 [node name="Marker2D1" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
 position = Vector2(792.604, 597.753)
@@ -79,5 +80,8 @@ position = Vector2(330.386, 1439.54)
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Gopher" index="0"]
 position = Vector2(935.393, 1295.3)
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Slime" index="0"]
+position = Vector2(1156.92, 1121.48)
 
 [editable path="EnemySpawn"]

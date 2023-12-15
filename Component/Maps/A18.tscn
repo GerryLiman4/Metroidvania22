@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_4f54b"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_dnydf"]
-[ext_resource type="PackedScene" path="res://Component/Breakable/breakable_wall.tscn" id="3_2mgq7"]
+[ext_resource type="PackedScene" uid="uid://ejousxon6tww" path="res://Component/Breakable/breakable_wall.tscn" id="3_2mgq7"]
 [ext_resource type="PackedScene" uid="uid://c5d0f770ww2gg" path="res://Component/Objects/Collectible.tscn" id="3_rdlm2"]
 [ext_resource type="PackedScene" uid="uid://bq6ll2apombgy" path="res://Component/Objects/save_point.tscn" id="4_3fqmf"]
 [ext_resource type="PackedScene" uid="uid://oh4kdaw8kf7p" path="res://Dialogue/Helpers/event.tscn" id="4_txdnc"]
@@ -28,9 +28,8 @@ layer_3/tile_data = PackedInt32Array(3604508, 655361, 4, 3604509, 720897, 4, 360
 
 [node name="RoomInstance" parent="." instance=ExtResource("2_dnydf")]
 
-[node name="BreakableWall2" parent="." node_paths=PackedStringArray("hitbox") instance=ExtResource("3_2mgq7")]
-position = Vector2(463, 721)
-hitbox = NodePath("../BreakableWall/Breakable")
+[node name="BreakableWall2" parent="." instance=ExtResource("3_2mgq7")]
+position = Vector2(438, 721)
 
 [node name="BreakableWall" parent="." instance=ExtResource("3_2mgq7")]
 position = Vector2(238, 1552)
@@ -71,10 +70,11 @@ shape = SubResource("CircleShape2D_y1lut")
 position = Vector2(682, 1774)
 rotation = 0.00141585
 scale = Vector2(0.5, 0.5)
-enemy_max = 4
+enemy_max = 5
 bat_max = 1
 spider_max = 2
 gopher_max = 1
+slime_max = 1
 
 [node name="Marker2D1" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
 position = Vector2(-810.75, -2899.28)
@@ -87,6 +87,11 @@ position = Vector2(-16.7316, -1198)
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Gopher" index="0"]
 position = Vector2(-852.026, -2112.05)
+rotation = -0.00141585
+scale = Vector2(2, 2)
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Slime" index="0"]
+position = Vector2(-1172.15, -812.341)
 rotation = -0.00141585
 scale = Vector2(2, 2)
 

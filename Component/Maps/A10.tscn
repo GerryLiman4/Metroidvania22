@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://oh4kdaw8kf7p" path="res://Dialogue/Helpers/event.tscn" id="3_jocyx"]
 [ext_resource type="Resource" uid="uid://dl30w8ay6wogl" path="res://Dialogue/Dialogue/event.dialogue" id="4_0hhvx"]
 [ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://Component/Objects/enemy_spawn.tscn" id="4_m5v35"]
-[ext_resource type="PackedScene" path="res://Component/Breakable/breakable_box.tscn" id="6_b38fr"]
+[ext_resource type="PackedScene" uid="uid://d3bcuxyaj64yf" path="res://Component/Breakable/breakable_box.tscn" id="6_b38fr"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_r2cgp"]
 vertices = PackedVector2Array(134, -34, 208, 40, 96, 100, -465, -24, -323, 459, -532, 91)
@@ -52,21 +52,18 @@ dialogue_start = "charge"
 shape = SubResource("CircleShape2D_cl0v1")
 
 [node name="EnemySpawn" parent="." instance=ExtResource("4_m5v35")]
-position = Vector2(1122, 441)
-scale = Vector2(0.5, 0.5)
-enemy_max = 3
+enemy_max = 2
 bat_max = 1
 spider_max = 1
 gopher_max = 1
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
-position = Vector2(-620, -679)
-scale = Vector2(2, 2)
+position = Vector2(731.5, 119)
 
-[node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
-position = Vector2(-1281.78, 806.72)
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
+position = Vector2(480.364, 891.512)
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Gopher" index="0"]
-position = Vector2(-546, 388)
+position = Vector2(839.958, 637.923)
 
 [editable path="EnemySpawn"]

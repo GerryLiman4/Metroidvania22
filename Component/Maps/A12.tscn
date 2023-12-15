@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_m6cwe"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_a6lu6"]
 [ext_resource type="PackedScene" uid="uid://c5d0f770ww2gg" path="res://Component/Objects/Collectible.tscn" id="2_wfoek"]
-[ext_resource type="PackedScene" path="res://Component/Breakable/breakable_box.tscn" id="3_0fp3j"]
+[ext_resource type="PackedScene" uid="uid://d3bcuxyaj64yf" path="res://Component/Breakable/breakable_box.tscn" id="3_0fp3j"]
 [ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://Component/Objects/enemy_spawn.tscn" id="4_tbdgq"]
 [ext_resource type="PackedScene" uid="uid://oh4kdaw8kf7p" path="res://Dialogue/Helpers/event.tscn" id="7_rt2x3"]
 [ext_resource type="Resource" uid="uid://dl30w8ay6wogl" path="res://Dialogue/Dialogue/event.dialogue" id="8_jqkbw"]
@@ -42,17 +42,15 @@ rotation = 0.00141585
 
 [node name="EnemySpawn" parent="." instance=ExtResource("4_tbdgq")]
 enemy_max = 6
-bat_max = 3
+bat_max = 2
 spider_max = 2
 gopher_max = 1
+slime_max = 1
 
 [node name="Marker2D1" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
 position = Vector2(2037.86, 232.794)
 
-[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Bat" index="1"]
-position = Vector2(1814.44, 288.622)
-
-[node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Bat" index="2"]
+[node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Bat" index="1"]
 position = Vector2(1427.75, 577.656)
 
 [node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
@@ -63,6 +61,9 @@ position = Vector2(246.359, 463.165)
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Gopher" index="0"]
 position = Vector2(1250.4, 355.97)
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Slime" index="0"]
+position = Vector2(1588, 451)
 
 [node name="Event" parent="." instance=ExtResource("7_rt2x3")]
 position = Vector2(224, 125)
