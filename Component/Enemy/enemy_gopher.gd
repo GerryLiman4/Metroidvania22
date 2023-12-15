@@ -30,6 +30,10 @@ func _on_idle_state_exited():
 
 func _on_idle_state_physics_processing(delta):
 	check_player()
+	# physics
+	fall(delta)
+	move_and_slide()
+	calculate_gravity()
 
 func _on_chasing_state_entered():
 	start_shoot_timer()
@@ -53,6 +57,11 @@ func _on_chasing_state_physics_processing(delta):
 		flip()
 	
 	check_target_distance()
+	
+	# physics
+	fall(delta)
+	move_and_slide()
+	calculate_gravity()
 
 func start_shoot_timer() :
 	shoot_timer.start(shoot_timer.wait_time)
