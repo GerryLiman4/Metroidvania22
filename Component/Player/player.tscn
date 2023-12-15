@@ -562,7 +562,7 @@ hframes = 5
 position = Vector2(0, 4)
 
 [node name="Shooter" type="Node2D" parent="AnimatedSprite2D/Arm"]
-position = Vector2(-49, 5)
+position = Vector2(-82.2012, -13.2582)
 
 [node name="MuzzleFlash" type="Sprite2D" parent="AnimatedSprite2D/Arm"]
 visible = false

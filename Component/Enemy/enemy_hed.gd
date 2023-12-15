@@ -81,6 +81,9 @@ func _on_idle_state_exited():
 	pass
 
 func _on_idle_state_physics_processing(delta):
+	if health.health_point <= 0 :
+		return
+	
 	super._on_idle_state_physics_processing(delta)
 
 func _on_chasing_state_entered():
@@ -90,6 +93,9 @@ func _on_chasing_state_exited():
 	super._on_chasing_state_exited()
 
 func _on_chasing_state_physics_processing(delta):
+	if health.health_point <= 0 :
+		return
+	
 	if target == null :
 		return
 	
@@ -119,6 +125,9 @@ func _on_patroling_state_exited():
 	pass # Replace with function body.
 
 func _on_patroling_state_physics_processing(delta):
+	if health.health_point <= 0 :
+		return
+	
 	# behaviour pattern
 	check_player()
 	
