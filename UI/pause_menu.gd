@@ -84,6 +84,7 @@ func _on_options_pressed():
 
 func _on_exit_pressed():
 	toggle()
+	Game.get_singleton().end_escape()
 	get_tree().change_scene_to_file("res://UI/main.tscn")
 
 # --------------- Option Buttons ------------------

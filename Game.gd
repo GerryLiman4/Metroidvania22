@@ -17,8 +17,6 @@ class_name Game
 
 @onready var escape_timer = $EscapeTimer
 
-
-
 var escape_health : int = 20
 
 # The current map scene instance.
@@ -201,10 +199,45 @@ func start_escape():
 	if events.has("escape"):
 		AudioController.start_escape()
 		escape_timer.start(10)
+		
+		# Ovveride A18
+		var override1 := MetSys.get_cell_override_from_group(1)
+		override1.set_assigned_scene("A18ES.tscn")
+		override1.set_color(Color.RED)
+		#Override AEntrance
+		var override2 := MetSys.get_cell_override_from_group(2)
+		override2.set_assigned_scene("AEntranceES.tscn")
+		override2.set_color(Color.BLUE)
+		#Override AStartingpoint
+		var override3 := MetSys.get_cell_override_from_group(3)
+		override3.set_assigned_scene("StartingPointES.tscn")
+		override3.set_color(Color.BLUE)
+		#Apply overrides
+		override1.apply_to_group(1)
+		override2.apply_to_group(2)
+		override3.apply_to_group(3)
+
 
 func end_escape():
 	AudioController.end_escape()
 	escape_timer.stop()
+	# Undo all previous overrides
+	# Ovveride A18
+	var override1 := MetSys.get_cell_override_from_group(1)
+	override1.set_assigned_scene("res://Component/Maps/A18.tscn")
+	override1.set_color(Color.ORANGE)
+	#Override AEntrance
+	var override2 := MetSys.get_cell_override_from_group(2)
+	override2.set_assigned_scene("res://Component/Maps/AEntrance.tscn")
+	override2.set_color(Color.ORANGE)
+	#Override AStartingpoint
+	var override3 := MetSys.get_cell_override_from_group(3)
+	override3.set_assigned_scene("res://Component/Maps/StartingPoint.tscn")
+	override3.set_color(Color.GREEN)
+	#Apply overrides
+	override1.apply_to_group(1)
+	override2.apply_to_group(2)
+	override3.apply_to_group(3)
 
 func _on_escape_timer_timeout():
 	escape_health -= 1
@@ -215,6 +248,8 @@ func _on_escape_timer_timeout():
 		print("Cave collapsing - " + "Cave health : " + str(escape_health))
 	else:
 		#Game over
+		on_player_dead()
+		end_escape()
 		print("Cave collapsed..")
 		
 func on_player_dead():

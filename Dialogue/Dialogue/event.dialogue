@@ -92,6 +92,7 @@ Narrator: The strange energy rushes you. Swallows you!
 Gida: Whoa-a-a, what was that?
 Narrator: You have acquired the Dash Upgrade!
 Narrator:  Dash while on the ground for a powerful attack
+Narrator:  Use Charge to destroy boxes!
 
 => END
 
@@ -108,10 +109,13 @@ Narrator: Jump while airborne to reach greater heights!
 
 ~ gun_upgrade
 
-Narrator: The strange energy rushes you. Swallows you! 
-Gida: Whoa-a-a, what was that?
+Narrator: The strange energy swirls around you once more.
+Narrator: Yet, you don’t panic. You know the drill.
+Narrator: You gun, your trusty Colt, glows! The strange energy swirls around and FLOODS the barrel!
+Gida: I’m starting to like this energy…
 Narrator: You have acquired the Gun Upgrade!
-Narrator: Hold the fire button to charge a powerful shot!
+Narrator: Your gun now Fire more powerful shots,
+Narrator: And destroys spikes barriers.
 
 => END
 
@@ -121,7 +125,8 @@ Narrator: Hold the fire button to charge a powerful shot!
 Narrator: The strange energy rushes you. Swallows you! 
 Gida: Whoa-a-a, what was that?
 Narrator: You have acquired the Roll Upgrade!
-Narrator: Hit [Input] to start rolling and access tight spots!
+Narrator: You can now start rolling and access tight spots!
+Narrator: YHit Y or Ctrl to roll!
 
 => END
 
@@ -171,5 +176,13 @@ Miner: YOU HAVE TO FREE ME! THEN YOU HAVE TO FREE IT!
 Miner: It hates being contained! It got a taste of freedom, and it craves it!
 Gida: Alright, alr-i-I-i-ght! Keep your tongue in your holster! 
 Gida: I’ve got an idea.
+
+=> END
+
+
+~ escape_start
+
+Narrator: A violent rumble begins to echo throughout the Abyss..
+Gida: Its time to book it!
 
 => END
