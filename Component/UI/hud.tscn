@@ -57,4 +57,22 @@ vertical_alignment = 3
 [node name="DashTimer" type="Timer" parent="MarginContainer/Skills/SkillsPanel/DashSkill"]
 one_shot = true
 
+[node name="PlayerInfo" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="LifeLabel" type="Label" parent="MarginContainer/PlayerInfo"]
+layout_mode = 0
+offset_left = 189.0
+offset_right = 235.0
+offset_bottom = 20.0
+text = "LIFE : "
+
+[node name="LifeAmount" type="Label" parent="MarginContainer/PlayerInfo"]
+layout_mode = 0
+offset_left = 236.0
+offset_right = 276.0
+offset_bottom = 20.0
+text = "9999"
+horizontal_alignment = 1
+
 [connection signal="timeout" from="MarginContainer/Skills/SkillsPanel/DashSkill/DashTimer" to="." method="_on_dash_timer_timeout"]

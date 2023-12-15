@@ -1,18 +1,47 @@
-[gd_scene load_steps=7 format=3 uid="uid://drsu7w1sbm15b"]
+[gd_scene load_steps=11 format=3 uid="uid://drsu7w1sbm15b"]
 
 [ext_resource type="Script" path="res://UI/menu.gd" id="1_8nhd7"]
 [ext_resource type="Script" path="res://UI/main.gd" id="1_smr17"]
 [ext_resource type="Shader" path="res://Resources/wave.gdshader" id="2_a2o6n"]
-[ext_resource type="Texture2D" uid="uid://di2a5josdqki3" path="res://icon.svg" id="2_iunsy"]
 [ext_resource type="Texture2D" uid="uid://b0jle1x5cfdyh" path="res://Resources/white.png" id="3_wdf1y"]
+[ext_resource type="Texture2D" uid="uid://bxq6k4eulk04f" path="res://Resources/Level/star-Sheet.png" id="5_4bdqt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eljrv"]
 shader = ExtResource("2_a2o6n")
-shader_parameter/iterations = 2
-shader_parameter/zoom = 1.0
+shader_parameter/iterations = 3
+shader_parameter/zoom = 3.0
 shader_parameter/power = 0.5
 shader_parameter/speed = 0.1
-shader_parameter/background = Color(0.588235, 0.494118, 0.478431, 1)
+shader_parameter/background = Color(0.313726, 0.25098, 0.239216, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqtq3"]
+atlas = ExtResource("5_4bdqt")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0881"]
+atlas = ExtResource("5_4bdqt")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g337w"]
+atlas = ExtResource("5_4bdqt")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_royhw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqtq3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0881")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g337w")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="MainMenu" type="Control"]
 process_mode = 3
@@ -35,6 +64,21 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_wdf1y")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -316.0
+offset_top = -452.0
+offset_right = 326.0
+offset_bottom = 432.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.65098, 0.721569, 0.756863, 0.509804)
+
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 10
@@ -46,7 +90,7 @@ text = "Goats Gorge : Dusty Descent"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Menu" type="VBoxContainer" parent="." node_paths=PackedStringArray("selector")]
+[node name="Menu" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 1
 anchors_preset = -1
@@ -62,7 +106,6 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 script = ExtResource("1_8nhd7")
-selector = NodePath("../Selector")
 
 [node name="Play" type="Label" parent="Menu"]
 layout_mode = 2
@@ -80,10 +123,11 @@ text = "Toggle Music"
 layout_mode = 2
 text = "Reset Save"
 
-[node name="Selector" type="Sprite2D" parent="."]
-position = Vector2(484, 450)
-scale = Vector2(0.4, 0.1)
-texture = ExtResource("2_iunsy")
+[node name="Selector" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(478, 577)
+sprite_frames = SubResource("SpriteFrames_royhw")
+frame_progress = 0.0102437
 
 [node name="Message" type="Label" parent="."]
 unique_name_in_owner = true
