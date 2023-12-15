@@ -37,6 +37,7 @@ sprite_frames = SubResource("SpriteFrames_ey7cq")
 shape = SubResource("RectangleShape2D_cegkk")
 
 [node name="Breakable" parent="." instance=ExtResource("3_r455w")]
+collision_layer = 4096
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Breakable"]
 shape = SubResource("RectangleShape2D_8dlr4")
