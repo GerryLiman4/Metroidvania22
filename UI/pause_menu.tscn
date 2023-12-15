@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://sawj2a722cu3"]
 
 [ext_resource type="Script" path="res://UI/pause_menu.gd" id="1_2f6xj"]
-[ext_resource type="Texture2D" uid="uid://bi0yr0ai0yict" path="res://UI/inputmap.png" id="2_rnrtj"]
 [ext_resource type="Shader" path="res://Resources/wave.gdshader" id="2_umxud"]
 [ext_resource type="Texture2D" uid="uid://b0jle1x5cfdyh" path="res://Resources/white.png" id="3_dpcvq"]
+[ext_resource type="Texture2D" uid="uid://cs464fync7tgq" path="res://UI/inputmap2.png" id="4_4w03y"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bldst"]
 shader = ExtResource("2_umxud")
@@ -294,14 +294,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="Controls"]
+[node name="ControlsImg" type="TextureRect" parent="Controls"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_rnrtj")
+texture = ExtResource("4_4w03y")
 
 [node name="BackFromControls" type="Button" parent="Controls"]
 layout_mode = 1
