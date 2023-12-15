@@ -5,7 +5,7 @@ class_name Menu
 signal activated(element : Control)
 
 
-@export var selector : Node
+@onready var selector = %Selector
 
 
 func _ready():
@@ -14,6 +14,8 @@ func _ready():
 	var first_option = $Play
 	first_option.grab_focus()
 	update_selection()
+	selector.global_position = Vector2(global_position.x - 50, $Play.global_position.y + $Play.size.y * 0.5)
+	selector.play("default")
 
 
 func _unhandled_input(event):
@@ -74,7 +76,7 @@ func update_selection():
 	var element = get_focused_element()
 	
 	if is_instance_valid(element) and is_instance_valid(selector) and visible:
-		selector.global_position = Vector2(global_position.x - 100, element.global_position.y + element.size.y * 0.5)
+		selector.global_position = Vector2(global_position.x - 50, element.global_position.y + element.size.y * 0.5)
 
 
 func _on_focus_changed(element : Control):
