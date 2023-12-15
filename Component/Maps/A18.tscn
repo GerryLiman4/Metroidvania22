@@ -70,10 +70,11 @@ shape = SubResource("CircleShape2D_y1lut")
 position = Vector2(682, 1774)
 rotation = 0.00141585
 scale = Vector2(0.5, 0.5)
-enemy_max = 4
+enemy_max = 5
 bat_max = 1
 spider_max = 2
 gopher_max = 1
+slime_max = 1
 
 [node name="Marker2D1" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
 position = Vector2(-810.75, -2899.28)
@@ -86,6 +87,11 @@ position = Vector2(-16.7316, -1198)
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Gopher" index="0"]
 position = Vector2(-852.026, -2112.05)
+rotation = -0.00141585
+scale = Vector2(2, 2)
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Slime" index="0"]
+position = Vector2(-1172.15, -812.341)
 rotation = -0.00141585
 scale = Vector2(2, 2)
 

@@ -86,6 +86,7 @@ enemy_max = 8
 bat_max = 4
 spider_max = 3
 gopher_max = 3
+slime_max = 1
 
 [node name="Marker2D1" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
 position = Vector2(814.003, 177.727)
@@ -109,13 +110,13 @@ position = Vector2(1424.62, 383.892)
 position = Vector2(2773.87, 759.472)
 
 [node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Gopher" index="0"]
-position = Vector2(1901.19, 378.031)
+position = Vector2(1904, 413)
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Gopher" index="1"]
-position = Vector2(3288.99, 329.524)
+position = Vector2(3276, 361)
 
-[node name="Marker2D3" type="Marker2D" parent="EnemySpawn/Gopher" index="2"]
-position = Vector2(1439.43, 774.906)
+[node name="Marker2D3" type="Marker2D" parent="EnemySpawn/Slime" index="0"]
+position = Vector2(1442, 801)
 
 [editable path="Knocker/Event"]
 [editable path="EnemySpawn"]

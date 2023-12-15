@@ -52,17 +52,15 @@ position = Vector2(539, 1841)
 
 [node name="EnemySpawn" parent="." instance=ExtResource("5_woc27")]
 enemy_max = 4
-bat_max = 3
+bat_max = 2
 spider_max = 1
 gopher_max = 1
+slime_max = 1
 
 [node name="Marker2D1" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
 position = Vector2(580.836, 1047.37)
 
-[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Bat" index="1"]
-position = Vector2(863.121, 735.831)
-
-[node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Bat" index="2"]
+[node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Bat" index="1"]
 position = Vector2(149.676, 181.953)
 
 [node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
@@ -70,5 +68,8 @@ position = Vector2(167.838, 526.629)
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Gopher" index="0"]
 position = Vector2(236.915, 1425.5)
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Slime" index="0"]
+position = Vector2(406, 703)
 
 [editable path="EnemySpawn"]

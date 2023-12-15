@@ -52,21 +52,18 @@ dialogue_start = "charge"
 shape = SubResource("CircleShape2D_cl0v1")
 
 [node name="EnemySpawn" parent="." instance=ExtResource("4_m5v35")]
-position = Vector2(1122, 441)
-scale = Vector2(0.5, 0.5)
-enemy_max = 3
+enemy_max = 2
 bat_max = 1
 spider_max = 1
 gopher_max = 1
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
-position = Vector2(-620, -679)
-scale = Vector2(2, 2)
+position = Vector2(731.5, 119)
 
-[node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
-position = Vector2(-1281.78, 806.72)
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
+position = Vector2(480.364, 891.512)
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Gopher" index="0"]
-position = Vector2(-546, 388)
+position = Vector2(839.958, 637.923)
 
 [editable path="EnemySpawn"]

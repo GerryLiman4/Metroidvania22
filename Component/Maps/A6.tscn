@@ -47,9 +47,10 @@ navigation_polygon = SubResource("NavigationPolygon_2x88j")
 
 [node name="EnemySpawn" parent="." instance=ExtResource("4_h4ueh")]
 enemy_max = 8
-bat_max = 4
+bat_max = 3
 spider_max = 3
 gopher_max = 2
+slime_max = 1
 
 [node name="Marker2D1" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
 position = Vector2(453.278, 705.307)
@@ -57,10 +58,7 @@ position = Vector2(453.278, 705.307)
 [node name="Marker2D1_2" type="Marker2D" parent="EnemySpawn/Bat" index="1"]
 position = Vector2(328.368, 2553.74)
 
-[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Bat" index="2"]
-position = Vector2(371.939, 1975.13)
-
-[node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Bat" index="3"]
+[node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Bat" index="2"]
 position = Vector2(210.423, 1869.01)
 
 [node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
@@ -77,5 +75,8 @@ position = Vector2(354.888, 2204.94)
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Gopher" index="1"]
 position = Vector2(313, 2402)
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Slime" index="0"]
+position = Vector2(371.939, 1975.13)
 
 [editable path="EnemySpawn"]

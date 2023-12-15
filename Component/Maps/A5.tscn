@@ -58,46 +58,22 @@ dialogue_start = "wall_jump"
 shape = SubResource("CircleShape2D_e0j67")
 
 [node name="EnemySpawn" parent="." instance=ExtResource("6_81qvd")]
-position = Vector2(117, 876)
-rotation = 0.00141585
-scale = Vector2(0.5, 0.5)
-enemy_max = 6
-bat_max = 2
-spider_max = 3
-gopher_max = 3
+enemy_max = 4
+bat_max = 1
+spider_max = 1
+gopher_max = 1
+slime_max = 1
 
-[node name="Marker2D1" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
-position = Vector2(3622.81, -1434.82)
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
+position = Vector2(1644.76, 211.173)
 
-[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Bat" index="1"]
-position = Vector2(3308.68, -1334.44)
-rotation = -0.00141585
-scale = Vector2(2, 2)
-
-[node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
-position = Vector2(992.43, -666.649)
-
-[node name="Marker2D2_2" type="Marker2D" parent="EnemySpawn/Spider" index="1"]
-position = Vector2(1043.06, -79.4215)
-rotation = -0.00141585
-scale = Vector2(2, 2)
-
-[node name="Marker2D2_3" type="Marker2D" parent="EnemySpawn/Spider" index="2"]
-position = Vector2(2970.52, -475.905)
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
+position = Vector2(1152, 310.5)
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Gopher" index="0"]
-position = Vector2(1920.85, -551.851)
-rotation = -0.00141585
-scale = Vector2(2, 2)
+position = Vector2(609, 585.5)
 
-[node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Gopher" index="1"]
-position = Vector2(1915.64, -1.96484)
-rotation = -0.00141585
-scale = Vector2(2, 2)
-
-[node name="Marker2D3" type="Marker2D" parent="EnemySpawn/Gopher" index="2"]
-position = Vector2(1999.43, -1142.3)
-rotation = -0.00141585
-scale = Vector2(2, 2)
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Slime" index="0"]
+position = Vector2(1132.5, 650.5)
 
 [editable path="EnemySpawn"]
