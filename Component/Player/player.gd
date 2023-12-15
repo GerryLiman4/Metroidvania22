@@ -245,6 +245,7 @@ func on_get_damaged(direction : Vector2) :
 		print(randomKey + " not found in audioScenes")
 	
 	#endregion
+	SignalManager.player_damaged.emit(player_health.health_point)
 
 func on_dead():
 	print("You died")
@@ -815,6 +816,7 @@ func camera_shake():
 
 func reset_health():
 	player_health.health_point = 3
+	SignalManager.player_health_updated.emit(player_health.health_point)
 	
 func _on_arm_timer_timeout():
 		arm_sprite.rotation = -45

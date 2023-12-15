@@ -3,6 +3,7 @@ extends Control
 #region dash
 @onready var dash_skill = $MarginContainer/Skills/SkillsPanel/DashSkill
 @onready var dash_timer = $MarginContainer/Skills/SkillsPanel/DashSkill/DashTimer
+@onready var life_amount = $MarginContainer/PlayerInfo/LifeAmount
 
 var dash_cooling_down : bool = false
 #endregion
@@ -10,6 +11,10 @@ var dash_cooling_down : bool = false
 func _ready():
 	# region connect all the signal
 	SignalManager.player_dash.connect(on_player_dash)
+	SignalManager.player_damaged.connect(on_player_damaged)
+	SignalManager.player_health_updated.connect(on_player_health_updated)
+	
+	life_amount.text = str(3)
 
 func _process(delta):
 	# calculate the dash hud
@@ -26,4 +31,13 @@ func on_player_dash(cooldown_time : float) :
 func _on_dash_timer_timeout():
 	dash_skill.set_value_no_signal(100.0)
 	dash_cooling_down = false
+#endregion
+
+#region player info
+
+func on_player_damaged(health_left : int) :
+	life_amount.text = str(health_left)
+
+func on_player_health_updated(health_left : int) :
+	life_amount.text = str(health_left)
 #endregion
