@@ -28,9 +28,8 @@ layer_3/tile_data = PackedInt32Array(3604508, 655361, 4, 3604509, 720897, 4, 360
 
 [node name="RoomInstance" parent="." instance=ExtResource("2_dnydf")]
 
-[node name="BreakableWall2" parent="." node_paths=PackedStringArray("hitbox") instance=ExtResource("3_2mgq7")]
-position = Vector2(463, 721)
-hitbox = NodePath("../BreakableWall/Breakable")
+[node name="BreakableWall2" parent="." instance=ExtResource("3_2mgq7")]
+position = Vector2(438, 721)
 
 [node name="BreakableWall" parent="." instance=ExtResource("3_2mgq7")]
 position = Vector2(238, 1552)

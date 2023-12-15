@@ -29,13 +29,12 @@ layer_3/tile_data = PackedInt32Array(1179653, 655361, 4, 1179654, 720897, 4, 117
 [node name="RoomInstance" parent="." instance=ExtResource("2_bgksq")]
 
 [node name="BreakableWall" parent="." node_paths=PackedStringArray("hitbox") instance=ExtResource("3_fmjau")]
-position = Vector2(240, 176)
+position = Vector2(267, 176)
 rotation = 0.00141585
-hitbox = NodePath("../BreakableWall2/Breakable")
+hitbox = NodePath("")
 
 [node name="BreakableWall2" parent="." instance=ExtResource("3_fmjau")]
-position = Vector2(272, 368)
-rotation = 0.00141585
+position = Vector2(223, 368)
 
 [node name="BreakableBox" parent="." node_paths=PackedStringArray("hitbox") instance=ExtResource("4_652fb")]
 position = Vector2(591, 369)
