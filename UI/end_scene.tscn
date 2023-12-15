@@ -467,8 +467,7 @@ offset_right = 37.5
 offset_bottom = -105.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "JosephPT
-"
+text = "José Morato Martinez"
 horizontal_alignment = 1
 
 [node name="LevelDesign" type="Node2D" parent="Scene3/Credits"]
@@ -502,7 +501,7 @@ offset_right = 36.0
 offset_bottom = -134.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "JosephPT"
+text = "José Morato Martinez"
 horizontal_alignment = 1
 
 [node name="Code" type="Node2D" parent="Scene3/Credits"]
@@ -707,7 +706,6 @@ offset_right = 27.5
 offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "asdasd"
 horizontal_alignment = 1
 
 [node name="Scene4" type="Node2D" parent="."]

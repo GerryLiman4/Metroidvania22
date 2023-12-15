@@ -46,6 +46,7 @@ func _ready():
 		EVENTS.OTHER:
 			if event_name == "end_cutscene":
 				SceneTransition.player_data = Game.get_singleton().get_save_data()
+				Game.get_singleton().end_escape()
 				sprite_2d.hide()
 				ability_sprite.hide()
 				SceneTransition.start_transition_to("cutscene", true, "res://UI/end_scene.tscn")
