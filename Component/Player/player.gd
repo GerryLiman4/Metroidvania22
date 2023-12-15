@@ -118,6 +118,8 @@ func _ready():
 	player_health.on_dead.connect(on_dead)
 	SignalManager.dialogue_start.connect(on_dialogue_start)
 	SignalManager.dialogue_end.connect(on_dialogue_end)
+	animation_player.play("Idle")
+	arm_sprite.visible = true
 	
 	# A trick for static object reference (before static vars were a thing).
 	get_script().set_meta(&"singleton", self)
@@ -226,12 +228,31 @@ func on_get_damaged(direction : Vector2) :
 	print("You took damage")
 	camera.apply_noise_shake()
 	effects_animation.play("damage")
+	
+	#region SFX
+	
+	var hurtSFX : Dictionary = audioScenes["hit"]
+	
+	# Get a random key
+	var shootKeys = hurtSFX.keys()
+	var randomKey = shootKeys[randi() % hurtSFX.size() - 1]
+
+	if randomKey in shootKeys:
+		gun_sfx.stream = audioScenes["hit"][randomKey]
+		gun_sfx.pitch_scale = randf_range(0.9, 1.1)
+		gun_sfx.call_deferred("play")
+	else:
+		print(randomKey + " not found in audioScenes")
+	
+	#endregion
 
 func on_dead():
 	print("You died")
+	event = true
 	camera.apply_noise_shake()
 	effects_animation.play("dead")
 	await effects_animation.animation_finished
+	event = false
 	SignalManager.player_dead.emit()
 
 #region check state
@@ -368,12 +389,12 @@ func take_aim(aim_position):
 		
 		if can_shoot == false : return
 		
-		#region SFX
 		gun_animation.play("Shoot")
 		
 		bullet.launch(shooter.global_position, direction, 2000)
 		call_add_child(bullet)
 		
+		#region SFX
 		# Get all shoot sounds, minus the reload
 		var shootSFX : Dictionary = audioScenes["shoot"].duplicate()
 		shootSFX.erase("reload")

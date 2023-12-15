@@ -18,7 +18,7 @@ func _ready():
 	if image:
 		sprite.texture = image
 	
-	await get_tree().create_timer(.5).timeout
+	await get_tree().create_timer(.1).timeout
 	# Remove miner from abyss & add to surface if rescued
 	if npc_name == "Miner" || npc_name == "Criss Cross Ross":
 		var game = Game.get_singleton()

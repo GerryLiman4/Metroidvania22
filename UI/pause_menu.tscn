@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://sawj2a722cu3"]
+[gd_scene load_steps=3 format=3 uid="uid://sawj2a722cu3"]
 
 [ext_resource type="Script" path="res://UI/pause_menu.gd" id="1_2f6xj"]
+[ext_resource type="Texture2D" uid="uid://bi0yr0ai0yict" path="res://UI/inputmap.png" id="2_rnrtj"]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -52,6 +53,10 @@ grow_vertical = 2
 [node name="Resume" type="Button" parent="Menu"]
 layout_mode = 2
 text = "Resume"
+
+[node name="Controls" type="Button" parent="Menu"]
+layout_mode = 2
+text = "Controls"
 
 [node name="Options" type="Button" parent="Menu"]
 layout_mode = 2
@@ -262,8 +267,42 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Back"
 
+[node name="Controls" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Controls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_rnrtj")
+
+[node name="BackFromControls" type="Button" parent="Controls"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -26.5
+offset_top = -31.0
+offset_right = 26.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back"
+
 [node name="GameOver" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -290,6 +329,7 @@ layout_mode = 2
 text = "Quit"
 
 [connection signal="pressed" from="Menu/Resume" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Menu/Controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="Menu/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="Menu/Quit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="Options/HBox/Inputs/Video" to="." method="_on_video_pressed"]
@@ -304,5 +344,6 @@ text = "Quit"
 [connection signal="value_changed" from="Audio/HBox/Inputs/Music" to="." method="_on_music_value_changed"]
 [connection signal="value_changed" from="Audio/HBox/Inputs/SFX" to="." method="_on_sfx_value_changed"]
 [connection signal="pressed" from="Audio/BackFromAudio" to="." method="_on_back_from_audio_pressed"]
+[connection signal="pressed" from="Controls/BackFromControls" to="." method="_on_back_from_controls_pressed"]
 [connection signal="pressed" from="GameOver/Reload" to="." method="_on_reload_pressed"]
 [connection signal="pressed" from="GameOver/Quit" to="." method="_on_exit_pressed"]
