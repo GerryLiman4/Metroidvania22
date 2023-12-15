@@ -17,9 +17,7 @@ class_name Game
 
 @onready var escape_timer = $EscapeTimer
 
-
-
-var escape_health : int = 1
+var escape_health : int = 20
 
 # The current map scene instance.
 var map: Node2D
