@@ -21,6 +21,7 @@ func on_body_entered(body: Node2D) -> void:
 		return # Small hack to prevent saving at the game start.
 	# Get the game-specific save data Dictionary.
 	var save_data := Game.get_singleton().get_save_data()
+	Player.get_singleton().reset_health()
 	# Merge it with the Dicionary from MetSys.
 	save_data.merge(MetSys.get_save_data())
 	

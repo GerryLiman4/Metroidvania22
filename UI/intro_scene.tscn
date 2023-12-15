@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://plp5688c0gsw"]
 
 [ext_resource type="Script" path="res://UI/intro_scene.gd" id="1_cay41"]
+[ext_resource type="Texture2D" uid="uid://85kyihqoo61m" path="res://UI/ROUGH_INTRO_SLIDE_ONE-01.jpg" id="2_00vrg"]
 [ext_resource type="PackedScene" uid="uid://0xi7fk137lxy" path="res://Dialogue/Helpers/actionable.tscn" id="3_oh4v7"]
 [ext_resource type="Resource" uid="uid://bhy84am8vom66" path="res://Dialogue/Dialogue/dialogue.dialogue" id="4_uxwdy"]
 [ext_resource type="Texture2D" uid="uid://b6qk87pt7ugxh" path="res://UI/intro_slide_2.png" id="5_dxu2u"]
-[ext_resource type="Texture2D" uid="uid://nyoboo7qnj7h" path="res://UI/ROUGH_INTRO_SLIDE_ONE.png" id="5_fi8uf"]
 
 [sub_resource type="Animation" id="Animation_xlfh5"]
 length = 0.001
@@ -171,7 +171,7 @@ libraries = {
 [node name="Sprite2D" type="Sprite2D" parent="Scene1"]
 position = Vector2(-612, -25)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("5_fi8uf")
+texture = ExtResource("2_00vrg")
 centered = false
 
 [node name="Scene2" type="Node2D" parent="."]

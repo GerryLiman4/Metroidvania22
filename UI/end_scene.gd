@@ -25,7 +25,7 @@ func _ready():
 	# Set stats
 	player_data = SceneTransition.player_data
 	if player_data.has("collectible_count"):
-		$Scene3/Stats/Collectables.text = "You found " + player_data["collectable_count"] + " / 20 Collectables"
+		$Scene3/Stats/Collectables.text = "You found " + str(player_data["collectible_count"]) + " / 20 Collectables"
 	else:
 		$Scene3/Stats/Collectables.text = "Player data not found"
 	

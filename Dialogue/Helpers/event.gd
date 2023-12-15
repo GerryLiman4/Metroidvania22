@@ -26,7 +26,7 @@ var player : CharacterBody2D
 func _ready():
 	MetSys.register_storable_object(self, queue_free)
 	
-	sprite_2d.hidden
+	sprite_2d.hide()
 	ability_sprite.hide()
 	ability_sprite.stop()
 	if event_type == EVENTS.ABILITY:
@@ -44,13 +44,7 @@ func _ready():
 			if Player.get_singleton().abilities.has(event_name):
 				self.visible = false
 		EVENTS.OTHER:
-			if event_name == "end_cutscene":
-				SceneTransition.player_data = Game.get_singleton().get_save_data()
-				Game.get_singleton().end_escape()
-				sprite_2d.hide()
-				ability_sprite.hide()
-				SceneTransition.start_transition_to("cutscene", true, "res://UI/end_scene.tscn")
-				
+			pass	
 		EVENTS.KNOCKER: #Start ringing if event is trigger and call answered event was not
 			var game_ref = Game.get_singleton()
 			if game_ref.events.has(event_name) && !game_ref.events.has(event_name + "k"):
@@ -63,7 +57,6 @@ func action() -> void:
 			match (event_type):
 				EVENTS.OTHER:
 					if !Player.get_singleton().abilities.has(event_name):
-
 						var balloon : Node = Cutscene_Balloon.instantiate()
 						get_tree().current_scene.add_child(balloon)
 						balloon.start(dialogue_resource, dialogue_start)
@@ -119,7 +112,8 @@ func _on_body_entered(body):
 				EVENTS.OTHER:
 					var game_ref = Game.get_singleton()
 					if event_name == "end_cutscene":
-						game_ref.end_escape()
+						SceneTransition.player_data = Game.get_singleton().get_save_data()
+						Game.get_singleton().end_escape()
 						SceneTransition.start_transition_to("cutscene", true, "res://UI/end_scene.tscn")
 					elif !game_ref.events.has(event_name):
 						game_ref.events.append(event_name)

@@ -8,10 +8,10 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bldst"]
 shader = ExtResource("2_umxud")
 shader_parameter/iterations = 3
-shader_parameter/zoom = 3.0
+shader_parameter/zoom = 1.0
 shader_parameter/power = 0.5
 shader_parameter/speed = 0.1
-shader_parameter/background = Color(0.313726, 0.25098, 0.239216, 1)
+shader_parameter/background = Color(0.498039, 0.74902, 0.501961, 1)
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -49,7 +49,7 @@ offset_right = 527.5
 offset_bottom = 441.5
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.65098, 0.721569, 0.756863, 0.509804)
+color = Color(0.772549, 0.611765, 0.227451, 0.654902)
 
 [node name="Menu" type="VBoxContainer" parent="."]
 unique_name_in_owner = true

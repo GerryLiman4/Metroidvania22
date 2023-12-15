@@ -120,6 +120,7 @@ func _ready():
 	SignalManager.dialogue_end.connect(on_dialogue_end)
 	animation_player.play("Idle")
 	arm_sprite.visible = true
+	$AnimatedSprite2D/Charge.stop()
 	
 	# A trick for static object reference (before static vars were a thing).
 	get_script().set_meta(&"singleton", self)
@@ -620,6 +621,7 @@ func _on_crawl_state_physics_processing(delta):
 func _on_dash_state_entered():
 	# set timestamp for cooldown
 	dash_cooldown_timestamp = object_timer
+	animation_player.play("Dash")
 	#region SFX
 	if audioScenes["movement"]["dash"]:
 		audio_stream_player.stream = audioScenes["movement"]["dash"]
@@ -773,6 +775,9 @@ func set_charge(is_active : bool) :
 	if is_active == true :
 		charge_area.show()
 		charge_hitbox.disabled = false
+		# Play charge effect
+		$AnimatedSprite2D/Charge.play("default")
+		effects_animation.play("charge")
 	else :
 		charge_area.hide()
 		charge_hitbox.disabled = true

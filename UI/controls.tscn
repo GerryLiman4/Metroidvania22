@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b3iw5u6ttq2j6"]
 
-[ext_resource type="Texture2D" uid="uid://bi0yr0ai0yict" path="res://UI/inputmap.png" id="1_eae18"]
 [ext_resource type="Script" path="res://UI/controls.gd" id="1_jxvct"]
+[ext_resource type="Texture2D" uid="uid://cs464fync7tgq" path="res://UI/inputmap2.png" id="2_u1oco"]
 
 [node name="Controls" type="Control"]
 layout_mode = 3
@@ -19,7 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_eae18")
+texture = ExtResource("2_u1oco")
 
 [node name="Button" type="Button" parent="."]
 custom_minimum_size = Vector2(100, 50)
