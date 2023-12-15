@@ -53,8 +53,9 @@ func jump():
 	if  _jump == false : 
 		return
 	
-	if target == null :
-		return
+	if is_on_floor() :
+		if is_on_wall() == true or ground_checker.is_colliding() == false:
+			flip()
 	
 	velocity = jump_velocity
 	
@@ -64,6 +65,7 @@ func jump():
 	_jump = false
 	
 	animated_sprite.play("Jump")
+	
 	start_timer()
 
 func calculate_gravity() :
@@ -71,6 +73,9 @@ func calculate_gravity() :
 
 func _on_idle_state_entered():
 	animated_sprite.play("Idle")
+	
+	# start patroling if nothing happen
+	timer_to_patrol.start(timer_to_patrol.wait_time)
 
 func _on_idle_state_exited():
 	pass
@@ -108,13 +113,26 @@ func _on_chasing_state_physics_processing(delta):
 
 
 func _on_patroling_state_entered():
-	pass # Replace with function body.
+	start_timer()
 
 func _on_patroling_state_exited():
 	pass # Replace with function body.
 
 func _on_patroling_state_physics_processing(delta):
-	super._on_patroling_state_physics_processing(delta)
+	# behaviour pattern
+	check_player()
+	
+	# physics
+	if is_on_floor() == true :
+		velocity.x = 0
+	if animated_sprite.animation != "Idle" :
+			animated_sprite.play("Idle")
+	
+	jump()
+	
+	fall(delta)
+	move_and_slide()
+	calculate_gravity()
 
 func start_timer() :
 	jump_timer.start(jump_timer.wait_time)
