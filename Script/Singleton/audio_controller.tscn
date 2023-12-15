@@ -4,6 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://dse2e1toba5dr" path="res://Resources/Audio/Music/intro_cowboy.ogg" id="2_mvdj0"]
 
 [node name="AudioController" type="Node"]
+process_mode = 3
 script = ExtResource("1_41b0e")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]

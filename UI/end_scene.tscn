@@ -212,7 +212,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_fuup5"]
 resource_name = "scene_3"
-length = 25.0
+length = 30.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -279,7 +279,7 @@ tracks/5/path = NodePath("Scene3/Credits:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 18),
+"times": PackedFloat32Array(0, 25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(642, 1265), Vector2(642, -692)]
@@ -291,7 +291,7 @@ tracks/6/path = NodePath("Scene3/Stats:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 18),
+"times": PackedFloat32Array(0, 25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -586,7 +586,7 @@ offset_right = 36.0
 offset_bottom = 45.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "K.K.1"
+text = "KK"
 horizontal_alignment = 1
 
 [node name="Audio" type="Node2D" parent="Scene3/Credits"]
@@ -656,7 +656,7 @@ offset_right = 36.0
 offset_bottom = 45.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "LivingGameMusic"
+text = "Leo Constantinides"
 horizontal_alignment = 1
 
 [node name="Thanks" type="Node2D" parent="Scene3/Credits"]
