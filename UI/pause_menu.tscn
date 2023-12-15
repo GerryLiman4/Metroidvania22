@@ -1,7 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://sawj2a722cu3"]
+[gd_scene load_steps=6 format=3 uid="uid://sawj2a722cu3"]
 
 [ext_resource type="Script" path="res://UI/pause_menu.gd" id="1_2f6xj"]
 [ext_resource type="Texture2D" uid="uid://bi0yr0ai0yict" path="res://UI/inputmap.png" id="2_rnrtj"]
+[ext_resource type="Shader" path="res://Resources/wave.gdshader" id="2_umxud"]
+[ext_resource type="Texture2D" uid="uid://b0jle1x5cfdyh" path="res://Resources/white.png" id="3_dpcvq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bldst"]
+shader = ExtResource("2_umxud")
+shader_parameter/iterations = 3
+shader_parameter/zoom = 3.0
+shader_parameter/power = 0.5
+shader_parameter/speed = 0.1
+shader_parameter/background = Color(0.313726, 0.25098, 0.239216, 1)
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -13,16 +23,19 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2f6xj")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
+process_mode = 2
+modulate = Color(0.427451, 0, 0.141176, 0.545098)
+material = SubResource("ShaderMaterial_bldst")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.54902)
+texture = ExtResource("3_dpcvq")
 
-[node name="ColorRect2" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 1
 anchors_preset = 8
@@ -30,9 +43,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -527.5
+offset_top = -441.5
+offset_right = 527.5
+offset_bottom = 441.5
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.529412, 0.0901961, 0.219608, 0.937255)
+color = Color(0.65098, 0.721569, 0.756863, 0.509804)
 
 [node name="Menu" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
