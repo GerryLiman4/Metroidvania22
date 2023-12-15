@@ -11,7 +11,8 @@ class_name Game
 @onready var enemy_scenes : Dictionary = {
 	"bat" : preload("res://Component/Enemy/enemy_bat.tscn"),
 	"spider" : preload("res://Component/Enemy/enemy_hed.tscn"),
-	"gopher": preload("res://Component/Enemy/enemy_gunner.tscn")
+	"gopher": preload("res://Component/Enemy/enemy_gopher.tscn"),
+	"slime": preload("res://Component/Enemy/enemy_gunner.tscn")
 }
 
 @onready var escape_timer = $EscapeTimer
