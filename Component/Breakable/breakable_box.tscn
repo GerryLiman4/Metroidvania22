@@ -23,7 +23,7 @@ animations = [{
 size = Vector2(32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8dlr4"]
-size = Vector2(40, 40)
+size = Vector2(60, 60)
 
 [node name="BreakableBox" type="StaticBody2D" node_paths=PackedStringArray("hitbox")]
 collision_mask = 0
