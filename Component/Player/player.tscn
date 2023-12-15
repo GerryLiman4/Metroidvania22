@@ -728,6 +728,12 @@ enabled = false
 initial_node_to_watch = NodePath("../StateChart")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+max_polyphony = 4
+bus = &"SFX"
+
+[node name="GunSFX" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
+max_polyphony = 4
 bus = &"SFX"
 
 [node name="Timers" type="Node2D" parent="."]

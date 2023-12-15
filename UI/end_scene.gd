@@ -6,10 +6,11 @@ extends Node2D
 
 var input_ready : bool = false
 
+var player_data
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if input_ready == true:
-		if(Input.is_action_just_pressed("ui_accept")):
+		if(Input.is_action_just_pressed("any")):
 			SceneTransition.player_data.clear()
 			_proceed_to_menu()
 			input_ready = false
@@ -20,13 +21,23 @@ func _unhandled_input(_event: InputEvent) -> void:
 func _ready():
 	#Start input delay timer
 	input_delay_timer.start(3)
+	
+	# Set stats
+	player_data = SceneTransition.player_data
+	if player_data.has("collectible_count"):
+		$Scene3/Stats/Collectables.text = "You found " + player_data["collectable_count"] + " / 20 Collectables"
+	else:
+		$Scene3/Stats/Collectables.text = "Player data not found"
+	
 	#Play scene_1
 	animation_player.play("scene_1")
 	$Scene1/Actionable.action()
+	
 	for child in get_children():
 		if child.name == "CutsceneBalloon":
 			child.connect("dialog_ended", play_scene_2)
 			return
+			
 			
 func play_scene_2():	
 	animation_player.play("scene_2")
@@ -47,15 +58,12 @@ func play_scene_2():
 	
 func play_scene_3():
 	#Credits
-	#stop audio from scene_2
-	'
-	if audio_stream.playing:
-		audio_stream.stop()
 	animation_player.play("scene_3")
-	'
+
+
 func play_scene_4():
 	# Stats
-	pass
+	animation_player.play("scene_3")
 	
 func _proceed_to_menu():
 	SceneTransition.start_transition_to("menu", true, "res://UI/main.tscn")

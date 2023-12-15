@@ -144,7 +144,7 @@ dialogue_resource = ExtResource("16_odj8s")
 dialogue_start = "talk_to_sheriff"
 
 [node name="FastTravel" parent="." instance=ExtResource("18_r0l2g")]
-position = Vector2(1112, 544)
+position = Vector2(1112, 574)
 target_map = "ASB.tscn"
 
 [node name="SavePoint" parent="." instance=ExtResource("12_l2mrd")]

@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://csjcg2yt833m6"]
+[gd_scene load_steps=14 format=3 uid="uid://csjcg2yt833m6"]
 
 [ext_resource type="Script" path="res://UI/end_scene.gd" id="1_c6r8a"]
 [ext_resource type="Texture2D" uid="uid://dcsis7540ucan" path="res://UI/MVArtwork.PNG" id="2_cco4s"]
 [ext_resource type="PackedScene" uid="uid://0xi7fk137lxy" path="res://Dialogue/Helpers/actionable.tscn" id="3_ursmk"]
 [ext_resource type="Resource" uid="uid://bhy84am8vom66" path="res://Dialogue/Dialogue/dialogue.dialogue" id="4_ixm6j"]
+[ext_resource type="Shader" path="res://Resources/wave.gdshader" id="5_depgx"]
+[ext_resource type="Texture2D" uid="uid://b0jle1x5cfdyh" path="res://Resources/white.png" id="5_w8ee7"]
 
 [sub_resource type="Animation" id="Animation_d5hcm"]
 length = 0.001
@@ -54,6 +56,30 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Scene3/Credits:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(642, 1265)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Scene3/Stats:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_bsbs8"]
@@ -120,6 +146,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_2nhun"]
 resource_name = "scene_2"
+length = 0.1
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -127,7 +154,7 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1.1),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -185,6 +212,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_fuup5"]
 resource_name = "scene_3"
+length = 25.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -192,12 +220,9 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"play_scene_4"
-}]
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -246,6 +271,30 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Scene3/Credits:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 18),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(642, 1265), Vector2(642, -692)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Scene3/Stats:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 18),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_frsd3"]
@@ -319,6 +368,14 @@ _data = {
 "scene_4": SubResource("Animation_frsd3")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3sssd"]
+shader = ExtResource("5_depgx")
+shader_parameter/iterations = 3
+shader_parameter/zoom = 1.0
+shader_parameter/power = 0.5
+shader_parameter/speed = 0.1
+shader_parameter/background = Color(0.588235, 0.494118, 0.478431, 1)
+
 [node name="EndScene" type="Node2D"]
 script = ExtResource("1_c6r8a")
 
@@ -330,7 +387,8 @@ libraries = {
 [node name="Scene1" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Scene1"]
-scale = Vector2(0.65, 0.65)
+position = Vector2(-240, 0)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_cco4s")
 centered = false
 
@@ -349,17 +407,318 @@ centered = false
 [node name="Scene3" type="Node2D" parent="."]
 visible = false
 
-[node name="Sprite2D" type="Sprite2D" parent="Scene3"]
-scale = Vector2(0.65, 0.65)
-texture = ExtResource("2_cco4s")
-centered = false
+[node name="TextureRect" type="TextureRect" parent="Scene3"]
+modulate = Color(0.427451, 0, 0.141176, 1)
+material = SubResource("ShaderMaterial_3sssd")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1307.0
+offset_bottom = 998.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_w8ee7")
+
+[node name="Credits" type="Node2D" parent="Scene3"]
+position = Vector2(642, 1265)
+
+[node name="GameDesign" type="Node2D" parent="Scene3/Credits"]
+
+[node name="Title" type="Label" parent="Scene3/Credits/GameDesign"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.5
+offset_top = -195.0
+offset_right = 77.5
+offset_bottom = -164.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "Game Design"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Scene3/Credits/GameDesign"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -154.5
+offset_right = 36.0
+offset_bottom = -134.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Route126"
+horizontal_alignment = 1
+
+[node name="Subtitle2" type="Label" parent="Scene3/Credits/GameDesign"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -125.5
+offset_right = 37.5
+offset_bottom = -105.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "JosephPT
+"
+horizontal_alignment = 1
+
+[node name="LevelDesign" type="Node2D" parent="Scene3/Credits"]
+position = Vector2(0, 184)
+
+[node name="Title" type="Label" parent="Scene3/Credits/LevelDesign"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.5
+offset_top = -195.0
+offset_right = 77.5
+offset_bottom = -164.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "Level Design"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Scene3/Credits/LevelDesign"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -154.5
+offset_right = 36.0
+offset_bottom = -134.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "JosephPT"
+horizontal_alignment = 1
+
+[node name="Code" type="Node2D" parent="Scene3/Credits"]
+position = Vector2(0, 154)
+
+[node name="Title" type="Label" parent="Scene3/Credits/Code"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.5
+offset_top = -10.0
+offset_right = 58.5
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "Coding"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Scene3/Credits/Code"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = 25.0
+offset_right = 36.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Route126"
+horizontal_alignment = 1
+
+[node name="Subtitle2" type="Label" parent="Scene3/Credits/Code"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = 54.0
+offset_right = 37.5
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Ryr"
+horizontal_alignment = 1
+
+[node name="Visuals" type="Node2D" parent="Scene3/Credits"]
+position = Vector2(0, 315)
+
+[node name="Title" type="Label" parent="Scene3/Credits/Visuals"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.5
+offset_top = -10.0
+offset_right = 58.5
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "Visual Design
+"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Scene3/Credits/Visuals"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = 25.0
+offset_right = 36.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "K.K.1"
+horizontal_alignment = 1
+
+[node name="Audio" type="Node2D" parent="Scene3/Credits"]
+position = Vector2(0, 469)
+
+[node name="Title" type="Label" parent="Scene3/Credits/Audio"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.5
+offset_top = -10.0
+offset_right = 58.5
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "Audio Design
+"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Scene3/Credits/Audio"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = 25.0
+offset_right = 36.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "LivingGameMusic"
+horizontal_alignment = 1
+
+[node name="Narrative" type="Node2D" parent="Scene3/Credits"]
+position = Vector2(0, 634)
+
+[node name="Title" type="Label" parent="Scene3/Credits/Narrative"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.5
+offset_top = -10.0
+offset_right = 58.5
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 25
+text = "Narrative Design
+"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Scene3/Credits/Narrative"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = 25.0
+offset_right = 36.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "LivingGameMusic"
+horizontal_alignment = 1
+
+[node name="Thanks" type="Node2D" parent="Scene3/Credits"]
+position = Vector2(0, 1102)
+
+[node name="Title" type="Label" parent="Scene3/Credits/Thanks"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.5
+offset_top = -10.0
+offset_right = 58.5
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Thanks for playing"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Scene3/Credits/Thanks"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = 25.0
+offset_right = 36.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+
+[node name="Stats" type="Node2D" parent="Scene3"]
+position = Vector2(633, 627)
+
+[node name="Collectables" type="Label" parent="Scene3/Stats"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.5
+offset_top = -10.0
+offset_right = 27.5
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "asdasd"
+horizontal_alignment = 1
 
 [node name="Scene4" type="Node2D" parent="."]
 visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Scene4"]
-scale = Vector2(0.65, 0.65)
+position = Vector2(-162, 0)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_cco4s")
 centered = false
 
 [node name="InputDelayTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="InputDelayTimer" to="." method="_on_input_delay_timer_timeout"]

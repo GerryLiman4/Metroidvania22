@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bv2igcigkvehi"]
+[gd_scene load_steps=10 format=3 uid="uid://bv2igcigkvehi"]
 
 [ext_resource type="Texture2D" uid="uid://b8flegry3eusd" path="res://Resources/Level/TownBuilding-001.png" id="1_urv4x"]
 [ext_resource type="Texture2D" uid="uid://djs5e5jlhnih0" path="res://Resources/Level/Overworld_Sky.png" id="2_hl5nk"]
@@ -7,24 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://cw8bi5d0vwvc5" path="res://Resources/Level/Overworld_BG3.png" id="5_s30mf"]
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="6_4pkhg"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="7_jdoe6"]
-[ext_resource type="PackedScene" uid="uid://2ll1y82jd68q" path="res://Component/NPC/NPCSprite.tscn" id="8_nhe4w"]
-[ext_resource type="Texture2D" uid="uid://copcg2xewdtet" path="res://Dialogue/Characters/Miner.png" id="9_5w1ch"]
-[ext_resource type="PackedScene" uid="uid://0xi7fk137lxy" path="res://Dialogue/Helpers/actionable.tscn" id="10_stoa6"]
-[ext_resource type="Resource" uid="uid://c8rfljvtnn5ce" path="res://Dialogue/Dialogue/main.dialogue" id="11_cerli"]
-[ext_resource type="Texture2D" uid="uid://bb4wubkvaivf5" path="res://Dialogue/Characters/NPC3.png" id="12_0dt0a"]
-[ext_resource type="Texture2D" uid="uid://j5qpetfoyrv5" path="res://Dialogue/Characters/Mayor.png" id="13_4uxap"]
-[ext_resource type="Resource" uid="uid://bhy84am8vom66" path="res://Dialogue/Dialogue/dialogue.dialogue" id="14_xkp2v"]
-[ext_resource type="Texture2D" uid="uid://dho8uh0yqhgtk" path="res://Dialogue/Characters/Tiny.png" id="15_7hwhu"]
-[ext_resource type="Texture2D" uid="uid://bkffe7g4g8s0j" path="res://Dialogue/Characters/Sheriff.png" id="16_ssauk"]
-[ext_resource type="PackedScene" uid="uid://bq6ll2apombgy" path="res://Component/Objects/save_point.tscn" id="17_fipao"]
-[ext_resource type="PackedScene" uid="uid://dhquseqrg6jr2" path="res://Component/Objects/FastTravel.tscn" id="18_m8uv6"]
 [ext_resource type="PackedScene" uid="uid://oh4kdaw8kf7p" path="res://Dialogue/Helpers/event.tscn" id="19_4boog"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vlp1k"]
-radius = 162.049
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6gpy1"]
-size = Vector2(200, 388)
+size = Vector2(200, 693)
 
 [node name="StartingPoint" type="Node2D" groups=["Town"]]
 
@@ -58,11 +44,11 @@ position = Vector2(3523, 509)
 scale = Vector2(0.416076, 0.416076)
 texture = ExtResource("1_urv4x")
 
-[node name="BG2" type="Node2D" parent="."]
+[node name="BG" type="Node2D" parent="."]
 z_index = -2
 metadata/_edit_lock_ = true
 
-[node name="SkyRegion" type="Sprite2D" parent="BG2"]
+[node name="SkyRegion" type="Sprite2D" parent="BG"]
 texture_repeat = 2
 scale = Vector2(1, 1.09534)
 texture = ExtResource("2_hl5nk")
@@ -70,27 +56,27 @@ centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 5240, 944)
 
-[node name="BG" type="Sprite2D" parent="BG2"]
+[node name="BG" type="Sprite2D" parent="BG"]
 position = Vector2(4424, 344)
 scale = Vector2(0.888106, 1.12604)
 texture = ExtResource("3_fo527")
 
-[node name="BG2" type="Sprite2D" parent="BG2"]
+[node name="BG2" type="Sprite2D" parent="BG"]
 position = Vector2(2767, 338)
 scale = Vector2(0.888106, 1.12604)
 texture = ExtResource("4_pdc6m")
 
-[node name="BG3" type="Sprite2D" parent="BG2"]
+[node name="BG3" type="Sprite2D" parent="BG"]
 position = Vector2(1161, 341)
 scale = Vector2(0.888106, 1.12604)
 texture = ExtResource("5_s30mf")
 
-[node name="BG4" type="Sprite2D" parent="BG2"]
+[node name="BG4" type="Sprite2D" parent="BG"]
 position = Vector2(-429, 333)
 scale = Vector2(0.888106, 1.12604)
 texture = ExtResource("5_s30mf")
 
-[node name="ColorRect" type="ColorRect" parent="BG2"]
+[node name="ColorRect" type="ColorRect" parent="BG"]
 offset_left = 3704.0
 offset_top = 673.0
 offset_right = 5274.0
@@ -103,73 +89,9 @@ layer_0/tile_data = PackedInt32Array(65535, 393216, 5, 131071, 393216, 5, 196607
 
 [node name="RoomInstance" parent="." instance=ExtResource("7_jdoe6")]
 
-[node name="NPC" type="Node2D" parent="."]
-
-[node name="NPC1" parent="NPC" instance=ExtResource("8_nhe4w")]
-position = Vector2(634, 611)
-image = ExtResource("9_5w1ch")
-
-[node name="Actionable" parent="NPC/NPC1" instance=ExtResource("10_stoa6")]
-dialogue_resource = ExtResource("11_cerli")
-dialogue_start = "NPC1"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/NPC1/Actionable"]
-shape = SubResource("CircleShape2D_vlp1k")
-
-[node name="NPC3" parent="NPC" instance=ExtResource("8_nhe4w")]
-position = Vector2(3417, 620)
-image = ExtResource("12_0dt0a")
-
-[node name="Actionable" parent="NPC/NPC3" instance=ExtResource("10_stoa6")]
-dialogue_resource = ExtResource("11_cerli")
-dialogue_start = "NPC3"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/NPC3/Actionable"]
-shape = SubResource("CircleShape2D_vlp1k")
-
-[node name="Mayor" parent="NPC" instance=ExtResource("8_nhe4w")]
-position = Vector2(1632, 624)
-image = ExtResource("13_4uxap")
-
-[node name="Actionable" parent="NPC/Mayor" instance=ExtResource("10_stoa6")]
-dialogue_resource = ExtResource("14_xkp2v")
-dialogue_start = "talk_to_mayor"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/Mayor/Actionable"]
-shape = SubResource("CircleShape2D_vlp1k")
-
-[node name="NPC5" parent="NPC" instance=ExtResource("8_nhe4w")]
-position = Vector2(2199, 623)
-image = ExtResource("15_7hwhu")
-
-[node name="Actionable" parent="NPC/NPC5" instance=ExtResource("10_stoa6")]
-dialogue_resource = ExtResource("11_cerli")
-dialogue_start = "NPC5"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/NPC5/Actionable"]
-shape = SubResource("CircleShape2D_vlp1k")
-
-[node name="Sheriff" parent="NPC" instance=ExtResource("8_nhe4w")]
-position = Vector2(2673, 631)
-image = ExtResource("16_ssauk")
-
-[node name="Actionable" parent="NPC/Sheriff" instance=ExtResource("10_stoa6")]
-dialogue_resource = ExtResource("14_xkp2v")
-dialogue_start = "talk_to_sheriff"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC/Sheriff/Actionable"]
-shape = SubResource("CircleShape2D_vlp1k")
-
-[node name="SavePoint" parent="." instance=ExtResource("17_fipao")]
-position = Vector2(2448, 623)
-
-[node name="FastTravel" parent="." instance=ExtResource("18_m8uv6")]
-position = Vector2(3157, 548)
-target_map = "ASB.tscn"
-
 [node name="Event" parent="." instance=ExtResource("19_4boog")]
 position = Vector2(3798, 604)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Event"]
-position = Vector2(2, -158)
+position = Vector2(2, -273.5)
 shape = SubResource("RectangleShape2D_6gpy1")

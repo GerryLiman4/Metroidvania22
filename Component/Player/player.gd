@@ -14,6 +14,7 @@ class_name Player
 @onready var audio_stream_player = $AudioStreamPlayer
 @onready var actionable_finder = $AnimatedSprite2D/Direction/ActionableFinder
 
+@onready var gun_sfx = $GunSFX
 @onready var gun_animation = $GunAnimation
 @onready var effects_animation = $EffectsAnimation
 
@@ -382,9 +383,9 @@ func take_aim(aim_position):
 		var randomKey = shootKeys[randi() % shootSFX.size() - 1]
 
 		if randomKey in shootSFX:
-			audio_stream_player.stream = shootSFX[randomKey]
-			audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
-			audio_stream_player.call_deferred("play")
+			gun_sfx.stream = shootSFX[randomKey]
+			gun_sfx.pitch_scale = randf_range(0.9, 1.1)
+			gun_sfx.call_deferred("play")
 		else:
 			print(randomKey + " not found in audioScenes")
 		#endregion	 

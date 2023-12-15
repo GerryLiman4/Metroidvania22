@@ -91,8 +91,9 @@ func play_collectable_sfx():
 func play_sfx(sfx_name : String):
 	var sfx_key = audioScenes[sfx_name]
 	
-	if sfx_key in audioScenes:
-		sfx_player.stream = audioScenes[sfx_key]
+	if sfx_name in audioScenes:
+		var sfx = audioScenes[sfx_name]
+		sfx_player.stream = sfx_key
 		sfx_player.pitch_scale = randf_range(0.9, 1.1)
 		sfx_player.call_deferred("play")
 		await sfx_player.finished

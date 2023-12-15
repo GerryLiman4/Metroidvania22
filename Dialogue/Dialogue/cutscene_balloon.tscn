@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_a8ve6"]
 [ext_resource type="Theme" uid="uid://bfr3xsc7sdiub" path="res://Dialogue/Dialogue/cutscene_balloon.tres" id="2_mn53y"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_reponses_menu.gd" id="3_72ixx"]
-[ext_resource type="AudioStream" uid="uid://bhvu4qg0agoo6" path="res://Dialogue/talk_sound2.mp3" id="4_3v02a"]
+[ext_resource type="AudioStream" uid="uid://bhvu4qg0agoo6" path="res://Dialogue/talk_sound.mp3" id="4_x71l4"]
 
 [node name="CutsceneBalloon" type="CanvasLayer"]
 process_mode = 3
@@ -79,10 +79,9 @@ response_template = NodePath("ResponseExample")
 layout_mode = 2
 text = "Response example"
 
-[node name="TalkSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_3v02a")
-volume_db = -5.0
-bus = &"SFX"
+[node name="TalkSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_x71l4")
+volume_db = -15.0
 
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
 [connection signal="spoke" from="Balloon/Dialogue/VBoxContainer/DialogueLabel" to="." method="_on_dialogue_label_spoke"]

@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://13s5spsk34qu"]
+[gd_scene load_steps=9 format=3 uid="uid://13s5spsk34qu"]
 
 [ext_resource type="Script" path="res://Dialogue/Dialogue/portrait_balloon.gd" id="1_44v86"]
 [ext_resource type="Theme" uid="uid://deptssgy3yxq" path="res://Dialogue/dialogue_theme.tres" id="2_e5lqx"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_ffwen"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_reponses_menu.gd" id="3_n5xx7"]
-[ext_resource type="AudioStream" uid="uid://c8v6ukw8hp58y" path="res://Dialogue/1-bit space - boing.mp3" id="4_akygk"]
 [ext_resource type="Texture2D" uid="uid://b8jnevugkxmfy" path="res://Dialogue/arrow.png" id="4_al4vb"]
 
 [sub_resource type="Animation" id="Animation_u1j48"]
@@ -131,9 +130,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 5063.0
-offset_top = 718.0
+offset_top = -242.0
 offset_right = 5103.0
-offset_bottom = 758.0
+offset_bottom = -202.0
 grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("4_al4vb")
@@ -145,7 +144,6 @@ libraries = {
 autoplay = "indicate"
 
 [node name="TalkSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_akygk")
 volume_db = -10.0
 
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
