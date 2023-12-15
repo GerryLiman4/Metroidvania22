@@ -6,6 +6,7 @@ class_name PauseMenu
 @onready var options = %Options
 @onready var video = %Video
 @onready var audio = %Audio
+@onready var controls = %Controls
 
 @onready var game_over = %GameOver
 
@@ -153,3 +154,12 @@ func _on_toggle_music_toggled(toggled_on):
 func _on_reload_pressed():
 	Game.get_singleton().reload_save()
 	toggle()
+
+
+func _on_controls_pressed():
+	show_and_hide(controls, menu)
+	$Controls/BackFromControls.grab_focus()
+
+func _on_back_from_controls_pressed():	
+	show_and_hide(menu, controls)
+	$Controls/BackFromControls.release_focus()

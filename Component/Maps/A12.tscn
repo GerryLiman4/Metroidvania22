@@ -32,80 +32,6 @@ layer_1/tile_data = PackedInt32Array(65536, 131072, 11, 131072, 131072, 12, 1966
 [node name="Knocker" type="Node2D" parent="."]
 position = Vector2(68.0155, 324.323)
 
-[node name="BreakableBox11" parent="." node_paths=PackedStringArray("hitbox") instance=ExtResource("3_0fp3j")]
-position = Vector2(432, 145)
-rotation = 0.00424755
-hitbox = NodePath("../BreakableBox/Breakable")
-
-[node name="BreakableBox12" parent="." node_paths=PackedStringArray("hitbox") instance=ExtResource("3_0fp3j")]
-position = Vector2(432.091, 113)
-rotation = 0.00424755
-hitbox = NodePath("../BreakableBox/Breakable")
-
-[node name="BreakableBox13" parent="." node_paths=PackedStringArray("hitbox") instance=ExtResource("3_0fp3j")]
-position = Vector2(496, 145)
-rotation = 0.0028317
-hitbox = NodePath("../BreakableBox/Breakable")
-
-[node name="BreakableBox14" parent="." node_paths=PackedStringArray("hitbox") instance=ExtResource("3_0fp3j")]
-position = Vector2(592, 145)
-rotation = 0.0028317
-hitbox = NodePath("../BreakableBox/Breakable")
-
-[node name="BreakableBox15" parent="." node_paths=PackedStringArray("hitbox") instance=ExtResource("3_0fp3j")]
-position = Vector2(592.045, 113)
-rotation = 0.0028317
-hitbox = NodePath("../BreakableBox/Breakable")
-
-[node name="BreakableBox7" parent="." node_paths=PackedStringArray("hitbox") instance=ExtResource("3_0fp3j")]
-position = Vector2(688, 112.999)
-rotation = 0.0056634
-hitbox = NodePath("../BreakableBox/Breakable")
-
-[node name="BreakableBox8" parent="." node_paths=PackedStringArray("hitbox") instance=ExtResource("3_0fp3j")]
-position = Vector2(688.136, 80.9996)
-rotation = 0.0056634
-hitbox = NodePath("../BreakableBox/Breakable")
-
-[node name="BreakableBox9" parent="." node_paths=PackedStringArray("hitbox") instance=ExtResource("3_0fp3j")]
-position = Vector2(688.272, 49)
-rotation = 0.0056634
-hitbox = NodePath("../BreakableBox/Breakable")
-
-[node name="BreakableBox10" parent="." node_paths=PackedStringArray("hitbox") instance=ExtResource("3_0fp3j")]
-position = Vector2(688, 145)
-rotation = 0.00424755
-hitbox = NodePath("../BreakableBox/Breakable")
-
-[node name="BreakableBox4" parent="." node_paths=PackedStringArray("hitbox") instance=ExtResource("3_0fp3j")]
-position = Vector2(528, 144.999)
-rotation = 0.00707925
-hitbox = NodePath("../BreakableBox/Breakable")
-
-[node name="BreakableBox5" parent="." node_paths=PackedStringArray("hitbox") instance=ExtResource("3_0fp3j")]
-position = Vector2(528.181, 112.999)
-rotation = 0.00707925
-hitbox = NodePath("../BreakableBox/Breakable")
-
-[node name="BreakableBox6" parent="." node_paths=PackedStringArray("hitbox") instance=ExtResource("3_0fp3j")]
-position = Vector2(528.362, 81)
-rotation = 0.00707925
-hitbox = NodePath("../BreakableBox/Breakable")
-
-[node name="BreakableBox2" parent="." node_paths=PackedStringArray("hitbox") instance=ExtResource("3_0fp3j")]
-position = Vector2(1263, 754)
-rotation = 0.00141585
-hitbox = NodePath("../BreakableBox/Breakable")
-
-[node name="BreakableBox3" parent="." node_paths=PackedStringArray("hitbox") instance=ExtResource("3_0fp3j")]
-position = Vector2(1263, 722)
-rotation = 0.00141585
-hitbox = NodePath("../BreakableBox/Breakable")
-
-[node name="BreakableBox" parent="." instance=ExtResource("3_0fp3j")]
-position = Vector2(1263, 690)
-rotation = 0.00141585
-
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(1427.75, 577.656)
 navigation_polygon = SubResource("NavigationPolygon_fts2m")
@@ -155,6 +81,37 @@ image = ExtResource("10_75dbj")
 [node name="Actionable" parent="NPC" index="1"]
 dialogue_resource = ExtResource("10_6ybao")
 dialogue_start = "talk_to_miner"
+
+[node name="Boxes" type="Node2D" parent="."]
+
+[node name="BreakableBox2" parent="Boxes" node_paths=PackedStringArray("hitbox") instance=ExtResource("3_0fp3j")]
+position = Vector2(1263, 754)
+rotation = 0.00141585
+hitbox = NodePath("../BreakableBox/Breakable")
+
+[node name="BreakableBox3" parent="Boxes" node_paths=PackedStringArray("hitbox") instance=ExtResource("3_0fp3j")]
+position = Vector2(1263, 722)
+rotation = 0.00141585
+hitbox = NodePath("../BreakableBox/Breakable")
+
+[node name="BreakableBox" parent="Boxes" instance=ExtResource("3_0fp3j")]
+position = Vector2(1263, 690)
+rotation = 0.00141585
+
+[node name="BreakableBox4" parent="Boxes" instance=ExtResource("3_0fp3j")]
+position = Vector2(680, 144)
+
+[node name="BreakableBox5" parent="Boxes" node_paths=PackedStringArray("hitbox") instance=ExtResource("3_0fp3j")]
+position = Vector2(680, 112)
+hitbox = NodePath("../BreakableBox4/Breakable")
+
+[node name="BreakableBox6" parent="Boxes" node_paths=PackedStringArray("hitbox") instance=ExtResource("3_0fp3j")]
+position = Vector2(680, 80)
+hitbox = NodePath("../BreakableBox4/Breakable")
+
+[node name="BreakableBox7" parent="Boxes" node_paths=PackedStringArray("hitbox") instance=ExtResource("3_0fp3j")]
+position = Vector2(680, 48)
+hitbox = NodePath("../BreakableBox4/Breakable")
 
 [editable path="EnemySpawn"]
 [editable path="Event"]

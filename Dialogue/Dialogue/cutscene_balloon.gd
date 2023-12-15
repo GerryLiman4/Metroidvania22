@@ -125,17 +125,18 @@ func _on_balloon_gui_input(event: InputEvent) -> void:
 
 	# When there are no response options the balloon itself is the clickable thing
 	get_viewport().set_input_as_handled()
+	
 
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == 1:
 		next(dialogue_line.next_id)
-	elif (event.is_action_pressed("ui_accept") || event.is_action_pressed("Interact")) and get_viewport().gui_get_focus_owner() == balloon:
+	elif (event.is_action_pressed("Jump") || event.is_action_pressed("Shoot")) and get_viewport().gui_get_focus_owner() == balloon:
 		next(dialogue_line.next_id)
-	elif event.is_action_pressed("start") and get_viewport().gui_get_focus_owner() == balloon:
+	elif (event.is_action_pressed("Dash") || event.is_action_pressed("start") ) and get_viewport().gui_get_focus_owner() == balloon:
 		emit_signal("dialog_ended")
 		SignalManager.dialogue_end.emit()
 		get_tree().paused = false
 		queue_free()
-
+		
 
 func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
 	next(response.next_id)

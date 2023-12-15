@@ -10,7 +10,7 @@ func _on_menu_activated(element) -> void:
 		"Play":
 			check_save()
 		"Controls":
-			pass
+			SceneTransition.start_transition_to("menu", false, "res://UI/controls.tscn")
 		"Toggle Music":
 			AudioController.toggle_music()
 		"Reset Save":
@@ -38,6 +38,8 @@ func reset_save():
 	if FileAccess.file_exists(file_path):
 		FileAccess.open("user://save_data.sav", FileAccess.WRITE).store_var({})
 		toggle_message()
+	else:
+		FileAccess.open("user://save_data.sav", FileAccess.WRITE).store_var({})
 		
 func check_save():
 	var file_path ="user://save_data.sav"
@@ -48,6 +50,9 @@ func check_save():
 			SceneTransition.start_transition_to("game", false, "res://Game.tscn")
 		else:
 			SceneTransition.start_transition_to("cutscene", false, "res://UI/intro_scene.tscn")
+	else:
+		FileAccess.open("user://save_data.sav", FileAccess.WRITE).store_var({})
+		SceneTransition.start_transition_to("cutscene", false, "res://UI/intro_scene.tscn")
 			
 			
 func toggle_message():
