@@ -46,11 +46,51 @@ Gida: O-o-o-kay then.
 
 ~ talk_to_ross
 
-Miner: …
-Narrator: They appear to be comfortable in their silence
-Gida: How're you doin in the sunlight, Ross?
+Criss Cross Ross: Hey wanderer! Ye made it!
+Gida: How’re you doin in the sunlight, hoss?
+Criss Cross Ross: Is it always this bright?
+Gida: …
+Gida: Ye-e-e-s.
+Criss Cross Ross: I don’t like it.
+Gida: It’s gotta be better than the Maw.
+Criss Cross Ross: I’ve lived in that Mine before it was the Maw.
+Criss Cross Ross: And I’ll be livin there long after.
+Gida: You got yer priorities all kinds of crossed there, partner.
+Criss Cross Ross: Gotta be known for somethin.
+Criss Cross Ross: now get back down there, and get me my home back!
+
 
 => END
+
+
+~ talk_to_tiny
+
+Tiny: …
+Gida: …
+Tiny: …hm
+Gida: Uh, howdy?
+Tiny: hmmm.
+Gida: You like…being a blacksmith?
+Tiny: hmm, mh…
+Gida: Real cha-a-a-tterbox, you are.
+Tiny: …
+Gida: Okay then…
+
+=> END
+
+
+~ talk_to_hoover
+
+Hoover: Ah, a wanderer.
+Gida: Ah, a town drunk.
+Hoover: A tongue as sharp as your horns.
+Gida: And breath as foul as your prey.
+Hoover: Ooooh, you’re a fun one.
+Hoover: Good luck in the Maw.
+Hoover: I hope you make it back.
+
+=> END
+
 
 
 ~ end_cutscene
