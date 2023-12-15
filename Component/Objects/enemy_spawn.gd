@@ -5,10 +5,12 @@ extends Node2D
 @export var bat_max: int
 @export var spider_max: int
 @export var gopher_max: int
+@export var slime_max : int
 
 @onready var bat = $Bat
 @onready var spider = $Spider
 @onready var gopher = $Gopher
+@onready var slime = $Slime
 
 @onready var timer = $Timer
 
@@ -34,6 +36,12 @@ var enemy_limit_reached : bool = false
 		"spawned": 0,
 		"max_spawns": gopher_max,
 		"spawn_positions": []
+	},
+	"slime" : {
+		#"scene": preload("res://Component/Enemy/enemy_gunner.tscn"),
+		"spawned": 0,
+		"max_spawns": slime_max,
+		"spawn_positions": []
 	}
 }
 
@@ -48,6 +56,7 @@ func _ready():
 	fill_spawn_positions(bat, "bat")
 	fill_spawn_positions(spider, "spider")
 	fill_spawn_positions(gopher, "gopher")
+	fill_spawn_positions(gopher, "slime")
 	
 	if enemies_spawned >= enemy_max:
 		enemy_limit_reached = true
