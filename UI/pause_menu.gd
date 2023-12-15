@@ -2,6 +2,11 @@ extends Control
 
 class_name PauseMenu
 
+var input_images : Dictionary = {
+	"1" : preload("res://UI/inputmap.png"),
+	"2" : preload("res://UI/inputmap2.png")
+}
+
 @onready var menu = %Menu
 @onready var options = %Options
 @onready var video = %Video
@@ -158,6 +163,10 @@ func _on_reload_pressed():
 
 func _on_controls_pressed():
 	show_and_hide(controls, menu)
+	if Player.get_singleton().abilities.has("crawl"):
+		%ControlsImg.texture = input_images["1"]
+	else:
+		%ControlsImg.texture = input_images["2"]
 	$Controls/BackFromControls.grab_focus()
 
 func _on_back_from_controls_pressed():	
