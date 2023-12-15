@@ -90,7 +90,6 @@ libraries = {
 
 [node name="UseLabel" type="Label" parent="."]
 visible = false
-self_modulate = Color(0, 0, 1, 1)
 offset_left = -72.0
 offset_top = -135.0
 offset_right = 73.0

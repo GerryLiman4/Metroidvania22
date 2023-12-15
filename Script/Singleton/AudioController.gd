@@ -22,7 +22,8 @@ var audioScenes := {
 	"explosion0" : preload("res://Resources/Audio/SFX/Environment/explosion-001.ogg"),
 	"explosion1" : preload("res://Resources/Audio/SFX/Environment/explosion-002.ogg"),
 	"explosion2" : preload("res://Resources/Audio/SFX/Environment/explosion-003.ogg"),
-	"explosion3" : preload("res://Resources/Audio/SFX/Environment/explosion-004.ogg")
+	"explosion3" : preload("res://Resources/Audio/SFX/Environment/explosion-004.ogg"),
+	"savepoint" : preload("res://Resources/Audio/SFX/Environment/Save_Game.ogg")
 }
 
 var escape_active : bool = false
@@ -70,15 +71,18 @@ func change_music(music_name : String):
 		if music_on:
 			music_player.playing = true
 
-
 func play_random_sfx():
+	#rewrite to work with dictonary
+	pass
+
+func play_collectable_sfx():
 	var collectSFXKeys := ["collect0", "collect1", "collect2", "collect3", "collect4"]
 	var randomKey = collectSFXKeys[randi() % collectSFXKeys.size() - 1]
 	
 	if randomKey in audioScenes && sfx_player.playing == false:
 		sfx_player.stream = audioScenes[randomKey]
 		sfx_player.pitch_scale = randf_range(0.9, 1.1)
-		sfx_player.play()
+		sfx_player.call_deferred("play")
 		await sfx_player.finished
 	else:
 		print(randomKey + " not found in audioScenes, or SFX already playing")
@@ -87,10 +91,10 @@ func play_random_sfx():
 func play_sfx(sfx_name : String):
 	var sfx_key = audioScenes[sfx_name]
 	
-	if sfx_key in audioScenes && sfx_player.playing == false:
+	if sfx_key in audioScenes:
 		sfx_player.stream = audioScenes[sfx_key]
 		sfx_player.pitch_scale = randf_range(0.9, 1.1)
-		sfx_player.play()
+		sfx_player.call_deferred("play")
 		await sfx_player.finished
 		
 func play_explosion_sfx():
@@ -100,7 +104,7 @@ func play_explosion_sfx():
 	if randomKey in audioScenes && sfx_player.playing == false:
 		sfx_player.stream = audioScenes[randomKey]
 		sfx_player.pitch_scale = randf_range(0.9, 1.1)
-		sfx_player.play()
+		sfx_player.call_deferred("play")
 		await sfx_player.finished
 	else:
 		print(randomKey + " not found in audioScenes, or SFX already playing")

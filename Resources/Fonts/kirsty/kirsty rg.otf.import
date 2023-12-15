@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://bevgg660d7ug4"
-path="res://.godot/imported/Retro Gaming.ttf-a8775d60773c030ed8ba84eeed8713ce.fontdata"
+uid="uid://sp4xk0hfu2wp"
+path="res://.godot/imported/kirsty rg.otf-153a5ff6f3741ec6648953224e7ce040.fontdata"
 
 [deps]
 
-source_file="res://Resources/Retro Gaming.ttf"
-dest_files=["res://.godot/imported/Retro Gaming.ttf-a8775d60773c030ed8ba84eeed8713ce.fontdata"]
+source_file="res://Resources/Fonts/kirsty/kirsty rg.otf"
+dest_files=["res://.godot/imported/kirsty rg.otf-153a5ff6f3741ec6648953224e7ce040.fontdata"]
 
 [params]
 

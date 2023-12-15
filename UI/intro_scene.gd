@@ -9,7 +9,7 @@ var input_ready : bool = false
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if input_ready == true:
-		if(Input.is_action_just_pressed("ui_accept")):
+		if(Input.is_action_just_pressed("any")):
 			_proceed_to_game()
 			input_ready = false
 		#elif(Input.is_action_just_pressed("escape")):
@@ -21,19 +21,18 @@ func _ready():
 	input_delay_timer.start(3)
 	#Play scene_1
 	animation_player.play("scene_1")
-	$Scene2.hide()
-	$Scene3.hide()
-			
-func play_scene_2():
-	$Scene1.hide()
-	animation_player.play("scene_2")
+	
 	$Scene2/Actionable.action()
-	#get_tree("dialog_ended", _proceed_to_game())
+
 	for child in get_children():
 		if child.name == "CutsceneBalloon":
 			child.connect("dialog_ended", _proceed_to_game)
 			return
-	#stop audio and animation from scene_1
+			
+func play_scene_2():
+	$Scene1.hide()
+	animation_player.play("scene_2")
+	
 	'
 	if audio_stream.playing:
 		audio_stream.stop()
@@ -46,18 +45,8 @@ func play_scene_2():
 	audio_stream.play()
 	'''
 	
-	
-func play_scene_3():
-	#stop audio from scene_2
-	'
-	if audio_stream.playing:
-		audio_stream.stop()
-	animation_player.play("scene_3")
-	'
-
 func _proceed_to_game():
-	SceneTransition.start_transition_to("game", true, "res://Game.tscn")
-
+	SceneTransition.start_transition_to("game", false, "res://Game.tscn")
 
 func _on_input_delay_timer_timeout():
 	input_ready = true

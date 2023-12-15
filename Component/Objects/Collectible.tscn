@@ -35,6 +35,8 @@ func collect(body: Node2D) -> void:
 	
 	# Store the orb. This will automatically assign the collected marker.
 	MetSys.store_object(self)
+	
+	AudioController.play_collectable_sfx()
 	# Storing object does not free it automatically.
 	queue_free()
 "

@@ -33,6 +33,8 @@ func on_body_entered(body: Node2D) -> void:
 	# Starting coords for the delta vector feature.
 	Game.get_singleton().reset_map_starting_coords()
 	
+	AudioController.play_sfx("savepoint")
+	
 	if !message_display:
 		message_display = true
 		label.show()

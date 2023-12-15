@@ -10,7 +10,10 @@ signal activated(element : Control)
 
 func _ready():
 	get_viewport().gui_focus_changed.connect(_on_focus_changed)
-	setup_focus()
+	await setup_focus()
+	var first_option = $Play
+	first_option.grab_focus()
+	update_selection()
 
 
 func _unhandled_input(event):
@@ -19,7 +22,7 @@ func _unhandled_input(event):
 	get_viewport().set_input_as_handled() #Override all other inputs in the viewport
 	
 	var element = get_focused_element()
-	if is_instance_valid(element) and event.is_action_pressed("ui_accept"):
+	if is_instance_valid(element) and event.is_action_pressed("any"):
 		activated.emit(element)
 	
 

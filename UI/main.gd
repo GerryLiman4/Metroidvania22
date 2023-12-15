@@ -6,7 +6,17 @@ func _ready():
 
 func _on_menu_activated(element) -> void:
 	prints("element: ", element.text)
-	
+	match (element.text):
+		"Play":
+			check_save()
+		"Controls":
+			pass
+		"Toggle Music":
+			AudioController.toggle_music()
+		"Reset Save":
+			reset_save()
+
+	'''
 	match (element.text):
 		"Intro":
 			SceneTransition.start_transition_to("cutscene", false, "res://UI/intro_scene.tscn")
@@ -22,12 +32,22 @@ func _on_menu_activated(element) -> void:
 			reset_save()
 		"Toggle Music":
 			AudioController.toggle_music()
-			
+	'''	
 func reset_save():
 	var file_path = "user://save_data.sav"
 	if FileAccess.file_exists(file_path):
 		FileAccess.open("user://save_data.sav", FileAccess.WRITE).store_var({})
 		toggle_message()
+		
+func check_save():
+	var file_path ="user://save_data.sav"
+	if FileAccess.file_exists(file_path):
+		var file_contents = FileAccess.open("user://save_data.sav", FileAccess.READ).get_var()
+		print(file_contents)
+		if file_contents:
+			SceneTransition.start_transition_to("game", false, "res://Game.tscn")
+		else:
+			SceneTransition.start_transition_to("cutscene", false, "res://UI/intro_scene.tscn")
 			
 			
 func toggle_message():

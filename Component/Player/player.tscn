@@ -782,6 +782,7 @@ libraries = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
+process_callback = 0
 script = ExtResource("14_4ga28")
 
 [connection signal="area_entered" from="ChargeHitbox" to="." method="_on_charge_hitbox_area_entered"]

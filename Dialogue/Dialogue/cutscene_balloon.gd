@@ -7,6 +7,8 @@ signal dialog_ended()
 @onready var dialogue_label: DialogueLabel = %DialogueLabel
 @onready var responses_menu: DialogueResponsesMenu = %ResponsesMenu
 
+@onready var talk_sound = $TalkSound
+
 ## The dialogue resource
 var resource: DialogueResource
 
@@ -19,6 +21,8 @@ var is_waiting_for_input: bool = false
 ## See if we are running a long mutation and should hide the balloon
 var will_hide_balloon: bool = false
 
+var parent
+
 ## The current line
 var dialogue_line: DialogueLine:
 	set(next_dialogue_line):
@@ -28,6 +32,7 @@ var dialogue_line: DialogueLine:
 		if not next_dialogue_line:
 			emit_signal("dialog_ended")
 			SignalManager.dialogue_end.emit()
+			get_tree().paused = false
 			queue_free()
 			return
 
@@ -70,6 +75,11 @@ var dialogue_line: DialogueLine:
 func _ready() -> void:
 	balloon.hide()
 	Engine.get_singleton("DialogueManager").mutated.connect(_on_mutated)
+	
+	parent = get_parent()
+	if parent.name == "Game":
+		await get_tree().create_timer(1).timeout
+		get_tree().paused = true
 
 
 func _unhandled_input(_event: InputEvent) -> void:
@@ -122,8 +132,16 @@ func _on_balloon_gui_input(event: InputEvent) -> void:
 		next(dialogue_line.next_id)
 	elif event.is_action_pressed("start") and get_viewport().gui_get_focus_owner() == balloon:
 		SignalManager.dialogue_end.emit()
+		get_tree().paused = false
 		queue_free()
 
 
 func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
 	next(response.next_id)
+
+
+func _on_dialogue_label_spoke(letter, letter_index, speed):
+	if not letter in [".", " "]:
+		talk_sound.pitch_scale = randf_range(0.7, 0.9)
+		talk_sound.play()
+

@@ -186,36 +186,36 @@ func calculate_gravity() :
 # get input
 func get_move_input() :
 	velocity.x = 0
-	
-	if Input.is_action_pressed("move_left") == true:
-		if is_crawling == false :
-			velocity.x = -WALK_SPEED
-		else :
-			velocity.x = -CRAWL_SPEED
-		
-		
-	elif Input.is_action_pressed("move_right") == true :
-		if is_crawling == false :
-			velocity.x = WALK_SPEED
-		else :
-			velocity.x = CRAWL_SPEED
+	if !event:
+		if Input.is_action_pressed("move_left") == true:
+			if is_crawling == false :
+				velocity.x = -WALK_SPEED
+			else :
+				velocity.x = -CRAWL_SPEED
+			
+			
+		elif Input.is_action_pressed("move_right") == true :
+			if is_crawling == false :
+				velocity.x = WALK_SPEED
+			else :
+				velocity.x = CRAWL_SPEED
 		
 		
 
 func get_jump_input() :
-	if Input.is_action_pressed("Jump") == true and is_on_floor() == true :
+	if Input.is_action_pressed("Jump") == true and is_on_floor() == true && !event:
 		velocity.y = JUMP_VELOCITY
 		#SoundManager.play_clip(sound_player,SoundManager.SOUND_JUMP)
 		
 
 func get_dash_input() -> bool :
-	if Input.is_action_pressed("Dash") == true :
+	if Input.is_action_pressed("Dash") == true && !event:
 		return true
 	else :
 		return false
 
 func get_crawl_input() -> bool:
-	if Input.is_action_just_pressed("Crawl") == true :
+	if Input.is_action_just_pressed("Crawl") == true && !event:
 		return true
 	else : 
 		return false
@@ -488,9 +488,16 @@ func _on_jump_state_physics_processing(delta):
 
 func _on_fall_state_entered():
 	animation_player.play("Jump", 1.0, true)
+	
+	#region SFX
+	if audioScenes["movement"]["fall"]:
+		audio_stream_player.stream = audioScenes["movement"]["fall"]
+		audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
+		audio_stream_player.call_deferred("play")
+	#endregion
 
 func _on_fall_state_exited():
-	pass # Replace with function body.
+	audio_stream_player.stop()
 
 func _on_fall_state_input(event):
 	# later if there is double jump
@@ -524,6 +531,7 @@ func _on_double_jump_state_entered():
 		audio_stream_player.stream = audioScenes["movement"]["jump"]
 		audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
 		audio_stream_player.call_deferred("play")
+		
 	#endregion
 
 func _on_double_jump_state_exited():
@@ -589,11 +597,12 @@ func _on_crawl_state_physics_processing(delta):
 func _on_dash_state_entered():
 	# set timestamp for cooldown
 	dash_cooldown_timestamp = object_timer
-
+	#region SFX
 	if audioScenes["movement"]["dash"]:
 		audio_stream_player.stream = audioScenes["movement"]["dash"]
 		audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
 		audio_stream_player.call_deferred("play")
+	#endregion
 	
 	# check charge ability
 	set_charge(true)
@@ -632,6 +641,13 @@ func _on_wall_latch_state_entered():
 	elif face_direction == FACING.RIGHT:
 		face_direction = FACING.LEFT
 		animation_player.scale.x = (abs(animation_player.scale.x))
+	
+	#region SFX
+	if audioScenes["movement"]["latch"]:
+		audio_stream_player.stream = audioScenes["movement"]["latch"]
+		audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
+		audio_stream_player.call_deferred("play")
+	#endregion
 	
 	velocity = Vector2.ZERO
 	set_physics_process(false)
@@ -689,10 +705,11 @@ func _on_jump_state_physics_processing(delta):
 '''
 func _on_wall_jump_state_entered():
 	animation_player.play("Jump")
+	#region SFX
 	audio_stream_player.stream = audioScenes["movement"]["jump"]
 	audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
 	audio_stream_player.play()
-	
+	#endregion
 func _on_wall_jump_state_exited():
 	pass
 	#velocity = Vector2.ZERO
