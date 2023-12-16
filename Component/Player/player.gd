@@ -135,12 +135,12 @@ func _unhandled_input(_event : InputEvent) -> void:
 			actionables[0].action()
 			event = true
 			return
-	
+	'''
 	if Input.is_action_just_pressed("cheat"):
 		cheat_abilities()
 	if Input.is_action_just_pressed("print"):
 		print(abilities)
-
+	'''
 	
 func on_enter():
 	# Position for kill system. Assigned when entering new room (see Game.gd).
