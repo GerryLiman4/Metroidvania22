@@ -91,8 +91,8 @@ Narrator: Jump toward the wall, then jump off to latch onto another wall and con
 Narrator: The strange energy rushes you. Swallows you! 
 Gida: Whoa-a-a, what was that?
 Narrator: You have acquired the Dash Upgrade!
-Narrator:  Dash while on the ground for a powerful attack
-Narrator:  Use Charge to destroy boxes!
+Narrator:  Dash for a powerful attack!
+Narrator:  Use Charge to destroy boxes.
 
 => END
 
@@ -183,6 +183,6 @@ Gida: I’ve got an idea.
 ~ escape_start
 
 Narrator: A violent rumble begins to echo throughout the Abyss..
-Gida: Its time to book it!
+Gida: Its time to hoof it!
 
 => END

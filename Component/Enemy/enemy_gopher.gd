@@ -8,6 +8,14 @@ extends BaseEnemy
 @export var bullet_scene : PackedScene
 @export var shooter : Marker2D
 
+@onready var audio_stream_player = $AudioStreamPlayer2D
+
+var audioScenes := {
+	"dead" : preload("res://Resources/Audio/SFX/Enemy/Enemy-005.ogg"),
+	"shoot" : preload("res://Resources/Audio/SFX/Player/bullet2.ogg"),
+	"emerge" : preload("res://Resources/Audio/SFX/Enemy/Gopher/gopher_emerging.ogg")
+}
+
 func _ready():
 	health.on_get_damaged.connect(on_get_damaged)
 	health.on_dead.connect(on_dead)
@@ -16,6 +24,11 @@ func on_get_damaged(direction : Vector2):
 	pass
 
 func on_dead():
+	audio_stream_player.stream = audioScenes["dead"]
+	audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
+	audio_stream_player.call_deferred("play")
+	animated_sprite.play("Dead")
+	await animated_sprite.animation_finished
 	self.queue_free()
 
 func _on_idle_state_entered():
@@ -37,8 +50,10 @@ func _on_idle_state_physics_processing(delta):
 
 func _on_chasing_state_entered():
 	start_shoot_timer()
-	
 	animated_sprite.play("Popup")
+	audio_stream_player.stream = audioScenes["emerge"]
+	audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
+	audio_stream_player.play()
 	hitbox.disabled = false
 
 func _on_chasing_state_exited():
@@ -48,7 +63,6 @@ func _on_chasing_state_exited():
 	subm.stop()
 
 func _on_chasing_state_physics_processing(delta):
-	print(shoot_timer.time_left)
 	if target == null :
 		return
 	
@@ -70,7 +84,6 @@ func _on_shoot_timer_timeout():
 	shoot()
 	animated_sprite.play("Idle")
 	hitbox.disabled = true
-	print("Start Timer" )
 	subm.start(subm.wait_time)
 
 func _on_submerge_timer_timeout():
@@ -88,6 +101,10 @@ func shoot():
 	direction = (target.global_position - global_position).normalized()
 	
 	await get_tree().create_timer(0.15)
+	
+	audio_stream_player.stream = audioScenes["shoot"]
+	audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
+	audio_stream_player.play()
 	
 	var bullet : Bullet = bullet_scene.instantiate()
 	bullet.global_position = shooter.global_position

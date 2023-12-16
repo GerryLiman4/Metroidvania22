@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cv55nv1c2sbiq"]
+[gd_scene load_steps=21 format=3 uid="uid://cv55nv1c2sbiq"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_42t0r"]
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="1_45cto"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bkffe7g4g8s0j" path="res://Dialogue/Characters/Sheriff.png" id="13_rm4m0"]
 [ext_resource type="Texture2D" uid="uid://dho8uh0yqhgtk" path="res://Dialogue/Characters/Tiny.png" id="16_hmyiu"]
 [ext_resource type="Resource" uid="uid://bhy84am8vom66" path="res://Dialogue/Dialogue/dialogue.dialogue" id="16_odj8s"]
+[ext_resource type="Texture2D" uid="uid://bb4wubkvaivf5" path="res://Dialogue/Characters/Hoover.png" id="17_c653a"]
 [ext_resource type="Texture2D" uid="uid://copcg2xewdtet" path="res://Dialogue/Characters/Miner.png" id="17_j0rvb"]
 [ext_resource type="PackedScene" uid="uid://dhquseqrg6jr2" path="res://Component/Objects/FastTravel.tscn" id="18_r0l2g"]
 
@@ -166,6 +167,7 @@ dialogue_start = "talk_to_tiny"
 [node name="Hoover" parent="NPC" instance=ExtResource("8_pbpho")]
 position = Vector2(2811, 642)
 npc_name = "Hoover"
+image = ExtResource("17_c653a")
 face_direction = 1
 
 [node name="Actionable" parent="NPC/Hoover" index="1"]

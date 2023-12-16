@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dh2v1mpv02wq0"]
+[gd_scene load_steps=42 format=3 uid="uid://dh2v1mpv02wq0"]
 
 [ext_resource type="Script" path="res://Component/Player/player.gd" id="1_x2mr2"]
 [ext_resource type="PackedScene" uid="uid://3jirgrp83pq" path="res://Component/player_bullet.tscn" id="2_1l3hs"]
@@ -17,6 +17,15 @@
 [ext_resource type="Texture2D" uid="uid://dono02ibrqycv" path="res://Resources/muzzle_flash-Sheet.png" id="7_q4qu8"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="8_0ixva"]
 [ext_resource type="Script" path="res://Script/Utility/CameraShake.gd" id="14_4ga28"]
+[ext_resource type="Script" path="res://Component/Player/player_trail.gd" id="17_dgxoc"]
+
+[sub_resource type="Curve" id="Curve_jwv3c"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_esjey"]
+offsets = PackedFloat32Array(0, 0.0601266, 1)
+colors = PackedColorArray(0.290196, 0.290196, 0.290196, 0.0980392, 0.205117, 0.205117, 0.205117, 0.490196, 0.682353, 0.682353, 0.682353, 0.705882)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nwg0o"]
 shader = ExtResource("4_upuey")
@@ -610,7 +619,7 @@ _data = {
 "dead": SubResource("Animation_yt5mo")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("camera", "audio_player", "character_state", "wall_jump_timer", "arm_timer", "animation_player", "arm_sprite", "head_model", "head_sprite", "shooter", "player_health", "charge_area", "charge_hitbox", "collision_box", "hit_box", "head_raycast_up_left", "head_raycast_up_right", "crawl_collision", "crawl_hitbox", "leg_raycast_left", "leg_raycast_right", "head_raycast_left", "head_raycast_right") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("camera", "audio_player", "character_state", "wall_jump_timer", "arm_timer", "animation_player", "arm_sprite", "head_model", "head_sprite", "shooter", "player_health", "charge_area", "charge_hitbox", "collision_box", "hit_box", "head_raycast_up_left", "head_raycast_up_right", "crawl_collision", "crawl_hitbox", "leg_raycast_left", "leg_raycast_right", "head_raycast_left", "head_raycast_right", "player_trail") groups=["Player"]]
 collision_layer = 34
 script = ExtResource("1_x2mr2")
 camera = NodePath("Camera2D")
@@ -640,8 +649,20 @@ leg_raycast_left = NodePath("LegCastLeft")
 leg_raycast_right = NodePath("LegCastRight")
 head_raycast_left = NodePath("HeadCastLeft")
 head_raycast_right = NodePath("HeadCastRight")
+player_trail = NodePath("PlayerTrail")
+
+[node name="PlayerTrail" type="Line2D" parent="."]
+top_level = true
+z_index = 10
+position = Vector2(21, 0)
+width = 12.0
+width_curve = SubResource("Curve_jwv3c")
+gradient = SubResource("Gradient_esjey")
+script = ExtResource("17_dgxoc")
+max_length = 10
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 15
 material = SubResource("ShaderMaterial_nwg0o")
 sprite_frames = ExtResource("5_13q23")
 animation = &"Idle"

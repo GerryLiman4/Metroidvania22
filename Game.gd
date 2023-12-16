@@ -238,6 +238,7 @@ func end_escape():
 	override1.apply_to_group(1)
 	override2.apply_to_group(2)
 	override3.apply_to_group(3)
+	escape_health = 20
 
 func _on_escape_timer_timeout():
 	escape_health -= 1

@@ -4,6 +4,14 @@ extends BaseEnemy
 @export var bullet_scene : PackedScene
 @export var shooter : Node2D
 var _can_shoot : bool = false
+@onready var audio_stream_player = $AudioStreamPlayer2D
+
+var audioScenes := {
+	"attack1" : preload("res://Resources/Audio/SFX/Enemy/Slime/slime_attack-001.ogg"),
+	"attack2" : preload("res://Resources/Audio/SFX/Enemy/Slime/slime_attack-004.ogg"),
+	"dead" : preload("res://Resources/Audio/SFX/Enemy/Enemy-003.ogg"),
+}
+
 
 func _ready():
 	health.on_get_damaged.connect(on_get_damaged)
@@ -19,6 +27,16 @@ func _shoot():
 	
 	await get_tree().create_timer(0.15)
 	
+	#region SFX
+	var enemyHurtSFXKeys := ["attack1", "attack2"]
+	var randomKey = enemyHurtSFXKeys[randi() % enemyHurtSFXKeys.size()]
+	
+	if randomKey in audioScenes && audio_stream_player.playing == false:
+		audio_stream_player.stream = audioScenes[randomKey]
+		audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
+		audio_stream_player.play()
+	#endregion
+	
 	var bullet : Bullet = bullet_scene.instantiate()
 	bullet.global_position = shooter.global_position
 	bullet.launch(shooter.global_position, direction , 400)
@@ -28,6 +46,14 @@ func on_get_damaged(direction : Vector2):
 	return
 
 func on_dead():
+	animated_sprite.play("Dead")
+	if audioScenes["dead"]:
+		audio_stream_player.stream = audioScenes["dead"]
+		audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
+		audio_stream_player.play()
+	await animated_sprite.animation_finished
+	
+	
 	self.queue_free()
 	
 func calculate_gravity() :

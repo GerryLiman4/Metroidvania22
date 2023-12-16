@@ -23,7 +23,9 @@ var audioScenes := {
 	"explosion1" : preload("res://Resources/Audio/SFX/Environment/explosion-002.ogg"),
 	"explosion2" : preload("res://Resources/Audio/SFX/Environment/explosion-003.ogg"),
 	"explosion3" : preload("res://Resources/Audio/SFX/Environment/explosion-004.ogg"),
-	"savepoint" : preload("res://Resources/Audio/SFX/Environment/Save_Game.ogg")
+	"savepoint" : preload("res://Resources/Audio/SFX/Environment/Save_Game.ogg"),
+	"ability": preload("res://Resources/Audio/SFX/Environment/Acquire_new_skill.ogg"),
+	"boxbreak" : preload("res://Resources/Audio/SFX/Environment/Box_Break.ogg")
 }
 
 var escape_active : bool = false

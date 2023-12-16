@@ -18,7 +18,6 @@ func _ready():
 	health.on_dead.connect(on_dead)
 
 func on_get_damaged(direction : Vector2):
-	print("Hurt")
 	var enemyHurtSFXKeys := ["bat_screech1", "bat_screech2"]
 	var randomKey = enemyHurtSFXKeys[randi() % enemyHurtSFXKeys.size()]
 	
@@ -44,7 +43,10 @@ func on_dead():
 		#await audio_stream_player.finished
 	else:
 		print(randomKey + " not found in audioScenes")
+		
+	animated_sprite.play("Dead")
 	
+	await animated_sprite.animation_finished
 	self.queue_free()
 	
 

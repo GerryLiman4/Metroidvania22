@@ -111,6 +111,8 @@ var can_shoot : bool = true
 @export var head_raycast_left : RayCast2D
 @export var head_raycast_right : RayCast2D
 
+@export_category("VFX")
+@export var player_trail : PlayerTrail
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -134,12 +136,13 @@ func _unhandled_input(_event : InputEvent) -> void:
 	'''
 	if Input.is_action_just_pressed("start"):
 		SceneTransition.start_transition_to("menu", true, "res://UI/main.tscn")
-	'''
+	
 	if Input.is_action_just_pressed("cheat"):
 		cheat_abilities()
 	if Input.is_action_just_pressed("print"):
 		print(abilities)
-
+	'''
+	
 func on_enter():
 	# Position for kill system. Assigned when entering new room (see Game.gd).
 	reset_position = position
@@ -165,14 +168,18 @@ func _process(delta):
 	if velocity.x > 0:
 		face_direction = FACING.RIGHT
 		animation_player.scale.x = -(abs(animation_player.scale.x))
+		player_trail.position.x = -(abs(animation_player.scale.x))
 		#$ArmModel.scale.x = -(abs(animation_player.scale.x))
 	#elif mouse_direction.x < 0 and not animated_sprite.flip_h:
 	elif velocity.x < 0:
 		face_direction = FACING.LEFT
 		animation_player.scale.x = (abs(animation_player.scale.x))
+		player_trail.position.x = -(abs(animation_player.scale.x))
 		#$ArmModel.scale.x = (abs(animation_player.scale.x))
 	
 	take_aim(mouse_direction)
+	
+	player_trail.add_to_queue(global_position)
 
 func _physics_process(delta):
 	if is_on_floor() == false :
@@ -549,6 +556,8 @@ func _on_double_jump_state_entered():
 		velocity.y = DOUBLE_JUMP_VELOCITY
 	else :
 		velocity.y += DOUBLE_JUMP_VELOCITY
+	
+	animation_player.play("Jump")
 	#region SFX
 	
 	if audioScenes["movement"]["jump"]:

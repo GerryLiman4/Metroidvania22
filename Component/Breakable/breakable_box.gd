@@ -13,7 +13,8 @@ func _ready():
 func on_get_damaged(direction : Vector2) :
 	pass
 
-func on_dead() :
+func on_dead():
+	AudioController.play_sfx("boxbreak")
 	MetSys.store_object(self)
 	self.queue_free()
 

@@ -28,5 +28,6 @@ func on_dead():
 		balloon.start(load("res://Dialogue/Dialogue/event.dialogue"), "escape_start")
 		SignalManager.dialogue_start.emit()
 	
+	AudioController.play_sfx("boxbreak")
 	MetSys.store_object(self)
 	self.queue_free()
