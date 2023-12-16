@@ -34,11 +34,11 @@ func _ready():
 	if player_data.has("collectible_count") && player_data.has("game_time"):
 		var collectables_found = player_data["collectible_count"]
 		var game_time = player_data["game_time"]
-		%Collectables.text = "You found " + str(collectables_found) + " / 20 Collectables"
+		%Collectables.text = str(collectables_found) + " / 20"
 		
-		var total_seconds = int(game_time) / 1000
+		var total_seconds = int(game_time)
 		var seconds = total_seconds % 60
-		var minutes = total_seconds / 60	
+		var minutes = total_seconds / 60
 		%Playtime.text = str(minutes) + " : " + str(seconds)
 	else:
 		$Scene3/Stats/VBoxContainer.hide()

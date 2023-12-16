@@ -19,7 +19,7 @@ class_name Game
 
 var escape_health : int = 20
 
-var game_timer : float = -5.0
+var game_timer : float = -2.0
 
 # The current map scene instance.
 var map: Node2D
