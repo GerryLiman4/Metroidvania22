@@ -13,11 +13,14 @@ var input_images : Dictionary = {
 @onready var audio = %Audio
 @onready var controls = %Controls
 
+@onready var timer_container = $TimerContainer
 @onready var game_over = %GameOver
 
 var is_paused : bool = false
 
 var player_ref : Player
+
+var game_ref
 
 signal pause_toggle(paused_state : bool)
 
@@ -26,6 +29,7 @@ signal pause_toggle(paused_state : bool)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player_ref = Player.get_singleton()
+	game_ref = get_parent().get_parent()
 	toggle()
 
 
@@ -40,9 +44,19 @@ func toggle():
 	var first_option : Button = menu.get_child(0)
 	first_option.grab_focus()
 	visible = !visible
+	if game_ref:
+		update_timer_label(game_ref.game_timer)
 	menu.show()
 	get_tree().paused = visible
 	emit_signal("pause_toggle", is_paused)
+
+func update_timer_label(game_time):
+	var total_seconds = int(game_time) / 1000
+	var seconds = total_seconds % 60
+	var minutes = total_seconds / 60
+	
+	%GameTimer.text = str(minutes) + " : " + str(seconds)
+	
 	
 #Show first param, hide second
 func show_and_hide(first, second):

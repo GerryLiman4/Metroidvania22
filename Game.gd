@@ -18,6 +18,7 @@ class_name Game
 @onready var escape_timer = $EscapeTimer
 
 var escape_health : int = 20
+var game_timer = -5.0
 
 # The current map scene instance.
 var map: Node2D
@@ -33,6 +34,9 @@ var generated_rooms: Array[Vector3i]
 # The typical array of game events. It's supplementary to the storable objects.
 var events: Array[String]
 
+func _process(delta):
+	game_timer = (Time.get_ticks_msec())
+	
 
 func _ready() -> void:
 	randomize()
@@ -73,6 +77,7 @@ func load_save():
 		events.assign(save_data.events)
 		starting_map = save_data.current_room
 		player.abilities.assign(save_data.abilities)
+		game_timer = save_data.game_time
 	else:
 		reset_save()
 		
@@ -172,7 +177,8 @@ func get_save_data() -> Dictionary:
 		"generated_rooms": generated_rooms,
 		"events": events,
 		"current_room": MetSys.get_current_room_name(),
-		"abilities": player.abilities
+		"abilities": player.abilities,
+		"game_time": game_timer
 	}
 
 func get_init_save_data() -> Dictionary:
@@ -181,7 +187,8 @@ func get_init_save_data() -> Dictionary:
 		"generated_rooms": generated_rooms,
 		"events": events,
 		"current_room": "StartingPoint.tscn",
-		"abilities": player.abilities
+		"abilities": player.abilities,
+		"game_time": 0.0
 	}
 
 

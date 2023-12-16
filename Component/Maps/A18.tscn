@@ -34,11 +34,11 @@ position = Vector2(438, 721)
 [node name="BreakableWall" parent="." instance=ExtResource("3_2mgq7")]
 position = Vector2(238, 1552)
 
+[node name="SavePoint" parent="." instance=ExtResource("4_3fqmf")]
+position = Vector2(1031, 434)
+
 [node name="Knocker" type="Node2D" parent="."]
 position = Vector2(914.658, 208.514)
-
-[node name="SavePoint" parent="Knocker" instance=ExtResource("4_3fqmf")]
-position = Vector2(116.342, 225.486)
 
 [node name="Collectible" parent="." instance=ExtResource("3_rdlm2")]
 position = Vector2(125, 1569)
