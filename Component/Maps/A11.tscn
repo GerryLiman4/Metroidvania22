@@ -78,9 +78,9 @@ position = Vector2(541.842, 1473)
 position = Vector2(296.135, 500.118)
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Gopher" index="0"]
-position = Vector2(63.929, 889.271)
+position = Vector2(164, 918)
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Slime" index="0"]
-position = Vector2(595, 524)
+position = Vector2(579.676, 603.283)
 
 [editable path="EnemySpawn"]
