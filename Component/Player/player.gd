@@ -24,7 +24,8 @@ var audioScenes := {
 		"dash": preload("res://Resources/Audio/SFX/Player/MC_dash.ogg"),
 		"fall" : preload("res://Resources/Audio/SFX/Player/Cloth_Loop.ogg"),
 		"land": preload("res://Resources/Audio/SFX/Player/Mc_Lands_on_ground.ogg"),
-		"latch" : preload("res://Resources/Audio/SFX/Player/Latch_onto_wall.ogg")
+		"latch" : preload("res://Resources/Audio/SFX/Player/latchsounds3.ogg"),
+		"roll" : preload("res://Resources/Audio/SFX/Player/roll.ogg")
 	},
 	"shoot" : {
 		"shoot1" : preload("res://Resources/Audio/SFX/Player/bullet1.ogg"),
@@ -133,15 +134,12 @@ func _unhandled_input(_event : InputEvent) -> void:
 		if actionables.size() > 0:
 			actionables[0].action()
 			return
-	'''
-	if Input.is_action_just_pressed("start"):
-		SceneTransition.start_transition_to("menu", true, "res://UI/main.tscn")
 	
 	if Input.is_action_just_pressed("cheat"):
 		cheat_abilities()
 	if Input.is_action_just_pressed("print"):
 		print(abilities)
-	'''
+
 	
 func on_enter():
 	# Position for kill system. Assigned when entering new room (see Game.gd).
@@ -593,6 +591,13 @@ func _on_crawl_state_entered():
 	#collision_box.position.y = 32
 	#hit_box.position.y = 32
 	animation_player.play("Roll")
+	#region SFX
+	if audioScenes["movement"]["roll"]:
+		audio_stream_player.stream = audioScenes["movement"]["roll"]
+		audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
+		audio_stream_player.call_deferred("play")
+	#endregion
+	
 	animation_player.offset.y = 30
 	can_shoot = false
 	arm_sprite.hide()
@@ -609,6 +614,13 @@ func _on_crawl_state_exited():
 	#hit_box.scale.y = original_crawl_hitbox_scale
 	#collision_box.position.y = 0
 	#hit_box.position.y = 0
+	#region SFX
+	if audioScenes["movement"]["latch"]:
+		audio_stream_player.stream = audioScenes["movement"]["latch"]
+		audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
+		audio_stream_player.call_deferred("play")
+	#endregion
+	
 	animation_player.offset.y = 0
 	can_shoot = true
 	arm_sprite.show()

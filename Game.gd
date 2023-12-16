@@ -18,7 +18,8 @@ class_name Game
 @onready var escape_timer = $EscapeTimer
 
 var escape_health : int = 20
-var game_timer = -5.0
+
+var game_timer : float = -5.0
 
 # The current map scene instance.
 var map: Node2D
@@ -35,7 +36,8 @@ var generated_rooms: Array[Vector3i]
 var events: Array[String]
 
 func _process(delta):
-	game_timer = (Time.get_ticks_msec())
+	game_timer += delta
+	print(delta)
 	
 
 func _ready() -> void:

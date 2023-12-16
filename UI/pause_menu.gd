@@ -25,7 +25,6 @@ var game_ref
 signal pause_toggle(paused_state : bool)
 
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player_ref = Player.get_singleton()
@@ -51,7 +50,7 @@ func toggle():
 	emit_signal("pause_toggle", is_paused)
 
 func update_timer_label(game_time):
-	var total_seconds = int(game_time) / 1000
+	var total_seconds = int(game_time)
 	var seconds = total_seconds % 60
 	var minutes = total_seconds / 60
 	
@@ -180,9 +179,9 @@ func _on_reload_pressed():
 func _on_controls_pressed():
 	show_and_hide(controls, menu)
 	if Player.get_singleton().abilities.has("crawl"):
-		%ControlsImg.texture = input_images["1"]
-	else:
 		%ControlsImg.texture = input_images["2"]
+	else:
+		%ControlsImg.texture = input_images["1"]
 	$Controls/BackFromControls.grab_focus()
 
 func _on_back_from_controls_pressed():	
