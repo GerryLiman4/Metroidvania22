@@ -3,16 +3,16 @@
 [ext_resource type="Script" path="res://UI/menu.gd" id="1_8nhd7"]
 [ext_resource type="Script" path="res://UI/main.gd" id="1_smr17"]
 [ext_resource type="Shader" path="res://Resources/wave.gdshader" id="2_a2o6n"]
-[ext_resource type="Texture2D" uid="uid://b0jle1x5cfdyh" path="res://Resources/white.png" id="3_wdf1y"]
+[ext_resource type="Texture2D" uid="uid://5l0ii3y4pa25" path="res://Resources/black.png" id="3_g0ndu"]
 [ext_resource type="Texture2D" uid="uid://bxq6k4eulk04f" path="res://Resources/Level/star-Sheet.png" id="5_4bdqt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eljrv"]
 shader = ExtResource("2_a2o6n")
-shader_parameter/iterations = 3
+shader_parameter/iterations = 2
 shader_parameter/zoom = 1.0
-shader_parameter/power = 0.5
-shader_parameter/speed = 0.1
-shader_parameter/background = Color(0.498039, 0.74902, 0.501961, 1)
+shader_parameter/power = 5.0
+shader_parameter/speed = 0.3
+shader_parameter/background = Color(0, 0, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wqtq3"]
 atlas = ExtResource("5_4bdqt")
@@ -61,7 +61,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_wdf1y")
+texture = ExtResource("3_g0ndu")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -76,18 +76,20 @@ offset_right = 326.0
 offset_bottom = 432.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.772549, 0.611765, 0.227451, 0.654902)
+color = Color(0.839216, 0.419608, 0.12549, 0.921569)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 138.0
+offset_bottom = 217.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 44
-text = "Goats Gorge : Dusty Descent"
+text = "Goats Gorge : 
+Dusty Descent"
 horizontal_alignment = 1
 vertical_alignment = 1
+uppercase = true
 
 [node name="Menu" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(200, 200)
