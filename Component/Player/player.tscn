@@ -739,7 +739,7 @@ debug_color = Color(0.85098, 0, 0.894118, 0.419608)
 
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("invincible_timer") groups=["health", "player"]]
 collision_layer = 34
-collision_mask = 4
+collision_mask = 32772
 script = ExtResource("6_o0leh")
 invincible_timer = NodePath("../Timers/InvincibleTimer")
 faction_id = 1
