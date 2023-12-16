@@ -80,32 +80,22 @@ dialogue_start = "crawl"
 shape = SubResource("CircleShape2D_y1lut")
 
 [node name="EnemySpawn" parent="." instance=ExtResource("5_na5g2")]
-position = Vector2(682, 1774)
-rotation = 0.00141585
-scale = Vector2(0.5, 0.5)
-enemy_max = 5
+enemy_max = 4
 bat_max = 1
-spider_max = 2
+spider_max = 1
 gopher_max = 1
 slime_max = 1
 
-[node name="Marker2D1" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
-position = Vector2(-810.75, -2899.28)
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
+position = Vector2(216, 360)
 
-[node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
-position = Vector2(-243.962, -2169.06)
-
-[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Spider" index="1"]
-position = Vector2(-16.7316, -1198)
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
+position = Vector2(672.043, 1213.02)
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Gopher" index="0"]
-position = Vector2(-852.026, -2112.05)
-rotation = -0.00141585
-scale = Vector2(2, 2)
+position = Vector2(270.882, 724.223)
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Slime" index="0"]
-position = Vector2(-1172.15, -812.341)
-rotation = -0.00141585
-scale = Vector2(2, 2)
+position = Vector2(660.913, 794.642)
 
 [editable path="EnemySpawn"]

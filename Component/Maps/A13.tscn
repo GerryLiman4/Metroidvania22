@@ -78,16 +78,16 @@ spider_max = 1
 gopher_max = 1
 slime_max = 1
 
-[node name="Marker2D1" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
-position = Vector2(792.604, 597.753)
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
+position = Vector2(874.848, 556.057)
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
-position = Vector2(330.386, 1439.54)
+position = Vector2(330.414, 1446.71)
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Gopher" index="0"]
-position = Vector2(935.393, 1295.3)
+position = Vector2(1150.64, 1109.58)
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Slime" index="0"]
-position = Vector2(1156.92, 1121.48)
+position = Vector2(875.632, 1305.34)
 
 [editable path="EnemySpawn"]

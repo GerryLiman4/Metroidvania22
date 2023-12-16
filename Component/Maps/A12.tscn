@@ -40,31 +40,6 @@ navigation_polygon = SubResource("NavigationPolygon_fts2m")
 position = Vector2(1169, 682)
 rotation = 0.00141585
 
-[node name="EnemySpawn" parent="." instance=ExtResource("4_tbdgq")]
-enemy_max = 6
-bat_max = 2
-spider_max = 2
-gopher_max = 1
-slime_max = 1
-
-[node name="Marker2D1" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
-position = Vector2(2037.86, 232.794)
-
-[node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Bat" index="1"]
-position = Vector2(1427.75, 577.656)
-
-[node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
-position = Vector2(1950.43, 748.042)
-
-[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Spider" index="1"]
-position = Vector2(246.359, 463.165)
-
-[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Gopher" index="0"]
-position = Vector2(1250.4, 355.97)
-
-[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Slime" index="0"]
-position = Vector2(1588, 451)
-
 [node name="Event" parent="." instance=ExtResource("7_rt2x3")]
 position = Vector2(224, 125)
 event_name = "miner_intro"
@@ -114,6 +89,31 @@ hitbox = NodePath("../BreakableBox4/Breakable")
 position = Vector2(680, 48)
 hitbox = NodePath("../BreakableBox4/Breakable")
 
-[editable path="EnemySpawn"]
+[node name="EnemySpawn" parent="." instance=ExtResource("4_tbdgq")]
+enemy_max = 6
+bat_max = 2
+spider_max = 2
+gopher_max = 1
+slime_max = 1
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
+position = Vector2(1386.16, 636.408)
+
+[node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Bat" index="1"]
+position = Vector2(2131, 243.298)
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
+position = Vector2(1987.27, 787.572)
+
+[node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Spider" index="1"]
+position = Vector2(233.174, 497.962)
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Gopher" index="0"]
+position = Vector2(1187.58, 376.122)
+
+[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Slime" index="0"]
+position = Vector2(1585.14, 442.603)
+
 [editable path="Event"]
 [editable path="NPC"]
+[editable path="EnemySpawn"]
