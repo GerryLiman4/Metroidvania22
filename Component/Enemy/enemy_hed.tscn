@@ -207,6 +207,7 @@ size = Vector2(90, 107)
 size = Vector2(66, 107)
 
 [node name="EnemyHed" node_paths=PackedStringArray("jump_timer") instance=ExtResource("1_jgicj")]
+scale = Vector2(0.75, 0.75)
 script = ExtResource("2_4wq1v")
 jump_velocity = Vector2(150, -250)
 jump_timer = NodePath("JumpTimer")
@@ -214,9 +215,7 @@ max_chase_distance = 200.0
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_jjlbe")
-animation = &"Dead"
-frame = 13
-frame_progress = 1.0
+animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 position = Vector2(1, 10.5)
