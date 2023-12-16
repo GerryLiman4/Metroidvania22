@@ -8,6 +8,13 @@ extends BaseEnemy
 @export var bullet_scene : PackedScene
 @export var shooter : Marker2D
 
+@onready var audio_stream_player = $AudioStreamPlayer2D
+
+var audioScenes := {
+	"dead" : preload("res://Resources/Audio/SFX/Enemy/Enemy-005.ogg"),
+	"shoot" : preload("res://Resources/Audio/SFX/Player/bullet2.ogg")
+}
+
 func _ready():
 	health.on_get_damaged.connect(on_get_damaged)
 	health.on_dead.connect(on_dead)
@@ -16,6 +23,11 @@ func on_get_damaged(direction : Vector2):
 	pass
 
 func on_dead():
+	animated_sprite.play("Dead")
+	audio_stream_player.stream = audioScenes["dead"]
+	audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
+	audio_stream_player.play()
+	await animated_sprite.animation_finished
 	self.queue_free()
 
 func _on_idle_state_entered():
@@ -48,7 +60,6 @@ func _on_chasing_state_exited():
 	subm.stop()
 
 func _on_chasing_state_physics_processing(delta):
-	print(shoot_timer.time_left)
 	if target == null :
 		return
 	
@@ -88,6 +99,10 @@ func shoot():
 	direction = (target.global_position - global_position).normalized()
 	
 	await get_tree().create_timer(0.15)
+	
+	audio_stream_player.stream = audioScenes["shoot"]
+	audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
+	audio_stream_player.play()
 	
 	var bullet : Bullet = bullet_scene.instantiate()
 	bullet.global_position = shooter.global_position

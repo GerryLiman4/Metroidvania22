@@ -94,12 +94,18 @@ func action() -> void:
 func _on_body_entered(body):
 	if body.is_in_group(&"Player"):
 		player = body
-		if (automatic && event_name && event_type != null) && (dialogue_resource && dialogue_start):
+		if event_name == "end_cutscene":
+			var game_ref = Game.get_singleton()
+			SceneTransition.player_data = game_ref.get_save_data()
+			game_ref.end_escape()
+			SceneTransition.start_transition_to("cutscene", true, "res://UI/end_scene.tscn")
+		elif (automatic && event_name && event_type != null) && (dialogue_resource && dialogue_start):
 			match (event_type):
 				EVENTS.ABILITY:
 					if !Player.get_singleton().abilities.has(event_name):
 						var abilities : Array = player.abilities
 						player.abilities.append(event_name)
+						AudioController.play_sfx("ability")
 						# Create dialogue balloon
 						var balloon : Node = Cutscene_Balloon.instantiate()
 						get_tree().current_scene.add_child(balloon)
@@ -111,11 +117,7 @@ func _on_body_entered(body):
 						
 				EVENTS.OTHER:
 					var game_ref = Game.get_singleton()
-					if event_name == "end_cutscene":
-						SceneTransition.player_data = Game.get_singleton().get_save_data()
-						Game.get_singleton().end_escape()
-						SceneTransition.start_transition_to("cutscene", true, "res://UI/end_scene.tscn")
-					elif !game_ref.events.has(event_name):
+					if !game_ref.events.has(event_name):
 						game_ref.events.append(event_name)
 						# Create dialogue balloon
 						var balloon : Node = Cutscene_Balloon.instantiate()

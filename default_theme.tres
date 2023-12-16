@@ -1,6 +1,10 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://vcpjsu4i5jcq"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://vcpjsu4i5jcq"]
 
 [ext_resource type="FontFile" uid="uid://cpswit7hctnv3" path="res://Resources/Fonts/kirsty/kirsty bd it.otf" id="2_o6opv"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7nbxg"]
+bg_color = Color(0.133333, 0.12549, 0.203922, 1)
+
 [resource]
 default_font = ExtResource("2_o6opv")
+Button/styles/focus = SubResource("StyleBoxFlat_7nbxg")

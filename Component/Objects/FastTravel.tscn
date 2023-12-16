@@ -90,11 +90,11 @@ libraries = {
 }
 
 [node name="UseLabel" type="Label" parent="."]
-visible = false
-offset_left = -72.0
-offset_top = -135.0
-offset_right = 73.0
-offset_bottom = -112.0
+offset_left = -150.0
+offset_top = -171.429
+offset_right = -5.0
+offset_bottom = -148.429
+scale = Vector2(2, 2)
 text = "Press Interact"
 horizontal_alignment = 1
 

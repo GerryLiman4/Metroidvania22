@@ -549,6 +549,8 @@ func _on_double_jump_state_entered():
 		velocity.y = DOUBLE_JUMP_VELOCITY
 	else :
 		velocity.y += DOUBLE_JUMP_VELOCITY
+	
+	animation_player.play("Jump")
 	#region SFX
 	
 	if audioScenes["movement"]["jump"]:

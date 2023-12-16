@@ -19,6 +19,13 @@ func _unhandled_input(_event: InputEvent) -> void:
 		
 
 func _ready():
+	#Reset the save
+	var file_path = "user://save_data.sav"
+	if FileAccess.file_exists(file_path):
+		FileAccess.open("user://save_data.sav", FileAccess.WRITE).store_var({})
+	else:
+		FileAccess.open("user://save_data.sav", FileAccess.WRITE).store_var({})
+	
 	#Start input delay timer
 	input_delay_timer.start(3)
 	
@@ -66,7 +73,7 @@ func play_scene_4():
 	animation_player.play("scene_3")
 	
 func _proceed_to_menu():
-	SceneTransition.start_transition_to("menu", true, "res://UI/main.tscn")
+	SceneTransition.start_transition_to("menu", false, "res://UI/main.tscn")
 
 func _on_input_delay_timer_timeout():
 	input_ready = true
