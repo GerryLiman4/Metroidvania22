@@ -62,7 +62,6 @@ enemy_max = 4
 bat_max = 1
 spider_max = 1
 gopher_max = 1
-slime_max = 1
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
 position = Vector2(1644.76, 211.173)
