@@ -133,7 +133,7 @@ func _unhandled_input(_event : InputEvent) -> void:
 		if actionables.size() > 0:
 			actionables[0].action()
 			return
-	'''
+
 	if Input.is_action_just_pressed("start"):
 		SceneTransition.start_transition_to("menu", true, "res://UI/main.tscn")
 	
@@ -141,7 +141,7 @@ func _unhandled_input(_event : InputEvent) -> void:
 		cheat_abilities()
 	if Input.is_action_just_pressed("print"):
 		print(abilities)
-	'''
+
 	
 func on_enter():
 	# Position for kill system. Assigned when entering new room (see Game.gd).
