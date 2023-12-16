@@ -47,7 +47,7 @@ rotation = 0.00141585
 position = Vector2(222, 425)
 
 [node name="SavePoint" parent="." instance=ExtResource("4_gnt65")]
-position = Vector2(716, 1810)
+position = Vector2(716, 1808)
 rotation = 0.00141585
 
 [node name="NavigationRegion2D2" type="NavigationRegion2D" parent="."]

@@ -59,7 +59,7 @@ position = Vector2(2206.97, 110.64)
 navigation_polygon = SubResource("NavigationPolygon_41tk2")
 
 [node name="SavePoint" parent="." instance=ExtResource("4_tme8u")]
-position = Vector2(144, 817)
+position = Vector2(144, 816)
 rotation = 0.00141585
 
 [node name="EnemySpawn" parent="." instance=ExtResource("5_4c8i2")]

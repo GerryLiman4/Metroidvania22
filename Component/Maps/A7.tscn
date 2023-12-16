@@ -56,7 +56,7 @@ position = Vector2(288, 671)
 rotation = 0.00141585
 
 [node name="SavePoint" parent="." instance=ExtResource("4_g2l0d")]
-position = Vector2(3213, 597)
+position = Vector2(3213, 596)
 rotation = 0.00141585
 
 [node name="Knocker" type="Sprite2D" parent="."]

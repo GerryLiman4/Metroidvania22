@@ -31,7 +31,7 @@ rotation = 0.00141585
 hitbox = NodePath("../BreakableBox2/Breakable")
 
 [node name="SavePoint" parent="." instance=ExtResource("3_yruy1")]
-position = Vector2(613, 690)
+position = Vector2(613, 688)
 rotation = 0.00141585
 
 [node name="EnemySpawn" parent="." instance=ExtResource("4_1j542")]

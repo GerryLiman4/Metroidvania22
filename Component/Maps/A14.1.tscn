@@ -48,7 +48,7 @@ position = Vector2(149.676, 181.953)
 navigation_polygon = SubResource("NavigationPolygon_vls2a")
 
 [node name="SavePoint" parent="." instance=ExtResource("4_ls6yc")]
-position = Vector2(539, 1841)
+position = Vector2(539, 1840)
 
 [node name="EnemySpawn" parent="." instance=ExtResource("5_woc27")]
 enemy_max = 4

@@ -35,7 +35,7 @@ position = Vector2(438, 721)
 position = Vector2(238, 1552)
 
 [node name="SavePoint" parent="." instance=ExtResource("4_3fqmf")]
-position = Vector2(1031, 434)
+position = Vector2(1031, 433)
 
 [node name="Knocker" type="Node2D" parent="."]
 position = Vector2(914.658, 208.514)

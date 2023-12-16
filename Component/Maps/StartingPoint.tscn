@@ -179,7 +179,7 @@ position = Vector2(1112, 574)
 target_map = "ASB.tscn"
 
 [node name="SavePoint" parent="." instance=ExtResource("12_l2mrd")]
-position = Vector2(928, 624)
+position = Vector2(929, 623)
 
 [editable path="NPC/Mayor West"]
 [editable path="NPC/Mayor Event"]
