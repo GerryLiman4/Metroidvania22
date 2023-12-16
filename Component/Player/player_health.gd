@@ -10,7 +10,7 @@ func _enter_tree():
 	set_physics_process(false)
 
 func get_contact(area : Area2D):
-	if area.is_in_group("enemy") == true :
+	if area.is_in_group("enemy") == true || area.is_in_group("hazard") :
 		# check if can be damaged
 		if is_invincible == true :
 			return

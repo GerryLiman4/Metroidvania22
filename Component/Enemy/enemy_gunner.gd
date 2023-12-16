@@ -62,13 +62,6 @@ func on_dead():
 		audio_stream_player.play()
 	await animated_sprite.animation_finished
 	
-	stop()
-	velocity.y = 0
-	var children  = health.get_children()
-	for index in children :
-		if children[index] is CollisionShape2D :
-			children[index].disabled = true
-	
 	self.queue_free()
 	
 func calculate_gravity() :
