@@ -15,6 +15,8 @@ func _on_menu_activated(element) -> void:
 			AudioController.toggle_music()
 		"Reset Save":
 			reset_save()
+		"Quit":
+			get_tree().quit()
 
 	'''
 	match (element.text):

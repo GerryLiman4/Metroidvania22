@@ -90,6 +90,7 @@ libraries = {
 }
 
 [node name="UseLabel" type="Label" parent="."]
+visible = false
 offset_left = -150.0
 offset_top = -171.429
 offset_right = -5.0

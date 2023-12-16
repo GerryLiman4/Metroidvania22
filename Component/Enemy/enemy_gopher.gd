@@ -9,7 +9,8 @@ extends BaseEnemy
 @export var shooter : Marker2D
 
 @onready var audio_stream_player = $AudioStreamPlayer2D
-
+@onready var collision_shape_2d = $Hitbox/CollisionShape2D
+var is_dead : bool = false
 var audioScenes := {
 	"dead" : preload("res://Resources/Audio/SFX/Enemy/Enemy-005.ogg"),
 	"shoot" : preload("res://Resources/Audio/SFX/Player/bullet2.ogg"),
@@ -24,6 +25,13 @@ func on_get_damaged(direction : Vector2):
 	pass
 
 func on_dead():
+	if is_dead == true : 
+		return
+	stop()
+	velocity.y = 0
+	collision_shape_2d.set_deferred("disabled", true)
+	is_dead = true 
+	
 	audio_stream_player.stream = audioScenes["dead"]
 	audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
 	audio_stream_player.call_deferred("play")
@@ -42,6 +50,9 @@ func _on_idle_state_exited():
 	flip_timer.stop()
 
 func _on_idle_state_physics_processing(delta):
+	if is_dead == true :
+		return
+	
 	check_player()
 	# physics
 	fall(delta)
@@ -63,6 +74,9 @@ func _on_chasing_state_exited():
 	subm.stop()
 
 func _on_chasing_state_physics_processing(delta):
+	if is_dead == true :
+		return
+	
 	if target == null :
 		return
 	

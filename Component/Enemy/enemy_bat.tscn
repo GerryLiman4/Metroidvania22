@@ -140,10 +140,11 @@ radius = 25.0
 height = 62.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ds2ba"]
-radius = 25.5
-height = 60.0
+radius = 100.0
+height = 200.0
 
 [node name="EnemyBat" node_paths=PackedStringArray("navigation_agent") instance=ExtResource("1_yno6s")]
+scale = Vector2(0.4, 0.4)
 script = ExtResource("2_ms0dd")
 navigation_agent = NodePath("NavigationAgent2D")
 accel_speed = 10
@@ -153,16 +154,17 @@ JUMP_VELOCITY = 0.0
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_c41e1")
-animation = &"Dead"
-frame = 7
-frame_progress = 1.0
+animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
 position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_j3msg")
 
+[node name="Hitbox" parent="." index="4"]
+scale = Vector2(0.5, 0.5)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(0, 4)
+position = Vector2(0, 14)
 shape = SubResource("CapsuleShape2D_ds2ba")
 debug_color = Color(0.972549, 0.117647, 0.313726, 0.419608)
 

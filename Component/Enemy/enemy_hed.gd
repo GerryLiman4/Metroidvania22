@@ -4,9 +4,10 @@ extends BaseEnemy
 @export var jump_timer : Timer
 
 @onready var audio_stream_player : AudioStreamPlayer  = $AudioStreamPlayer
+@onready var hitbox = $Hitbox/hitbox
 
 var _jump : bool = false
-
+var is_dead : bool = false
 var audioScenes := {
 	"spider_screech1" : preload("res://Resources/Audio/SFX/Enemy/Spider/Spidernoises-001.ogg"),
 	"spider_screech2" : preload("res://Resources/Audio/SFX/Enemy/Spider/Spidernoises-004.ogg"),
@@ -31,6 +32,14 @@ func on_get_damaged(direction : Vector2):
 		print(randomKey + " not found in audioScenes, or SFX already playing")
 
 func on_dead():
+	if is_dead == true : 
+		return
+	
+	stop()
+	velocity.y = 0
+	hitbox.set_deferred("disabled", true)
+	is_dead = true 
+	
 	var enemyDeadSFXKeys := ["spider_hurt1", "spider_hurt2"]
 	var randomKey = enemyDeadSFXKeys[randi() % enemyDeadSFXKeys.size() - 1]
 	
@@ -81,6 +90,9 @@ func _on_idle_state_exited():
 	pass
 
 func _on_idle_state_physics_processing(delta):
+	if is_dead == true :
+		return
+	
 	if health.health_point <= 0 :
 		return
 	

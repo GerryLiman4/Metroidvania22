@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://drsu7w1sbm15b"]
+[gd_scene load_steps=12 format=3 uid="uid://drsu7w1sbm15b"]
 
 [ext_resource type="Script" path="res://UI/menu.gd" id="1_8nhd7"]
 [ext_resource type="Script" path="res://UI/main.gd" id="1_smr17"]
 [ext_resource type="Shader" path="res://Resources/wave.gdshader" id="2_a2o6n"]
 [ext_resource type="Texture2D" uid="uid://5l0ii3y4pa25" path="res://Resources/black.png" id="3_g0ndu"]
+[ext_resource type="Texture2D" uid="uid://0025337icgsg" path="res://Dialogue/9patchrect.png" id="4_t655y"]
 [ext_resource type="Texture2D" uid="uid://bxq6k4eulk04f" path="res://Resources/Level/star-Sheet.png" id="5_4bdqt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eljrv"]
@@ -64,6 +65,7 @@ grow_vertical = 2
 texture = ExtResource("3_g0ndu")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -77,6 +79,26 @@ offset_bottom = 432.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.839216, 0.419608, 0.12549, 0.921569)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+modulate = Color(0.839216, 0.419608, 0.12549, 0.921569)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -255.0
+offset_top = -449.0
+offset_right = 255.0
+offset_bottom = 242.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_t655y")
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -128,6 +150,11 @@ text = "Toggle Music"
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Reset Save"
+
+[node name="Quit" type="Label" parent="Menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Quit"
 
 [node name="Selector" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
