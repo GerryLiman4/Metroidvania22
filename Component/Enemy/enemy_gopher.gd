@@ -48,7 +48,6 @@ func _on_chasing_state_exited():
 	subm.stop()
 
 func _on_chasing_state_physics_processing(delta):
-	print(shoot_timer.time_left)
 	if target == null :
 		return
 	
@@ -70,7 +69,6 @@ func _on_shoot_timer_timeout():
 	shoot()
 	animated_sprite.play("Idle")
 	hitbox.disabled = true
-	print("Start Timer" )
 	subm.start(subm.wait_time)
 
 func _on_submerge_timer_timeout():
