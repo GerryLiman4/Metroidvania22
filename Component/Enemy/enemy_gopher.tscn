@@ -1,10 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://dbfia44rggrkv"]
+[gd_scene load_steps=18 format=3 uid="uid://b0yop6ggscpfv"]
 
 [ext_resource type="PackedScene" uid="uid://b5uxjmvoij6of" path="res://Component/Enemy/enemy_base.tscn" id="1_72ylp"]
 [ext_resource type="Script" path="res://Component/Enemy/enemy_gopher.gd" id="2_ih2uu"]
 [ext_resource type="Texture2D" uid="uid://dryu6vpggme13" path="res://Resources/Enemy/Gopher/mole_dirt1.png" id="2_tyc8h"]
 [ext_resource type="Texture2D" uid="uid://cirdt261f8na2" path="res://Resources/Enemy/Gopher/mole_base_right.png" id="3_sw2wm"]
-[ext_resource type="PackedScene" path="res://Component/gopher_bullet.tscn" id="3_vb7d2"]
+[ext_resource type="PackedScene" uid="uid://bcwt4smsj20ie" path="res://Component/gopher_bullet.tscn" id="3_vb7d2"]
 [ext_resource type="Texture2D" uid="uid://cgrvetwhn5a4" path="res://Resources/smoke-Sheet.png" id="4_2wtto"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g0qho"]
@@ -113,7 +113,6 @@ position = Vector2(-58, 23)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(1, 15)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_kon0d")
 
 [node name="PlayerChecker" parent="." index="5"]

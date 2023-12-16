@@ -5,7 +5,8 @@ extends BaseEnemy
 @export var shooter : Node2D
 var _can_shoot : bool = false
 @onready var audio_stream_player = $AudioStreamPlayer2D
-
+@onready var collision_shape_2d = $Hitbox/CollisionShape2D
+var is_dead : bool = false
 var audioScenes := {
 	"attack1" : preload("res://Resources/Audio/SFX/Enemy/Slime/slime_attack-001.ogg"),
 	"attack2" : preload("res://Resources/Audio/SFX/Enemy/Slime/slime_attack-004.ogg"),
@@ -46,6 +47,14 @@ func on_get_damaged(direction : Vector2):
 	return
 
 func on_dead():
+	if is_dead == true : 
+		return
+	
+	stop()
+	velocity.y = 0
+	collision_shape_2d.set_deferred("disabled", true)
+	is_dead = true 
+	
 	animated_sprite.play("Dead")
 	if audioScenes["dead"]:
 		audio_stream_player.stream = audioScenes["dead"]
@@ -53,6 +62,12 @@ func on_dead():
 		audio_stream_player.play()
 	await animated_sprite.animation_finished
 	
+	stop()
+	velocity.y = 0
+	var children  = health.get_children()
+	for index in children :
+		if children[index] is CollisionShape2D :
+			children[index].disabled = true
 	
 	self.queue_free()
 	
@@ -66,6 +81,8 @@ func _on_idle_state_exited():
 	pass
 
 func _on_idle_state_physics_processing(delta):
+	if is_dead == true :
+		return
 	super._on_idle_state_physics_processing(delta)
 
 func _on_chasing_state_entered():
@@ -77,6 +94,9 @@ func _on_chasing_state_exited():
 	pass
 
 func _on_chasing_state_physics_processing(delta):
+	if is_dead == true :
+		return
+	
 	if target == null :
 		return
 	
@@ -102,6 +122,9 @@ func _on_patroling_state_exited():
 	pass # Replace with function body.
 
 func _on_patroling_state_physics_processing(delta):
+	if is_dead == true :
+		return
+	
 	if is_on_wall() == true or ground_checker.is_colliding() == false:
 		flip()
 	

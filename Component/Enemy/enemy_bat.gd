@@ -4,6 +4,9 @@ extends BaseEnemy
 @export var accel_speed : int = 10
 
 @onready var audio_stream_player = $AudioStreamPlayer
+@onready var collision_shape_2d = $Hitbox/CollisionShape2D
+
+var is_dead : bool = false
 
 var audioScenes := {
 	"bat_screech1" : preload("res://Resources/Audio/SFX/Enemy/Bat/Batnoise-001.ogg"),
@@ -30,8 +33,13 @@ func on_get_damaged(direction : Vector2):
 		print(randomKey + " not found in audioScenes, or SFX already playing")
 
 func on_dead():
+	if is_dead == true : 
+		return
+	
 	stop()
 	velocity.y = 0
+	is_dead = true
+	collision_shape_2d.set_deferred("disabled", true)
 	
 	var enemyDeadSFXKeys := ["bat_dead1", "bat_dead2"]
 	var randomKey = enemyDeadSFXKeys[randi() % enemyDeadSFXKeys.size()]
@@ -60,6 +68,8 @@ func _on_idle_state_exited():
 	super._on_idle_state_exited()
 
 func _on_idle_state_physics_processing(delta):
+	if is_dead == true : 
+		return
 	move_and_slide()
 
 func _on_chasing_state_entered():
@@ -70,6 +80,9 @@ func _on_chasing_state_exited():
 	
 
 func _on_chasing_state_physics_processing(delta):
+	if is_dead == true : 
+		return
+	
 	if target == null :
 		return
 	
@@ -83,6 +96,9 @@ func _on_chasing_state_physics_processing(delta):
 	velocity = velocity.lerp(direction * CHASE_SPEED,accel_speed * delta )
 	# physics
 	move_and_slide()
+	
+	if ((target.global_position.x >= global_position.x && face_direction == FACING.LEFT ) or (target.global_position.x < global_position.x && face_direction == FACING.RIGHT)) && abs(global_position.x - target.global_position.x) > 10.0 :
+		flip()
 
 
 func _on_patroling_state_entered():

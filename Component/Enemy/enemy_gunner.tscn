@@ -325,7 +325,6 @@ event = &"player_entered"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(-0.5, -10)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_4gb0m")
 debug_color = Color(0.854902, 0.341176, 0.34902, 0.419608)
 
