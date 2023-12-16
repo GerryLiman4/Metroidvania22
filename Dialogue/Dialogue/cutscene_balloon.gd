@@ -86,6 +86,13 @@ func _unhandled_input(_event: InputEvent) -> void:
 	# Only the balloon is allowed to handle input while it's showing
 	get_viewport().set_input_as_handled()
 
+func _input(event):
+	if (event.is_action_pressed("start")):
+		emit_signal("dialog_ended")
+		SignalManager.dialogue_end.emit()
+		get_tree().paused = false
+		queue_free()
+
 
 ## Start some dialogue
 func start(dialogue_resource: DialogueResource, title: String, extra_game_states: Array = []) -> void:
@@ -127,15 +134,11 @@ func _on_balloon_gui_input(event: InputEvent) -> void:
 	get_viewport().set_input_as_handled()
 	
 
-	if event is InputEventMouseButton and event.is_pressed() and event.button_index == 1:
+	
+	if (event.is_action_pressed("Jump") || event.is_action_pressed("Shoot") || event.is_action_pressed("affirmative")) and get_viewport().gui_get_focus_owner() == balloon:
 		next(dialogue_line.next_id)
-	elif (event.is_action_pressed("Jump") || event.is_action_pressed("Shoot") || event.is_action_pressed("affirmative")) and get_viewport().gui_get_focus_owner() == balloon:
+	elif event is InputEventMouseButton and event.is_pressed() and event.button_index == 1:
 		next(dialogue_line.next_id)
-	elif (event.is_action_pressed("Dash") || event.is_action_pressed("negative")):
-		emit_signal("dialog_ended")
-		SignalManager.dialogue_end.emit()
-		get_tree().paused = false
-		queue_free()
 		
 
 func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
