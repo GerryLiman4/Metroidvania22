@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bq6ll2apombgy"]
+[gd_scene load_steps=13 format=3 uid="uid://bq6ll2apombgy"]
 
 [ext_resource type="Script" path="res://Script/MetSys/SavePoint.gd" id="1_1525h"]
 [ext_resource type="Texture2D" uid="uid://dyal1mgdkdh4t" path="res://Resources/Level/fire-Sheet.png" id="2_c6bim"]
+[ext_resource type="AudioStream" uid="uid://b5r1uqg830613" path="res://Resources/Audio/SFX/Environment/Save_Game.ogg" id="3_be0ua"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8wrs1"]
 atlas = ExtResource("2_c6bim")
@@ -87,5 +88,9 @@ offset_top = -88.0
 offset_right = 48.0
 offset_bottom = -65.0
 text = "Game Saved"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_be0ua")
+volume_db = -7.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
