@@ -82,7 +82,7 @@ position = Vector2(1902.66, 158.707)
 position = Vector2(1101.92, 301.639)
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Gopher" index="0"]
-position = Vector2(596.66, 567.396)
+position = Vector2(541, 568)
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Slime" index="0"]
 position = Vector2(1540.83, 678.708)

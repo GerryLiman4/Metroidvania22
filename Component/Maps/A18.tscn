@@ -82,18 +82,17 @@ shape = SubResource("CircleShape2D_y1lut")
 [node name="EnemySpawn" parent="." instance=ExtResource("5_na5g2")]
 enemy_max = 4
 bat_max = 1
-spider_max = 1
-gopher_max = 1
+gopher_max = 2
 slime_max = 1
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Bat" index="0"]
 position = Vector2(216, 360)
 
-[node name="Marker2D" type="Marker2D" parent="EnemySpawn/Spider" index="0"]
-position = Vector2(672.043, 1213.02)
-
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Gopher" index="0"]
 position = Vector2(270.882, 724.223)
+
+[node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Gopher" index="1"]
+position = Vector2(109, 1367)
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Slime" index="0"]
 position = Vector2(660.913, 794.642)
