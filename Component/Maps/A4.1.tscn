@@ -22,7 +22,7 @@ layer_3/tile_data = PackedInt32Array(3735590, 655361, 4, 3735591, 720897, 4, 373
 [node name="RoomInstance" parent="." instance=ExtResource("2_yl2dt")]
 
 [node name="SavePoint" parent="." instance=ExtResource("2_07v3l")]
-position = Vector2(623, 562)
+position = Vector2(624, 560)
 rotation = 0.00141585
 
 [node name="EnemySpawn" parent="." instance=ExtResource("4_gh3ou")]
@@ -41,10 +41,10 @@ position = Vector2(529, 1157)
 position = Vector2(336, 1728)
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawn/Gopher" index="0"]
-position = Vector2(768, 1603)
+position = Vector2(864, 1656)
 
 [node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Gopher" index="1"]
-position = Vector2(1033.77, 1389)
+position = Vector2(1026, 1407)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_0ntfb")
