@@ -44,7 +44,7 @@ position = Vector2(336, 1728)
 position = Vector2(768, 1603)
 
 [node name="Marker2D2" type="Marker2D" parent="EnemySpawn/Gopher" index="1"]
-position = Vector2(1033.77, 1389)
+position = Vector2(1026, 1407)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_0ntfb")
