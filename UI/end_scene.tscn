@@ -694,8 +694,25 @@ horizontal_alignment = 1
 position = Vector2(633, 627)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Scene3/Stats"]
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.5
+offset_top = -34.0
+offset_right = 41.5
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="CollectablesLabel" type="Label" parent="Scene3/Stats/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Collectables found:"
+horizontal_alignment = 1
 
 [node name="Collectables" type="Label" parent="Scene3/Stats/VBoxContainer"]
 unique_name_in_owner = true
@@ -704,6 +721,8 @@ horizontal_alignment = 1
 
 [node name="Playtime label" type="Label" parent="Scene3/Stats/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Playtime:"
 horizontal_alignment = 1
 
 [node name="Playtime" type="Label" parent="Scene3/Stats/VBoxContainer"]
