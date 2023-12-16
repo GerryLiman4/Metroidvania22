@@ -50,6 +50,7 @@ var map
 var bat_spawns : Array
 var spider_spawns : Array
 var gopher_spawns : Array
+var slime_spawns : Array
 
 func _ready():
 	
