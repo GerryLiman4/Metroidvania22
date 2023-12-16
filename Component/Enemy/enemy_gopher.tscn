@@ -88,12 +88,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kon0d"]
-size = Vector2(112, 68)
+size = Vector2(112, 94.4286)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3d4lr"]
 size = Vector2(32, 20)
 
 [node name="Gopher" node_paths=PackedStringArray("hitbox", "shoot_timer", "flip_timer", "subm", "shooter") instance=ExtResource("1_72ylp")]
+scale = Vector2(0.7, 0.7)
 script = ExtResource("2_ih2uu")
 hitbox = NodePath("Hitbox/CollisionShape2D")
 shoot_timer = NodePath("ShootTimer")
@@ -105,13 +106,14 @@ max_chase_distance = 1500.0
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_8t5ah")
-animation = &"Dead"
+animation = &"Popup"
 
 [node name="Shooter" type="Marker2D" parent="AnimatedSprite2D" index="0"]
 position = Vector2(-58, 23)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2(1, 29)
+position = Vector2(1, 15)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_kon0d")
 
 [node name="PlayerChecker" parent="." index="5"]
