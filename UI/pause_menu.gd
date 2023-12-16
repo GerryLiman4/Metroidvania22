@@ -77,6 +77,7 @@ func hide_submenus():
 	options.hide()
 	video.hide()
 	audio.hide()
+	controls.hide()
 	game_over.hide()
 
 func show_game_over():
