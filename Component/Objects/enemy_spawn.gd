@@ -56,7 +56,7 @@ func _ready():
 	fill_spawn_positions(bat, "bat")
 	fill_spawn_positions(spider, "spider")
 	fill_spawn_positions(gopher, "gopher")
-	fill_spawn_positions(gopher, "slime")
+	fill_spawn_positions(slime, "slime")
 	
 	if enemies_spawned >= enemy_max:
 		enemy_limit_reached = true
