@@ -12,7 +12,8 @@ extends BaseEnemy
 
 var audioScenes := {
 	"dead" : preload("res://Resources/Audio/SFX/Enemy/Enemy-005.ogg"),
-	"shoot" : preload("res://Resources/Audio/SFX/Player/bullet2.ogg")
+	"shoot" : preload("res://Resources/Audio/SFX/Player/bullet2.ogg"),
+	"emerge" : preload("res://Resources/Audio/SFX/Enemy/Gopher/gopher_emerging.ogg")
 }
 
 func _ready():
@@ -23,10 +24,10 @@ func on_get_damaged(direction : Vector2):
 	pass
 
 func on_dead():
-	animated_sprite.play("Dead")
 	audio_stream_player.stream = audioScenes["dead"]
 	audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
-	audio_stream_player.play()
+	audio_stream_player.call_deferred("play")
+	animated_sprite.play("Dead")
 	await animated_sprite.animation_finished
 	self.queue_free()
 
@@ -49,8 +50,10 @@ func _on_idle_state_physics_processing(delta):
 
 func _on_chasing_state_entered():
 	start_shoot_timer()
-	
 	animated_sprite.play("Popup")
+	audio_stream_player.stream = audioScenes["emerge"]
+	audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
+	audio_stream_player.play()
 	hitbox.disabled = false
 
 func _on_chasing_state_exited():

@@ -133,6 +133,7 @@ shape = SubResource("RectangleShape2D_3d4lr")
 debug_color = Color(0.529412, 0.439216, 0.937255, 0.419608)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="10"]
+volume_db = -5.0
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="FlipTimer" to="." method="_on_flip_timer_timeout"]
