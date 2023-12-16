@@ -81,7 +81,6 @@ func _on_shoot_timer_timeout():
 	shoot()
 	animated_sprite.play("Idle")
 	hitbox.disabled = true
-	print("Start Timer" )
 	subm.start(subm.wait_time)
 
 func _on_submerge_timer_timeout():

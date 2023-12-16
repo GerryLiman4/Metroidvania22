@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bmcjpl7vsu2r"]
+[gd_scene load_steps=10 format=3 uid="uid://bmcjpl7vsu2r"]
 
 [ext_resource type="PackedScene" uid="uid://dbd7dfkklmbje" path="res://Component/TestLevels/tile_map_base.tscn" id="1_qeugb"]
 [ext_resource type="PackedScene" uid="uid://dh2v1mpv02wq0" path="res://Component/Player/player.tscn" id="2_v0ftt"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c30kcj6x7ah0g" path="res://Component/Enemy/enemy_hed.tscn" id="5_roupv"]
 [ext_resource type="PackedScene" uid="uid://d00kq2aoxk1s5" path="res://Component/UI/hud.tscn" id="6_m3yw2"]
 [ext_resource type="PackedScene" uid="uid://b0yop6ggscpfv" path="res://Component/Enemy/enemy_gopher.tscn" id="7_us68r"]
+[ext_resource type="PackedScene" uid="uid://d3bcuxyaj64yf" path="res://Component/Breakable/breakable_box.tscn" id="8_il5x6"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_hcrdx"]
 vertices = PackedVector2Array(150, 308, 49, 299, 59, 265, 146, 289, 177, 389, 264, 280, 246, 387, 65, 102, 60, 59, 1220, 59, 219, 109, 327, 245, 1231, 295, 1078, 376, 967, 470, 523, 695, 57, 710, 58, 502, 246, 498, 612, 585, 734, 576, 1134, 628, 1202, 664, 1218, 680, 1212, 702, 1120, 703, 871, 597, 965, 573)
@@ -62,4 +63,7 @@ position = Vector2(390, 640)
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("6_m3yw2")]
 
 [node name="Gopher" parent="." instance=ExtResource("7_us68r")]
-position = Vector2(717, 546)
+position = Vector2(611, 457)
+
+[node name="BreakableBox" parent="." instance=ExtResource("8_il5x6")]
+position = Vector2(119, 680)
