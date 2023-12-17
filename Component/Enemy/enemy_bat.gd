@@ -73,6 +73,8 @@ func _on_idle_state_physics_processing(delta):
 	move_and_slide()
 
 func _on_chasing_state_entered():
+	if is_dead == true : 
+		return
 	animated_sprite.play("Fly")
 
 func _on_chasing_state_exited():
@@ -102,6 +104,8 @@ func _on_chasing_state_physics_processing(delta):
 
 
 func _on_patroling_state_entered():
+	if is_dead == true : 
+		return
 	animated_sprite.play("Fly")
 
 func _on_patroling_state_exited():

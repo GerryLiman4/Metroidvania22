@@ -19,7 +19,7 @@ class_name Game
 
 var escape_health : int = 20
 
-var game_timer : float = -2.0
+var game_timer : float = 0.0
 
 # The current map scene instance.
 var map: Node2D
@@ -153,8 +153,8 @@ func travel_to_point(node_name):
 	# Find the save point and teleport the player to it, to start at the save point.
 	var start := map.get_node_or_null(node_name)
 	if start:
-		player.position = start.position
-		#player.position = start.position - Vector2(0, 25)
+		#player.position = start.position
+		player.position = start.position - Vector2(0, 25)
 
 func _physics_process(delta: float) -> void:
 	# Notify MetSys about the player's current position.

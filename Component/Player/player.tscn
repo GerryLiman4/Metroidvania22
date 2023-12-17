@@ -546,6 +546,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [true, false, true, false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D/Charge:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_yt5mo"]
 resource_name = "dead"
@@ -557,10 +569,10 @@ tracks/0/path = NodePath("AnimatedSprite2D/Arm:material:shader_parameter/active"
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": []
+"values": [false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -569,10 +581,10 @@ tracks/1/path = NodePath("AnimatedSprite2D:material:shader_parameter/active")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": []
+"values": [false]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -605,10 +617,22 @@ tracks/4/path = NodePath("AnimatedSprite2D:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false, true]
+"values": [true, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimatedSprite2D/Charge:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_i3arb"]
@@ -652,6 +676,7 @@ head_raycast_right = NodePath("HeadCastRight")
 player_trail = NodePath("PlayerTrail")
 
 [node name="PlayerTrail" type="Line2D" parent="."]
+visible = false
 top_level = true
 z_index = 10
 position = Vector2(21, 0)
@@ -743,6 +768,7 @@ collision_mask = 32772
 script = ExtResource("6_o0leh")
 invincible_timer = NodePath("../Timers/InvincibleTimer")
 faction_id = 1
+health_point = 6
 
 [node name="hitbox" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CapsuleShape2D_psl57")

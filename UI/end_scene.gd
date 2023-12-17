@@ -19,13 +19,14 @@ func _unhandled_input(_event: InputEvent) -> void:
 		
 
 func _ready():
+	'''
 	#Reset the save
 	var file_path = "user://save_data.sav"
 	if FileAccess.file_exists(file_path):
 		FileAccess.open("user://save_data.sav", FileAccess.WRITE).store_var({})
 	else:
 		FileAccess.open("user://save_data.sav", FileAccess.WRITE).store_var({})
-	
+	'''
 	#Start input delay timer
 	input_delay_timer.start(3)
 	

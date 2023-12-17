@@ -79,6 +79,8 @@ func _on_idle_state_physics_processing(delta):
 	super._on_idle_state_physics_processing(delta)
 
 func _on_chasing_state_entered():
+	if is_dead == true :
+		return
 	animated_sprite.play("Walk")
 	
 	timer_to_shoot.start(timer_to_shoot.wait_time)
@@ -109,6 +111,8 @@ func _on_chasing_state_physics_processing(delta):
 	calculate_gravity()
 
 func _on_patroling_state_entered():
+	if is_dead == true :
+		return
 	animated_sprite.play("Walk")
 
 func _on_patroling_state_exited():
@@ -131,6 +135,8 @@ func _on_patroling_state_physics_processing(delta):
 	calculate_gravity()
 
 func _on_shooting_state_entered():
+	if is_dead == true :
+		return
 	brake()
 	animated_sprite.play("Shoot")
 	

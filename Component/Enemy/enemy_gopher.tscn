@@ -111,6 +111,9 @@ animation = &"Popup"
 [node name="Shooter" type="Marker2D" parent="AnimatedSprite2D" index="0"]
 position = Vector2(-58, 23)
 
+[node name="Hitbox" parent="." index="3"]
+health_point = 2
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(1, 15)
 shape = SubResource("RectangleShape2D_kon0d")
