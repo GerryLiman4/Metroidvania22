@@ -31,7 +31,6 @@ var audioScenes := {
 		"shoot1" : preload("res://Resources/Audio/SFX/Player/bullet1.ogg"),
 		"shoot2" : preload("res://Resources/Audio/SFX/Player/bullet2.ogg"),
 		"shoot3" : preload("res://Resources/Audio/SFX/Player/bullet3.ogg"),
-		"reload" : preload("res://Resources/Audio/SFX/Player/reload.ogg")
 	},
 	"hit" : {
 		"hit1": preload("res://Resources/Audio/SFX/Player/hit-001.ogg"),
@@ -43,7 +42,7 @@ const GRAVITY : float = 600.0
 @export var WALK_SPEED : float = 360.0
 const MAX_FALL : float = 450.0
 @export var JUMP_VELOCITY : float = -350.0
-const CRAWL_SPEED : float = 180.0
+const CRAWL_SPEED : float = 275.0
 const DASH_SPEED : float = 1200.0
 @export var DOUBLE_JUMP_VELOCITY : float = -220.0
 const DASH_COOLDOWN : float = 1.0
@@ -135,12 +134,12 @@ func _unhandled_input(_event : InputEvent) -> void:
 			actionables[0].action()
 			event = true
 			return
-	'''
+	"""
 	if Input.is_action_just_pressed("cheat"):
 		cheat_abilities()
 	if Input.is_action_just_pressed("print"):
 		print(abilities)
-	'''
+	"""
 	
 func on_enter():
 	# Position for kill system. Assigned when entering new room (see Game.gd).
@@ -258,9 +257,11 @@ func on_dead():
 	print("You died")
 	event = true
 	camera.apply_noise_shake()
+	animation_player.play("Dead")
 	effects_animation.play("dead")
 	await effects_animation.animation_finished
 	event = false
+	effects_animation.play("RESET")
 	SignalManager.player_dead.emit()
 
 #region check state
@@ -617,8 +618,8 @@ func _on_crawl_state_exited():
 	#hit_box.position.y = 0
 	#region SFX
 	if audioScenes["movement"]["latch"]:
-		audio_stream_player.stream = audioScenes["movement"]["latch"]
-		audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
+		audio_stream_player.stream = audioScenes["movement"]["land"]
+		audio_stream_player.pitch_scale = randf_range(0.7, 0.9)
 		audio_stream_player.call_deferred("play")
 	#endregion
 	
@@ -692,7 +693,7 @@ func _on_wall_latch_state_entered():
 	#region SFX
 	if audioScenes["movement"]["latch"]:
 		audio_stream_player.stream = audioScenes["movement"]["latch"]
-		audio_stream_player.pitch_scale = randf_range(0.9, 1.1)
+		audio_stream_player.pitch_scale = randf_range(0.7, 0.9)
 		audio_stream_player.call_deferred("play")
 	#endregion
 	
@@ -842,7 +843,7 @@ func camera_shake():
 	camera.apply_random_shake()
 
 func reset_health():
-	player_health.health_point = 3
+	player_health.health_point = 6
 	SignalManager.player_health_updated.emit(player_health.health_point)
 	
 func _on_arm_timer_timeout():

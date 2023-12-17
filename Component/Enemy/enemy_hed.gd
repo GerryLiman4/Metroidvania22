@@ -56,6 +56,9 @@ func on_dead():
 	self.queue_free()
 
 func jump():
+	if is_dead == true : 
+		return
+		
 	if is_on_floor() == false :
 		return
 	
@@ -65,7 +68,7 @@ func jump():
 	if is_on_floor() :
 		if is_on_wall() == true or ground_checker.is_colliding() == false:
 			flip()
-	
+			
 	velocity = jump_velocity
 	
 	if face_direction == FACING.LEFT :
@@ -81,6 +84,8 @@ func calculate_gravity() :
 	velocity.y = clampf(velocity.y, JUMP_VELOCITY, MAX_FALL)
 
 func _on_idle_state_entered():
+	if is_dead == true : 
+		return
 	animated_sprite.play("Idle")
 	
 	# start patroling if nothing happen
@@ -105,6 +110,9 @@ func _on_chasing_state_exited():
 	super._on_chasing_state_exited()
 
 func _on_chasing_state_physics_processing(delta):
+	if is_dead == true : 
+		return
+		
 	if health.health_point <= 0 :
 		return
 	
@@ -137,6 +145,9 @@ func _on_patroling_state_exited():
 	pass # Replace with function body.
 
 func _on_patroling_state_physics_processing(delta):
+	if is_dead == true : 
+		return
+	
 	if health.health_point <= 0 :
 		return
 	

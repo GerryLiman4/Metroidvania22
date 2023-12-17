@@ -207,7 +207,7 @@ size = Vector2(90, 107)
 size = Vector2(66, 107)
 
 [node name="EnemyHed" node_paths=PackedStringArray("jump_timer") instance=ExtResource("1_jgicj")]
-scale = Vector2(0.75, 0.75)
+scale = Vector2(0.6, 0.6)
 script = ExtResource("2_4wq1v")
 jump_velocity = Vector2(150, -250)
 jump_timer = NodePath("JumpTimer")

@@ -87,6 +87,8 @@ func show_game_over():
 	game_over.get_child(1).grab_focus()
 	get_tree().paused = visible
 	emit_signal("pause_toggle", is_paused)
+	if game_ref:
+		update_timer_label(game_ref.game_timer)
 
 # --------------- Menu Buttons ------------------
 

@@ -14,7 +14,7 @@ func _ready():
 	SignalManager.player_damaged.connect(on_player_damaged)
 	SignalManager.player_health_updated.connect(on_player_health_updated)
 	
-	life_amount.text = str(3)
+	life_amount.text = str(6)
 
 func _process(delta):
 	# calculate the dash hud

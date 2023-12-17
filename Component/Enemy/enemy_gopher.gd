@@ -40,6 +40,8 @@ func on_dead():
 	self.queue_free()
 
 func _on_idle_state_entered():
+	if is_dead == true : 
+		return
 	animated_sprite.play("Idle")
 	
 	# start patroling if nothing happen
@@ -60,6 +62,8 @@ func _on_idle_state_physics_processing(delta):
 	calculate_gravity()
 
 func _on_chasing_state_entered():
+	if is_dead == true : 
+		return
 	start_shoot_timer()
 	animated_sprite.play("Popup")
 	audio_stream_player.stream = audioScenes["emerge"]
@@ -95,12 +99,16 @@ func start_shoot_timer() :
 	shoot_timer.start(shoot_timer.wait_time)
 
 func _on_shoot_timer_timeout():
+	if is_dead == true : 
+		return
 	shoot()
 	animated_sprite.play("Idle")
 	hitbox.disabled = true
 	subm.start(subm.wait_time)
 
 func _on_submerge_timer_timeout():
+	if is_dead == true : 
+		return
 	subm.stop()
 	animated_sprite.play("Popup")
 	hitbox.disabled = false

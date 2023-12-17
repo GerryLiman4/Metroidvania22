@@ -51,6 +51,7 @@ shape = SubResource("CircleShape2D_1x5gk")
 
 [node name="NPC" parent="." instance=ExtResource("9_3vryw")]
 position = Vector2(168, 163)
+scale = Vector2(0.7, 0.7)
 npc_name = "Miner"
 image = ExtResource("10_75dbj")
 
