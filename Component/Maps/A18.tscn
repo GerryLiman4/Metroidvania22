@@ -10,10 +10,10 @@
 [ext_resource type="Resource" uid="uid://dl30w8ay6wogl" path="res://Dialogue/Dialogue/event.dialogue" id="5_dykco"]
 [ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://Component/Objects/enemy_spawn.tscn" id="5_na5g2"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_lkgiq"]
-vertices = PackedVector2Array(-159, 679, -291, 654, -213, -235, 16, -77, 38, 335, 544, -73, 371, 251, 275, -331, 595, -324)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 4, 3, 7, 8)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-221.715, -253.261, 14.5175, -89.5956, 272.16, -341.961, 608.171, -334.436, 552.548, -68.3574, 379.013, 259.889, 45.1319, 344.362, -154.378, 690.644, -302.418, 662.854)])
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_netni"]
+vertices = PackedVector2Array(246, -72, 291, 271, -279, 357, -283, -137)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-293.568, -149.158, -288.834, 368.835, 303.041, 279.997, 254.528, -81.9344)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y1lut"]
@@ -65,7 +65,7 @@ rotation = 0.00141585
 position = Vector2(278.678, 323.787)
 rotation = 0.00141585
 scale = Vector2(0.5, 0.5)
-navigation_polygon = SubResource("NavigationPolygon_lkgiq")
+navigation_polygon = SubResource("NavigationPolygon_netni")
 
 [node name="CrawlAbility" parent="." instance=ExtResource("4_txdnc")]
 position = Vector2(682, 1774)

@@ -48,9 +48,6 @@ position = Vector2(47, 80)
 [node name="Spikes8" parent="." instance=ExtResource("3_mcnyk")]
 position = Vector2(47, 112)
 
-[node name="Spikes7" parent="." instance=ExtResource("3_mcnyk")]
-position = Vector2(367, 240)
-
 [node name="Spikes5" parent="." instance=ExtResource("3_mcnyk")]
 position = Vector2(2191, 851)
 rotation = 0.00141585

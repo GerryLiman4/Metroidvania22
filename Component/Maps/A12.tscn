@@ -12,9 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://copcg2xewdtet" path="res://Dialogue/Characters/Miner.png" id="10_75dbj"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_fts2m"]
-vertices = PackedVector2Array(973, -397, 981, -119, 633, -140, -125, -306, 263, 183, -134, 177)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(268.25, 194.344, -144.75, 187.344, -134.75, -315.656, 983.25, -407.656, 992.25, -108.656, 637.25, -129.656)])
+vertices = PackedVector2Array(-123, -306, 967, -396, 857, -144, 633, -140, 263, 183, -73, 170)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(0, 3, 4, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(268.25, 194.344, -82.75, 180.344, -134.75, -315.656, 983.25, -407.656, 864.25, -134.656, 637.25, -129.656)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1x5gk"]

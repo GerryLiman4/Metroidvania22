@@ -11,9 +11,9 @@
 [ext_resource type="Resource" uid="uid://dl30w8ay6wogl" path="res://Dialogue/Dialogue/event.dialogue" id="6_nkbe0"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_reld2"]
-vertices = PackedVector2Array(265, -62, 272, 251, -204, 253, -201, -64)
+vertices = PackedVector2Array(191, -54, 269, 250, -164, 249, -199, -64)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-210.604, -74.753, -214.604, 264.247, 283.396, 261.247, 275.396, -71.753)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-210.604, -74.753, -172.604, 259.247, 283.396, 261.247, 200.396, -63.753)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_04imo"]

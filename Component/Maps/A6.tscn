@@ -8,9 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://ca0eyh0f0n6qr" path="res://Component/Objects/enemy_spawn.tscn" id="4_h4ueh"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_uwg0u"]
-vertices = PackedVector2Array(365, 834, -124, 834, -129, -150, 367, -169)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-140.423, -160.01, -134.423, 843.99, 374.577, 843.99, 377.577, -180.01)])
+vertices = PackedVector2Array(-130, -165, 365, -166, 311, -92, -130, 737, 197, 264, 381, 356, 374, 735, 311, 162)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 0, 2, 4), PackedInt32Array(5, 6, 3, 4), PackedInt32Array(4, 2, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(384.577, -177.01, -140.423, -175.01, -141.423, 747.99, 383.577, 744.99, 391.577, 350.99, 214.577, 261.99, 321.577, 167.99, 320.577, -89.01)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_2x88j"]

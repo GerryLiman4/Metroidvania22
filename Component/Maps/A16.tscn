@@ -19,9 +19,9 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-200.388, -511.801, -14
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_2048w"]
-vertices = PackedVector2Array(1399, 986, 1399, 987, 1382, 840, 1497, 1486, 1654, 698, 1981, 698, 1949, 1391, 1830, 1532)
+vertices = PackedVector2Array(1399, 986, 1399, 987, 1382, 840, 1497, 1485, 1654, 698, 1980, 698, 1880, 1339, 1806, 1509)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 0, 2, 4, 5, 6, 7)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(1389, 988, 1372, 835, 1651, 689, 1992, 688, 1959, 1395, 1835, 1543, 1489, 1495)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1389, 988, 1372, 835, 1651, 689, 1992, 688, 1891, 1341, 1813, 1520, 1489, 1495)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_tbadk"]

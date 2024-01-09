@@ -10,9 +10,9 @@
 [ext_resource type="Resource" uid="uid://dl30w8ay6wogl" path="res://Dialogue/Dialogue/event.dialogue" id="5_ugefq"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ejt7o"]
-vertices = PackedVector2Array(-345, -930, 88, -937, 45, -101, -358, 108, 596, 119, 613, -33)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 3, 2, 5)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(605.339, 130.18, 625.339, -41.8199, 55.339, -109.82, 99.339, -947.82, -354.661, -939.82, -368.661, 118.18)])
+vertices = PackedVector2Array(-358, 108, -345, -929, 5, -916, 45, -101, 596, 119, 613, -33)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(605.339, 130.18, 625.339, -41.8199, 55.339, -109.82, 15.338, -925.82, -354.661, -939.82, -368.661, 118.18)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qh3xw"]
